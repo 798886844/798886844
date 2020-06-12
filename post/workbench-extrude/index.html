@@ -19,7 +19,7 @@
      <div class="header">
       <div class="logo_title">
 		  
-        <div class="title animated fadeInDown"><img src="https://chyon.cn//images/avatar.png?v=1591962809894"/>
+        <div class="title animated fadeInDown"><img src="https://chyon.cn//images/avatar.png?v=1591963194814"/>
 
           <h1 title="言岚的博客" class="weaklink"><a href="/">言岚的博客</a>
 
@@ -181,13 +181,13 @@
 
   <div class="post_content markdown"><p class="md_block">
     <span class="md_line md_line_start md_line_end"><p>建模导入什么的就不说了。直接从设置材料开始：</p>
-<p>####材料选择####</p>
+<p><strong>材料选择</strong></p>
 <p>因为你要方针的是材料的非线性应变，所以你的材料肯定也要是非线性材料。我手头没有非线性材料的数据，这里就直接用数据库里面的结构钢了。</p>
 <figure data-type="image" tabindex="1"><img src="https://i.loli.net/2019/11/25/UMJ3Ifx9BqTyaW6.png" alt="image1.png" loading="lazy"></figure>
-<p>####约束设置####</p>
+<p><strong>约束设置</strong></p>
 <p>因为是拉伸试验，所以肯定一端固定，另一端拉住。拉住的那一端要是加多大的力，是需要计算的。计算公式就是：大于屈服极限x材料的最小几何截面，小于强度极限x材料的最小几何界面。这里自己手动算一下，不复杂的。</p>
 <p>施加拉力的时候，一定要按分步施加载荷来处理，因为你要反应这个过程中的材料变化情况，只有一个点肯定是不够的，要有很多点。</p>
-<p>####后处理####</p>
+<p><strong>后处理</strong></p>
 <p>这里要着重说的也是这部分。因为要处理成最后的应力-应变曲线，所以应力应该是总应力，应变肯定是总应变。</p>
 <p>所以应力应该加的是<code>Equivalent Total Strain</code>这个，等效总应力；应变应该处理为<code>Maximum Principal Stress</code>，最大主应力。</p>
 <p>生成这两个结果之后，就要继续绘制应力应变图像了。</p>
