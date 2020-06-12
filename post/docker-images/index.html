@@ -1,0 +1,470 @@
+
+<html>
+  <head lang="zh">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+        <meta content="yes" name="apple-mobile-web-app-capable"/>
+        <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+        <meta content="telephone=no" name="format-detection"/>
+        <meta name="renderer" content="webkit">
+    <title>常用Docker镜像整理 | 言岚的博客</title>
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/basic.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </head>
+
+  <body>
+     <div class="header">
+      <div class="logo_title">
+		  
+        <div class="title animated fadeInDown"><img src="https://chyon.cn//images/avatar.png?v=1591962809894"/>
+
+          <h1 title="言岚的博客" class="weaklink"><a href="/">言岚的博客</a>
+
+          </h1>
+
+          <div class="navbar weaklink">
+            <div class="normal_nav">
+
+<div class="bitcron_nav_container">
+
+
+  <div class="bitcron_nav">
+    <div class="mixed_site_nav_wrap site_nav_wrap">
+		
+      <ul class="mixed_site_nav site_nav sm sm-base">
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a>
+
+  </li>
+ 
+
+      </ul>
+
+      <div class="clear clear_nav_inline_end"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="clear clear_nav_end"></div>
+
+</div>
+
+            </div>
+
+            <div class="hamberger"><i class="fa fa-bars"></i>
+<i class="fa fa-times"></i>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="hidden_nav animated fadeInDown">
+
+<div class="bitcron_nav_container">
+
+
+  <div class="bitcron_nav">
+    <div class="mixed_site_nav_wrap site_nav_wrap">
+      <ul class="mixed_site_nav site_nav sm sm-base">
+		  
+	
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a>
+
+  </li>
+
+
+
+
+
+      </ul>
+
+      <div class="clear clear_nav_inline_end"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="clear clear_nav_end"></div>
+
+</div>
+
+      </div>
+
+    </div>
+
+
+    <div class="main">
+      <div class="main-inner">
+
+
+<div class="content">
+
+
+
+
+
+
+  <div class="post_page" >
+
+<div class="post">
+  <div class="post_title sm_margin">
+    <h2><a>常用Docker镜像整理</a>
+
+
+
+    </h2>
+  </div>
+
+  <div class="post_details">
+    <div class="info"><i class="fa fa-clock-o"></i>
+<span class="date_info">2018-06-08</span>
+<i class="fa fa-eye"></i>
+
+<span class="date_info"><span id="busuanzi_value_page_pv"></span> Views</span>
+
+
+<i class="fa fa-bookmark-o"></i>
+<span class="tags_info weaklink">
+	
+	<a href="https://chyon.cn/tag/P8pTDDPtp/" class="tag">docker</a>
+
+
+</span>
+
+
+    </div>
+
+  </div>
+
+
+
+
+
+  <div class="post_content markdown"><p class="md_block">
+    <span class="md_line md_line_start md_line_end"><p>平时翻来翻去地找Docker镜像好麻烦，想了想，不如自己整理一下常用的镜像，贴在博客里，以后用就很好找了。</p>
+<p>一下是我自己觉得好用的镜像，你也可以自行去<a href="https://store.docker.com">Docker Hub</a>里面找。</p>
+<ol>
+<li>gingko/centos6.8</li>
+</ol>
+<pre><code class="language-C">镜像：gingko/centos6.8
+系统：CentOS 6.10
+用户名：root
+密码：root
+支持中文
+建站的，配合这个脚本超好用：
+yum install -y wget &amp;&amp; wget -O install.sh http://download.bt.cn/install/install.sh &amp;&amp; sh install.sh
+#
+#该镜像安装aria的步骤为：
+wget http://ftp.tu-chemnitz.de/pub/linux/dag/redhat/el6/en/x86_64/rpmforge/RPMS/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm 
+rpm -ivh rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm 
+yum -y install aria2
+</code></pre>
+<ol start="2">
+<li>stephenlu/centos-ssh-root</li>
+</ol>
+<pre><code class="language-C">镜像:stephenlu/centos-ssh-root
+系统：CentOS 7.5.1804
+用户名：root
+密码：root
+没有wget，需要自己装。
+</code></pre>
+<ol start="3">
+<li>Ubuntu18</li>
+</ol>
+<pre><code class="language-C">镜像：rastasheep/ubuntu-sshd
+用户名：root
+密码：root
+</code></pre>
+<ol start="4">
+<li>Debian</li>
+</ol>
+<pre><code class="language-C">镜像：hklcf/debian-ssh-docker
+用户名: root
+密码：password
+</code></pre>
+<ol start="5">
+<li>OwnCloud</li>
+</ol>
+<pre><code class="language-C">镜像：imdjh/owncloud-with-ocdownloader
+端口：80
+就是owncloud
+</code></pre>
+<ol start="6">
+<li>tlze/debian-docker-sshd</li>
+</ol>
+<pre><code class="language-C">镜像：tlze/debian-docker-sshd
+端口：2022
+账户：root
+密码：onetimes
+</code></pre>
+<ol start="7">
+<li>宝塔面板</li>
+</ol>
+<pre><code class="language-C">镜像：tangniyuqi/baota
+用户名：admin
+密码：admin123
+</code></pre>
+<ol start="8">
+<li>Owncloud（可以启用外部存储并具有下载功能）</li>
+</ol>
+<pre><code class="language-C">镜像：limaofeng/owncloud-with-ocdownloader
+端口：80
+</code></pre>
+<ol start="9">
+<li>chrome浏览器</li>
+</ol>
+<pre><code class="language-C">镜像：
+consol/centos-xfce-vnc #（支持中文）
+consol/ubuntu-xfce-vnc #（不支持中文）
+密码：vncpassword
+端口：5901
+</code></pre>
+<ol start="10">
+<li>outpost01/ssr-bbr-docker</li>
+</ol>
+<pre><code class="language-C">镜像：outpost01/ssr-bbr-docker
+端口：443
+看名字就知道这是啥镜像了吧。
+它的Docker File里面写了一些说明：
+PORT=&quot;443&quot;
+PASSWORD=&quot;ssr-bbr-docker&quot;
+METHOD=&quot;chacha20&quot;
+PROTOCOL=&quot;auth_aes128_md5&quot;
+OBFS=&quot;tls1.2_ticket_auth&quot;
+</code></pre>
+<ol start="11">
+<li>thanch2n/pyone</li>
+</ol>
+<pre><code class="language-C">如标签所示，pyone的docker版
+端口：34567
+初始密码：PyOne
+PS：一般般
+</code></pre>
+<ol start="12">
+<li>xujinkai/aria2-with-webui</li>
+</ol>
+<pre><code class="language-C">端口：80、6800、8080
+aria2面板：web-UI
+</code></pre>
+<ol start="13">
+<li>wahyd4/aria2-ui</li>
+</ol>
+<pre><code class="language-C">Aria2: http://yourip
+FileManger: http://yourip/files
+端口：80、443、6800
+aria2面板：AriaNG
+</code></pre>
+<ol start="14">
+<li>luodaoyi/kms-server</li>
+</ol>
+<pre><code class="language-C">镜像：luodaoyi/kms-server
+端口：1688
+用于KMS激活的Docker镜像
+</code></pre>
+<ol start="15">
+<li>setzero/pyone</li>
+</ol>
+<pre><code class="language-C">镜像：setzero/pyone
+端口：22、80
+参数：
+TZ：时区，默认Asia/Shanghai
+PORT：服务监听端口，默认为80
+DISABLE_REFRESH_CACHE：是否禁用crontab自动刷新缓存，设置任意值则不启用
+REFRESH_CACHE_NEW：使用crontab进行增量更新，默认*/15 * * * *，即每15分钟更新一次
+REFRESH_CACHE_ALL：使用crontab进行全量更新，默认0 3 */1 * *，即每天凌晨3点更新一次
+SSH_PASSWORD：sshd用户密码，用户名为root，若不设置则不启用sshd
+ARIA2_SECRET：aria2的rpc secret，默认aria2-secret
+HEALTHCHECK_INTERVAL：健康检查间隔周期，默认3秒。
+目录：
+/data：mongodb及aria2的配置文件及数据
+/root/PyOne：PyOne源代码
+该Docker镜像比较优秀，采用的是Debian GNU/Linux 8系统，可登陆同时又有pyone，方便部署。之前萌鼠大佬的脚本对小白实在是不友好，这个蛮可以的，而且还带aria2，满分。
+</code></pre>
+<ol start="16">
+<li>oliverkohldsc/ubuntu-headless-desktop-vnc</li>
+</ol>
+<pre><code class="language-C">镜像：oliverkohldsc/ubuntu-headless-desktop-vnc
+端口：22、5900
+这是带有ssh的vnc镜像，基于ubuntu，而且用户名非root，必须有如下变量定义：
+VNC_PASSWORD：VNC的密码，端口：5900
+USER：ssh用户名，端口22，不能为root
+PASSWORD：ssh密码。
+内置文件浏览器和浏览器。
+</code></pre>
+<ol start="17">
+<li>oldiy/sharelist</li>
+</ol>
+<pre><code class="language-C">镜像：oldiy/sharelist
+端口：33001
+</code></pre>
+<ol start="18">
+<li>suiyuan2012/sharelist</li>
+</ol>
+<pre><code class="language-C">镜像：suiyuan2012/sharelist
+端口：33001
+</code></pre>
+</p>
+
+     <p class="md_block">
+    <div class="reward"><div class="reward-button">赏 <span class="reward-code"> <span class="alipay-code"> <img class="alipay-img" src="https://chyon.cn//media/images/alipay.png"><b>支付宝扫码打赏</b> </span> <span class="wechat-code"> <img class="wechat-img" src="https://chyon.cn//media/images/wechat.png"><b>微信打赏</b> </span> </span></div></div>
+</p> 
+</div>
+
+</div>
+
+
+
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+
+<div class="doc_comments">
+
+</div>
+
+
+
+  </div>
+</div>
+
+
+
+      </div>
+
+
+
+
+    </div>
+
+   <div class="footer">
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/><div class="site_footer_wrap"><div class="site_footer">
+
+      <div class="mysocials"><div class="my_socials">
+		   
+			   
+    
+			   
+    
+			   
+    
+			   
+    
+</div><link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+
+      </div>
+
+      <div class="copyright">Powered by <a href="https://chyon.cn/" target="_blank">言岚</a>
+      </div>
+
+</div></div>
+
+    </div>
+
+
+<style type="text/css">a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+}
+
+a.back_to_top span {
+    color: #888;
+}
+
+a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+}
+
+a.back_to_top:hover span {
+    color: #555;
+}
+
+@media print, screen and (max-width: 580px) {
+    .back_to_top {
+        display: none !important;
+    }
+}
+
+
+
+</style><a id="back_to_top" href="#" class="back_to_top"><span>△</span>
+</a>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
+
+<script>$(document).ready((function(_this) {
+  return function() {
+    var bt;
+    bt = $('#back_to_top');
+    if ($(document).width() > 480) {
+      $(window).scroll(function() {
+        var st;
+        st = $(window).scrollTop();
+        if (st > 30) {
+          return bt.css('display', 'block');
+        } else {
+          return bt.css('display', 'none');
+        }
+      });
+      return bt.click(function() {
+        $('body,html').animate({
+          scrollTop: 0
+        }, 800);
+        return false;
+      });
+    }
+  };
+})(this));
+</script>
+
+</body>
+
+</html>

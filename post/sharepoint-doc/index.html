@@ -1,0 +1,375 @@
+
+<html>
+  <head lang="zh">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+        <meta content="yes" name="apple-mobile-web-app-capable"/>
+        <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+        <meta content="telephone=no" name="format-detection"/>
+        <meta name="renderer" content="webkit">
+    <title>Sharepoint访问次数限制 | 言岚的博客</title>
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/basic.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </head>
+
+  <body>
+     <div class="header">
+      <div class="logo_title">
+		  
+        <div class="title animated fadeInDown"><img src="https://chyon.cn//images/avatar.png?v=1591962809894"/>
+
+          <h1 title="言岚的博客" class="weaklink"><a href="/">言岚的博客</a>
+
+          </h1>
+
+          <div class="navbar weaklink">
+            <div class="normal_nav">
+
+<div class="bitcron_nav_container">
+
+
+  <div class="bitcron_nav">
+    <div class="mixed_site_nav_wrap site_nav_wrap">
+		
+      <ul class="mixed_site_nav site_nav sm sm-base">
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a>
+
+  </li>
+ 
+
+      </ul>
+
+      <div class="clear clear_nav_inline_end"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="clear clear_nav_end"></div>
+
+</div>
+
+            </div>
+
+            <div class="hamberger"><i class="fa fa-bars"></i>
+<i class="fa fa-times"></i>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="hidden_nav animated fadeInDown">
+
+<div class="bitcron_nav_container">
+
+
+  <div class="bitcron_nav">
+    <div class="mixed_site_nav_wrap site_nav_wrap">
+      <ul class="mixed_site_nav site_nav sm sm-base">
+		  
+	
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a>
+
+  </li>
+
+
+
+
+
+      </ul>
+
+      <div class="clear clear_nav_inline_end"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="clear clear_nav_end"></div>
+
+</div>
+
+      </div>
+
+    </div>
+
+
+    <div class="main">
+      <div class="main-inner">
+
+
+<div class="content">
+
+
+
+
+
+
+  <div class="post_page" >
+
+<div class="post">
+  <div class="post_title sm_margin">
+    <h2><a>Sharepoint访问次数限制</a>
+
+
+
+    </h2>
+  </div>
+
+  <div class="post_details">
+    <div class="info"><i class="fa fa-clock-o"></i>
+<span class="date_info">2018-10-15</span>
+<i class="fa fa-eye"></i>
+
+<span class="date_info"><span id="busuanzi_value_page_pv"></span> Views</span>
+
+
+<i class="fa fa-bookmark-o"></i>
+<span class="tags_info weaklink">
+	
+	<a href="https://chyon.cn/tag/cYPo4o27Vh/" class="tag">科普</a>
+
+
+</span>
+
+
+    </div>
+
+  </div>
+
+
+
+
+
+  <div class="post_content markdown"><p class="md_block">
+    <span class="md_line md_line_start md_line_end"><p>文档来源：<a href="https://docs.microsoft.com/zh-cn/sharepoint/dev/general-development/how-to-avoid-getting-throttled-or-blocked-in-sharepoint-online">避免在 SharePoint Online 中受限或遭屏蔽</a></p>
+<h2 id="什么是限制"><a href="https://docs.microsoft.com/zh-cn/sharepoint/dev/general-development/how-to-avoid-getting-throttled-or-blocked-in-sharepoint-online#what-is-throttling">什么是限制？</a></h2>
+<p>SharePoint Online 使用限制来维护 SharePoint Online 服务的最佳性能和可靠性。限制会限制用户操作或并发调用数量（通过脚本或代码），以防止资源的过度使用。</p>
+<p>也就是说，用户很少在 SharePoint Online 中被限制。这项服务非常强大，并且设计为具有极高的处理量。如果您被限制，99% 都是因为自定义代码。这并不是说不会被其他方式限制，只是那些方式并不常用。例如，您启动了 10 台计算机并在这 10 台计算机上均运行同步客户端。每台计算机上同步 1TB 内容。这可能会使您被限制。</p>
+<figure data-type="image" tabindex="1"><img src="https://docs.microsoft.com/zh-cn/sharepoint/dev/images/3b9184db-99a4-416e-ba1e-7f8653484cee.png" alt="限制如何发生" loading="lazy"></figure>
+<h3 id="在-sharepoint-online-中被限制时会发生什么"><a href="https://docs.microsoft.com/zh-cn/sharepoint/dev/general-development/how-to-avoid-getting-throttled-or-blocked-in-sharepoint-online#what-happens-when-you-get-throttled-in-sharepoint-online">在 SharePoint Online 中被限制时会发生什么？</a></h3>
+<p>当用户超过使用限制时，SharePoint Online 会限制该用户帐户发出的任何进一步请求，但通常只是短时间内。在用户限制的有效期内，将限制该用户的所有用户操作。</p>
+<ul>
+<li>
+<p>对于用户直接在浏览器中执行的请求，SharePoint Online 会将您重定向到限制信息页面，请求将失败。</p>
+</li>
+<li>
+<p>对于所有其他请求（包括 CSOM 或 REST 调用），SharePoint Online 将返回 HTTP 状态代码 429（请求过多），请求将失败。</p>
+</li>
+</ul>
+<p>如果进程继续超过使用限制，SharePoint Online 可能完全阻止该进程；在这种情况下，将看不到任何成功的请求，我们将在 Office 365 消息中心通知您发生阻止。</p>
+<h3 id="应用程序限制"><a href="https://docs.microsoft.com/zh-cn/sharepoint/dev/general-development/how-to-avoid-getting-throttled-or-blocked-in-sharepoint-online#application-throttling">应用程序限制</a></h3>
+<p>除了用户帐户的限制，限制还适用于每个应用程序。 SharePoint Online 中的每个应用程序都具有自己的可用资源，但针对同一租户运行的多个应用程序最终将共享同一资源存储段，在极少数情况下会导致速率限制。 在这些情况下，SharePoint Online 会尝试将交互式用户请求优先于后台活动执行。</p>
+<h2 id="sharepoint-online-中常见的限制场景"><a href="https://docs.microsoft.com/zh-cn/sharepoint/dev/general-development/how-to-avoid-getting-throttled-or-blocked-in-sharepoint-online#common-throttling-scenarios-in-sharepoint-online">SharePoint Online 中常见的限制场景</a></h2>
+<p>导致 SharePoint Online 中出现用户限制最常见的原因是以太高的频率执行太多操作的客户端对象模型 (CSOM) 或代表性状态传输 (REST) 代码。</p>
+<ul>
+<li>
+<p><strong>突发通信</strong></p>
+<p>针对 SharePoint Online 的常态负载或重复性的复杂查询必须进行优化以降低影响。 未能按照<a href="https://aka.ms/ScanGuidance">扫描应用程序的最佳实践</a> 来批量处理文件可能会导致限制。</p>
+<ul>
+<li>例如，将文件迁移到 SharePoint Online 之后，您运行自定义 CSOM 或 REST 脚本以更新文件上的元数据。CSOM/REST 脚本以极高的频率更新大量文件，这将触发限制。与此类似，使用 REST 服务的自动完成 UI 小部件在每个最终用户操作中向列表发出太多的调用，也可能导致限制，具体取决于哪些其他操作也在同时消耗资源。</li>
+</ul>
+<figure data-type="image" tabindex="2"><img src="https://docs.microsoft.com/zh-cn/sharepoint/dev/images/a61afe25-9597-403f-b3fa-d3f630155021.png" alt="个别限制" loading="lazy"></figure>
+</li>
+<li>
+<p><strong>无比拥挤的通信</strong></p>
+<p>单个进程在很长一段时间内持续大大超出限制。</p>
+<ul>
+<li>
+<p>您使用 Web 服务构建同步用户配置文件属性的工具。该工具将根据您的业务线 (LOB) 人力资源 (HR) 系统中的信息更新用户配置文件属性。该工具以太高的频率发出调用。</p>
+</li>
+<li>
+<p>您在 SharePoint Online 上运行负载测试脚本但受到限制。SharePoint Online 上不允许进行负载测试。</p>
+</li>
+<li>
+<p>例如，您在 SharePoint Online 上对您的工作组网站进行了自定义设置，方法是在主页上添加了一个状态指示器。此状态指示器频繁更新，这会导致页面向 SharePoint Online 服务发出太多调用，从而触发限制。</p>
+</li>
+</ul>
+<figure data-type="image" tabindex="3"><img src="https://docs.microsoft.com/zh-cn/sharepoint/dev/images/7849d413-381f-4558-9e50-b3cc9990d3e3.png" alt="稳定的限制" loading="lazy"></figure>
+</li>
+</ul>
+<h2 id="为什么不能告诉我确切的限制"><a href="https://docs.microsoft.com/zh-cn/sharepoint/dev/general-development/how-to-avoid-getting-throttled-or-blocked-in-sharepoint-online#why-cant-you-just-tell-me-the-exact-throttling-limits">为什么不能告诉我确切的限制？</a></h2>
+<p>设置并发布精确限制限制看似非常简单，但实际上会导致更严格的限制。 我们不断监视 SharePoint Online 上的资源使用状况。 根据使用情况，我们将微调阈值，以便用户可以使用最大数目的资源，而不会降低 SharePoint Online 的可靠性和性能。 这就是为什么 CSOM 或 REST 代码遵循 retry-after（重试间隔）标头值是如此重要的原因；它允许您在任何给定的一天内尽可能快地运行代码，然后如果它受到限制，将仅获得“足够”的资源。 本主题后面的代码示例演示如何使用 retry-after 标头。</p>
+<h2 id="处理限制的最佳实践"><a href="https://docs.microsoft.com/zh-cn/sharepoint/dev/general-development/how-to-avoid-getting-throttled-or-blocked-in-sharepoint-online#best-practices-to-handle-throttling">处理限制的最佳实践</a></h2>
+<ul>
+<li>
+<p>减少每个请求的操作数</p>
+</li>
+<li>
+<p>减少调用频率</p>
+</li>
+<li>
+<p>修饰流量以展现身份（有关详细信息，请参阅下面有关流量修饰最佳实践的部分）</p>
+</li>
+<li>
+<p>利用 retry-after 标头</p>
+</li>
+</ul>
+<p>如果遇到限制，我们需要利用 retry-after 标头以确保短的延迟时间，直到限制解除。</p>
+<p>设置重试间隔是避免限制的最快捷方式，因为 SharePoint Online 动态确定适当的重试时间。 换句话说，积极的重试对您工作有不利影响，因为即使调用失败，它们仍计 入使用率限制。 遵循重试标头将确保最短的延迟。</p>
+<p>有关 SharePoint Online 活动监视方式的详细信息，请参阅<a href="https://support.office.com/en-us/article/3c364f9e-b9f6-4da4-a792-c8e8c8cd2e86">使用 SharePoint Online 诊断性能问题</a>。</p>
+<p>有关 Microsoft 云上对限制的更广泛探讨，请参阅<a href="http://msdn.microsoft.com/library/4baf5af2-32fc-47ab-8569-3e5c59a5ebd5.aspx">限制模式</a>。</p>
+</p>
+
+     <p class="md_block">
+    <div class="reward"><div class="reward-button">赏 <span class="reward-code"> <span class="alipay-code"> <img class="alipay-img" src="https://chyon.cn//media/images/alipay.png"><b>支付宝扫码打赏</b> </span> <span class="wechat-code"> <img class="wechat-img" src="https://chyon.cn//media/images/wechat.png"><b>微信打赏</b> </span> </span></div></div>
+</p> 
+</div>
+
+</div>
+
+
+
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+
+<div class="doc_comments">
+
+</div>
+
+
+
+  </div>
+</div>
+
+
+
+      </div>
+
+
+
+
+    </div>
+
+   <div class="footer">
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/><div class="site_footer_wrap"><div class="site_footer">
+
+      <div class="mysocials"><div class="my_socials">
+		   
+			   
+    
+			   
+    
+			   
+    
+			   
+    
+</div><link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+
+      </div>
+
+      <div class="copyright">Powered by <a href="https://chyon.cn/" target="_blank">言岚</a>
+      </div>
+
+</div></div>
+
+    </div>
+
+
+<style type="text/css">a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+}
+
+a.back_to_top span {
+    color: #888;
+}
+
+a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+}
+
+a.back_to_top:hover span {
+    color: #555;
+}
+
+@media print, screen and (max-width: 580px) {
+    .back_to_top {
+        display: none !important;
+    }
+}
+
+
+
+</style><a id="back_to_top" href="#" class="back_to_top"><span>△</span>
+</a>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
+
+<script>$(document).ready((function(_this) {
+  return function() {
+    var bt;
+    bt = $('#back_to_top');
+    if ($(document).width() > 480) {
+      $(window).scroll(function() {
+        var st;
+        st = $(window).scrollTop();
+        if (st > 30) {
+          return bt.css('display', 'block');
+        } else {
+          return bt.css('display', 'none');
+        }
+      });
+      return bt.click(function() {
+        $('body,html').animate({
+          scrollTop: 0
+        }, 800);
+        return false;
+      });
+    }
+  };
+})(this));
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,327 @@
+
+<html>
+  <head lang="zh">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+        <meta content="yes" name="apple-mobile-web-app-capable"/>
+        <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+        <meta content="telephone=no" name="format-detection"/>
+        <meta name="renderer" content="webkit">
+    <title>Workbench仿真材料拉伸试验 | 言岚的博客</title>
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/basic.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </head>
+
+  <body>
+     <div class="header">
+      <div class="logo_title">
+		  
+        <div class="title animated fadeInDown"><img src="https://chyon.cn//images/avatar.png?v=1591962809894"/>
+
+          <h1 title="言岚的博客" class="weaklink"><a href="/">言岚的博客</a>
+
+          </h1>
+
+          <div class="navbar weaklink">
+            <div class="normal_nav">
+
+<div class="bitcron_nav_container">
+
+
+  <div class="bitcron_nav">
+    <div class="mixed_site_nav_wrap site_nav_wrap">
+		
+      <ul class="mixed_site_nav site_nav sm sm-base">
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a>
+
+  </li>
+ 
+
+      </ul>
+
+      <div class="clear clear_nav_inline_end"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="clear clear_nav_end"></div>
+
+</div>
+
+            </div>
+
+            <div class="hamberger"><i class="fa fa-bars"></i>
+<i class="fa fa-times"></i>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="hidden_nav animated fadeInDown">
+
+<div class="bitcron_nav_container">
+
+
+  <div class="bitcron_nav">
+    <div class="mixed_site_nav_wrap site_nav_wrap">
+      <ul class="mixed_site_nav site_nav sm sm-base">
+		  
+	
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a>
+
+  </li>
+
+
+
+
+
+      </ul>
+
+      <div class="clear clear_nav_inline_end"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="clear clear_nav_end"></div>
+
+</div>
+
+      </div>
+
+    </div>
+
+
+    <div class="main">
+      <div class="main-inner">
+
+
+<div class="content">
+
+
+
+
+
+
+  <div class="post_page" >
+
+<div class="post">
+  <div class="post_title sm_margin">
+    <h2><a>Workbench仿真材料拉伸试验</a>
+
+
+
+    </h2>
+  </div>
+
+  <div class="post_details">
+    <div class="info"><i class="fa fa-clock-o"></i>
+<span class="date_info">2019-11-25</span>
+<i class="fa fa-eye"></i>
+
+<span class="date_info"><span id="busuanzi_value_page_pv"></span> Views</span>
+
+
+<i class="fa fa-bookmark-o"></i>
+<span class="tags_info weaklink">
+	
+	<a href="https://chyon.cn/tag/nDSaUnVKg/" class="tag">教程</a>
+
+
+</span>
+
+
+    </div>
+
+  </div>
+
+
+
+
+
+  <div class="post_content markdown"><p class="md_block">
+    <span class="md_line md_line_start md_line_end"><p>建模导入什么的就不说了。直接从设置材料开始：</p>
+<p>####材料选择####</p>
+<p>因为你要方针的是材料的非线性应变，所以你的材料肯定也要是非线性材料。我手头没有非线性材料的数据，这里就直接用数据库里面的结构钢了。</p>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2019/11/25/UMJ3Ifx9BqTyaW6.png" alt="image1.png" loading="lazy"></figure>
+<p>####约束设置####</p>
+<p>因为是拉伸试验，所以肯定一端固定，另一端拉住。拉住的那一端要是加多大的力，是需要计算的。计算公式就是：大于屈服极限x材料的最小几何截面，小于强度极限x材料的最小几何界面。这里自己手动算一下，不复杂的。</p>
+<p>施加拉力的时候，一定要按分步施加载荷来处理，因为你要反应这个过程中的材料变化情况，只有一个点肯定是不够的，要有很多点。</p>
+<p>####后处理####</p>
+<p>这里要着重说的也是这部分。因为要处理成最后的应力-应变曲线，所以应力应该是总应力，应变肯定是总应变。</p>
+<p>所以应力应该加的是<code>Equivalent Total Strain</code>这个，等效总应力；应变应该处理为<code>Maximum Principal Stress</code>，最大主应力。</p>
+<p>生成这两个结果之后，就要继续绘制应力应变图像了。</p>
+<p>在结果中选中生成的两个结果，点击上方<code>New Chart and Table</code>按钮：</p>
+<figure data-type="image" tabindex="2"><img src="https://i.loli.net/2019/11/25/MvILez3g7YSQcPn.png" alt="image2.png" loading="lazy"></figure>
+<p>然后设置横纵坐标：</p>
+<figure data-type="image" tabindex="3"><img src="https://i.loli.net/2019/11/25/vzIlgf7Z63Jtdh1.png" alt="image3.png" loading="lazy"></figure>
+<p>横坐标设置为最大应变，纵坐标选择最大主应力，其他全部忽略掉，就可以得到图像了：</p>
+<figure data-type="image" tabindex="4"><img src="https://i.loli.net/2019/11/25/KA4OmFjHS3bWInv.png" alt="image4.png" loading="lazy"></figure>
+<p>最后附上我的仿真文件：<a href="https://email7-my.sharepoint.com/:u:/g/personal/onenote_email7_onmicrosoft_com/EdEmbCqQUX1MsSox0beWLOgBZ71eVwU6frnsUt32tc7hiA?e=N64Qq1">下载地址</a></p>
+<p>以上。</p>
+</p>
+
+     <p class="md_block">
+    <div class="reward"><div class="reward-button">赏 <span class="reward-code"> <span class="alipay-code"> <img class="alipay-img" src="https://chyon.cn//media/images/alipay.png"><b>支付宝扫码打赏</b> </span> <span class="wechat-code"> <img class="wechat-img" src="https://chyon.cn//media/images/wechat.png"><b>微信打赏</b> </span> </span></div></div>
+</p> 
+</div>
+
+</div>
+
+
+
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+
+<div class="doc_comments">
+
+</div>
+
+
+
+  </div>
+</div>
+
+
+
+      </div>
+
+
+
+
+    </div>
+
+   <div class="footer">
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/><div class="site_footer_wrap"><div class="site_footer">
+
+      <div class="mysocials"><div class="my_socials">
+		   
+			   
+    
+			   
+    
+			   
+    
+			   
+    
+</div><link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+
+      </div>
+
+      <div class="copyright">Powered by <a href="https://chyon.cn/" target="_blank">言岚</a>
+      </div>
+
+</div></div>
+
+    </div>
+
+
+<style type="text/css">a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+}
+
+a.back_to_top span {
+    color: #888;
+}
+
+a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+}
+
+a.back_to_top:hover span {
+    color: #555;
+}
+
+@media print, screen and (max-width: 580px) {
+    .back_to_top {
+        display: none !important;
+    }
+}
+
+
+
+</style><a id="back_to_top" href="#" class="back_to_top"><span>△</span>
+</a>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
+
+<script>$(document).ready((function(_this) {
+  return function() {
+    var bt;
+    bt = $('#back_to_top');
+    if ($(document).width() > 480) {
+      $(window).scroll(function() {
+        var st;
+        st = $(window).scrollTop();
+        if (st > 30) {
+          return bt.css('display', 'block');
+        } else {
+          return bt.css('display', 'none');
+        }
+      });
+      return bt.click(function() {
+        $('body,html').animate({
+          scrollTop: 0
+        }, 800);
+        return false;
+      });
+    }
+  };
+})(this));
+</script>
+
+</body>
+
+</html>

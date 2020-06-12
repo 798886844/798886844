@@ -1,0 +1,364 @@
+
+<html>
+  <head lang="zh">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+        <meta content="yes" name="apple-mobile-web-app-capable"/>
+        <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+        <meta content="telephone=no" name="format-detection"/>
+        <meta name="renderer" content="webkit">
+    <title>使用Markdown语言在博客的文章中添加视频 | 言岚的博客</title>
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/basic.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </head>
+
+  <body>
+     <div class="header">
+      <div class="logo_title">
+		  
+        <div class="title animated fadeInDown"><img src="https://chyon.cn//images/avatar.png?v=1591962809894"/>
+
+          <h1 title="言岚的博客" class="weaklink"><a href="/">言岚的博客</a>
+
+          </h1>
+
+          <div class="navbar weaklink">
+            <div class="normal_nav">
+
+<div class="bitcron_nav_container">
+
+
+  <div class="bitcron_nav">
+    <div class="mixed_site_nav_wrap site_nav_wrap">
+		
+      <ul class="mixed_site_nav site_nav sm sm-base">
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a>
+
+  </li>
+ 
+
+      </ul>
+
+      <div class="clear clear_nav_inline_end"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="clear clear_nav_end"></div>
+
+</div>
+
+            </div>
+
+            <div class="hamberger"><i class="fa fa-bars"></i>
+<i class="fa fa-times"></i>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="hidden_nav animated fadeInDown">
+
+<div class="bitcron_nav_container">
+
+
+  <div class="bitcron_nav">
+    <div class="mixed_site_nav_wrap site_nav_wrap">
+      <ul class="mixed_site_nav site_nav sm sm-base">
+		  
+	
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a>
+
+  </li>
+
+
+
+
+
+      </ul>
+
+      <div class="clear clear_nav_inline_end"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="clear clear_nav_end"></div>
+
+</div>
+
+      </div>
+
+    </div>
+
+
+    <div class="main">
+      <div class="main-inner">
+
+
+<div class="content">
+
+
+
+
+
+
+  <div class="post_page" >
+
+<div class="post">
+  <div class="post_title sm_margin">
+    <h2><a>使用Markdown语言在博客的文章中添加视频</a>
+
+
+
+    </h2>
+  </div>
+
+  <div class="post_details">
+    <div class="info"><i class="fa fa-clock-o"></i>
+<span class="date_info">2018-06-27</span>
+<i class="fa fa-eye"></i>
+
+<span class="date_info"><span id="busuanzi_value_page_pv"></span> Views</span>
+
+
+<i class="fa fa-bookmark-o"></i>
+<span class="tags_info weaklink">
+	
+	<a href="https://chyon.cn/tag/6Mzatm3q8/" class="tag">markdown</a>
+
+
+</span>
+
+
+    </div>
+
+  </div>
+
+
+
+
+
+  <div class="post_content markdown"><p class="md_block">
+    <span class="md_line md_line_start md_line_end"><p>不论你是用的是什么博客系统，WP也好，Typecho也罢，甚至是静态博客，就像我的博客，绕不开的是两种书写语言，一种称之为富文本，一种叫做Markdown。我的博客就是用Markdown写的。</p>
+<p>Markdown有很多好处，也有很多坏处，比如说居中，Markdown本身没有这个功能。再比如说视频，Markdown也不具有插入视频的功能。</p>
+<p>值得庆幸的是Markdown支持HTML的标签，在HTML中我们可以用<code>&lt;video&gt;</code>标签插入视频，在Markdown中，我们同样可以使用<code>&lt;video&gt;</code>标签插入视频，具体格式如下：</p>
+<pre><code class="language-HTML">&lt;video width=&quot;320&quot; height=&quot;240&quot; controls&gt;
+    &lt;source src=&quot;movie.mp4&quot; type=&quot;video/mp4&quot;&gt;
+&lt;/video&gt;
+</code></pre>
+<p>或者</p>
+<pre><code class="language-HTML">&lt;video src=&quot;movie.mp4.mp4&quot; controls=&quot;controls&quot; width=&quot;500&quot; height=&quot;300&quot;&gt;&lt;/video&gt;
+</code></pre>
+<p>当然，除了<code>.mp4</code>它还支持其他的格式，但是对于不同的浏览器支持的格式不一样，见下表：</p>
+<table id="tfhover" class="tftable" border="1">
+<tr><th>格式</th><th>IE</th><th>Firefox</th><th>Opera</th><th>Chrome</th><th>Safari</th></tr>
+<tr><td>Ogg</td><td>No</td><td>3.5+</td><td>10.5+</td><td>5.0+</td><td>No</td></tr>
+<tr><td>MPEG4</td><td>9.0+</td><td>No</td><td>No</td><td>5.0+</td><td>3.0+</td></tr>
+<tr><td>WebM</td><td>No</td><td>4.0+</td><td>10.6+</td><td>6.0+</td><td>No</td></tr>
+</table>
+<p>当然还有编码等限制，这里就不再介绍，感兴趣的小伙伴可以百度上学习一下。</p>
+<p>video 元素允许多个 source 元素。source 元素可以链接不同的视频文件。浏览器将使用第一个可识别的格式，这样我们只要多准备几个不同格式的视频就可以了。</p>
+<p>用法：</p>
+<pre><code class="language-HTML">1. &lt;video width=&quot;500&quot; height=&quot;250&quot; controls=&quot;controls&quot;&gt;
+
+2. &lt;source src=&quot;movie.ogg&quot; type=&quot;video/ogg&quot;&gt;
+
+3. &lt;source src=&quot;movie.mp4&quot; type=&quot;video/mp4&quot;&gt;
+
+4. 您的浏览器不支持此种视频格式。
+
+5. &lt;/video&gt;
+</code></pre>
+<p>其次，这是对一些参数的说明：</p>
+<pre><code class="language-HTML">autoplay :出现该属性意味着视频在就绪后将自动播放，用法：autoplay=&quot;autoplay&quot;
+
+controls :出现该属性意味着向用户显示控件，如播放按钮等，用法：controls=&quot;controls&quot;
+
+height:设置高度      width:设置宽度
+
+loop:自动重播，用法：loop=&quot;loop&quot;
+
+preload:视频在页面加载时进行加载并预备播放，用法：preload=&quot;auto&quot; - 当页面加载后载入整个视频；preload=&quot;meta&quot; - 当页面加载后只载入元数据；preload=&quot;none&quot; - 当页面加载后不载入视频。注意：若使用了autoplay，则忽略preload
+
+src:要播放视频的url
+</code></pre>
+<p>示例：<br>
+第一种：</p>
+<pre><code class="language-HTML">&lt;video width=&quot;720&quot; height=&quot;303&quot; controls&gt; #或者：&lt;video width:60% height:auto controls&gt;
+&lt;source src=&quot;https://movie.cy798.cn/%E9%BB%91%E8%B1%B9.Black.Panther.2018.BD720P.X264.AAC.English.CHS-ENG.mp4&quot; type=&quot;video/mp4&quot;&gt;
+&lt;/video&gt;
+</code></pre>
+<video width="720" height="303" controls>
+<source src="https://movie.cy798.cn/%E9%BB%91%E8%B1%B9.Black.Panther.2018.BD720P.X264.AAC.English.CHS-ENG.mp4" type="video/mp4">
+</video>
+<p>第二种：</p>
+<pre><code class="language-HTML">&lt;video src=&quot;https://movie.cy798.cn/Blue.Planet.S02.2017.BluRay.1080p.DTS-HD.MA5.1.2Audio.x264-CHD/Blue.Planet.S02E01.One.Ocean.2017.BluRay.1080p.DTS-HD.MA5.1.2Audio.x264-CHD.mkv&quot; controls=&quot;controls&quot; width:100% height:auto&gt;&lt;/video&gt;
+</code></pre>
+<p><video src="https://movie.cy798.cn/Blue.Planet.S02.2017.BluRay.1080p.DTS-HD.MA5.1.2Audio.x264-CHD/Blue.Planet.S02E01.One.Ocean.2017.BluRay.1080p.DTS-HD.MA5.1.2Audio.x264-CHD.mkv" controls="controls" width="720" height="405"></video></p>
+</p>
+
+     <p class="md_block">
+    <div class="reward"><div class="reward-button">赏 <span class="reward-code"> <span class="alipay-code"> <img class="alipay-img" src="https://chyon.cn//media/images/alipay.png"><b>支付宝扫码打赏</b> </span> <span class="wechat-code"> <img class="wechat-img" src="https://chyon.cn//media/images/wechat.png"><b>微信打赏</b> </span> </span></div></div>
+</p> 
+</div>
+
+</div>
+
+
+
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+
+<div class="doc_comments">
+
+</div>
+
+
+
+  </div>
+</div>
+
+
+
+      </div>
+
+
+
+
+    </div>
+
+   <div class="footer">
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/><div class="site_footer_wrap"><div class="site_footer">
+
+      <div class="mysocials"><div class="my_socials">
+		   
+			   
+    
+			   
+    
+			   
+    
+			   
+    
+</div><link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+
+      </div>
+
+      <div class="copyright">Powered by <a href="https://chyon.cn/" target="_blank">言岚</a>
+      </div>
+
+</div></div>
+
+    </div>
+
+
+<style type="text/css">a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+}
+
+a.back_to_top span {
+    color: #888;
+}
+
+a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+}
+
+a.back_to_top:hover span {
+    color: #555;
+}
+
+@media print, screen and (max-width: 580px) {
+    .back_to_top {
+        display: none !important;
+    }
+}
+
+
+
+</style><a id="back_to_top" href="#" class="back_to_top"><span>△</span>
+</a>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
+
+<script>$(document).ready((function(_this) {
+  return function() {
+    var bt;
+    bt = $('#back_to_top');
+    if ($(document).width() > 480) {
+      $(window).scroll(function() {
+        var st;
+        st = $(window).scrollTop();
+        if (st > 30) {
+          return bt.css('display', 'block');
+        } else {
+          return bt.css('display', 'none');
+        }
+      });
+      return bt.click(function() {
+        $('body,html').animate({
+          scrollTop: 0
+        }, 800);
+        return false;
+      });
+    }
+  };
+})(this));
+</script>
+
+</body>
+
+</html>

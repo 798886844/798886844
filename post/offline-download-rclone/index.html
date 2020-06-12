@@ -1,0 +1,512 @@
+
+<html>
+  <head lang="zh">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+        <meta content="yes" name="apple-mobile-web-app-capable"/>
+        <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+        <meta content="telephone=no" name="format-detection"/>
+        <meta name="renderer" content="webkit">
+    <title>VPS搭建Aria2+AriaNG+Rclone挂载Onedrive实现离线下载到网盘 | 言岚的博客</title>
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/basic.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </head>
+
+  <body>
+     <div class="header">
+      <div class="logo_title">
+		  
+        <div class="title animated fadeInDown"><img src="https://chyon.cn//images/avatar.png?v=1591962809894"/>
+
+          <h1 title="言岚的博客" class="weaklink"><a href="/">言岚的博客</a>
+
+          </h1>
+
+          <div class="navbar weaklink">
+            <div class="normal_nav">
+
+<div class="bitcron_nav_container">
+
+
+  <div class="bitcron_nav">
+    <div class="mixed_site_nav_wrap site_nav_wrap">
+		
+      <ul class="mixed_site_nav site_nav sm sm-base">
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a>
+
+  </li>
+ 
+
+      </ul>
+
+      <div class="clear clear_nav_inline_end"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="clear clear_nav_end"></div>
+
+</div>
+
+            </div>
+
+            <div class="hamberger"><i class="fa fa-bars"></i>
+<i class="fa fa-times"></i>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="hidden_nav animated fadeInDown">
+
+<div class="bitcron_nav_container">
+
+
+  <div class="bitcron_nav">
+    <div class="mixed_site_nav_wrap site_nav_wrap">
+      <ul class="mixed_site_nav site_nav sm sm-base">
+		  
+	
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a>
+
+  </li>
+
+
+
+
+
+      </ul>
+
+      <div class="clear clear_nav_inline_end"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="clear clear_nav_end"></div>
+
+</div>
+
+      </div>
+
+    </div>
+
+
+    <div class="main">
+      <div class="main-inner">
+
+
+<div class="content">
+
+
+
+
+
+
+  <div class="post_page" >
+
+<div class="post">
+  <div class="post_title sm_margin">
+    <h2><a>VPS搭建Aria2+AriaNG+Rclone挂载Onedrive实现离线下载到网盘</a>
+
+
+
+    </h2>
+  </div>
+
+  <div class="post_details">
+    <div class="info"><i class="fa fa-clock-o"></i>
+<span class="date_info">2018-05-27</span>
+<i class="fa fa-eye"></i>
+
+<span class="date_info"><span id="busuanzi_value_page_pv"></span> Views</span>
+
+
+<i class="fa fa-bookmark-o"></i>
+<span class="tags_info weaklink">
+	
+	<a href="https://chyon.cn/tag/nDSaUnVKg/" class="tag">教程</a>
+
+
+</span>
+
+
+    </div>
+
+  </div>
+
+
+
+
+
+  <div class="post_content markdown"><p class="md_block">
+    <span class="md_line md_line_start md_line_end"><h4 id="2018529-2355更新修改安装顺序避免出现bug修改autouploadsh内容实现上传删除本地文件同时管理">2018.5.29 23:55更新：修改安装顺序，避免出现bug；修改autoupload.sh内容，实现上传+删除本地文件同时管理。</h4>
+<p>研究了接近三个月的离线下载，网上的教程或多或少有一些或者几乎全部都是错的，不知道是过期了还是怎么了。还好，至少给了我一个大方向，经过不懈的努力，我最终还是实现了这个离线下载到Onedrive中的功能。</p>
+<p>在研究的过程中无意发现了Rclone自带的sync功能，因此，本篇文章将用两种方法实现自动上传，并做对比。</p>
+<p>搭建环境：Docker环境，镜像：<br>
+<a href="https://hub.docker.com/r/rastasheep/ubuntu-sshd/">rastasheep/ubuntu-sshd</a></p>
+<p>其中，该镜像的环境是</p>
+<pre><code class="language-c#">ubuntu-sshd-910292714-kpnx7 4.4.0-72-generic
+用户名、密码均为：root
+</code></pre>
+<p>需要开放的端口包括：22、80、6800，但不限于以上端口。</p>
+<h3 id="安装ariang">安装AriaNG</h3>
+<p>本文采用的是Apache网络服务器安装。</p>
+<p>打开Shell终端，连接VPS：</p>
+<p>安装依赖：</p>
+<pre><code class="language-C">apt-get update
+apt-get install -y vim unzip screen fuse
+</code></pre>
+<h4 id="下载并安装apache20">下载并安装<a href="https://blog.csdn.net/StepTimeNatural/article/details/78153740">Apache2.0</a>：</h4>
+<pre><code class="language-C">apt-get -y install apache2
+/etc/init.d/apache2 start
+</code></pre>
+<p>此时打开VPS的ip应该能看到Apache的默认页面了。</p>
+<p>其中Apache2.0的默认网页文件根目录位于<code>/var/www</code>，配置文件位于<code>/etc/apache2/apache2.conf</code></p>
+<p>停止Apache2.0：<code>/etc/init.d/apache2 stop</code></p>
+<h4 id="下载并安装ariang">下载并<a href="https://lala.im/2982.html">安装AriaNG</a></h4>
+<pre><code class="language-c">cd /var/www/html
+wget https://github.com/mayswind/AriaNg/releases/download/0.4.0/aria-ng-0.4.0.zip
+unzip aria-ng-0.4.0.zip
+</code></pre>
+<p>注意，中间有一个index.html提示的提示，选&quot;y&quot;即可。</p>
+<pre><code class="language-c">root@ubuntu-sshd-910292714-v1kbc:/var/www/html# unzip aria-ng-0.4.0.zip
+Archive:  aria-ng-0.4.0.zip
+   creating: css/
+  inflating: css/aria-ng-aed476e868.min.css
+  inflating: css/bootstrap-3.3.7.min.css
+  inflating: css/plugins-a7090b9582.min.css
+   creating: fonts/
+  inflating: fonts/fontawesome-webfont.eot
+  inflating: fonts/fontawesome-webfont.svg
+  inflating: fonts/fontawesome-webfont.ttf
+  inflating: fonts/fontawesome-webfont.woff
+  inflating: fonts/fontawesome-webfont.woff2
+   creating: js/
+  inflating: js/angular-packages-1.6.5.min.js
+  inflating: js/aria-ng-32e6c713b1.min.js
+  inflating: js/bootstrap-3.3.7.min.js
+  inflating: js/echarts-common-3.7.1.min.js
+  inflating: js/jquery-2.2.4.min.js
+  inflating: js/moment-with-locales-2.18.1.min.js
+  inflating: js/plugins-7eed010b9e.min.js
+   creating: langs/
+  inflating: langs/zh_Hans.txt
+  inflating: langs/zh_Hant.txt
+  inflating: favicon.ico
+  inflating: favicon.png
+replace index.html? [y]es, [n]o, [A]ll, [N]one, [r]ename: y #选择“y”即可。
+  inflating: index.html
+  inflating: index.manifest
+  inflating: LICENSE
+  inflating: robots.txt
+  inflating: tileicon.png
+  inflating: touchicon.png
+</code></pre>
+<p>完成后，浏览器打开你的ip地址，按下<code>crtl+F5</code>就可以看到AriaNG面板了，但是我们还没有安装Aria2，因此现在还无法连接。</p>
+<h3 id="安装并配置aria2">安装并配置<a href="https://www.htcp.net/3652.html">Aria2</a></h3>
+<h4 id="安装aria2">安装Aria2</h4>
+<p>回到Root目录下：</p>
+<p><code>cd /root</code></p>
+<p>一条命令即可：</p>
+<p><code>apt-get -y install aria2</code></p>
+<h4 id="配置aria2">配置Aria2</h4>
+<p>需要自行新建配置文件：</p>
+<pre><code class="language-language">mkdir /root/.aria2
+touch /root/.aria2/aria2.session
+touch /root/.aria2/aria2.log
+touch /root/.aria2/aria2.conf
+</code></pre>
+<p>其中，aria2.session为下载信息文件，aria2.log为日志文件。这两个文件不用管。</p>
+<p>需要编辑的是aria2.conf，这是aria2的配置文件。</p>
+<p><code>vi /root/.aria2/aria2.conf</code></p>
+<p>按下<code>i</code>，写入下列信息：</p>
+<pre><code class="language-c">## '#'开头为注释内容, 选项都有相应的注释说明, 根据需要修改 ##
+## 被注释的选项填写的是默认值, 建议在需要修改时再取消注释  ##
+ 
+## 文件保存相关 ##
+ 
+# 文件的保存路径(可使用绝对路径或相对路径), 默认: 当前启动位置
+dir=/root/download/
+# 启用磁盘缓存, 0为禁用缓存, 需1.16以上版本, 默认:16M
+disk-cache=32M
+# 文件预分配方式, 能有效降低磁盘碎片, 默认:prealloc
+# 预分配所需时间: none &lt; falloc ? trunc &lt; prealloc
+# falloc和trunc则需要文件系统和内核支持
+# NTFS建议使用falloc, EXT3/4建议trunc, MAC 下需要注释此项
+file-allocation=none
+# 断点续传
+continue=true
+ 
+## 下载连接相关 ##
+ 
+# 最大同时下载任务数, 运行时可修改, 默认:5
+max-concurrent-downloads=10
+# 同一服务器连接数, 添加时可指定, 默认:1
+max-connection-per-server=5
+# 最小文件分片大小, 添加时可指定, 取值范围1M -1024M, 默认:20M
+# 假定size=10M, 文件为20MiB 则使用两个来源下载; 文件为15MiB 则使用一个来源下载
+min-split-size=10M
+# 单个任务最大线程数, 添加时可指定, 默认:5
+split=20
+# 整体下载速度限制, 运行时可修改, 默认:0
+#max-overall-download-limit=0
+# 单个任务下载速度限制, 默认:0
+#max-download-limit=0
+#下载完成后自动执行root目录下的autoupload.sh脚本
+on-download-complete=/root/autoupload.sh
+</code></pre>
+<p>编辑完成后，按下<code>Esc</code>，输入<code>:wq</code>并按下回车保存并退出编辑。</p>
+<p>至此，aria2的配置已经完成，但是我们并不能立即启动aria2，因为还没有配置root目录下的autoupload.sh脚本。</p>
+<h3 id="自动上传至onedrive">自动上传至Onedrive</h3>
+<p>这里，我分了两个方法进行上传，一种是我自己琢磨的，一种是从另一个博客那里扒来的脚本。</p>
+<p>二者任选其一都可以实现功能，我在后面会有评测。</p>
+<h4 id="我的配置方法">我的配置方法</h4>
+<p><code>vi /root/autoupload.sh</code></p>
+<p>输入以下内容：</p>
+<p><code>rclone sync source:path dest:path</code></p>
+<p>或者，换成：</p>
+<p><code>rclone move source:path dest:path</code></p>
+<p>其中：<br>
+source:path 是你的Aria2下载目录，在这里就是<code>/root/download</code><br>
+dest:path dest是你用rclone挂载的网盘名称（自定义的名称），path是网盘文件的绝对路径。</p>
+<p><code>sync</code>与<code>move</code>的区别在于，<code>sync</code>同步完成后，本地文件依然存在于下载目录；而<code>move</code>同步完成后，本地文件消失不见。同时，如果先删除本地文件再用<code>sync</code>，那么云端的文件将会被一起删除；如果删除了本地文件再进行<code>move</code>动作，云端文件不会被删除。所以，这里推荐使用<code>move</code>。</p>
+<p>比如，我想将下载目录(/root/download)里面的文件上传到网盘(名称为grive1)的“VPS”文件夹，这时应该写入：</p>
+<p><code>rclone sync /root/download grive1:/VPS</code></p>
+<p>或者</p>
+<p><code>rclone move /root/download grive1:/VPS</code></p>
+<p>写入后，给予脚本执行命令的权限：</p>
+<p><code>chmod 777 /root/autoupload.sh</code></p>
+<p>然后，用screen启动aria2：</p>
+<p><code>screen -dmS aria2 aria2c --enable-rpc --rpc-listen-all=true --rpc-allow-origin-all -c</code></p>
+<p>这样，再打开你的ip地址，就可以成功连接你的aria，并实现下载后自动上传到Onedrive中了。</p>
+<h4 id="来自楚盟网的某大佬脚本">来自<a href="https://www.5yun.org/16356.html">楚盟网</a>的某大佬脚本</h4>
+<p>这里提前说明一下，类似该大佬的脚本网上非常多，但是该大佬的脚本是我用过的最好的脚本，不吹不黑。</p>
+<p>在这个方法里面，需要提前<a href="https://www.moerats.com/archives/491/">将已经连接的Onedrive映射为本地的一个文件夹</a>。</p>
+<pre><code class="language-c">#新建本地文件夹，路径自己定，即下面的LocalFolder
+mkdir /root/OneDrive
+#挂载为磁盘
+rclone mount DriveName:Folder LocalFolder --copy-links --no-gzip-encoding --no-check-certificate --allow-other --allow-non-empty --umask 000
+</code></pre>
+<p><code>DriveName</code>为初始化配置填的<code>name</code>，<code>Folder</code>为OneDrive里的文件夹，<code>LocalFolder</code>为VPS上的本地文件夹。</p>
+<p>如果挂载过程中出现<code>NOTICE: One drive root 'test': poll-interval is not supported by this remote</code>错误，可以无视该错误。</p>
+<p>挂载成功后，输入<code>df -h</code>命令查看即可验证！</p>
+<figure data-type="image" tabindex="1"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1frpymgn790j30li04z0sy.jpg" alt="挂载到本地文件夹" loading="lazy"></figure>
+<p>可能会遇到ssh无响应的情况，这时断开ssh重新连接即可。</p>
+<p>然后，同样，编辑autoupload.sh文件：</p>
+<p><code>vi /root/autoupload.sh</code></p>
+<p>写入如下内容：</p>
+<pre><code class="language-c">#!/bin/bash
+path=$3 #取原始路径，我的环境下如果是单文件则为/data/demo.png,如果是文件夹则该值为文件夹内某个文件比如/data/a/b/c/d.jpg
+downloadpath='/root/download'
+if [ $2 -eq 0 ]
+	  then
+		exit 0
+fi
+while true; do  #提取下载文件根路径，如把/data/a/b/c/d.jpg变成/data/a
+filepath=$path
+path=${path%/*}; 
+if [ &quot;$path&quot; = &quot;$downloadpath&quot; ] &amp;&amp; [ $2 -eq 1 ]  #如果下载的是单个文件
+       then
+	mv &quot;$filepath&quot; /root/OneDrive/
+	exit 0
+elif [ &quot;$path&quot; = &quot;$downloadpath&quot; ]   #文件夹
+	then
+        mv &quot;$filepath&quot;/ /root/OneDrive/&quot;${filepath##*/}&quot;/
+	exit 0
+fi
+done
+</code></pre>
+<p>然后赋予脚本执行权限：</p>
+<p><code>chmod 777 /root/autoupload.sh</code></p>
+<p>然后，用screen启动aria2：</p>
+<p><code>screen -dmS aria2 aria2c --enable-rpc --rpc-listen-all=true --rpc-allow-origin-all -c</code></p>
+<p>这样，再打开你的ip地址，就可以成功连接你的aria，并实现下载后自动上传到Onedrive中了。</p>
+<h3 id="关于rclone">关于Rclone</h3>
+<p>Rclone的验证登陆前面的文章已经提到过，在此不再赘述。</p>
+<p>注意，请在AriaNG和Aria2配置并启动后再配置Rclone，否则会出现Ariang无法连接的情况。</p>
+<h3 id="两种自动上传方法的评测">两种自动上传方法的评测</h3>
+<p>用我的同步法：</p>
+<figure data-type="image" tabindex="2"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1frq0t3p8h3j30na0iqmym.jpg" alt="sync1" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1frq0tkszmfj31d30lmn0y.jpg" alt="sync2" loading="lazy"></figure>
+<p>用大佬的移动文件法：</p>
+<figure data-type="image" tabindex="4"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1frq0u3tbtgj30my0hf3zo.jpg" alt="move" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1frq0ud48djj30n80htmyd.jpg" alt="move2" loading="lazy"></figure>
+<figure data-type="image" tabindex="6"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1frq0uoj44fj31df0lu41g.jpg" alt="move3" loading="lazy"></figure>
+<p>上面的图片是我用宝塔面板当探针截取的，仅供参考。</p>
+<p>说一下主要的内容：</p>
+<ol>
+<li>
+<p>稳定性，这个不用说两种方法相差无几，至于上传时出现流量抖动的情况，这是由于微软的接口不稳定造成的，一般都是开始很快，后来很慢。</p>
+</li>
+<li>
+<p>上传后本地文件的去向：我的同步法上传后本地文件仍然存在本地下载目录，但是如果删除了本地的文件再同步，会造成云端文件同时丢失的情况。用移动文件法，移动后本地文件直接消失，而会出现在云端。</p>
+</li>
+</ol>
+<p>大概就这么多，写这篇文章花了我一个周末的时间，唉，眼睛疼。</p>
+</p>
+
+     <p class="md_block">
+    <div class="reward"><div class="reward-button">赏 <span class="reward-code"> <span class="alipay-code"> <img class="alipay-img" src="https://chyon.cn//media/images/alipay.png"><b>支付宝扫码打赏</b> </span> <span class="wechat-code"> <img class="wechat-img" src="https://chyon.cn//media/images/wechat.png"><b>微信打赏</b> </span> </span></div></div>
+</p> 
+</div>
+
+</div>
+
+
+
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+
+<div class="doc_comments">
+
+</div>
+
+
+
+  </div>
+</div>
+
+
+
+      </div>
+
+
+
+
+    </div>
+
+   <div class="footer">
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/><div class="site_footer_wrap"><div class="site_footer">
+
+      <div class="mysocials"><div class="my_socials">
+		   
+			   
+    
+			   
+    
+			   
+    
+			   
+    
+</div><link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+
+      </div>
+
+      <div class="copyright">Powered by <a href="https://chyon.cn/" target="_blank">言岚</a>
+      </div>
+
+</div></div>
+
+    </div>
+
+
+<style type="text/css">a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+}
+
+a.back_to_top span {
+    color: #888;
+}
+
+a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+}
+
+a.back_to_top:hover span {
+    color: #555;
+}
+
+@media print, screen and (max-width: 580px) {
+    .back_to_top {
+        display: none !important;
+    }
+}
+
+
+
+</style><a id="back_to_top" href="#" class="back_to_top"><span>△</span>
+</a>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
+
+<script>$(document).ready((function(_this) {
+  return function() {
+    var bt;
+    bt = $('#back_to_top');
+    if ($(document).width() > 480) {
+      $(window).scroll(function() {
+        var st;
+        st = $(window).scrollTop();
+        if (st > 30) {
+          return bt.css('display', 'block');
+        } else {
+          return bt.css('display', 'none');
+        }
+      });
+      return bt.click(function() {
+        $('body,html').animate({
+          scrollTop: 0
+        }, 800);
+        return false;
+      });
+    }
+  };
+})(this));
+</script>
+
+</body>
+
+</html>

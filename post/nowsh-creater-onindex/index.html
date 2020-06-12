@@ -1,0 +1,393 @@
+
+<html>
+  <head lang="zh">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+        <meta content="yes" name="apple-mobile-web-app-capable"/>
+        <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+        <meta content="telephone=no" name="format-detection"/>
+        <meta name="renderer" content="webkit">
+    <title>利用Now.sh免费套餐来部署OneIndex教程 | 言岚的博客</title>
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/basic.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </head>
+
+  <body>
+     <div class="header">
+      <div class="logo_title">
+		  
+        <div class="title animated fadeInDown"><img src="https://chyon.cn//images/avatar.png?v=1591962809894"/>
+
+          <h1 title="言岚的博客" class="weaklink"><a href="/">言岚的博客</a>
+
+          </h1>
+
+          <div class="navbar weaklink">
+            <div class="normal_nav">
+
+<div class="bitcron_nav_container">
+
+
+  <div class="bitcron_nav">
+    <div class="mixed_site_nav_wrap site_nav_wrap">
+		
+      <ul class="mixed_site_nav site_nav sm sm-base">
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a>
+
+  </li>
+ 
+
+      </ul>
+
+      <div class="clear clear_nav_inline_end"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="clear clear_nav_end"></div>
+
+</div>
+
+            </div>
+
+            <div class="hamberger"><i class="fa fa-bars"></i>
+<i class="fa fa-times"></i>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="hidden_nav animated fadeInDown">
+
+<div class="bitcron_nav_container">
+
+
+  <div class="bitcron_nav">
+    <div class="mixed_site_nav_wrap site_nav_wrap">
+      <ul class="mixed_site_nav site_nav sm sm-base">
+		  
+	
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a>
+
+  </li>
+
+
+
+
+
+      </ul>
+
+      <div class="clear clear_nav_inline_end"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="clear clear_nav_end"></div>
+
+</div>
+
+      </div>
+
+    </div>
+
+
+    <div class="main">
+      <div class="main-inner">
+
+
+<div class="content">
+
+
+
+
+
+
+  <div class="post_page" >
+
+<div class="post">
+  <div class="post_title sm_margin">
+    <h2><a>利用Now.sh免费套餐来部署OneIndex教程</a>
+
+
+
+    </h2>
+  </div>
+
+  <div class="post_details">
+    <div class="info"><i class="fa fa-clock-o"></i>
+<span class="date_info">2018-10-08</span>
+<i class="fa fa-eye"></i>
+
+<span class="date_info"><span id="busuanzi_value_page_pv"></span> Views</span>
+
+
+<i class="fa fa-bookmark-o"></i>
+<span class="tags_info weaklink">
+	
+	<a href="https://chyon.cn/tag/nDSaUnVKg/" class="tag">教程</a>
+
+
+</span>
+
+
+    </div>
+
+  </div>
+
+
+
+
+
+  <div class="post_content markdown"><p class="md_block">
+    <span class="md_line md_line_start md_line_end"><p><strong>该教程年久失修，不建议参考</strong><br>
+2018.10.10更新：<br>
+有很多小伙伴没有ubuntu的虚拟机哈，所以这篇教程的意义在哪里呢……<br>
+所以我找到了一个替代方案，用WebIDE操作即可。<br>
+亲测<a href="codenvy.io">codenvy.io</a>是可以操作的，支持复制粘贴，非常方便。</p>
+<p>打开网址注册一个账号，然后验证邮箱。</p>
+<p>创建 Workspace 的时候选 Blank：<br>
+<img src="http://ww4.sinaimg.cn/large/a15b4afegy1fm8afam6pqj21j40qaadb.jpg" alt="" loading="lazy"></p>
+<p>进入IDE界面后注意用户这个时候并不是<code>root</code>，如果需要直接用后面的命令的话还需要一条命令：</p>
+<pre><code class="language-Ubuntu">sudo -i
+</code></pre>
+<p>无需密码直接进入<code>root</code>用户。</p>
+<p>后面的操作就和下面一样了，但是不需要安装<code>git</code>了。</p>
+<hr>
+<p>本文来自<a href="https://51.ruyo.net/9976.html">如有乐享</a>，但是本人在Linux上测试后发现其在<code>nodejs</code>、<code>npm</code>和<code>now</code>安装的描述中存在着一些问题。所以部分转载并做了一些补充。</p>
+<p>测试环境：Docker镜像：<code>rastasheep/ubuntu-sshd</code></p>
+<p>Now账号注册地址：<code>https://zeit.co/</code></p>
+<p>Onedrive for Business账号请自备。</p>
+<ol>
+<li>首先是更新系统环境：</li>
+</ol>
+<pre><code class="language-Ubuntu">apt-get upgrade
+apt-get update
+apt-get install -y git
+</code></pre>
+<p>如果有其他软件需求请自行安装。</p>
+<ol start="2">
+<li>安装<code>nodejs</code>和<code>npm</code></li>
+</ol>
+<pre><code class="language-Ubuntu">apt install nodejs npm -y
+</code></pre>
+<ol start="3">
+<li>升级<code>npm</code>为最新版本</li>
+</ol>
+<pre><code class="language-Ubuntu">npm install npm@latest -g
+</code></pre>
+<ol start="4">
+<li>安装用于安装<code>nodejs</code>的模块<code>n</code></li>
+</ol>
+<pre><code class="language-Ubuntu">npm install -g n
+</code></pre>
+<ol start="5">
+<li>然后通过<code>n</code>模块安装稳定版本的<code>nodejs</code></li>
+</ol>
+<pre><code class="language-Ubuntu">n stable
+</code></pre>
+<ol start="6">
+<li>安装<code>now.sh</code>客户端</li>
+</ol>
+<pre><code class="language-Ubuntu">npm install -g now
+</code></pre>
+<ol start="7">
+<li>登陆<code>now</code>账号</li>
+</ol>
+<pre><code class="language-Ubuntu">now login
+</code></pre>
+<ol start="8">
+<li>拉取最新的<code>oneindex</code>代码并部署</li>
+</ol>
+<pre><code class="language-Ubuntu">git clone https://github.com/malaohu/oneindex.git -b now-sh
+cd oneindex
+now
+</code></pre>
+<p>在部署过程中会出现你的URL，类似于<code>https://oneindex-code.now.sh</code>，其中<code>code</code>是一段随机码，比较难记，有两种方法可以缩短网址。<br>
+也可以到now.sh管理面板中查看，地址：<code>https://zeit.co/dashboard</code></p>
+<ol start="9">
+<li>缩短网址的第一种方法，now.sh转发</li>
+</ol>
+<pre><code class="language-Ubuntu">now alias oneindex-code.now.sh subdomain
+</code></pre>
+<p>这是now.sh官网提供的一种方法。由用户指定一个<code>subdomain</code>，即一个短语，然后生成新的网址为<code>https://subdomain.now.sh</code></p>
+<ol start="10">
+<li>缩短网址的第二种方法，绑定自己的域名</li>
+</ol>
+<pre><code class="language-Ubuntu">now alias oneindex-code.now.sh yourdomain.com
+</code></pre>
+<p>该操作对域名有要求，必须拥有对顶级域名的操作权。需要在顶级域名下添加TXT记录。<br>
+这样，在SSH中就会出现now的验证，第一次验证会失败，需要你在顶级域名下添加TXT记录以验证域名所有权，然后再次验证，域名所有权验证通过，但是域名没有指定到网页上，因此，会再次出现错误，这时需要你把自己的域名<code>CNAME</code>到<code>alias.zeit.co</code>上。第三次验证，成功，可以通过自己的域名访问了。</p>
+<ol start="11">
+<li>部署完成后，容器默认会隔一段时间重启，为了不让容器重启，执行下面的命令</li>
+</ol>
+<pre><code class="language-Ubuntu">now scale oneindex-code.now.sh 1
+</code></pre>
+<p>至此，该部分教程结束。说一下我个人的感受。首先就是省心，now这个平台和github合作的，想来应该很稳定了，其次就是自己的域名一绑定上就有https，还是值得一玩的。</p>
+<p>当然，也有缺点，第一，不支持伪静态，第二，不能设置crontab定时任务。不过这两点没有刚需其实也是无所谓的。</p>
+</p>
+
+     <p class="md_block">
+    <div class="reward"><div class="reward-button">赏 <span class="reward-code"> <span class="alipay-code"> <img class="alipay-img" src="https://chyon.cn//media/images/alipay.png"><b>支付宝扫码打赏</b> </span> <span class="wechat-code"> <img class="wechat-img" src="https://chyon.cn//media/images/wechat.png"><b>微信打赏</b> </span> </span></div></div>
+</p> 
+</div>
+
+</div>
+
+
+
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+
+<div class="doc_comments">
+
+</div>
+
+
+
+  </div>
+</div>
+
+
+
+      </div>
+
+
+
+
+    </div>
+
+   <div class="footer">
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/><div class="site_footer_wrap"><div class="site_footer">
+
+      <div class="mysocials"><div class="my_socials">
+		   
+			   
+    
+			   
+    
+			   
+    
+			   
+    
+</div><link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+
+      </div>
+
+      <div class="copyright">Powered by <a href="https://chyon.cn/" target="_blank">言岚</a>
+      </div>
+
+</div></div>
+
+    </div>
+
+
+<style type="text/css">a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+}
+
+a.back_to_top span {
+    color: #888;
+}
+
+a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+}
+
+a.back_to_top:hover span {
+    color: #555;
+}
+
+@media print, screen and (max-width: 580px) {
+    .back_to_top {
+        display: none !important;
+    }
+}
+
+
+
+</style><a id="back_to_top" href="#" class="back_to_top"><span>△</span>
+</a>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
+
+<script>$(document).ready((function(_this) {
+  return function() {
+    var bt;
+    bt = $('#back_to_top');
+    if ($(document).width() > 480) {
+      $(window).scroll(function() {
+        var st;
+        st = $(window).scrollTop();
+        if (st > 30) {
+          return bt.css('display', 'block');
+        } else {
+          return bt.css('display', 'none');
+        }
+      });
+      return bt.click(function() {
+        $('body,html').animate({
+          scrollTop: 0
+        }, 800);
+        return false;
+      });
+    }
+  };
+})(this));
+</script>
+
+</body>
+
+</html>

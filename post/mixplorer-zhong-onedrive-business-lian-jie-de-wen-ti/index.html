@@ -1,0 +1,377 @@
+
+<html>
+  <head lang="zh">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+        <meta content="yes" name="apple-mobile-web-app-capable"/>
+        <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+        <meta content="telephone=no" name="format-detection"/>
+        <meta name="renderer" content="webkit">
+    <title>MiXplorer中OneDrive Business连接的问题 | 言岚的博客</title>
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/basic.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </head>
+
+  <body>
+     <div class="header">
+      <div class="logo_title">
+		  
+        <div class="title animated fadeInDown"><img src="https://chyon.cn//images/avatar.png?v=1591962809894"/>
+
+          <h1 title="言岚的博客" class="weaklink"><a href="/">言岚的博客</a>
+
+          </h1>
+
+          <div class="navbar weaklink">
+            <div class="normal_nav">
+
+<div class="bitcron_nav_container">
+
+
+  <div class="bitcron_nav">
+    <div class="mixed_site_nav_wrap site_nav_wrap">
+		
+      <ul class="mixed_site_nav site_nav sm sm-base">
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a>
+
+  </li>
+ 
+
+      </ul>
+
+      <div class="clear clear_nav_inline_end"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="clear clear_nav_end"></div>
+
+</div>
+
+            </div>
+
+            <div class="hamberger"><i class="fa fa-bars"></i>
+<i class="fa fa-times"></i>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="hidden_nav animated fadeInDown">
+
+<div class="bitcron_nav_container">
+
+
+  <div class="bitcron_nav">
+    <div class="mixed_site_nav_wrap site_nav_wrap">
+      <ul class="mixed_site_nav site_nav sm sm-base">
+		  
+	
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a>
+
+  </li>
+
+
+
+
+
+      </ul>
+
+      <div class="clear clear_nav_inline_end"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="clear clear_nav_end"></div>
+
+</div>
+
+      </div>
+
+    </div>
+
+
+    <div class="main">
+      <div class="main-inner">
+
+
+<div class="content">
+
+
+
+
+
+
+  <div class="post_page" >
+
+<div class="post">
+  <div class="post_title sm_margin">
+    <h2><a>MiXplorer中OneDrive Business连接的问题</a>
+
+
+
+    </h2>
+  </div>
+
+  <div class="post_details">
+    <div class="info"><i class="fa fa-clock-o"></i>
+<span class="date_info">2018-06-11</span>
+<i class="fa fa-eye"></i>
+
+<span class="date_info"><span id="busuanzi_value_page_pv"></span> Views</span>
+
+
+<i class="fa fa-bookmark-o"></i>
+<span class="tags_info weaklink">
+	
+	<a href="https://chyon.cn/tag/nDSaUnVKg/" class="tag">教程</a>
+
+
+</span>
+
+
+    </div>
+
+  </div>
+
+
+
+
+
+  <div class="post_content markdown"><p class="md_block">
+    <span class="md_line md_line_start md_line_end"><p><strong>2020年6月12日：该教程已经失效</strong></p>
+<p>正式开始讨论这个问题之前，先吐槽一波。</p>
+<p>这是一个我个人觉得及其不怎么负责任的开发者开发出来的App。为什么我说他不负责任？我慢慢细数。</p>
+<p>首先，对权限的申请毫不负责任。大众PHP程序“OneIndex”大家都知道，它能用简简单单的一个普通用户级别的Azure Application完成对该用户的Onedrive For Business的读和写，相当程度上对用户的个人隐私和安全问题做出了极好的保护。而这个应用，MDZZ，直接要对Sharepoint的根目录的读写权限。这个权限只能由全局管理员赋予，而一旦公开给用户使用，就极有可能被稍微会一点技术的人钻空子，随便写写删删别人的文件我认为绝对可以做得到。这是我认为它极其不负责任的一个方面。</p>
+<p>另一个方面，由于这个权限的特殊性，导致了该Application的权限不能跨全局共享。也就是说，我的API你不能用，除非你是我全局里面的人。由于这个特殊性，导致了他人在使用的时候，就不得不向自己的全局管理员申请API。而这个开发者，不仅把自己的API集成在这个应用里面，而且没有一点提示！无论是开发文档还是在答水友问的时候，从头到尾没有提到过如何创建这个API，如何修改本体自带的API。以下是他对某水友的回复的原话：</p>
+<blockquote>
+<p>You need to enter client id and redirect uri in the advanced settings to make it work. It's 100$ per year and I didn't pay for it.</p>
+</blockquote>
+<p>大意是：“哦，你可能要改改里面的两个参数才能正常运行。大概要一百美元才能做得到，我才不干呢！”。</p>
+<p>无语了，这种开发者眼中可能是没有小白吧。</p>
+<p>好了，吐槽完毕，开始正题：</p>
+<h3 id="如何以全局管理员的身份创建这样一个api供用户使用">如何以全局管理员的身份创建这样一个API供用户使用？</h3>
+<h5 id="首先你得有全局管理员的权限否则下面的都不用看了">首先你得有全局管理员的权限，否则下面的都不用看了。</h5>
+<ul>
+<li>登陆并打开管理中心</li>
+</ul>
+<p>登陆Office.com，打开“管理”-&gt;“管理中心”-&gt;“Azure Active Directory”</p>
+<figure data-type="image" tabindex="1"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1fs7muelxetj30aq0oidgh.jpg" alt="" loading="lazy"></figure>
+<ul>
+<li>注册新应用程序</li>
+</ul>
+<p>如下图所示依次选择，直到“新应用程序注册”</p>
+<figure data-type="image" tabindex="2"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1fs7mw5pq73j319w0owmzq.jpg" alt="" loading="lazy"></figure>
+<ul>
+<li>配置</li>
+</ul>
+<p>填写名称（任意），选择应用程序类型为“本机”，填写重定向URI为：</p>
+<pre><code class="language-c">https://sharepoint.com
+</code></pre>
+<p>如图所示：</p>
+<figure data-type="image" tabindex="3"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1fs7my1niedj313v0pa3zy.jpg" alt="" loading="lazy"></figure>
+<p>然后点击创建，创建成功。</p>
+<figure data-type="image" tabindex="4"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1fs7n1g060xj310f0kgwfu.jpg" alt="" loading="lazy"></figure>
+<p>创建成功后显示应用程序ID，复制下来保存好，然后点击设置。</p>
+<ul>
+<li>赋予权限</li>
+</ul>
+<p>点击“设置”后，进入设置界面，点击“所需权限”：</p>
+<figure data-type="image" tabindex="5"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1fs7n4406j8j30xq0p60ug.jpg" alt="" loading="lazy"></figure>
+<p>（唉，忘记打码了，就这样吧。）</p>
+<p>然后授予第一个权限：</p>
+<figure data-type="image" tabindex="6"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1fs7n6f1a7ij31hc0qkq6f.jpg" alt="" loading="lazy"></figure>
+<p>点击保存。然后点击左上角“添加”：</p>
+<figure data-type="image" tabindex="7"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1fs7n7ry6ndj31hc0pmtba.jpg" alt="" loading="lazy"></figure>
+<p>选择API为“Office 365 SharePoint Online”，然后确定，赋予权限：</p>
+<p>这里我不太清楚各个权限的区别以及用途，索性全部选上了：</p>
+<figure data-type="image" tabindex="8"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1fs7n93vxbsj31hc0ox774.jpg" alt="" loading="lazy"></figure>
+<p>然后保存。</p>
+<p>这样你就可以看到两个API，然后将这两个API的权限赋值给这个应用程序。</p>
+<p>点击上方的“授予权限”：</p>
+<figure data-type="image" tabindex="9"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1fs7nasf2a0j30ln0ny3yy.jpg" alt="" loading="lazy"></figure>
+<p>然后提示成功：</p>
+<figure data-type="image" tabindex="10"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1fs7nbeqh7oj30f80hsmxw.jpg" alt="" loading="lazy"></figure>
+<p>理论上你在整个创建过程中能看到这四个成功的提示。</p>
+<ul>
+<li>使用MiXplorer登陆</li>
+</ul>
+<p>打开安卓手机，左上方添加存储器：</p>
+<figure data-type="image" tabindex="11"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1fs7nf5mdgij316o1kwtb5.jpg" alt="" loading="lazy"></figure>
+<p>选择“OneDrive Business”，然后开始配置：</p>
+<figure data-type="image" tabindex="12"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1fs7ngv413gj316o1kwgv4.jpg" alt="" loading="lazy"></figure>
+<p>“链接地址”无法修改；</p>
+<p>显示姓名请自定义；</p>
+<p>请在<code>client_id=</code>后面填写你前面复制得到的“应用程序ID”，如果忘记了可以回去找到；</p>
+<p>请在<code>redirect_uri=</code>后面填写<code>https://sharepoint.com</code>，然后点击保存。</p>
+<p>设置密码，然后登陆，就可以使用了。</p>
+<h4 id="一些需要注意的问题">一些需要注意的问题</h4>
+<p>如我前面吐槽所述，该API不能跨全局使用。</p>
+<p>注意保护个人信息资料安全。</p>
+</p>
+
+     <p class="md_block">
+    <div class="reward"><div class="reward-button">赏 <span class="reward-code"> <span class="alipay-code"> <img class="alipay-img" src="https://chyon.cn//media/images/alipay.png"><b>支付宝扫码打赏</b> </span> <span class="wechat-code"> <img class="wechat-img" src="https://chyon.cn//media/images/wechat.png"><b>微信打赏</b> </span> </span></div></div>
+</p> 
+</div>
+
+</div>
+
+
+
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+
+<div class="doc_comments">
+
+</div>
+
+
+
+  </div>
+</div>
+
+
+
+      </div>
+
+
+
+
+    </div>
+
+   <div class="footer">
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/><div class="site_footer_wrap"><div class="site_footer">
+
+      <div class="mysocials"><div class="my_socials">
+		   
+			   
+    
+			   
+    
+			   
+    
+			   
+    
+</div><link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+
+      </div>
+
+      <div class="copyright">Powered by <a href="https://chyon.cn/" target="_blank">言岚</a>
+      </div>
+
+</div></div>
+
+    </div>
+
+
+<style type="text/css">a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+}
+
+a.back_to_top span {
+    color: #888;
+}
+
+a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+}
+
+a.back_to_top:hover span {
+    color: #555;
+}
+
+@media print, screen and (max-width: 580px) {
+    .back_to_top {
+        display: none !important;
+    }
+}
+
+
+
+</style><a id="back_to_top" href="#" class="back_to_top"><span>△</span>
+</a>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
+
+<script>$(document).ready((function(_this) {
+  return function() {
+    var bt;
+    bt = $('#back_to_top');
+    if ($(document).width() > 480) {
+      $(window).scroll(function() {
+        var st;
+        st = $(window).scrollTop();
+        if (st > 30) {
+          return bt.css('display', 'block');
+        } else {
+          return bt.css('display', 'none');
+        }
+      });
+      return bt.click(function() {
+        $('body,html').animate({
+          scrollTop: 0
+        }, 800);
+        return false;
+      });
+    }
+  };
+})(this));
+</script>
+
+</body>
+
+</html>

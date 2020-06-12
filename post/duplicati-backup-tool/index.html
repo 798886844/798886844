@@ -1,0 +1,391 @@
+
+<html>
+  <head lang="zh">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+        <meta content="yes" name="apple-mobile-web-app-capable"/>
+        <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+        <meta content="telephone=no" name="format-detection"/>
+        <meta name="renderer" content="webkit">
+    <title>Duplicati——开源免费的跨平台备份工具 | 言岚的博客</title>
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/basic.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </head>
+
+  <body>
+     <div class="header">
+      <div class="logo_title">
+		  
+        <div class="title animated fadeInDown"><img src="https://chyon.cn//images/avatar.png?v=1591962809894"/>
+
+          <h1 title="言岚的博客" class="weaklink"><a href="/">言岚的博客</a>
+
+          </h1>
+
+          <div class="navbar weaklink">
+            <div class="normal_nav">
+
+<div class="bitcron_nav_container">
+
+
+  <div class="bitcron_nav">
+    <div class="mixed_site_nav_wrap site_nav_wrap">
+		
+      <ul class="mixed_site_nav site_nav sm sm-base">
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a>
+
+  </li>
+ 
+
+      </ul>
+
+      <div class="clear clear_nav_inline_end"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="clear clear_nav_end"></div>
+
+</div>
+
+            </div>
+
+            <div class="hamberger"><i class="fa fa-bars"></i>
+<i class="fa fa-times"></i>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="hidden_nav animated fadeInDown">
+
+<div class="bitcron_nav_container">
+
+
+  <div class="bitcron_nav">
+    <div class="mixed_site_nav_wrap site_nav_wrap">
+      <ul class="mixed_site_nav site_nav sm sm-base">
+		  
+	
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a>
+
+  </li>
+
+
+
+
+
+      </ul>
+
+      <div class="clear clear_nav_inline_end"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="clear clear_nav_end"></div>
+
+</div>
+
+      </div>
+
+    </div>
+
+
+    <div class="main">
+      <div class="main-inner">
+
+
+<div class="content">
+
+
+
+
+
+
+  <div class="post_page" >
+
+<div class="post">
+  <div class="post_title sm_margin">
+    <h2><a>Duplicati——开源免费的跨平台备份工具</a>
+
+
+
+    </h2>
+  </div>
+
+  <div class="post_details">
+    <div class="info"><i class="fa fa-clock-o"></i>
+<span class="date_info">2018-10-28</span>
+<i class="fa fa-eye"></i>
+
+<span class="date_info"><span id="busuanzi_value_page_pv"></span> Views</span>
+
+
+<i class="fa fa-bookmark-o"></i>
+<span class="tags_info weaklink">
+	
+	<a href="https://chyon.cn/tag/irIXpKddA7/" class="tag">软件</a>
+
+
+</span>
+
+
+    </div>
+
+  </div>
+
+
+
+
+
+  <div class="post_content markdown"><p class="md_block">
+    <span class="md_line md_line_start md_line_end"><p>无意间看到有这样一个被封工具，支持的云挺多的，并且有可视化界面，感觉很不错，所以介绍一下。</p>
+<p>先放官方链接：<br>
+官网：<a href="https://www.duplicati.com/">https://www.duplicati.com/</a><br>
+Github：<a href="https://github.com/duplicati/duplicati">https://github.com/duplicati/duplicati</a><br>
+官方文档：<a href="https://duplicati.readthedocs.io/en/latest/05-storage-providers/">https://duplicati.readthedocs.io</a></p>
+<p>支持的远程服务器/云储存服务：</p>
+<pre><code class="language-C">FTP
+FTP
+OpenStack Object Storage / Swift
+S3 Compatible
+SFTP (SSH)
+WebDAV
+Amazon Cloud Drive
+Amazon S3
+Azure blob
+B2 Cloud Storage
+Box.com
+Dropbox
+Google Cloud Storage
+Google Drive
+HubiC
+Jottacloud
+Mega.nz
+Microsoft Office 365 Groups
+Microsoft OneDrive
+Microsoft OneDrive for Business
+Microsoft SharePoint
+OpenStack Simple Storage
+Rackspace CloudFiles
+Rclone
+Sia Decentralized Cloud
+</code></pre>
+<h3 id="安装">安装</h3>
+<p>这里参考<a href="https://www.moerats.com/archives/776/">Rat's Blog</a>的教程，他的教程我安装成功了。</p>
+<p>1、安装<br>
+<code>Duplicati</code>最新版本下载→<a href="https://www.duplicati.com/download">传送门</a>，日后记得将安装里的<code>Duplicati</code>链接替换为最新版本。</p>
+<pre><code class="language-C">#CentOS 7系统
+#安装依赖
+yum install yum-utils -y
+rpm --import &quot;http://keyserver.ubuntu.com/pks/lookup?op=get&amp;search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF&quot;
+yum-config-manager --add-repo http://download.mono-project.com/repo/centos7/
+yum install mono-devel -y
+#安装Duplicati
+rpm -ivh https://updates.duplicati.com/beta/duplicati-2.0.3.3-2.0.3.3_beta_20180402.noarch.rpm --nodeps --force
+
+#CentOS 6系统
+#安装依赖
+yum install yum-utils -y
+rpm --import &quot;http://keyserver.ubuntu.com/pks/lookup?op=get&amp;search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF&quot;
+yum-config-manager --add-repo http://download.mono-project.com/repo/centos6/
+yum install mono-devel -y
+#安装Duplicati
+rpm -ivh https://updates.duplicati.com/beta/duplicati-2.0.3.3-2.0.3.3_beta_20180402.noarch.rpm --nodeps --force
+
+#Debian 7+、Ubuntu 14+系统
+#安装Mono
+apt-get update
+apt-get install mono-devel -y
+#安装Duplicati
+wget https://updates.duplicati.com/beta/duplicati_2.0.3.3-1_all.deb
+dpkg -i duplicati*.deb
+#如果安装报错，使用该命令修复一下就自动安装成功了
+apt-get -f install -y
+</code></pre>
+<p>2、启动</p>
+<p>建议以<code>screen</code>启动:</p>
+<pre><code class="language-C">#无需密码访问
+screen /usr/bin/mono /usr/lib/duplicati/Duplicati.Server.exe --webservice-interface=any
+#访问需输入密码`password`，可自定义其它密码，修改最后面参数即可
+screen /usr/bin/mono /usr/lib/duplicati/Duplicati.Server.exe --webservice-interface=any --webservice-password=password
+</code></pre>
+<p>然后就可以通过<code>IP:8200</code>访问程序了，对于<code>CentOS</code>系统，还需要开启<code>8200</code>端口，开启如下：]</p>
+<pre><code class="language-centos">#CentOS 6
+iptables -I INPUT -p tcp --dport 8200 -j ACCEPT
+service iptables save
+service iptables restart
+
+#CentOS 7
+firewall-cmd --zone=public --add-port=8200/tcp --permanent
+firewall-cmd --reload
+</code></pre>
+<p>其余的我就不说了，大家可以参考他的教程。</p>
+<p>注意该软件不能指定端口开启，默认开启的是<code>8200</code>端口，如果你<code>8200</code>端口已经被占用，它会自动转到<code>8300</code>端口，依此类推。</p>
+</p>
+
+     <p class="md_block">
+    <div class="reward"><div class="reward-button">赏 <span class="reward-code"> <span class="alipay-code"> <img class="alipay-img" src="https://chyon.cn//media/images/alipay.png"><b>支付宝扫码打赏</b> </span> <span class="wechat-code"> <img class="wechat-img" src="https://chyon.cn//media/images/wechat.png"><b>微信打赏</b> </span> </span></div></div>
+</p> 
+</div>
+
+</div>
+
+
+
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+
+<div class="doc_comments">
+
+</div>
+
+
+
+  </div>
+</div>
+
+
+
+      </div>
+
+
+
+
+    </div>
+
+   <div class="footer">
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/><div class="site_footer_wrap"><div class="site_footer">
+
+      <div class="mysocials"><div class="my_socials">
+		   
+			   
+    
+			   
+    
+			   
+    
+			   
+    
+</div><link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+
+      </div>
+
+      <div class="copyright">Powered by <a href="https://chyon.cn/" target="_blank">言岚</a>
+      </div>
+
+</div></div>
+
+    </div>
+
+
+<style type="text/css">a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+}
+
+a.back_to_top span {
+    color: #888;
+}
+
+a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+}
+
+a.back_to_top:hover span {
+    color: #555;
+}
+
+@media print, screen and (max-width: 580px) {
+    .back_to_top {
+        display: none !important;
+    }
+}
+
+
+
+</style><a id="back_to_top" href="#" class="back_to_top"><span>△</span>
+</a>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
+
+<script>$(document).ready((function(_this) {
+  return function() {
+    var bt;
+    bt = $('#back_to_top');
+    if ($(document).width() > 480) {
+      $(window).scroll(function() {
+        var st;
+        st = $(window).scrollTop();
+        if (st > 30) {
+          return bt.css('display', 'block');
+        } else {
+          return bt.css('display', 'none');
+        }
+      });
+      return bt.click(function() {
+        $('body,html').animate({
+          scrollTop: 0
+        }, 800);
+        return false;
+      });
+    }
+  };
+})(this));
+</script>
+
+</body>
+
+</html>

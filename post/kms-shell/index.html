@@ -1,0 +1,382 @@
+
+<html>
+  <head lang="zh">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+        <meta content="yes" name="apple-mobile-web-app-capable"/>
+        <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+        <meta content="telephone=no" name="format-detection"/>
+        <meta name="renderer" content="webkit">
+    <title>搭建KMS激活服务器及激活命令 | 言岚的博客</title>
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/basic.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </head>
+
+  <body>
+     <div class="header">
+      <div class="logo_title">
+		  
+        <div class="title animated fadeInDown"><img src="https://chyon.cn//images/avatar.png?v=1591962809894"/>
+
+          <h1 title="言岚的博客" class="weaklink"><a href="/">言岚的博客</a>
+
+          </h1>
+
+          <div class="navbar weaklink">
+            <div class="normal_nav">
+
+<div class="bitcron_nav_container">
+
+
+  <div class="bitcron_nav">
+    <div class="mixed_site_nav_wrap site_nav_wrap">
+		
+      <ul class="mixed_site_nav site_nav sm sm-base">
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a>
+
+  </li>
+ 
+
+      </ul>
+
+      <div class="clear clear_nav_inline_end"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="clear clear_nav_end"></div>
+
+</div>
+
+            </div>
+
+            <div class="hamberger"><i class="fa fa-bars"></i>
+<i class="fa fa-times"></i>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="hidden_nav animated fadeInDown">
+
+<div class="bitcron_nav_container">
+
+
+  <div class="bitcron_nav">
+    <div class="mixed_site_nav_wrap site_nav_wrap">
+      <ul class="mixed_site_nav site_nav sm sm-base">
+		  
+	
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a>
+
+  </li>
+
+
+
+
+
+      </ul>
+
+      <div class="clear clear_nav_inline_end"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="clear clear_nav_end"></div>
+
+</div>
+
+      </div>
+
+    </div>
+
+
+    <div class="main">
+      <div class="main-inner">
+
+
+<div class="content">
+
+
+
+
+
+
+  <div class="post_page" >
+
+<div class="post">
+  <div class="post_title sm_margin">
+    <h2><a>搭建KMS激活服务器及激活命令</a>
+
+
+
+    </h2>
+  </div>
+
+  <div class="post_details">
+    <div class="info"><i class="fa fa-clock-o"></i>
+<span class="date_info">2019-01-11</span>
+<i class="fa fa-eye"></i>
+
+<span class="date_info"><span id="busuanzi_value_page_pv"></span> Views</span>
+
+
+<i class="fa fa-bookmark-o"></i>
+<span class="tags_info weaklink">
+	
+	<a href="https://chyon.cn/tag/nDSaUnVKg/" class="tag">教程</a>
+
+	<a href="https://chyon.cn/tag/0sW2tA_xH/" class="tag">KMS</a>
+
+
+</span>
+
+
+    </div>
+
+  </div>
+
+
+
+
+
+  <div class="post_content markdown"><p class="md_block">
+    <span class="md_line md_line_start md_line_end"><ul>
+<li>
+<p><code>关于本脚本</code><br>
+1、本脚本适用于三大 Linux 发行版，其他版本则不支持。<br>
+2、KMS 服务安装完成后会加入开机自启动。<br>
+3、默认记录日志，其日志位于 /var/log/vlmcsd.log。</p>
+</li>
+<li>
+<p><code>使用方法</code><br>
+开放<code>1688</code>端口。<br>
+使用root用户登录，运行以下命令：<br>
+<code>wget --no-check-certificate https://github.com/teddysun/across/raw/master/kms.sh &amp;&amp; chmod +x kms.sh &amp;&amp; ./kms.sh</code><br>
+安装完成后，输入以下命令查看端口号 1688 的监听情况<br>
+<code>netstat -nxtlp | grep 1688</code><br>
+返回值类似于如下这样就表示 OK 了：</p>
+</li>
+</ul>
+<pre><code class="language-C">tcp        0      0 0.0.0.0:1688                0.0.0.0:*                   LISTEN      3200/vlmcsd
+tcp        0      0 :::1688                     :::*                        LISTEN      3200/vlmcsd
+</code></pre>
+<p>本脚本安装完成后，会将 KMS 服务加入开机自启动。</p>
+<ul>
+<li>
+<p><code>使用命令：</code><br>
+启动：<code>/etc/init.d/kms start</code><br>
+停止：<code>/etc/init.d/kms stop</code><br>
+重启：<code>/etc/init.d/kms restart</code><br>
+状态：<code>/etc/init.d/kms status</code></p>
+</li>
+<li>
+<p><code>卸载方法：</code><br>
+使用 root 用户登录，运行以下命令：<br>
+<code>./kms.sh uninstall</code></p>
+</li>
+<li>
+<p><code>Windows KMS激活命令：</code><br>
+运行<code>管理员命令提示符</code></p>
+</li>
+</ul>
+<pre><code>slmgr /ipk xxxxx-xxxxx-xxxxx-xxxxx-xxxxx # [GVLK密钥](http://chyon.cn/7.html)
+slmgr /skms 159.122.186.145 #KMS激活服务器地址
+slmgr /ato #激活
+</code></pre>
+<ul>
+<li><code>Windows KMS卸载命令：</code><br>
+运行<code>管理员命令提示符</code></li>
+</ul>
+<pre><code>slmgr /upk
+slmgr /ckms
+slmgr /rearm
+</code></pre>
+<p>运行完毕后重启。</p>
+<ul>
+<li><code>Office KMS激活命令：</code><br>
+首先确认自己安装的版本是批量版（大客户版）。<br>
+运行<code>管理员命令提示符</code></li>
+</ul>
+<pre><code>cd /d C:\Program Files\Microsoft Office\Office16 #cd到Office安装目录
+cscript ospp.vbs /inpkey: xxxxx-xxxxx-xxxxx-xxxxx-xxxxx # [GVLK密钥](http://chyon.cn/7.html)
+cscript ospp.vbs /sethst: 159.122.186.145 #KMS激活服务器地址
+cscript ospp.vbs /act #激活
+</code></pre>
+<ul>
+<li><code>Office KMS卸载命令：</code><br>
+运行<code>管理员命令提示符</code></li>
+</ul>
+<pre><code>cd /d C:\Program Files\Microsoft Office\Office16 #cd到Office安装目录
+cscript ospp.vbs /dstatus #查询
+cscript ospp.vbs /unpkey: xxxxx #删除查询到的所有密钥末五位
+cscript ospp.vbs /remhst #清除KMS地址信息，恢复初始设置
+</code></pre>
+<p>运行完毕后重启电脑。</p>
+</p>
+
+     <p class="md_block">
+    <div class="reward"><div class="reward-button">赏 <span class="reward-code"> <span class="alipay-code"> <img class="alipay-img" src="https://chyon.cn//media/images/alipay.png"><b>支付宝扫码打赏</b> </span> <span class="wechat-code"> <img class="wechat-img" src="https://chyon.cn//media/images/wechat.png"><b>微信打赏</b> </span> </span></div></div>
+</p> 
+</div>
+
+</div>
+
+
+
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+
+<div class="doc_comments">
+
+</div>
+
+
+
+  </div>
+</div>
+
+
+
+      </div>
+
+
+
+
+    </div>
+
+   <div class="footer">
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/><div class="site_footer_wrap"><div class="site_footer">
+
+      <div class="mysocials"><div class="my_socials">
+		   
+			   
+    
+			   
+    
+			   
+    
+			   
+    
+</div><link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+
+      </div>
+
+      <div class="copyright">Powered by <a href="https://chyon.cn/" target="_blank">言岚</a>
+      </div>
+
+</div></div>
+
+    </div>
+
+
+<style type="text/css">a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+}
+
+a.back_to_top span {
+    color: #888;
+}
+
+a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+}
+
+a.back_to_top:hover span {
+    color: #555;
+}
+
+@media print, screen and (max-width: 580px) {
+    .back_to_top {
+        display: none !important;
+    }
+}
+
+
+
+</style><a id="back_to_top" href="#" class="back_to_top"><span>△</span>
+</a>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
+
+<script>$(document).ready((function(_this) {
+  return function() {
+    var bt;
+    bt = $('#back_to_top');
+    if ($(document).width() > 480) {
+      $(window).scroll(function() {
+        var st;
+        st = $(window).scrollTop();
+        if (st > 30) {
+          return bt.css('display', 'block');
+        } else {
+          return bt.css('display', 'none');
+        }
+      });
+      return bt.click(function() {
+        $('body,html').animate({
+          scrollTop: 0
+        }, 800);
+        return false;
+      });
+    }
+  };
+})(this));
+</script>
+
+</body>
+
+</html>

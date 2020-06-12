@@ -1,0 +1,515 @@
+
+<html>
+  <head lang="zh">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+        <meta content="yes" name="apple-mobile-web-app-capable"/>
+        <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+        <meta content="telephone=no" name="format-detection"/>
+        <meta name="renderer" content="webkit">
+    <title>VPS+Rclone实现网盘对拷 | 言岚的博客</title>
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/basic.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  </head>
+
+  <body>
+     <div class="header">
+      <div class="logo_title">
+		  
+        <div class="title animated fadeInDown"><img src="https://chyon.cn//images/avatar.png?v=1591962809894"/>
+
+          <h1 title="言岚的博客" class="weaklink"><a href="/">言岚的博客</a>
+
+          </h1>
+
+          <div class="navbar weaklink">
+            <div class="normal_nav">
+
+<div class="bitcron_nav_container">
+
+
+  <div class="bitcron_nav">
+    <div class="mixed_site_nav_wrap site_nav_wrap">
+		
+      <ul class="mixed_site_nav site_nav sm sm-base">
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a>
+
+  </li>
+ 
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a>
+
+  </li>
+ 
+
+      </ul>
+
+      <div class="clear clear_nav_inline_end"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="clear clear_nav_end"></div>
+
+</div>
+
+            </div>
+
+            <div class="hamberger"><i class="fa fa-bars"></i>
+<i class="fa fa-times"></i>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="hidden_nav animated fadeInDown">
+
+<div class="bitcron_nav_container">
+
+
+  <div class="bitcron_nav">
+    <div class="mixed_site_nav_wrap site_nav_wrap">
+      <ul class="mixed_site_nav site_nav sm sm-base">
+		  
+	
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a>
+
+  </li>
+
+
+  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a>
+
+  </li>
+
+
+
+
+
+      </ul>
+
+      <div class="clear clear_nav_inline_end"></div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="clear clear_nav_end"></div>
+
+</div>
+
+      </div>
+
+    </div>
+
+
+    <div class="main">
+      <div class="main-inner">
+
+
+<div class="content">
+
+
+
+
+
+
+  <div class="post_page" >
+
+<div class="post">
+  <div class="post_title sm_margin">
+    <h2><a>VPS+Rclone实现网盘对拷</a>
+
+
+
+    </h2>
+  </div>
+
+  <div class="post_details">
+    <div class="info"><i class="fa fa-clock-o"></i>
+<span class="date_info">2018-05-26</span>
+<i class="fa fa-eye"></i>
+
+<span class="date_info"><span id="busuanzi_value_page_pv"></span> Views</span>
+
+
+<i class="fa fa-bookmark-o"></i>
+<span class="tags_info weaklink">
+	
+	<a href="https://chyon.cn/tag/nDSaUnVKg/" class="tag">教程</a>
+
+
+</span>
+
+
+    </div>
+
+  </div>
+
+
+
+
+
+  <div class="post_content markdown"><p class="md_block">
+    <span class="md_line md_line_start md_line_end"><p>网盘的稳定性一直是网盘用户的痛点。</p>
+<p>360倒闭之后许多文件来不及下载，而后又没有合适的地方存储，导致很多人咬牙掏钱买硬盘。然而更多没钱的人选择了其他网盘，比如我，最后选择了OnedriveForBusiness。</p>
+<p>但是无论数据存储在哪里，都有丢失的时候，存硬盘里面硬盘会坏，存Onedrive里面……额，订阅哪来的你们也清楚，所以做好数据备份很重要。</p>
+<p>所以我一直在寻找这样一个方法，能够帮我完成Onedrive For Business网盘对拷功能。一开始尝试了Flow，然而不知道怎么回事，最开始还能用，到后面就不行了，估计是用的人太多了吧。然后又选择了MultCloud，然而这货有2T流量限制，速度还死慢，作为没钱的我，只好选择了第三条路，利用手头的资源自己搭建。</p>
+<p>经过不懈的努力摸索，今晚洗澡的时候我终于萌发出灵感：利用Rclone和VPS进行网盘对拷。下面我具体来说说吧：</p>
+<p>搭建环境：Docker环境，镜像：<a href="https://hub.docker.com/r/rastasheep/ubuntu-sshd/">rastasheep/ubuntu-sshd</a></p>
+<p>其中，该镜像的环境是</p>
+<pre><code class="language-c#">ubuntu-sshd-910292714-kpnx7 4.4.0-72-generic
+用户名、密码均为：root
+</code></pre>
+<p>需要开放的端口包括：22、80、6800，但不限于以上端口。</p>
+<p>好了，接下来开始操作：</p>
+<h3 id="reclone安装与挂载">Reclone安装与挂载</h3>
+<p>关于Reclone挂在网盘的操作方法，我主要参考了以下两篇文章：</p>
+<ul>
+<li><a href="https://www.cokemine.com/rclone-onedrive-oneindex.html">可乐博客-通过Rclone及Oneindex实现Onedrive离线下载教程</a></li>
+<li></li>
+<li><a href="https://www.moerats.com/archives/491/">Rat'sBlog-在Debian/Ubuntu上使用rclone挂载OneDrive网盘</a></li>
+</ul>
+<p>有问题的可以去原帖看一下。</p>
+<p>下面开始说我的操作：</p>
+<p>首先，需要一台Windows电脑：</p>
+<p>打开<a href="https://rclone.org/downloads/">https://rclone.org/downloads/</a>，下载Windows-AMD64 - 64 Bit压缩包文件，并解压至<code>D:\rclone</code>。</p>
+<p>然后打开管理员命令提示符，输入</p>
+<pre><code class="language-C#">cd /d d:\rclone
+rclone authorize &quot;onedrive&quot;
+</code></pre>
+<p>登陆你的账户，获取code，例如我的：</p>
+<pre><code class="language-language">{&quot;access_token&quot;:&quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImlCakwxUmNxemhpeTRmcHhJeGRacW9oTTJZayIsImtpZCI6ImlCakwxUmNxemhpeTRmcHhJeGRacW9oTTJZayJ9.eyJhdWQiOiJodHRwczovL2FwaS5vZmZpY2UuY29tL2Rpc2NvdmVyeS8iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9kNWEzODc3YS02ZjBkLTQ4NzUtOWUyMS03MjZhMWJkOTRjMTUvIiwiaWF0IjoxNTI3MzIwOTczLCJuYmYiOjE1MjczMjA5NzMsImV4cCI6MTUyNzMyNDg3MywiYWNyIjoiMSIsImFpbyI6IlkyZGdZRmgrdjYxRFRIcm5xcm1OOVpIbFNxWDNsRU92ekZrMjd3ZXIzTXprMUdXK0JxOEEiLCJhbXIiOlsicHdkIl0sImFwcGlkIjoiNTI4NTdmZWMtNGJjMi00ODNmLTlmMWItNWZlMjhlOTc1MzJjIiwiYXBwaWRhY3IiOiIxIiwiaXBhZGRyIjoiMTEwLjE4NC4xNzkuMTMwIiwibmFtZSI6InRlc3QiLCJvaWQiOiI2YTQzMGIzOC01N2VhLTQxZTQtYWI0My1iZDhiZTZmNzUwZmIiLCJwdWlkIjoiMTAwMzNGRkZBQjlDMEQxRSIsInNjcCI6Ik15RmlsZXMuUmVhZCBNeUZpbGVzLldyaXRlIFVzZXIuUmVhZCIsInN1YiI6IjlseWt4dlBNUGNmT2FOWVlqQUNkbDNyaUs1YkY1anFUS0RmY003SDg5QjAiLCJ0aWQiOiJkNWEzODc3YS02ZjBkLTQ4NzUtOWUyMS03MjZhMWJkOTRjMTUiLCJ1bmlxdWVfbmFtZSI6InRlc3RAZ2hkZ2pkZi5vbm1pY3Jvc29mdC5jb20iLCJ1cG4iOiJ0ZXN0QGdoZGdqZGYub25taWNyb3NvZnQuY29tIiwidXRpIjoiV28yOE1pWGpRa1doTGQ0RGdKd0VBQSIsInZlciI6IjEuMCJ9.QtuYv9vpSYZSNNlRDLYlf0MjLo399aWz26PIVX7lz9FWceeCkydGjMtrWhb7S5qgy2Z-yqnJnN-XpZAdlztM7x5CSqbPNSX1n95YNxnW6Bl423rdosIw6xjDkBQf7jFvPutlGgVkNEmzk-znmJwSDNtsEY8j5LUzLrtWpNweAWK-I35TT5hb6ejXP66NsJc3yDP7-Qy3fhUX402vZl4NZCMkb1G4DVm6dNoWihxcZWhrP91eYqfMy_XlaZhexyD0NUqV2O28y3Rs_aGn2MMJonTBOdj18vV31DBiTooD-ImA3W69gDqThH85Ql8eRoMZ1j76hwELLPKPA7-UjCmkBg&quot;,&quot;token_type&quot;:&quot;Bearer&quot;,&quot;refresh_token&quot;:&quot;AQABAAAAAADX8GCi6Js6SK82TsD2Pb7rnd9hYhHoPmWiPciFQK-L_jFPvodZQ9cadNF6AYwGPH73A-rW3fUWBZ6ZIRNzWeqXotbtGERnsbsY9oSv2dESZf0PAZ0SmlhliTB55p-UHMBhhA02RZzqRO-VYQxC6PYMP20P8PBSvqS7BvkurelSog8L4EpncgyQWpof16aHz6mVgJ3CD-OA7m9zmF3k41TSNhoYxeDznfe4eUYe0vHwbz7Ubfv7xpNwiXKw2JuqkL_UikS-Nmq3_ls-suRZ0VDQxRT7uEc_Z-0H4PeIVH2Cvai7EoQ2WVfZXFZzV8qS_ryjbWspnO6u2_WyReEDUIukHR7BILUOVi141i1L6VXEpw6S-x4TGqKf5q88-BPtbmNz9IwO7nwIVkGe5vY111yVYbQg3j3JzbW0eReByKnSETyypovMEEk_08TYJdD-Ks7AByAUolDrZhFuEUDZlh4VGNNG5DGTf4opoaSNYNt4Rkf9R2b1rL46x66DOBGD2cRMtSUAuy1pNSt1YdddYwV4tiiY15XzCdGiY8Hm39gw9T3eVP1ja_SaQRCiKpZfr63BUO3Hzt1DITgmYqUC_NtDzcyG3c_lbnUrCl4QB2h5f37U8cdRrHJ0uzWwezFL80xmLCdA1Xl-V-OEKjqvWvBNuitNuVbX_20V7wTQgQWSXcwOU1I_BYOwI1aCUmjQBax2GGJQDSVAPu4jJVQOG-7FV8S2__5-ushbSsCqVmqi14ECKQPsm_4pwuDx9W8Tphpbw68fVgSHn3eJqAunovydIAA&quot;,&quot;expiry&quot;:&quot;2018-05-26T16:54:32.8494162+08:00&quot;}
+</code></pre>
+<p>这一段保存好，可以反复使用。</p>
+<p>然后打开shell工具，连接你的VPS，开始挂载：</p>
+<p>安装相关软件：</p>
+<pre><code class="language-language">apt-get update
+apt-get install -y unzip fuse vim
+</code></pre>
+<p>安装Reclone：</p>
+<p>下载地址：<code>https://github.com/rclone/rclone/releases/download/v1.48.0/rclone-v1.48.0-linux-amd64.zip</code></p>
+<pre><code class="language-c#">wget https://downloads.rclone.org/rclone-current-linux-amd64.zip
+unzip rclone-current-linux-amd64.zip
+chmod 0777 ./rclone-*/rclone
+cp ./rclone-*/rclone /usr/bin/
+rm -rf ./rclone-*
+</code></pre>
+<p>配置Reclone:</p>
+<p><code>rclone config</code></p>
+<p>然后出现以下内容：</p>
+<pre><code class="language-c#">Current remotes:
+
+Name                 Type
+====                 ====
+
+e) Edit existing remote
+n) New remote
+d) Delete remote
+r) Rename remote
+c) Copy remote
+s) Set configuration password
+q) Quit config
+e/n/d/r/c/s/q&gt; n #填入n添加新的网盘
+name&gt; onedrive #填入自己选取的名字，这里我使用的是&quot;onedrive&quot;
+Type of storage to configure.
+Enter a string value. Press Enter for the default (&quot;&quot;).
+Choose a number from below, or type in your own value
+ 1 / A stackable unification remote, which can appear to merge the contents of several remotes
+   \ &quot;union&quot;
+ 2 / Alias for a existing remote
+   \ &quot;alias&quot;
+ 3 / Amazon Drive
+   \ &quot;amazon cloud drive&quot;
+ 4 / Amazon S3 Compliant Storage Provider (AWS, Alibaba, Ceph, Digital Ocean, Dreamhost, IBM COS, Minio, etc)
+   \ &quot;s3&quot;
+ 5 / Backblaze B2
+   \ &quot;b2&quot;
+ 6 / Box
+   \ &quot;box&quot;
+ 7 / Cache a remote
+   \ &quot;cache&quot;
+ 8 / Dropbox
+   \ &quot;dropbox&quot;
+ 9 / Encrypt/Decrypt a remote
+   \ &quot;crypt&quot;
+10 / FTP Connection
+   \ &quot;ftp&quot;
+11 / Google Cloud Storage (this is not Google Drive)
+   \ &quot;google cloud storage&quot;
+12 / Google Drive
+   \ &quot;drive&quot;
+13 / Hubic
+   \ &quot;hubic&quot;
+14 / JottaCloud
+   \ &quot;jottacloud&quot;
+15 / Koofr
+   \ &quot;koofr&quot;
+16 / Local Disk
+   \ &quot;local&quot;
+17 / Mega
+   \ &quot;mega&quot;
+18 / Microsoft Azure Blob Storage
+   \ &quot;azureblob&quot;
+19 / Microsoft OneDrive
+   \ &quot;onedrive&quot;
+20 / OpenDrive
+   \ &quot;opendrive&quot;
+21 / Openstack Swift (Rackspace Cloud Files, Memset Memstore, OVH)
+   \ &quot;swift&quot;
+22 / Pcloud
+   \ &quot;pcloud&quot;
+23 / QingCloud Object Storage
+   \ &quot;qingstor&quot;
+24 / SSH/SFTP Connection
+   \ &quot;sftp&quot;
+25 / Webdav
+   \ &quot;webdav&quot;
+26 / Yandex Disk
+   \ &quot;yandex&quot;
+27 / http Connection
+   \ &quot;http&quot;
+Storage&gt; 19 #看清楚onedrive是哪一个，在我这个版本，是第19个选项。
+** See help for onedrive backend at: https://rclone.org/onedrive/ **
+
+Microsoft App Client Id
+Leave blank normally.
+Enter a string value. Press Enter for the default (&quot;&quot;).
+client_id&gt;  #直接按回车跳过
+Microsoft App Client Secret
+Leave blank normally.
+Enter a string value. Press Enter for the default (&quot;&quot;).
+client_secret&gt;  #再次按回车跳过
+Edit advanced config? (y/n)
+y) Yes
+n) No
+y/n&gt; n #无需编辑高级配置选项，填n
+Remote config
+Use auto config?
+ * Say Y if not sure
+ * Say N if you are working on a remote or headless machine
+y) Yes
+n) No
+y/n&gt; n #我们要自己填写code，所以选择n
+For this to work, you will need rclone available on a machine that has a web browser available.
+Execute the following on your machine:
+	rclone authorize &quot;onedrive&quot;
+Then paste the result below:
+result&gt; {&quot;access_token&quot;:&quot;the value of the code&quot;,&quot;expiry&quot;:&quot;2019-07-09T20:37:21.8966666+08:00&quot;}
+Choose a number from below, or type in an existing value
+ 1 / OneDrive Personal or Business
+   \ &quot;onedrive&quot;
+ 2 / Root Sharepoint site
+   \ &quot;sharepoint&quot;
+ 3 / Type in driveID
+   \ &quot;driveid&quot;
+ 4 / Type in SiteID
+   \ &quot;siteid&quot;
+ 5 / Search a Sharepoint site
+   \ &quot;search&quot;
+Your choice&gt; 1 #我使用的是onedrive for business，所以选择1
+Found 1 drives, please select the one you want to use:
+0: OneDrive (business) id=the name id of Onedrive
+Chose drive to use:&gt; 0 #在弹出的存储器中选择你要使用的存储器，一般只有一个，选择0
+Found drive 'root' of type 'business', URL: https://sharepointname-my.sharepoint.com/personal/uesrname_domain_com/Documents
+Is that okay?
+y) Yes
+n) No
+y/n&gt; y #确认所显示的URL中的域名是否是自己onedrive的域名，如果是，选择y
+--------------------
+[n]
+type = onedrive
+token = {&quot;access_token&quot;:&quot;the value of the code&quot;,&quot;expiry&quot;:&quot;2019-07-09T20:37:21.8966666+08:00&quot;}
+drive_id =the name id of Onedrive
+drive_type = business
+--------------------
+y) Yes this is OK
+e) Edit this remote
+d) Delete this remote
+y/e/d&gt; y #确认以上信息是否正确，确认无误后选择y
+Current remotes:
+
+Name                 Type
+====                 ====
+onedrive              onedrive
+
+e) Edit existing remote
+n) New remote
+d) Delete remote
+r) Rename remote
+c) Copy remote
+s) Set configuration password
+q) Quit config
+e/n/d/r/c/s/q&gt; q #如果你需要继续添加网盘，选择n，退出选择q
+</code></pre>
+<p>重复上述步骤，再连接一个网盘。</p>
+<p>到这里，已经完成了网盘在该VPS上的登录认证，并已经映射为一个叫做OneDrive的网盘。</p>
+<p>完成上面对两个OFB网盘的连接后，开始对拷：</p>
+<p>键入命令<code>rclone copy gdrive1: gdrive2:</code></p>
+<p>表示从gdrive1的根目录开始将所有文件拷贝到gdrive2，同时gdrive2里面的数据可能会被完全清空。</p>
+<p>给大家看一下效果：</p>
+<p>首先是我在对拷的过程中，用宝塔面板进行了后台服务性能的监控，大概峰值就在这个样子：</p>
+<figure data-type="image" tabindex="1"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1frp8jyswepj312k08iwfa.jpg" alt="峰值" loading="lazy"></figure>
+<p>可以看到其实对于CPU的使用并没有像病毒一样的疯狂占满，只在有的时候可能会稍微大一点，所以建议用空的小鸡对拷。另外可以看到，对本机的空间占用几乎没有，所以无论大鸡小鸡都能做到。</p>
+<p>在看一下接口流量：</p>
+<figure data-type="image" tabindex="2"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1frp8r5qpsqj30n10ie3zt.jpg" alt="接口流量" loading="lazy"></figure>
+<p>可以看出，速度受下载和上传两个因素同时限制。</p>
+<p>再看一下十分钟的拷贝速度和效果：</p>
+<figure data-type="image" tabindex="3"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1frp8n3ylsjj31hb0jagoc.jpg" alt="gdrive1" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1frp8ni9ay5j31hc0mf41t.jpg" alt="gdrive2" loading="lazy"></figure>
+<p>需要提醒的是，因为即使是对拷，用的也是服务器本机的流量，包括下载和上传的流量。所以如果你想拷50G的文件，就要花费至少100G的流量，这是需要计费的。</p>
+</p>
+
+     <p class="md_block">
+    <div class="reward"><div class="reward-button">赏 <span class="reward-code"> <span class="alipay-code"> <img class="alipay-img" src="https://chyon.cn//media/images/alipay.png"><b>支付宝扫码打赏</b> </span> <span class="wechat-code"> <img class="wechat-img" src="https://chyon.cn//media/images/wechat.png"><b>微信打赏</b> </span> </span></div></div>
+</p> 
+</div>
+
+</div>
+
+
+
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+
+<div class="doc_comments">
+
+</div>
+
+
+
+  </div>
+</div>
+
+
+
+      </div>
+
+
+
+
+    </div>
+
+   <div class="footer">
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/><div class="site_footer_wrap"><div class="site_footer">
+
+      <div class="mysocials"><div class="my_socials">
+		   
+			   
+    
+			   
+    
+			   
+    
+			   
+    
+</div><link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+
+      </div>
+
+      <div class="copyright">Powered by <a href="https://chyon.cn/" target="_blank">言岚</a>
+      </div>
+
+</div></div>
+
+    </div>
+
+
+<style type="text/css">a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+}
+
+a.back_to_top span {
+    color: #888;
+}
+
+a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+}
+
+a.back_to_top:hover span {
+    color: #555;
+}
+
+@media print, screen and (max-width: 580px) {
+    .back_to_top {
+        display: none !important;
+    }
+}
+
+
+
+</style><a id="back_to_top" href="#" class="back_to_top"><span>△</span>
+</a>
+<script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
+
+<script>$(document).ready((function(_this) {
+  return function() {
+    var bt;
+    bt = $('#back_to_top');
+    if ($(document).width() > 480) {
+      $(window).scroll(function() {
+        var st;
+        st = $(window).scrollTop();
+        if (st > 30) {
+          return bt.css('display', 'block');
+        } else {
+          return bt.css('display', 'none');
+        }
+      });
+      return bt.click(function() {
+        $('body,html').animate({
+          scrollTop: 0
+        }, 800);
+        return false;
+      });
+    }
+  };
+})(this));
+</script>
+
+</body>
+
+</html>
