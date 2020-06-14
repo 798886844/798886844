@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chyon.cn/</id>
     <title>言岚的博客</title>
-    <updated>2020-06-12T12:00:10.433Z</updated>
+    <updated>2020-06-14T08:19:10.620Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://chyon.cn/"/>
     <link rel="self" href="https://chyon.cn/atom.xml"/>
@@ -10,6 +10,138 @@
     <logo>https://chyon.cn/images/avatar.png</logo>
     <icon>https://chyon.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, 言岚的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[Gclone简单创建维护教程]]></title>
+        <id>https://chyon.cn/post/gclone-simple-creat/</id>
+        <link href="https://chyon.cn/post/gclone-simple-creat/">
+        </link>
+        <updated>2020-06-14T08:14:04.000Z</updated>
+        <content type="html"><![CDATA[<p>该教程参考自<a href="http://blog.jialezi.net/?post=153">假大佬</a>，请读者自行完成之前无比仔细阅读该教程。</p>
+<p>该教程创新部分来自群友<a href="2812919012@qq.com">你笑起来真好看</a>，鸣谢。</p>
+<h1 id="开始搭建">开始搭建</h1>
+<p>在创建Gclone服务前，你需要准备的有：能够访问谷歌的网络、一个全新创建的谷歌账号、一个运行ubuntu16.04官方发行版本的VPS、一个谷歌团队盘。</p>
+<p><strong>1. 服务器环境建设</strong></p>
+<p>首先要在服务器中安装好pthyon3和pip：</p>
+<pre><code class="language-linux">apt-get install git python3 python3-pip -y
+</code></pre>
+<p>安装AutoRclone：</p>
+<pre><code class="language-linux">git clone https://github.com/xyou365/AutoRclone &amp;&amp; cd AutoRclone &amp;&amp; pip3 install -r requirements.txt
+</code></pre>
+<p>开启谷歌账号相关api：</p>
+<p>打开链接：</p>
+<p><a href="https://developers.google.com/drive/api/v3/quickstart/python">https://developers.google.com/drive/api/v3/quickstart/python</a></p>
+<p>创建api之后，下载<code>credentials.json</code>，并上传到服务器<code>AutoRclone</code>文件夹目录下。</p>
+<p><strong>2. 创建SA账户</strong></p>
+<p>这里有两种方法。</p>
+<p>第一种方法：按照官方教程创建SA账户，分为三种情况：</p>
+<ul>
+<li>如果你之前没创建过项目, 直接运行</li>
+</ul>
+<p><code>python3 gen_sa_accounts.py --quick-setup 1</code></p>
+<p>该命令将：</p>
+<p>创建1个新项目；</p>
+<p>开启相关的服务；</p>
+<p>创建100个service accounts（1个项目，每个项目100个）；</p>
+<p>将100个service accounts的授权文件下载到accounts文件夹下面；</p>
+<ul>
+<li>如果你已经有N个项目，现需要创建新的项目并在新的项目中创建service accounts，直接运行</li>
+</ul>
+<p><code>python3 gen_sa_accounts.py --quick-setup 2 --new-only</code><br>
+该命令将：</p>
+<p>额外创建2个新项目，开启相关的服务</p>
+<p>创建200个service accounts（2个项目，每个项目100个）</p>
+<p>将200个service accounts的授权文件下载到accounts文件夹下面</p>
+<ul>
+<li>如果你想用已有的项目来创建service accounts（不创建新的项目），直接运行</li>
+</ul>
+<p><code>python3 gen_sa_accounts.py --quick-setup -1</code></p>
+<p>注意这会覆盖掉已有的service accounts</p>
+<p>这里选择第一种情况，前提是你准备的google账户是全新账户。</p>
+<p>这里会出现让你授权的情况：</p>
+<figure data-type="image" tabindex="1"><img src="http://img.chyon.cn/img/20200614151926.png" alt="" loading="lazy"></figure>
+<p>按照提示复制链接到浏览器中授权即可。</p>
+<p>注意可能需要多次授权。</p>
+<p>如果你遇到下图这种错误，请看接下来的第二种方法。</p>
+<figure data-type="image" tabindex="2"><img src="http://img.chyon.cn/img/20200614151818.png" alt="" loading="lazy"></figure>
+<p>第二种方法：</p>
+<p>该方法来自群友<a href="2812919012@qq.com">你笑起来真好看</a>。</p>
+<p>首先来到accounts文件夹下看看有没有已经下载的文件，如果你是全新账号又出现了上面所说的错误，应该是空的。</p>
+<p>如果有文件就删除。</p>
+<p>运行命令：</p>
+<p><code>python3 gen_sa_accounts.py --path accounts --quick-setup 1 --new-only</code></p>
+<p>该命令将：</p>
+<p>新建一个项目；</p>
+<p>开启相关服务；</p>
+<p>创建100个SA账户，并将授权文件下载到accounts文件夹中。</p>
+<p>一般来说如果授权完整的话，这条命令是不会出现问题的。</p>
+<p>然后来到accounts文件夹下看看有没有已经下载的文件，ls数一下是不是一百个json。</p>
+<p><strong>3. 获取SA账户邮件地址，添加到谷歌群组中。</strong></p>
+<p>首先到accounts文件夹下看看一共多少个授权文件。</p>
+<p>然后将这些授权文件所代表的SA账户提取出来，用如下命令：</p>
+<p><code>cat ~/AutoRclone/accounts/*.json | grep &quot;client_email&quot; | awk '{print $2}'| tr -d ',&quot;' | sed 'N;N;N;N;N;N;N;N;N;/^$/d;G' &gt; ~/email.json</code></p>
+<p>该命令将：</p>
+<p>提取目录<code>/root/AutoRclone/accounts/</code>下的所有授权文件所代表的SA账户邮件地址，并生成一个名为<code>email.json</code>的文件，存放在<code>/root/</code>目录下。</p>
+<p>你也可以自己修改目录和存放文件的地址。</p>
+<p>然后将服务器上的<code>email.json</code>下载到本地，用记事本或其他文本编辑器打开，你将看到：</p>
+<figure data-type="image" tabindex="3"><img src="http://img.chyon.cn/img/E0%7BKUYF@%7DX14M7Q2H$II9%60T.png" alt="" loading="lazy"></figure>
+<p>类似于这样的SA账户。其中每一部分刚好是10条。</p>
+<p>然后打开：</p>
+<p><a href="https://groups.google.com/">https://groups.google.com/</a></p>
+<p>来到谷歌群组，创建一个自己的谷歌群组。创建过程略。</p>
+<p>然后进入群组，管理成员：</p>
+<figure data-type="image" tabindex="4"><img src="http://img.chyon.cn/img/20200614154009.png" alt="" loading="lazy"></figure>
+<p>点击这里管理成员。</p>
+<figure data-type="image" tabindex="5"><img src="http://img.chyon.cn/img/20200614154146.png" alt="" loading="lazy"></figure>
+<p>注意一次只能添加10个SA账户，一天只能添加100个。</p>
+<p>如果添加遇到错误，请看步骤4。</p>
+<p>分批添加完毕后，获取group的邮箱地址：</p>
+<figure data-type="image" tabindex="6"><img src="http://img.chyon.cn/img/20200614154312.png" alt="" loading="lazy"></figure>
+<p>点击<code>关于</code></p>
+<p>即可看到group mail：</p>
+<figure data-type="image" tabindex="7"><img src="http://img.chyon.cn/img/20200614154401.png" alt="" loading="lazy"></figure>
+<p><strong>4. 黑号的情况</strong></p>
+<p>这里插入一部分我发现的问题，我将之归结于黑号。</p>
+<p>第一种情况即将SA批量添加到群组时发生错误，提示“该邮件地址不是组织内成员”。</p>
+<p>这种情况目前没有发现解决办法，只能通过更换谷歌账号重新创建解决。</p>
+<p>第二种情况是在gclone使用过程中，出现如下错误：</p>
+<figure data-type="image" tabindex="8"><img src="http://img.chyon.cn/img/20200614154825.png" alt="" loading="lazy"></figure>
+<p>提示内存溢出，但是实际上并不是gclone的问题，暂不清楚是哪方面的问题，也只能通过更换谷歌账号重新创建的办法解决。</p>
+<p><strong>5. 安装gclone并配置使用</strong></p>
+<p>gclone安装命令如下：</p>
+<p><code>bash &lt;(wget -qO- https://git.io/gclone.sh)</code></p>
+<p>配置过程不再赘述，可以参考<a href="http://blog.jialezi.net/?post=153">假大佬</a>。</p>
+<p><strong>6. 后续维护与添加</strong></p>
+<p>针对accounts的备份：</p>
+<pre><code class="language-linux">cp -r ~/AutoRclone/accounts ~/accounts.bak
+</code></pre>
+<p>增加创建项目和100个SA：</p>
+<pre><code class="language-linux">python3 gen_sa_accounts.py --path newacc --quick-setup 1 --new-only
+</code></pre>
+<p>该命令将新建一个项目，并创建100个SA，将SA账户的配置文件下载到<code>newacc</code>文件夹内。</p>
+<p>查看SA配置文件：</p>
+<pre><code class="language-linux">ls ~/AutoRclone/newacc
+</code></pre>
+<p>提取新建SA邮件地址：</p>
+<pre><code class="language-linux">cat ~/AutoRclone/newacc/*.json | grep &quot;client_email&quot; | awk '{print $2}'| tr -d ',&quot;' | sed 'N;N;N;N;N;N;N;N;N;/^$/d;G' &gt; ~/email1.json
+</code></pre>
+<p>然后下载文件<code>email1.json</code>，并将SA地址添加到谷歌群组中。</p>
+<p>最后，合并SA配置文件：</p>
+<pre><code class="language-linux">cp -r /root/AutoRclone/newacc /root/AutoRclone/accounts
+</code></pre>
+<p><strong>7. 一些问题的解决办法</strong></p>
+<ul>
+<li>创建SA成功但未下载SA配置文件</li>
+</ul>
+<p>该问题的解决办法，首先要获取已成功创建SA账户的项目名称，这部分需要到浏览器中查看：</p>
+<p>打开网址<a href="https://console.cloud.google.com/iam-admin/serviceaccounts">https://console.cloud.google.com/iam-admin/serviceaccounts</a>，尝试切换项目，查看SA账户是否已成功创建，是的话就记下这个项目的名称。</p>
+<p>或者通过命令</p>
+<p><code>python3 gen_sa_accounts.py --list-projects</code></p>
+<p>查看项目名称。</p>
+<p>然后，指定下载某个项目的SA配置文件：</p>
+<p><code>python3 gen_sa_accounts.py --path accounts --download-key xxxx</code></p>
+<p>其中，xxxx为项目名称。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[任意位置打开管理员命令提示符]]></title>
         <id>https://chyon.cn/post/open-admin-cmd-anywhere/</id>
@@ -341,20 +473,6 @@ search_path_file $CREO_COMMON_FILES\afx\parts\prolibrary\search.pro
 PROTKDAT D:\Program Files\ANSYS Inc\v181\aisol\CADIntegration\ProE\ProEPages\config\WBPlugInPE.dat
 </code></pre>
 <p>这样，保存以后重新打开Cero 5.0就可以看到新的ANSYS工具菜单了。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[时间是物质的时间]]></title>
-        <id>https://chyon.cn/post/time-with-physical/</id>
-        <link href="https://chyon.cn/post/time-with-physical/">
-        </link>
-        <updated>2019-07-01T03:19:00.000Z</updated>
-        <content type="html"><![CDATA[<p>昨天，我呆在宾馆的小屋子里。那是一个没有窗子的房间，只有一张大床。如果我关掉电视机，放下手机，就感受不到时间的流逝。我开始回想起这段时间看的相对论。</p>
-<p>相对论说，时间是用光去计量的。光飞行一个光秒的距离，就是一秒。在黑洞周围，由于引力过于巨大，时间会变慢。还有一个概念，叫做谁的时间。我运动的快，所以我的时间慢一点，你的时间快。我认为这种把时间作为每个人的私有物品是一种非常好的概念。我们每个人都是有时间的。</p>
-<p>就像昨天在那个宾馆的小房间里面，我的思绪是停滞的，我感受不到时间在流淌，如果不是我去看表，是不是我的时间也会停下来。</p>
-<p>时间是物质的时间，我们每个人都不一样。而人生最大的财富，就是我们的父母将我们生下来的那一刻，他们给了我们一生的时间。就像给了我们一屋子的财富，让我们去挥霍，或者去利用。</p>
-<p>我开始相信命运这种东西了。我相信的命运，不是每个人什么时间会经历什么事，而是我们的一生有多么漫长，我们什么时候死亡，这在我们出生的时候，已经注定了。</p>
-<p>时间是一条细长细长的棉线，而我们只是这条线上的一段。我们从某个点出发，到某个点结束。这一段，就是我们的时间。我们将在这段时间中绘出多么精彩的人生，就看我们用这段棉线荡出怎样的波纹。</p>
 ]]></content>
     </entry>
 </feed>
