@@ -19,7 +19,7 @@
      <div class="header">
       <div class="logo_title">
 		  
-        <div class="title animated fadeInDown"><img src="https://chyon.cn//images/avatar.png?v=1592122855172"/>
+        <div class="title animated fadeInDown"><img src="https://chyon.cn//images/avatar.png?v=1592226682072"/>
 
           <h1 title="言岚的博客" class="weaklink"><a href="/">言岚的博客</a>
 
@@ -184,13 +184,13 @@
 <p>基于镜像：<code>gingko/centos6.8</code><br>
 该镜像支持中文，但有时候解压.7z还是会出现乱码问题。</p>
 <p>预配置：</p>
-<pre><code class="language-C">yum update -y &amp;&amp; yum update -y &amp;&amp; yum install -y wget screen unzip vim
+<pre><code class="language-C">yum update -y &amp;&amp; yum update -y &amp;&amp; yum install -y wget screen unzip vim curl
 </code></pre>
-<p>这是从loc找到的CCAA一键脚本：</p>
-<pre><code class="language-C">yum -y install wget unzip curl
-wget https://github.com/helloxz/ccaa/archive/master.zip
-unzip master.zip &amp;&amp; cd ccaa-master &amp;&amp; sh ccaa.sh
+<p>这是我自己修改的CCAA一键脚本，仅适用于Centos系统：</p>
+<pre><code class="language-C">wget http://dl.chyon.cn/Aria2/CCAA/ccaa.zip
+unzip ccaa.zip &amp;&amp; cd ccaa &amp;&amp; sh ccaa.sh
 </code></pre>
+<p>官方的CCAA系统请参考<a href="https://github.com/helloxz/ccaa">Github</a>。</p>
 <p>安装unrar：</p>
 <pre><code class="language-C">cd /usr/local
 wget http://www.rarlab.com/rar/rarlinux-x64-5.3.0.tar.gz

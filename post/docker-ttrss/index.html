@@ -1,12 +1,12 @@
 
 <html>
-<head lang="zh">
+  <head lang="zh">
         <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
         <meta content="yes" name="apple-mobile-web-app-capable"/>
         <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
         <meta content="telephone=no" name="format-detection"/>
         <meta name="renderer" content="webkit">
-    <title>言岚的博客</title>
+    <title>VPS搭建TTRSS-Docker服务 | 言岚的博客</title>
 <link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
 <script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
 <script type="text/javascript" src="https://chyon.cn//media/scripts/basic.js"></script>
@@ -16,7 +16,7 @@
   </head>
 
   <body>
-    <div class="header">
+     <div class="header">
       <div class="logo_title">
 		  
         <div class="title animated fadeInDown"><img src="https://chyon.cn//images/avatar.png?v=1592226682072"/>
@@ -135,6 +135,7 @@
     <div class="main">
       <div class="main-inner">
 
+
 <div class="content">
 
 
@@ -142,25 +143,29 @@
 
 
 
-  <div class="post_list" >
+  <div class="post_page" >
 
-	
 <div class="post">
-  <div class="post_title weaklink">
-    <h2><a href="https://chyon.cn/post/wy-so-many-trash-people/" >人与狗的区别</a>
+  <div class="post_title sm_margin">
+    <h2><a>VPS搭建TTRSS-Docker服务</a>
+
+
+
     </h2>
   </div>
-  <div class="post_content markdown"><div class="p_part"><p></p></div></div>
-  <div class="post_footer">
-    <div class="info weaklink"><i class="fa fa-clock-o"></i>
-<span class="date_info">2020-06-12</span>
+
+  <div class="post_details">
+    <div class="info"><i class="fa fa-clock-o"></i>
+<span class="date_info">2020-06-15</span>
+<i class="fa fa-eye"></i>
+
+<span class="date_info"><span id="busuanzi_value_page_pv"></span> Views</span>
+
 
 <i class="fa fa-bookmark-o"></i>
-	
 <span class="tags_info weaklink">
 	
-	<a href="https://chyon.cn/tag/QtMVjC6YVt/" class="tag">心情日记</a>
-
+	<a href="https://chyon.cn/tag/nDSaUnVKg/" class="tag">教程</a>
 
 
 </span>
@@ -170,251 +175,86 @@
 
   </div>
 
+
+
+
+
+  <div class="post_content markdown"><p class="md_block">
+    <span class="md_line md_line_start md_line_end"><p>该教程转载自<a href="https://blog.spencerwoo.com/2019/11/tiny-tiny-rss/">Spencer's Blog</a></p>
+<p>废话不多说，直接上教程：</p>
+<p><strong>Docker安装：</strong></p>
+<pre><code class="language-linux">curl -fsSL https://get.docker.com/ | sh
+</code></pre>
+<p>Docker服务启动：</p>
+<pre><code class="language-linux">sudo systemctl start docker
+</code></pre>
+<p>检验是否成功：</p>
+<pre><code class="language-linux">sudo systemctl status docker
+</code></pre>
+<p>将出现如下图所示结果：</p>
+<figure data-type="image" tabindex="1"><img src="http://img.chyon.cn/img/20200615210223.png" alt="" loading="lazy"></figure>
+<p><strong>安装 docker-compose：</strong></p>
+<pre><code class="language-linux">curl -L https://github.com/docker/compose/releases/download/1.25.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+</code></pre>
+<p>给予安装好的 docker-compose 可执行权限：:</p>
+<pre><code class="language-linux">chmod +x /usr/local/bin/docker-compose
+</code></pre>
+<p>检查安装是否成功：</p>
+<pre><code class="language-linux">docker-compose --version
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="http://img.chyon.cn/img/20200615210405.png" alt="" loading="lazy"></figure>
+<p><strong>安装 Tiny Tiny RSS 及其周边服务：</strong></p>
+<pre><code class="language-linux"># 创建 ttrss 目录并进入
+mkdir ttrss &amp;&amp; cd ttrss
+
+# 利用 curl 下载 ttrss 的 docker-compose 配置文件至服务器
+curl -fLo docker-compose.yml https://github.com/HenryQW/Awesome-TTRSS/raw/master/docker-compose.yml
+</code></pre>
+<p>修改 docker-compose.yml 里面的内容：</p>
+<figure data-type="image" tabindex="3"><img src="http://img.chyon.cn/img/20200615210541.png" alt="" loading="lazy"></figure>
+<ul>
+<li>在配置文件的第 7 行和第 23 行，将 PostgreSQL 数据库的默认密码进行修改。暴露在公网的数据库使用默认密码非常危险。</li>
+<li>在配置文件的第 18 行，将 Tiny Tiny RSS 服务的部署网址修改。比如我的部署网址是 https://ttrss.tenkeyseven.com/</li>
+<li>注意，如果你的部署 URL 包含端口（比如默认部署端口为 181 端口），那么这里的 URL 也需要加上端口号，格式为 {网址}:{端口} - 不过不必担心，如果你这里的 URL 配置不正确，那么访问 Tiny Tiny RSS 的时候，Tiny Tiny RSS 会提醒你修改这里的值为正确的 URL，按照提醒进行配置即可</li>
+</ul>
+<p><strong>启动 Tiny Tiny RSS 服务：</strong></p>
+<pre><code class="language-linux">docker-compose up -d
+</code></pre>
+<p>验证：</p>
+<pre><code class="language-linux">docker ps
+</code></pre>
+<figure data-type="image" tabindex="4"><img src="http://img.chyon.cn/img/20200615210724.png" alt="" loading="lazy"></figure>
+<p><strong>修改&amp;重新启动：</strong></p>
+<pre><code class="language-linux"># 关闭 Docker 容器们
+docker-compose down
+
+# 删除已停止的 Docker 容器
+docker-compose rm
+
+# ……
+# 修改 docker-compose 配置文件
+# ……
+
+# 再次开启 Docker 服务
+docker-compose up -d
+</code></pre>
+<p><strong>最后</strong></p>
+<p>交上我的作业：<br>
+<img src="http://img.chyon.cn/img/20200615210946.png" alt="" loading="lazy"></p>
+</p>
+
+     <p class="md_block">
+    <div class="reward"><div class="reward-button">赏 <span class="reward-code"> <span class="alipay-code"> <img class="alipay-img" src="https://chyon.cn//media/images/alipay.png"><b>支付宝扫码打赏</b> </span> <span class="wechat-code"> <img class="wechat-img" src="https://chyon.cn//media/images/wechat.png"><b>微信打赏</b> </span> </span></div></div>
+</p> 
 </div>
-	
-
-	
-<div class="post">
-  <div class="post_title weaklink">
-    <h2><a href="https://chyon.cn/post/i-donot-want-live/" >厌世的哲学</a>
-    </h2>
-  </div>
-  <div class="post_content markdown"><div class="p_part"><p></p></div></div>
-  <div class="post_footer">
-    <div class="info weaklink"><i class="fa fa-clock-o"></i>
-<span class="date_info">2019-11-21</span>
-
-<i class="fa fa-bookmark-o"></i>
-	
-<span class="tags_info weaklink">
-	
-	<a href="https://chyon.cn/tag/QtMVjC6YVt/" class="tag">心情日记</a>
-
-
-
-</span>
-
-
-    </div>
-
-  </div>
-
-</div>
-	
-
-	
-<div class="post">
-  <div class="post_title weaklink">
-    <h2><a href="https://chyon.cn/post/nezha/" >影评《哪吒》</a>
-    </h2>
-  </div>
-  <div class="post_content markdown"><div class="p_part"><p></p></div></div>
-  <div class="post_footer">
-    <div class="info weaklink"><i class="fa fa-clock-o"></i>
-<span class="date_info">2019-08-06</span>
-
-<i class="fa fa-bookmark-o"></i>
-	
-<span class="tags_info weaklink">
-	
-	<a href="https://chyon.cn/tag/QtMVjC6YVt/" class="tag">心情日记</a>
-
-
-
-</span>
-
-
-    </div>
-
-  </div>
-
-</div>
-	
-
-	
-<div class="post">
-  <div class="post_title weaklink">
-    <h2><a href="https://chyon.cn/post/time-with-physical/" >时间是物质的时间</a>
-    </h2>
-  </div>
-  <div class="post_content markdown"><div class="p_part"><p></p></div></div>
-  <div class="post_footer">
-    <div class="info weaklink"><i class="fa fa-clock-o"></i>
-<span class="date_info">2019-07-01</span>
-
-<i class="fa fa-bookmark-o"></i>
-	
-<span class="tags_info weaklink">
-	
-	<a href="https://chyon.cn/tag/QtMVjC6YVt/" class="tag">心情日记</a>
-
-
-
-</span>
-
-
-    </div>
-
-  </div>
 
 </div>
-	
-
-	
-<div class="post">
-  <div class="post_title weaklink">
-    <h2><a href="https://chyon.cn/post/graduation/" >毕业了</a>
-    </h2>
-  </div>
-  <div class="post_content markdown"><div class="p_part"><p></p></div></div>
-  <div class="post_footer">
-    <div class="info weaklink"><i class="fa fa-clock-o"></i>
-<span class="date_info">2019-07-01</span>
-
-<i class="fa fa-bookmark-o"></i>
-	
-<span class="tags_info weaklink">
-	
-	<a href="https://chyon.cn/tag/QtMVjC6YVt/" class="tag">心情日记</a>
 
 
 
-</span>
+<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
 
-
-    </div>
-
-  </div>
-
-</div>
-	
-
-	
-<div class="post">
-  <div class="post_title weaklink">
-    <h2><a href="https://chyon.cn/post/i-feel-fall/" >心不能落地</a>
-    </h2>
-  </div>
-  <div class="post_content markdown"><div class="p_part"><p></p></div></div>
-  <div class="post_footer">
-    <div class="info weaklink"><i class="fa fa-clock-o"></i>
-<span class="date_info">2019-06-09</span>
-
-<i class="fa fa-bookmark-o"></i>
-	
-<span class="tags_info weaklink">
-	
-	<a href="https://chyon.cn/tag/QtMVjC6YVt/" class="tag">心情日记</a>
-
-
-
-</span>
-
-
-    </div>
-
-  </div>
-
-</div>
-	
-
-	
-<div class="post">
-  <div class="post_title weaklink">
-    <h2><a href="https://chyon.cn/post/fuck-trash-people-off/" >跳梁小丑</a>
-    </h2>
-  </div>
-  <div class="post_content markdown"><div class="p_part"><p></p></div></div>
-  <div class="post_footer">
-    <div class="info weaklink"><i class="fa fa-clock-o"></i>
-<span class="date_info">2019-05-17</span>
-
-<i class="fa fa-bookmark-o"></i>
-	
-<span class="tags_info weaklink">
-	
-	<a href="https://chyon.cn/tag/QtMVjC6YVt/" class="tag">心情日记</a>
-
-
-
-</span>
-
-
-    </div>
-
-  </div>
-
-</div>
-	
-
-	
-<div class="post">
-  <div class="post_title weaklink">
-    <h2><a href="https://chyon.cn/post/yao-zuo-jiu-qu-zuo-you-shi-me-li-you-hao-shuo/" >要做就去做，有什么理由好说？</a>
-    </h2>
-  </div>
-  <div class="post_content markdown"><div class="p_part"><p></p></div></div>
-  <div class="post_footer">
-    <div class="info weaklink"><i class="fa fa-clock-o"></i>
-<span class="date_info">2019-04-10</span>
-
-<i class="fa fa-bookmark-o"></i>
-	
-<span class="tags_info weaklink">
-	
-	<a href="https://chyon.cn/tag/QtMVjC6YVt/" class="tag">心情日记</a>
-
-
-
-</span>
-
-
-    </div>
-
-  </div>
-
-</div>
-	
-
-	
-<div class="post">
-  <div class="post_title weaklink">
-    <h2><a href="https://chyon.cn/post/trader-of-card/" >对于卡商的一些看法</a>
-    </h2>
-  </div>
-  <div class="post_content markdown"><div class="p_part"><p></p></div></div>
-  <div class="post_footer">
-    <div class="info weaklink"><i class="fa fa-clock-o"></i>
-<span class="date_info">2019-02-08</span>
-
-<i class="fa fa-bookmark-o"></i>
-	
-<span class="tags_info weaklink">
-	
-	<a href="https://chyon.cn/tag/QtMVjC6YVt/" class="tag">心情日记</a>
-
-
-
-</span>
-
-
-    </div>
-
-  </div>
-
-</div>
-	
-	
-
-<div class="paginator pager pagination" >
-	
-
-
-
-    <div style="clear:both;height:0;"></div>
-
-
-  </div>
+<div class="doc_comments">
 
 </div>
 
@@ -427,9 +267,12 @@
 
       </div>
 
+
+
+
     </div>
 
-    <div class="footer">
+   <div class="footer">
 <link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/><div class="site_footer_wrap"><div class="site_footer">
 
       <div class="mysocials"><div class="my_socials">
