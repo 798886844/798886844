@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chyon.cn/</id>
     <title>言岚的博客</title>
-    <updated>2020-07-30T14:33:51.659Z</updated>
+    <updated>2020-07-30T15:08:34.638Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://chyon.cn/"/>
     <link rel="self" href="https://chyon.cn/atom.xml"/>
@@ -10,6 +10,152 @@
     <logo>https://chyon.cn/images/avatar.png</logo>
     <icon>https://chyon.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, 言岚的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[使用Aira2下载文件后自动上传到Google Drive网盘]]></title>
+        <id>https://chyon.cn/post/aria2-auto-upload/</id>
+        <link href="https://chyon.cn/post/aria2-auto-upload/">
+        </link>
+        <updated>2020-07-30T15:06:23.000Z</updated>
+        <content type="html"><![CDATA[<p>使用Rclone挂载网盘为磁盘：</p>
+<pre><code class="language-Debain">#新建本地文件夹，路径自己定，即下面的LocalFolder
+mkdir /root/GoogleDrive
+#挂载为磁盘，下面的DriveName、Folder、LocalFolder参数根据说明自行替换
+rclone mount DriveName:Folder LocalFolder --copy-links --no-gzip-encoding --no-check-certificate --allow-other --allow-non-empty --umask 000
+</code></pre>
+<p>卸载磁盘：</p>
+<pre><code class="language-Debian">fusermount -qzu LocalFolder
+</code></pre>
+<p>自动上传脚本的原理是当下载完后aria2会给脚本传3个参数$1、$2、$3分别为gid、文件数量、文件路径。我们对文件路径这个字符串处理一番就可以达到目的了。</p>
+<p>新建脚本文件rcloneupload.sh，并复制下面代码：</p>
+<pre><code class="language-Debian">#!/bin/bash
+
+GID=&quot;$1&quot;;
+FileNum=&quot;$2&quot;;
+File=&quot;$3&quot;;
+MinSize=&quot;5&quot;  #限制最低上传大小，默认5k
+MaxSize=&quot;157286400&quot;  #限制最高文件大小(单位k)，默认15G
+RemoteDIR=&quot;/RATS/&quot;;  #rclone挂载的本地文件夹，最后面保留/
+LocalDIR=&quot;/download/&quot;;  #Aria2下载目录，最后面保留/
+
+if [[ -z $(echo &quot;$FileNum&quot; |grep -o '[0-9]*' |head -n1) ]]; then FileNum='0'; fi
+if [[ &quot;$FileNum&quot; -le '0' ]]; then exit 0; fi
+if [[ &quot;$#&quot; != '3' ]]; then exit 0; fi
+
+function LoadFile(){
+  IFS_BAK=$IFS
+  IFS=$'\n'
+  if [[ ! -d &quot;$LocalDIR&quot; ]]; then return; fi
+  if [[ -e &quot;$File&quot; ]]; then
+    FileLoad=&quot;${File/#$LocalDIR}&quot;
+    while true
+      do
+        if [[ &quot;$FileLoad&quot; == '/' ]]; then return; fi
+        echo &quot;$FileLoad&quot; |grep -q '/';
+        if [[ &quot;$?&quot; == &quot;0&quot; ]]; then
+          FileLoad=$(dirname &quot;$FileLoad&quot;);
+        else
+          break;
+        fi;
+      done;
+    if [[ &quot;$FileLoad&quot; == &quot;$LocalDIR&quot; ]]; then return; fi
+    EXEC=&quot;$(command -v mv)&quot;
+    if [[ -z &quot;$EXEC&quot; ]]; then return; fi
+    Option=&quot; -f&quot;;
+    cd &quot;$LocalDIR&quot;;
+    if [[ -e &quot;$FileLoad&quot; ]]; then
+      ItemSize=$(du -s &quot;$FileLoad&quot; |cut -f1 |grep -o '[0-9]*' |head -n1)
+      if [[ -z &quot;$ItemSize&quot; ]]; then return; fi
+      if [[ &quot;$ItemSize&quot; -le &quot;$MinSize&quot; ]]; then
+        echo -ne &quot;\033[33m$FileLoad \033[0mtoo small to spik.\n&quot;;
+        return;
+      fi
+      if [[ &quot;$ItemSize&quot; -ge &quot;$MaxSize&quot; ]]; then
+        echo -ne &quot;\033[33m$FileLoad \033[0mtoo large to spik.\n&quot;;
+        return;
+      fi
+      eval &quot;${EXEC}${Option}&quot; \'&quot;${FileLoad}&quot;\' &quot;${RemoteDIR}&quot;;
+    fi
+  fi
+  IFS=$IFS_BAK
+}
+LoadFile;
+</code></pre>
+<p>原文来自：<a href="https://www.moerats.com/archives/482/">https://www.moerats.com/archives/482/</a>，搬运仅作备份。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[使用Aira2下载文件后自动上传到Google Drive网盘]]></title>
+        <id>https://chyon.cn/post/shi-yong-aira2-xia-zai-wen-jian-hou-zi-dong-shang-chuan-dao-google-drive-wang-pan/</id>
+        <link href="https://chyon.cn/post/shi-yong-aira2-xia-zai-wen-jian-hou-zi-dong-shang-chuan-dao-google-drive-wang-pan/">
+        </link>
+        <updated>2020-07-30T15:06:23.000Z</updated>
+        <content type="html"><![CDATA[<p>使用Rclone挂载网盘为磁盘：</p>
+<pre><code class="language-Debain">#新建本地文件夹，路径自己定，即下面的LocalFolder
+mkdir /root/GoogleDrive
+#挂载为磁盘，下面的DriveName、Folder、LocalFolder参数根据说明自行替换
+rclone mount DriveName:Folder LocalFolder --copy-links --no-gzip-encoding --no-check-certificate --allow-other --allow-non-empty --umask 000
+</code></pre>
+<p>卸载磁盘：</p>
+<pre><code class="language-Debian">fusermount -qzu LocalFolder
+</code></pre>
+<p>自动上传脚本的原理是当下载完后aria2会给脚本传3个参数$1、$2、$3分别为gid、文件数量、文件路径。我们对文件路径这个字符串处理一番就可以达到目的了。</p>
+<p>新建脚本文件rcloneupload.sh，并复制下面代码：</p>
+<pre><code class="language-Debian">#!/bin/bash
+
+GID=&quot;$1&quot;;
+FileNum=&quot;$2&quot;;
+File=&quot;$3&quot;;
+MinSize=&quot;5&quot;  #限制最低上传大小，默认5k
+MaxSize=&quot;157286400&quot;  #限制最高文件大小(单位k)，默认15G
+RemoteDIR=&quot;/RATS/&quot;;  #rclone挂载的本地文件夹，最后面保留/
+LocalDIR=&quot;/download/&quot;;  #Aria2下载目录，最后面保留/
+
+if [[ -z $(echo &quot;$FileNum&quot; |grep -o '[0-9]*' |head -n1) ]]; then FileNum='0'; fi
+if [[ &quot;$FileNum&quot; -le '0' ]]; then exit 0; fi
+if [[ &quot;$#&quot; != '3' ]]; then exit 0; fi
+
+function LoadFile(){
+  IFS_BAK=$IFS
+  IFS=$'\n'
+  if [[ ! -d &quot;$LocalDIR&quot; ]]; then return; fi
+  if [[ -e &quot;$File&quot; ]]; then
+    FileLoad=&quot;${File/#$LocalDIR}&quot;
+    while true
+      do
+        if [[ &quot;$FileLoad&quot; == '/' ]]; then return; fi
+        echo &quot;$FileLoad&quot; |grep -q '/';
+        if [[ &quot;$?&quot; == &quot;0&quot; ]]; then
+          FileLoad=$(dirname &quot;$FileLoad&quot;);
+        else
+          break;
+        fi;
+      done;
+    if [[ &quot;$FileLoad&quot; == &quot;$LocalDIR&quot; ]]; then return; fi
+    EXEC=&quot;$(command -v mv)&quot;
+    if [[ -z &quot;$EXEC&quot; ]]; then return; fi
+    Option=&quot; -f&quot;;
+    cd &quot;$LocalDIR&quot;;
+    if [[ -e &quot;$FileLoad&quot; ]]; then
+      ItemSize=$(du -s &quot;$FileLoad&quot; |cut -f1 |grep -o '[0-9]*' |head -n1)
+      if [[ -z &quot;$ItemSize&quot; ]]; then return; fi
+      if [[ &quot;$ItemSize&quot; -le &quot;$MinSize&quot; ]]; then
+        echo -ne &quot;\033[33m$FileLoad \033[0mtoo small to spik.\n&quot;;
+        return;
+      fi
+      if [[ &quot;$ItemSize&quot; -ge &quot;$MaxSize&quot; ]]; then
+        echo -ne &quot;\033[33m$FileLoad \033[0mtoo large to spik.\n&quot;;
+        return;
+      fi
+      eval &quot;${EXEC}${Option}&quot; \'&quot;${FileLoad}&quot;\' &quot;${RemoteDIR}&quot;;
+    fi
+  fi
+  IFS=$IFS_BAK
+}
+LoadFile;
+</code></pre>
+<p>原文来自：<a href="https://www.moerats.com/archives/482/">https://www.moerats.com/archives/482/</a>，搬运仅作备份。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Debian安装配置BYPY教程]]></title>
         <id>https://chyon.cn/post/debian-install-bypy/</id>
@@ -455,62 +601,6 @@ Windows Registry Editor Version 5.00
 <p>还要提醒各位一定要注意备份自己的加密密钥，具体方法我就不多说了，加密证书导出后可以备份到微软账户自带的<code>Onedrive</code>里面。反正新建加密证书的时候是需要密码的，不怕证书流入他人之手，但是弄丢了还是很蛋疼的。</p>
 <p>被加密的文件在没有证书的电脑上是打不开的，如果要打开就必须在电脑上安装加密证书，安装加密证书需要密码……</p>
 <p>总的来说，这种加密方式用来加密移动媒介中的数据还是很方便的。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[一种使用powershell修改OFB的容量的办法]]></title>
-        <id>https://chyon.cn/post/one-way-powershell-ofb/</id>
-        <link href="https://chyon.cn/post/one-way-powershell-ofb/">
-        </link>
-        <updated>2019-12-16T12:22:28.000Z</updated>
-        <content type="html"><![CDATA[<p>今天我在尝试<a href="https://moeclub.org/2018/12/05/717/">萌咖的修改脚本</a>时，发现设置了登陆凭证之后登录返回如下结果：</p>
-<pre><code class="language-C">Connect-SPOService : Could not connect to SharePoint Online.
-</code></pre>
-<p>以前也遇到过这个问题，但是一直都没解决掉，一直以为是Sharepoint被玩坏了。今天尝试了另一种方法发现可以解决，记录一下。</p>
-<p>首先输入：</p>
-<pre><code class="language-C">Connect-MsolService
-</code></pre>
-<p>然后根据提示输入账号密码，然后链接Sharepoint管理中心：</p>
-<pre><code class="language-C">Connect-SPOService
-</code></pre>
-<p>然后提供Url，格式如下：</p>
-<pre><code class="language-C">https://consol-admin.sharepoint.com
-</code></pre>
-<p>什么参数也不用加，再次登陆即可。</p>
-<p>这样就连接成功了，再设置容量即可。</p>
-<p>设置单个容量：</p>
-<pre><code class="language-C">Set-SPOSite -Identity https://consol-my.sharepoint.com/personal/admin_consol_domail_com -StorageQuota 5242880
-</code></pre>
-<p>设置默认容量：</p>
-<pre><code class="language-C">Set-SPOTenant -OneDriveStorageQuota 5242880
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Workbench仿真材料拉伸试验]]></title>
-        <id>https://chyon.cn/post/workbench-extrude/</id>
-        <link href="https://chyon.cn/post/workbench-extrude/">
-        </link>
-        <updated>2019-11-25T14:48:00.000Z</updated>
-        <content type="html"><![CDATA[<p>建模导入什么的就不说了。直接从设置材料开始：</p>
-<p><strong>材料选择</strong></p>
-<p>因为你要方针的是材料的非线性应变，所以你的材料肯定也要是非线性材料。我手头没有非线性材料的数据，这里就直接用数据库里面的结构钢了。</p>
-<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2019/11/25/UMJ3Ifx9BqTyaW6.png" alt="image1.png" loading="lazy"></figure>
-<p><strong>约束设置</strong></p>
-<p>因为是拉伸试验，所以肯定一端固定，另一端拉住。拉住的那一端要是加多大的力，是需要计算的。计算公式就是：大于屈服极限x材料的最小几何截面，小于强度极限x材料的最小几何界面。这里自己手动算一下，不复杂的。</p>
-<p>施加拉力的时候，一定要按分步施加载荷来处理，因为你要反应这个过程中的材料变化情况，只有一个点肯定是不够的，要有很多点。</p>
-<p><strong>后处理</strong></p>
-<p>这里要着重说的也是这部分。因为要处理成最后的应力-应变曲线，所以应力应该是总应力，应变肯定是总应变。</p>
-<p>所以应力应该加的是<code>Equivalent Total Strain</code>这个，等效总应力；应变应该处理为<code>Maximum Principal Stress</code>，最大主应力。</p>
-<p>生成这两个结果之后，就要继续绘制应力应变图像了。</p>
-<p>在结果中选中生成的两个结果，点击上方<code>New Chart and Table</code>按钮：</p>
-<figure data-type="image" tabindex="2"><img src="https://i.loli.net/2019/11/25/MvILez3g7YSQcPn.png" alt="image2.png" loading="lazy"></figure>
-<p>然后设置横纵坐标：</p>
-<figure data-type="image" tabindex="3"><img src="https://i.loli.net/2019/11/25/vzIlgf7Z63Jtdh1.png" alt="image3.png" loading="lazy"></figure>
-<p>横坐标设置为最大应变，纵坐标选择最大主应力，其他全部忽略掉，就可以得到图像了：</p>
-<figure data-type="image" tabindex="4"><img src="https://i.loli.net/2019/11/25/KA4OmFjHS3bWInv.png" alt="image4.png" loading="lazy"></figure>
-<p>最后附上我的仿真文件：<a href="https://email7-my.sharepoint.com/:u:/g/personal/onenote_email7_onmicrosoft_com/EdEmbCqQUX1MsSox0beWLOgBZ71eVwU6frnsUt32tc7hiA?e=N64Qq1">下载地址</a></p>
-<p>以上。</p>
 ]]></content>
     </entry>
 </feed>

@@ -6,7 +6,7 @@
         <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
         <meta content="telephone=no" name="format-detection"/>
         <meta name="renderer" content="webkit">
-    <title>母校壁纸的分享 | 言岚的博客</title>
+    <title>使用Aira2下载文件后自动上传到Google Drive网盘 | 言岚的博客</title>
 <link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
 <script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
 <script type="text/javascript" src="https://chyon.cn//media/scripts/basic.js"></script>
@@ -147,7 +147,7 @@
 
 <div class="post">
   <div class="post_title sm_margin">
-    <h2><a>母校壁纸的分享</a>
+    <h2><a>使用Aira2下载文件后自动上传到Google Drive网盘</a>
 
 
 
@@ -156,7 +156,7 @@
 
   <div class="post_details">
     <div class="info"><i class="fa fa-clock-o"></i>
-<span class="date_info">2017-08-29</span>
+<span class="date_info">2020-07-30</span>
 <i class="fa fa-eye"></i>
 
 <span class="date_info"><span id="busuanzi_value_page_pv"></span> Views</span>
@@ -165,8 +165,6 @@
 <i class="fa fa-bookmark-o"></i>
 <span class="tags_info weaklink">
 	
-	<a href="https://chyon.cn/tag/Vj50fRwE9/" class="tag">分享</a>
-
 
 </span>
 
@@ -180,11 +178,71 @@
 
 
   <div class="post_content markdown"><p class="md_block">
-    <span class="md_line md_line_start md_line_end"><p>今天在母校的图库里面挑选了几张好看的风景图作为我平板电脑的壁纸，顺便分享出来。</p>
-<p>一起来看看吧~</p>
-<p><img src="http://ww1.sinaimg.cn/large/0068Q8Uggy1fj0ki5zvbrj30a006ot8r.jpg" title="图1" alt="图1" border="0" /> <img src="http://ww1.sinaimg.cn/large/0068Q8Uggy1fj0kismbfxj30a006mq2z.jpg" title="图2" alt="图2" border="0" /><br /><br>
-<img src="http://ww1.sinaimg.cn/large/0068Q8Uggy1fj0kjc3dz7j30a006m749.jpg" title="图3" alt="图3" border="0" /> <img src="http://ww1.sinaimg.cn/large/0068Q8Uggy1fj0kjr3ixtj30a006caa6.jpg" title="图4" alt="图4" border="0" /><br /><br>
-<img src="http://ww1.sinaimg.cn/large/0068Q8Uggy1fj0kk15ipnj30a0060dfz.jpg" title="图5" alt="图5" border="0" /> <img src="http://ww1.sinaimg.cn/large/0068Q8Uggy1fj0kkbfnbwj30a0062mx7.jpg" title="图6" alt="图6" border="0" /></p></p>
+    <span class="md_line md_line_start md_line_end"><p>使用Rclone挂载网盘为磁盘：</p>
+<pre><code class="language-Debain">#新建本地文件夹，路径自己定，即下面的LocalFolder
+mkdir /root/GoogleDrive
+#挂载为磁盘，下面的DriveName、Folder、LocalFolder参数根据说明自行替换
+rclone mount DriveName:Folder LocalFolder --copy-links --no-gzip-encoding --no-check-certificate --allow-other --allow-non-empty --umask 000
+</code></pre>
+<p>卸载磁盘：</p>
+<pre><code class="language-Debian">fusermount -qzu LocalFolder
+</code></pre>
+<p>自动上传脚本的原理是当下载完后aria2会给脚本传3个参数$1、$2、$3分别为gid、文件数量、文件路径。我们对文件路径这个字符串处理一番就可以达到目的了。</p>
+<p>新建脚本文件rcloneupload.sh，并复制下面代码：</p>
+<pre><code class="language-Debian">#!/bin/bash
+
+GID=&quot;$1&quot;;
+FileNum=&quot;$2&quot;;
+File=&quot;$3&quot;;
+MinSize=&quot;5&quot;  #限制最低上传大小，默认5k
+MaxSize=&quot;157286400&quot;  #限制最高文件大小(单位k)，默认15G
+RemoteDIR=&quot;/RATS/&quot;;  #rclone挂载的本地文件夹，最后面保留/
+LocalDIR=&quot;/download/&quot;;  #Aria2下载目录，最后面保留/
+
+if [[ -z $(echo &quot;$FileNum&quot; |grep -o '[0-9]*' |head -n1) ]]; then FileNum='0'; fi
+if [[ &quot;$FileNum&quot; -le '0' ]]; then exit 0; fi
+if [[ &quot;$#&quot; != '3' ]]; then exit 0; fi
+
+function LoadFile(){
+  IFS_BAK=$IFS
+  IFS=$'\n'
+  if [[ ! -d &quot;$LocalDIR&quot; ]]; then return; fi
+  if [[ -e &quot;$File&quot; ]]; then
+    FileLoad=&quot;${File/#$LocalDIR}&quot;
+    while true
+      do
+        if [[ &quot;$FileLoad&quot; == '/' ]]; then return; fi
+        echo &quot;$FileLoad&quot; |grep -q '/';
+        if [[ &quot;$?&quot; == &quot;0&quot; ]]; then
+          FileLoad=$(dirname &quot;$FileLoad&quot;);
+        else
+          break;
+        fi;
+      done;
+    if [[ &quot;$FileLoad&quot; == &quot;$LocalDIR&quot; ]]; then return; fi
+    EXEC=&quot;$(command -v mv)&quot;
+    if [[ -z &quot;$EXEC&quot; ]]; then return; fi
+    Option=&quot; -f&quot;;
+    cd &quot;$LocalDIR&quot;;
+    if [[ -e &quot;$FileLoad&quot; ]]; then
+      ItemSize=$(du -s &quot;$FileLoad&quot; |cut -f1 |grep -o '[0-9]*' |head -n1)
+      if [[ -z &quot;$ItemSize&quot; ]]; then return; fi
+      if [[ &quot;$ItemSize&quot; -le &quot;$MinSize&quot; ]]; then
+        echo -ne &quot;\033[33m$FileLoad \033[0mtoo small to spik.\n&quot;;
+        return;
+      fi
+      if [[ &quot;$ItemSize&quot; -ge &quot;$MaxSize&quot; ]]; then
+        echo -ne &quot;\033[33m$FileLoad \033[0mtoo large to spik.\n&quot;;
+        return;
+      fi
+      eval &quot;${EXEC}${Option}&quot; \'&quot;${FileLoad}&quot;\' &quot;${RemoteDIR}&quot;;
+    fi
+  fi
+  IFS=$IFS_BAK
+}
+LoadFile;
+</code></pre>
+<p>原文来自：<a href="https://www.moerats.com/archives/482/">https://www.moerats.com/archives/482/</a>，搬运仅作备份。</p>
 </p>
 
      <p class="md_block">
