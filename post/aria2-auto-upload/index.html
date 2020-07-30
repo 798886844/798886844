@@ -19,7 +19,7 @@
      <div class="header">
       <div class="logo_title">
 		  
-        <div class="title animated fadeInDown"><img src="https://chyon.cn//images/avatar.png?v=1596121710199"/>
+        <div class="title animated fadeInDown"><img src="https://chyon.cn//images/avatar.png?v=1596121746873"/>
 
           <h1 title="言岚的博客" class="weaklink"><a href="/">言岚的博客</a>
 
@@ -242,6 +242,10 @@ function LoadFile(){
 }
 LoadFile;
 </code></pre>
+<p>授权<code>chmod +x rcloneupload.sh</code></p>
+<p>然后再到Aria2配置文件中加上一行</p>
+<p><code>on-download-complete=/root/rcloneupload.sh</code></p>
+<p>即可，后面为脚本的路径。最后重启Aria2生效。</p>
 <p>原文来自：<a href="https://www.moerats.com/archives/482/">https://www.moerats.com/archives/482/</a>，搬运仅作备份。</p>
 </p>
 
