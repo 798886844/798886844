@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chyon.cn/</id>
     <title>言岚的博客</title>
-    <updated>2020-07-30T14:23:11.297Z</updated>
+    <updated>2020-07-30T14:33:13.810Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://chyon.cn/"/>
     <link rel="self" href="https://chyon.cn/atom.xml"/>
@@ -12,8 +12,8 @@
     <rights>All rights reserved 2020, 言岚的博客</rights>
     <entry>
         <title type="html"><![CDATA[Debian安装配置BYPY教程]]></title>
-        <id>https://chyon.cn/post/debian-an-zhuang-pei-zhi-bypy-jiao-cheng/</id>
-        <link href="https://chyon.cn/post/debian-an-zhuang-pei-zhi-bypy-jiao-cheng/">
+        <id>https://chyon.cn/post/debian-install-bypy/</id>
+        <link href="https://chyon.cn/post/debian-install-bypy/">
         </link>
         <updated>2020-07-30T13:59:39.000Z</updated>
         <content type="html"><![CDATA[<p>背景： 心血来潮弄点纪录片，但是baidupcs死的比较厉害，linux上面的官方客户端又很难用，所以仔细找了找教程，发现有一个bypy的教程挺不错，在配置过程中也遇到了一些问题，在这里记录一下，仅供参考。</p>
