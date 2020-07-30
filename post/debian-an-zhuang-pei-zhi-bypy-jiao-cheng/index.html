@@ -6,7 +6,7 @@
         <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
         <meta content="telephone=no" name="format-detection"/>
         <meta name="renderer" content="webkit">
-    <title>Debian一键安装Aria2+AriaNG+Rclone+DirectoryLister | 言岚的博客</title>
+    <title>Debian安装配置BYPY教程 | 言岚的博客</title>
 <link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
 <script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
 <script type="text/javascript" src="https://chyon.cn//media/scripts/basic.js"></script>
@@ -147,7 +147,7 @@
 
 <div class="post">
   <div class="post_title sm_margin">
-    <h2><a>Debian一键安装Aria2+AriaNG+Rclone+DirectoryLister</a>
+    <h2><a>Debian安装配置BYPY教程</a>
 
 
 
@@ -156,7 +156,7 @@
 
   <div class="post_details">
     <div class="info"><i class="fa fa-clock-o"></i>
-<span class="date_info">2018-11-22</span>
+<span class="date_info">2020-07-30</span>
 <i class="fa fa-eye"></i>
 
 <span class="date_info"><span id="busuanzi_value_page_pv"></span> Views</span>
@@ -165,8 +165,6 @@
 <i class="fa fa-bookmark-o"></i>
 <span class="tags_info weaklink">
 	
-	<a href="https://chyon.cn/tag/nDSaUnVKg/" class="tag">教程</a>
-
 
 </span>
 
@@ -180,136 +178,51 @@
 
 
   <div class="post_content markdown"><p class="md_block">
-    <span class="md_line md_line_start md_line_end"><p>构建环境：<code>hklcf/debian-ssh-docker</code></p>
+    <span class="md_line md_line_start md_line_end"><p>背景： 心血来潮弄点纪录片，但是baidupcs死的比较厉害，linux上面的官方客户端又很难用，所以仔细找了找教程，发现有一个bypy的教程挺不错，在配置过程中也遇到了一些问题，在这里记录一下，仅供参考。</p>
+<p><strong>镜像</strong>：<code>tlze/debian-docker-sshd</code></p>
+<p><strong>安装Python3.6</strong>：参考教程<a href="https://www.moerats.com/archives/507/">https://www.moerats.com/archives/507/</a></p>
+<p>一键脚本：</p>
+<pre><code class="language-Debian">wget https://www.moerats.com/usr/shell/Python3/Debian_Python3.6.sh &amp;&amp; sh Debian_Python3.6.sh
+</code></pre>
+<p>没有必要设置为默认。</p>
+<p><strong>安装BYPY</strong><br>
+参考教程：<a href="https://lala.im/7182.html">https://lala.im/7182.html</a></p>
 <p>预配置：</p>
-<p>解析两个域名到你的VPS，注意是两个。</p>
-<pre><code class="language-Debian">apt-get update -y &amp;&amp; apt-get upgrade -y &amp;&amp; apt-get install wget cron -y
+<pre><code class="language-Debian">apt -y update
+apt -y install aria2 python3-pip screen
 </code></pre>
-<p>一键安装：</p>
-<pre><code class="language-Debian">wget -O Aria2_Rc_D.sh http://dl.chyon.cn/?/Aria2/Aria2_Rc_D.sh &amp;&amp; bash Aria2_Rc_D.sh
+<p><strong>配置中文输出</strong>：</p>
+<p>首先安装本地化程序：</p>
+<pre><code class="language-Debian">apt-get install locale
+dpkg-reconfigure locales
 </code></pre>
-<p>运行脚本后，会依次要你输入以下信息：</p>
-<pre><code class="language-Debian">#输入网盘域名及Aria2NG面板域名
-请输入你的DirectoryLister域名信息(eg:pan.94ish.me):
-请输入你的Aria2NG域名信息(eg:dl.94ish.me):
-
-#设置Aria2密钥
-请输入你的Aria2密钥:
-
-#配置Rclone，大致如下
-n) New remotes) Set configuration password
-q) Quit config
-n/s/q&gt; n
-name&gt; Rats  #随便填，后面要用到
-Type of storage to configure.
-Choose a number from below, or type in your own value
- 1 / Amazon Drive
-   \ &quot;amazon cloud drive&quot;
- 2 / Amazon S3 (also Dreamhost, Ceph, Minio)
-   \ &quot;s3&quot;
- 3 / Backblaze B2
-   \ &quot;b2&quot;
- 4 / Box
-   \ &quot;box&quot;
- 5 / Cache a remote
-   \ &quot;cache&quot;
- 6 / Dropbox
-   \ &quot;dropbox&quot;
- 7 / Encrypt/Decrypt a remote
-   \ &quot;crypt&quot;
- 8 / FTP Connection
-   \ &quot;ftp&quot;
- 9 / Google Cloud Storage (this is not Google Drive)
-   \ &quot;google cloud storage&quot;
-10 / Google Drive
-   \ &quot;drive&quot;
-11 / Hubic
-   \ &quot;hubic&quot;
-12 / Local Disk
-   \ &quot;local&quot;
-13 / Microsoft Azure Blob Storage
-   \ &quot;azureblob&quot;
-14 / Microsoft OneDrive
-   \ &quot;onedrive&quot;
-15 / Openstack Swift (Rackspace Cloud Files, Memset Memstore, OVH)
-   \ &quot;swift&quot;
-16 / Pcloud
-   \ &quot;pcloud&quot;
-17 / QingCloud Object Storage
-   \ &quot;qingstor&quot;
-18 / SSH/SFTP Connection
-   \ &quot;sftp&quot;
-19 / Webdav
-   \ &quot;webdav&quot;
-20 / Yandex Disk
-   \ &quot;yandex&quot;
-21 / http Connection
-   \ &quot;http&quot;
-Storage&gt; 10  #选择10，Google Drive
-Google Application Client Id - leave blank normally.
-client_id&gt;  #留空 
-Google Application Client Secret - leave blank normally.
-client_secret&gt;  #留空
-Service Account Credentials JSON file path - needed only if you want use SA instead of interactive login.
-service_account_file&gt; 
-Remote config
-Use auto config?
- * Say Y if not sure
- * Say N if you are working on a remote or headless machine or Y didn't work
-y) Yes
-n) No
-y/n&gt; n  #选择n
-If your browser doesn't open automatically go to the following link: https://accounts.google.com/o/oauth2/auth....  #复制到浏览器打开，获取验证码Log in and authorize rclone for access
-Enter verification code&gt;  #填入上面获取到的验证码
-Configure this as a team drive?y) Yes
-n) No
-y/n&gt; y  #选择y
-Fetching team drive list...
-No team drives found in your account--------------------
-[Rats]
-client_id = 
-client_secret = 
-service_account_file = 
-token = {&quot;access_token&quot;:&quot;ya29.GltFBd7UJN2qrxdG8FnG_rMuB18ogb8QlujdL7glvXtfV&quot;}
-team_drive = 
---------------------
-y) Yes this is OK
-e) Edit this remote
-d) Delete this remote
-y/e/d&gt; y  #选择y
-Current remotes:
-
-Name                 Type
-====                 ====
-Rats                 drive
-
-e) Edit existing remote
-n) New remote
-d) Delete remote
-r) Rename remote
-c) Copy remote
-s) Set configuration password
-q) Quit config
-e/n/d/r/c/s/q&gt; q  #选择q退出
-#最后输入Name
-请输入你刚刚输入的Name:
+<p>随后按数字选择<code>zh_CN.UTF-8 UTF-8</code>，再选择<code>zh_CN.UTF-8</code>。</p>
+<figure data-type="image" tabindex="1"><img src="http://img.chyon.cn//img20200730221407.png" alt="" loading="lazy"></figure>
+<p>再配置本地编码:</p>
+<pre><code class="language-Debian">export LANG=zh_CN.UTF-8
 </code></pre>
-<p>然后脚本安装完成后，就可以直接通过Aria2Ng面板连接Aria2下载文件，并通过网盘观看了。</p>
-<p>相关目录</p>
+<figure data-type="image" tabindex="2"><img src="http://img.chyon.cn//img20200730221455.png" alt="" loading="lazy"></figure>
+<p>配置BYPY：</p>
+<pre><code class="language-Debian">bypy info
+</code></pre>
+<figure data-type="image" tabindex="3"><img src="http://img.chyon.cn//img20200730221228.png" alt="" loading="lazy"></figure>
+<p>随后按照教程描述，配置aria2线程：</p>
 <blockquote>
-<p>Aria2下载目录：/root/Download</p>
+<p>bypy默认配置的aria2是使用4个连接数下载，这里我们可以修改成最大的16，为了后续使用方便这里直接设置一个环境变量即可：</p>
 </blockquote>
+<pre><code class="language-Debian">echo 'export DOWNLOADER_ARGUMENTS=&quot;-c -k10M -x16 -s16 --file-allocation=none&quot;' &gt; /etc/profile.d/bypy.sh
+chmod +x /etc/profile.d/bypy.sh
+source /etc/profile.d/bypy.sh
+</code></pre>
 <blockquote>
-<p>DirectoryLister目录：/home/wwwroot/a.xx.com</p>
+<p>验证环境变量是否生效，回显有你上面设置的内容说明正常，否则你需要检查或使用别的方式来设置环境变量：</p>
 </blockquote>
-<blockquote>
-<p>Aria2Ng目录：/home/wwwroot/b.xx.com</p>
-</blockquote>
-<blockquote>
-<p>挂载目录：/home/wwwroot/a.xx.com/Cloud</p>
-</blockquote>
-<p>这个上传其实并不好，但是免去了LNMP的环境，而且加入了SSl，虽然效果并不咋地，但是好歹算是一种解决方案吧。</p>
-<p>转载自：<a href="https://502435.com/archives/305/">https://502435.com/archives/305/</a></p>
+<pre><code class="language-Debian">echo $DOWNLOADER_ARGUMENTS
+</code></pre>
+<p>然后使用下载命令：</p>
+<pre><code class="language-Debian">bypy --downloader aria2 download 远程文件名 本地路径
+bypy --downloader aria2 download 远程目录 本地路径
+</code></pre>
 </p>
 
      <p class="md_block">
