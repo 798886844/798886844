@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chyon.cn/</id>
     <title>言岚的博客</title>
-    <updated>2020-08-30T03:20:58.736Z</updated>
+    <updated>2020-09-04T03:28:43.062Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://chyon.cn/"/>
     <link rel="self" href="https://chyon.cn/atom.xml"/>
@@ -10,6 +10,26 @@
     <logo>https://chyon.cn/images/avatar.png</logo>
     <icon>https://chyon.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, 言岚的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[这是一个孤独的世界]]></title>
+        <id>https://chyon.cn/post/alone/</id>
+        <link href="https://chyon.cn/post/alone/">
+        </link>
+        <updated>2020-09-04T03:03:51.000Z</updated>
+        <content type="html"><![CDATA[<p>人之所以是人，是因为人可以共情。</p>
+<p>这世界上哪有真正的共情。</p>
+<p>人的感情都是从经历中学习到的。我们从小就被关爱，所以懂得什么叫做亲情；我们学会了依赖另一个人，也因此学会了友情和爱情。但是很少会有人去学习孤独，没有人去学习别人的孤独。每个人的孤独都是不一样的，有的人层次浅，对他来说，孤独无非就是无聊、迷茫；有的人层次深，对他来说，孤独是多愁善感，是可望而不可即，是前途无光。</p>
+<p>孤独是我的行囊。</p>
+<p>我曾经是一个天真的人。在我的世界里，爱情就只是相互喜欢，共同进步。我曾经以为喜欢可以战胜任何困难。后来我被现实打脸了。我这一生遇到过两个女人。第一个出现在我的高中生活，她成绩不好，也不算漂亮，但是我总喜欢有她的陪伴。她为我付出了一切，我也已经全力以赴。是她教会了我什么是爱，如何去爱。后来遇见了第二个，出现在我大学时期。我拿着我最诚挚的感情，去奉送她四年，等了她四年。最后敌不过一句没有好感。想来特别可笑，为了一份说不清道不明的感觉付出全部，我那时候是真的傻。</p>
+<p>我的孤独是成长的。</p>
+<p>以前的我没有这样过。以前的我，虽然偶感孤独，但总能把它变成想说的话说给某个人听。现在的我，虽然很努力的在做，但是始终无法放下心头的重担。想把这一切表达给另一个人听，但是往往变得语无伦次。后来我尝试着去了解别人的孤独，但是仿佛他们的和我的都不一样。别人的孤独无非就是寂寞，听起来很像我的上一个层次。我的孤独就像是一朵正在盛开的花。花开每一层，你都能看见新的花瓣。一层一层，都包含着不同的感情；剥开来看，最后剩下的，也只能用孤独来描述了。</p>
+<p>没有相同经历的人不可能共情，你也妄想从他那里得到安慰。</p>
+<p>所以后来我放下了自爱。</p>
+<p>我想大概对于我这样的人，死亡是我唯一的解脱。像我这样的人，就像是被制造出来的工具，像是一只扳手，永远只有在工作的时候才会被需要，一到了下班时间，我就会丢回冰冷的箱子里等待下一个天明。任何工具都是有寿命的，我想人大概也是一样。一只扳手，可以用来拧，可以用来砸，直到有一天它钝了弯了断了，人们会说这只扳手坏了，人们会说这个人死了。没有哪一个扳手是崭新着去死的。所以既然我终将要死亡，也渴望着早一些完成我的工作和使命，我为何要努力擦拭自己的伤痕呢？</p>
+<p>人生，或许不是为了爱，而是为了死。肉体的死亡也好，灵魂的死亡也好，总之活着才会令人觉得痛苦。</p>
+<p>而死亡是没有感觉的。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[使用Aira2下载文件后自动上传到Google Drive网盘]]></title>
         <id>https://chyon.cn/post/aria2-auto-upload/</id>
@@ -533,35 +553,6 @@ Windows Registry Editor Version 5.00
 <p>还要提醒各位一定要注意备份自己的加密密钥，具体方法我就不多说了，加密证书导出后可以备份到微软账户自带的<code>Onedrive</code>里面。反正新建加密证书的时候是需要密码的，不怕证书流入他人之手，但是弄丢了还是很蛋疼的。</p>
 <p>被加密的文件在没有证书的电脑上是打不开的，如果要打开就必须在电脑上安装加密证书，安装加密证书需要密码……</p>
 <p>总的来说，这种加密方式用来加密移动媒介中的数据还是很方便的。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[一种使用powershell修改OFB的容量的办法]]></title>
-        <id>https://chyon.cn/post/one-way-powershell-ofb/</id>
-        <link href="https://chyon.cn/post/one-way-powershell-ofb/">
-        </link>
-        <updated>2019-12-16T12:22:28.000Z</updated>
-        <content type="html"><![CDATA[<p>今天我在尝试<a href="https://moeclub.org/2018/12/05/717/">萌咖的修改脚本</a>时，发现设置了登陆凭证之后登录返回如下结果：</p>
-<pre><code class="language-C">Connect-SPOService : Could not connect to SharePoint Online.
-</code></pre>
-<p>以前也遇到过这个问题，但是一直都没解决掉，一直以为是Sharepoint被玩坏了。今天尝试了另一种方法发现可以解决，记录一下。</p>
-<p>首先输入：</p>
-<pre><code class="language-C">Connect-MsolService
-</code></pre>
-<p>然后根据提示输入账号密码，然后链接Sharepoint管理中心：</p>
-<pre><code class="language-C">Connect-SPOService
-</code></pre>
-<p>然后提供Url，格式如下：</p>
-<pre><code class="language-C">https://consol-admin.sharepoint.com
-</code></pre>
-<p>什么参数也不用加，再次登陆即可。</p>
-<p>这样就连接成功了，再设置容量即可。</p>
-<p>设置单个容量：</p>
-<pre><code class="language-C">Set-SPOSite -Identity https://consol-my.sharepoint.com/personal/admin_consol_domail_com -StorageQuota 5242880
-</code></pre>
-<p>设置默认容量：</p>
-<pre><code class="language-C">Set-SPOTenant -OneDriveStorageQuota 5242880
-</code></pre>
 ]]></content>
     </entry>
 </feed>
