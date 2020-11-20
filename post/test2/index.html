@@ -6,7 +6,7 @@
         <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
         <meta content="telephone=no" name="format-detection"/>
         <meta name="renderer" content="webkit">
-    <title>Duplicati——开源免费的跨平台备份工具 | 言岚的博客</title>
+    <title>反反人类设计 | 言岚的博客</title>
 <link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
 <script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
 <script type="text/javascript" src="https://chyon.cn//media/scripts/basic.js"></script>
@@ -147,7 +147,7 @@
 
 <div class="post">
   <div class="post_title sm_margin">
-    <h2><a>Duplicati——开源免费的跨平台备份工具</a>
+    <h2><a>反反人类设计</a>
 
 
 
@@ -156,7 +156,7 @@
 
   <div class="post_details">
     <div class="info"><i class="fa fa-clock-o"></i>
-<span class="date_info">2018-10-28</span>
+<span class="date_info">2020-11-21</span>
 <i class="fa fa-eye"></i>
 
 <span class="date_info"><span id="busuanzi_value_page_pv"></span> Views</span>
@@ -165,8 +165,6 @@
 <i class="fa fa-bookmark-o"></i>
 <span class="tags_info weaklink">
 	
-	<a href="https://chyon.cn/tag/irIXpKddA7/" class="tag">软件</a>
-
 
 </span>
 
@@ -180,90 +178,11 @@
 
 
   <div class="post_content markdown"><p class="md_block">
-    <span class="md_line md_line_start md_line_end"><p>无意间看到有这样一个被封工具，支持的云挺多的，并且有可视化界面，感觉很不错，所以介绍一下。</p>
-<p>先放官方链接：<br>
-官网：<a href="https://www.duplicati.com/">https://www.duplicati.com/</a><br>
-Github：<a href="https://github.com/duplicati/duplicati">https://github.com/duplicati/duplicati</a><br>
-官方文档：<a href="https://duplicati.readthedocs.io/en/latest/05-storage-providers/">https://duplicati.readthedocs.io</a></p>
-<p>支持的远程服务器/云储存服务：</p>
-<pre><code class="language-C">FTP
-FTP
-OpenStack Object Storage / Swift
-S3 Compatible
-SFTP (SSH)
-WebDAV
-Amazon Cloud Drive
-Amazon S3
-Azure blob
-B2 Cloud Storage
-Box.com
-Dropbox
-Google Cloud Storage
-Google Drive
-HubiC
-Jottacloud
-Mega.nz
-Microsoft Office 365 Groups
-Microsoft OneDrive
-Microsoft OneDrive for Business
-Microsoft SharePoint
-OpenStack Simple Storage
-Rackspace CloudFiles
-Rclone
-Sia Decentralized Cloud
-</code></pre>
-<h3 id="安装">安装</h3>
-<p>这里参考<a href="https://www.moerats.com/archives/776/">Rat's Blog</a>的教程，他的教程我安装成功了。</p>
-<p>1、安装<br>
-<code>Duplicati</code>最新版本下载→<a href="https://www.duplicati.com/download">传送门</a>，日后记得将安装里的<code>Duplicati</code>链接替换为最新版本。</p>
-<pre><code class="language-C">#CentOS 7系统
-#安装依赖
-yum install yum-utils -y
-rpm --import &quot;http://keyserver.ubuntu.com/pks/lookup?op=get&amp;search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF&quot;
-yum-config-manager --add-repo http://download.mono-project.com/repo/centos7/
-yum install mono-devel -y
-#安装Duplicati
-rpm -ivh https://updates.duplicati.com/beta/duplicati-2.0.3.3-2.0.3.3_beta_20180402.noarch.rpm --nodeps --force
-
-#CentOS 6系统
-#安装依赖
-yum install yum-utils -y
-rpm --import &quot;http://keyserver.ubuntu.com/pks/lookup?op=get&amp;search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF&quot;
-yum-config-manager --add-repo http://download.mono-project.com/repo/centos6/
-yum install mono-devel -y
-#安装Duplicati
-rpm -ivh https://updates.duplicati.com/beta/duplicati-2.0.3.3-2.0.3.3_beta_20180402.noarch.rpm --nodeps --force
-
-#Debian 7+、Ubuntu 14+系统
-#安装Mono
-apt-get update
-apt-get install mono-devel -y
-#安装Duplicati
-wget https://updates.duplicati.com/beta/duplicati_2.0.3.3-1_all.deb
-dpkg -i duplicati*.deb
-#如果安装报错，使用该命令修复一下就自动安装成功了
-apt-get -f install -y
-</code></pre>
-<p>2、启动</p>
-<p>建议以<code>screen</code>启动:</p>
-<pre><code class="language-C">#无需密码访问
-screen /usr/bin/mono /usr/lib/duplicati/Duplicati.Server.exe --webservice-interface=any
-#访问需输入密码`password`，可自定义其它密码，修改最后面参数即可
-screen /usr/bin/mono /usr/lib/duplicati/Duplicati.Server.exe --webservice-interface=any --webservice-password=password
-</code></pre>
-<p>然后就可以通过<code>IP:8200</code>访问程序了，对于<code>CentOS</code>系统，还需要开启<code>8200</code>端口，开启如下：]</p>
-<pre><code class="language-centos">#CentOS 6
-iptables -I INPUT -p tcp --dport 8200 -j ACCEPT
-service iptables save
-service iptables restart
-
-#CentOS 7
-firewall-cmd --zone=public --add-port=8200/tcp --permanent
-firewall-cmd --reload
-</code></pre>
-<p>其余的我就不说了，大家可以参考他的教程。</p>
-<p>注意该软件不能指定端口开启，默认开启的是<code>8200</code>端口，如果你<code>8200</code>端口已经被占用，它会自动转到<code>8300</code>端口，依此类推。</p>
-</p>
+    <span class="md_line md_line_start md_line_end"><html>
+<a href="javascript:window.location.href='weixin://'">javascript:window.location.href='weixin://' </a>
+<a href="weixin://">weixin:// </a>
+<p><a href="weixin://dl/businessWebview/link/?appid=appid&url=https://w.url.cn/s/A6MSJUR">test </a></p>
+</html></p>
 
      <p class="md_block">
     <div class="reward"><div class="reward-button">赏 <span class="reward-code"> <span class="alipay-code"> <img class="alipay-img" src="https://chyon.cn//media/images/alipay.png"><b>支付宝扫码打赏</b> </span> <span class="wechat-code"> <img class="wechat-img" src="https://chyon.cn//media/images/wechat.png"><b>微信打赏</b> </span> </span></div></div>
