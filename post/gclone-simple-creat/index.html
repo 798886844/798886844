@@ -19,7 +19,7 @@
      <div class="header">
       <div class="logo_title">
 		  
-        <div class="title animated fadeInDown"><img src="https://chyon.cn//images/avatar.png?v=1606040982313"/>
+        <div class="title animated fadeInDown"><img src="https://chyon.cn//images/avatar.png?v=1606663238417"/>
 
           <h1 title="言岚的博客" class="weaklink"><a href="/">言岚的博客</a>
 
@@ -222,11 +222,11 @@
 <p>注意这会覆盖掉已有的service accounts</p>
 <p>这里选择第一种情况，前提是你准备的google账户是全新账户。</p>
 <p>这里会出现让你授权的情况：</p>
-<figure data-type="image" tabindex="1"><img src="http://img.chyon.cn/img/20200614151926.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://pic.rmb.bdstatic.com/bjh/ca54c28813856971a006e06a25c09d60.png" alt="20200614151926.png" loading="lazy"></figure>
 <p>按照提示复制链接到浏览器中授权即可。</p>
 <p>注意可能需要多次授权。</p>
 <p>如果你遇到下图这种错误，请看接下来的第二种方法。</p>
-<figure data-type="image" tabindex="2"><img src="http://img.chyon.cn/img/20200614151818.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://pic.rmb.bdstatic.com/bjh/72e38e53c58b3df1a3d658e64c69224c.png" alt="20200614151818.png" loading="lazy"></figure>
 <p>第二种方法：</p>
 <p>该方法来自群友<a href="2812919012@qq.com">你笑起来真好看</a>。</p>
 <p>首先来到accounts文件夹下看看有没有已经下载的文件，如果你是全新账号又出现了上面所说的错误，应该是空的。</p>
@@ -247,28 +247,28 @@
 <p>提取目录<code>/root/AutoRclone/accounts/</code>下的所有授权文件所代表的SA账户邮件地址，并生成一个名为<code>email.json</code>的文件，存放在<code>/root/</code>目录下。</p>
 <p>你也可以自己修改目录和存放文件的地址。</p>
 <p>然后将服务器上的<code>email.json</code>下载到本地，用记事本或其他文本编辑器打开，你将看到：</p>
-<figure data-type="image" tabindex="3"><img src="http://img.chyon.cn/img/E0%7BKUYF@%7DX14M7Q2H$II9%60T.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://pic.rmb.bdstatic.com/bjh/43f2ea2c119cc6714136048e6282b6dc.png" alt="20200614212.png" loading="lazy"></figure>
 <p>类似于这样的SA账户。其中每一部分刚好是10条。</p>
 <p>然后打开：</p>
 <p><a href="https://groups.google.com/">https://groups.google.com/</a></p>
 <p>来到谷歌群组，创建一个自己的谷歌群组。创建过程略。</p>
 <p>然后进入群组，管理成员：</p>
-<figure data-type="image" tabindex="4"><img src="http://img.chyon.cn/img/20200614154009.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://pic.rmb.bdstatic.com/bjh/d4af4ae32f5e3c12442d88b23b7a3363.png" alt="20200614154009.png" loading="lazy"></figure>
 <p>点击这里管理成员。</p>
-<figure data-type="image" tabindex="5"><img src="http://img.chyon.cn/img/20200614154146.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://pic.rmb.bdstatic.com/bjh/34e32b1685e8bd04b5542b4759c8a622.png" alt="20200614154146.png" loading="lazy"></figure>
 <p>注意一次只能添加10个SA账户，一天只能添加100个。</p>
 <p>如果添加遇到错误，请看步骤4。</p>
 <p>分批添加完毕后，获取group的邮箱地址：</p>
-<figure data-type="image" tabindex="6"><img src="http://img.chyon.cn/img/20200614154312.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="6"><img src="https://pic.rmb.bdstatic.com/bjh/95ea44e1f677a632d14ac50b878db438.png" alt="20200614154312.png" loading="lazy"></figure>
 <p>点击<code>关于</code></p>
 <p>即可看到group mail：</p>
-<figure data-type="image" tabindex="7"><img src="http://img.chyon.cn/img/20200614154401.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="https://pic.rmb.bdstatic.com/bjh/09aad2bf2aa9ef347c7ab254a605e5b0.png" alt="20200614154401.png" loading="lazy"></figure>
 <p><strong>4. 黑号的情况</strong></p>
 <p>这里插入一部分我发现的问题，我将之归结于黑号。</p>
 <p>第一种情况即将SA批量添加到群组时发生错误，提示“该邮件地址不是组织内成员”。</p>
 <p>这种情况目前没有发现解决办法，只能通过更换谷歌账号重新创建解决。</p>
 <p>第二种情况是在gclone使用过程中，出现如下错误：</p>
-<figure data-type="image" tabindex="8"><img src="http://img.chyon.cn/img/20200614154825.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="8"><img src="https://pic.rmb.bdstatic.com/bjh/9234ed69518a94b62bffc84d81f3ebbf.png" alt="20200614154825.png" loading="lazy"></figure>
 <p>提示内存溢出，但是实际上并不是gclone的问题，暂不清楚是哪方面的问题，也只能通过更换谷歌账号重新创建的办法解决。</p>
 <p><strong>5. 安装gclone并配置使用</strong></p>
 <p>gclone安装命令如下：</p>
