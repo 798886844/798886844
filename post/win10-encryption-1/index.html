@@ -6,7 +6,7 @@
         <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
         <meta content="telephone=no" name="format-detection"/>
         <meta name="renderer" content="webkit">
-    <title>备忘-Edu、Ac域名注册地址 | 言岚的博客</title>
+    <title>Win10加密功能的坑 | 言岚的博客</title>
 <link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
 <script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
 <script type="text/javascript" src="https://chyon.cn//media/scripts/basic.js"></script>
@@ -147,7 +147,7 @@
 
 <div class="post">
   <div class="post_title sm_margin">
-    <h2><a>备忘-Edu、Ac域名注册地址</a>
+    <h2><a>Win10加密功能的坑</a>
 
 
 
@@ -156,7 +156,7 @@
 
   <div class="post_details">
     <div class="info"><i class="fa fa-clock-o"></i>
-<span class="date_info">2018-07-22</span>
+<span class="date_info">2020-12-09</span>
 <i class="fa fa-eye"></i>
 
 <span class="date_info"><span id="busuanzi_value_page_pv"></span> Views</span>
@@ -165,8 +165,6 @@
 <i class="fa fa-bookmark-o"></i>
 <span class="tags_info weaklink">
 	
-	<a href="https://chyon.cn/tag/Vj50fRwE9/" class="tag">分享</a>
-
 
 </span>
 
@@ -180,24 +178,28 @@
 
 
   <div class="post_content markdown"><p class="md_block">
-    <span class="md_line md_line_start md_line_end"><table id="tfhover" class="tftable" border="1">
-<tr><th>域名</th><th>注册地址</th></tr>
-<tr><td>edu.my</td><td>https://www.101domain.com/edu_my.htm</td></tr>
-<tr><td>ac.nz</td><td>https://www.101domain.com/ac_nz.htm</td></tr>
-<tr><td>edu.au</td><td>https://www.domainname.edu.au/</td></tr>
-<tr><td>edu.rs</td><td>https://www.istanco.com/domainchecker.php</td></tr>
-<tr><td>edu.pl</td><td>https://shop.gandi.net/en/domain/suggest</td></tr>
-<tr><td>edu.gr</td><td>https://shop.gandi.net/en/domain/suggest</td></tr>
-<tr><td>edu.bi</td><td>https://afriregister.com/、 http://afriregister.bi/</td></tr>
-<tr><td>edu.ky</td><td>https://uniregistry.com/</td></tr>
-<tr><td>edu.my</td><td>https://www.mynic.my/en/</td></tr>
-<tr><td>edu.ec</td><td>https://www.nic.ec/</td></tr>
-<tr><td>edu.bo</td><td>https://nic.bo/</td></tr>
-<tr><td>edu.hk</td><td>未知</td></tr>
-<tr><td>ac.id、sch.id</td><td>未知</td></tr>
-</table>
-<p></small></p><br>
-</small></p></p>
+    <span class="md_line md_line_start md_line_end"><p>书接上回，我以前发过一篇文章，叫做《<a href="https://chyon.cn/post/lock-fily-by-win10/">使用Win10自带的加密功能</a>》，今天下了点私人文件，放办公室的电脑怕有人乱翻，寻思用这个加密功能加密一下，文件丢移动硬盘里，就安全了。</p>
+<p>万万没想到的是，在办公室安装了旧的key，加密文件的时候没有让我选key文件，当时感觉有点奇怪，没有多想。加密了半天之后，文件拷到移动硬盘里面，带回来却发现打不开了，解密也不对。</p>
+<figure data-type="image" tabindex="1"><img src="https://pic.rmb.bdstatic.com/bjh/dd3f8af61133f28185e0a04ebac01b56.png" alt="2020120901.png" loading="lazy"></figure>
+<p>稍微研究了一下才发现，win10系统默认使用的key，是自动生成的，是和当前计算机有关的一个密钥，而之后导入的密钥，在不进行设置的情况下，是不会作为主密钥使用的。也就是说，我虽然在加密之前导入了以前的旧密钥，但是我并没有把它设置为主密钥，所以这个密钥在加密文件的时候并没有被使用。</p>
+<p>我真是裂开。</p>
+<p>那么应该如何设置使用的主密钥呢？</p>
+<p>在设置中搜索“证书”，选择第三个，“管理文件加密证书”：</p>
+<figure data-type="image" tabindex="2"><img src="https://pic.rmb.bdstatic.com/bjh/60aa89651f3baa6c0e4d175588c2022c.png" alt="2020120902.png" loading="lazy"></figure>
+<p>在加密文件管理系统中，选择“选择证书”：</p>
+<figure data-type="image" tabindex="3"><img src="https://pic.rmb.bdstatic.com/bjh/70dfd81b7aae6d8a7e10bb61913ff935.png" alt="2020120905.png" loading="lazy"></figure>
+<p>然后在弹出的对话框中，选择“更多选项”，然后选择你要使用的证书，点击确定：</p>
+<figure data-type="image" tabindex="4"><img src="https://pic.rmb.bdstatic.com/bjh/364dc9c89039efcf2533ba8ce812f289.png" alt="2020120906.png" loading="lazy"></figure>
+<p>如果像我一样，证书同名分不清，可以看有效期进行区分。</p>
+<p>如果需要删除证书，比较麻烦：</p>
+<p>依旧是在设置中搜索“证书”，不过这次是选择第一个，“管理用户证书”：</p>
+<figure data-type="image" tabindex="5"><img src="https://pic.rmb.bdstatic.com/bjh/b411fc56b7554e6f5830feb33e091001.png" alt="2020120907.png" loading="lazy"></figure>
+<p>然后再弹出的管理窗口中，依次选择“个人”-“证书”：</p>
+<figure data-type="image" tabindex="6"><img src="https://pic.rmb.bdstatic.com/bjh/8e064b0e23d55a6a169d8383d1337b56.png" alt="2020120908.png" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="https://pic.rmb.bdstatic.com/bjh/04469fd39ea226e5385d8687ed5de704.png" alt="2020120909.png" loading="lazy"></figure>
+<p>然后就能看到已经安装的所有证书，选择要删除的证书，右键选择删除即可：</p>
+<figure data-type="image" tabindex="8"><img src="https://pic.rmb.bdstatic.com/bjh/974204bbaa1e115c5a34fdd402ca995c.png" alt="2020120910.png" loading="lazy"></figure>
+<p>如果还是分不清，像我这样有两个证书是一个名字的，就用有效期来区分就好了。</p>
 </p>
 
      <p class="md_block">

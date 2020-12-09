@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chyon.cn/</id>
     <title>言岚的博客</title>
-    <updated>2020-12-02T12:05:47.140Z</updated>
+    <updated>2020-12-09T14:46:55.527Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://chyon.cn/"/>
     <link rel="self" href="https://chyon.cn/atom.xml"/>
@@ -10,6 +10,36 @@
     <logo>https://chyon.cn/images/avatar.png</logo>
     <icon>https://chyon.cn/favicon.ico</icon>
     <rights>All rights reserved 2020, 言岚的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[Win10加密功能的坑]]></title>
+        <id>https://chyon.cn/post/win10-encryption-1/</id>
+        <link href="https://chyon.cn/post/win10-encryption-1/">
+        </link>
+        <updated>2020-12-09T13:12:13.000Z</updated>
+        <content type="html"><![CDATA[<p>书接上回，我以前发过一篇文章，叫做《<a href="https://chyon.cn/post/lock-fily-by-win10/">使用Win10自带的加密功能</a>》，今天下了点私人文件，放办公室的电脑怕有人乱翻，寻思用这个加密功能加密一下，文件丢移动硬盘里，就安全了。</p>
+<p>万万没想到的是，在办公室安装了旧的key，加密文件的时候没有让我选key文件，当时感觉有点奇怪，没有多想。加密了半天之后，文件拷到移动硬盘里面，带回来却发现打不开了，解密也不对。</p>
+<figure data-type="image" tabindex="1"><img src="https://pic.rmb.bdstatic.com/bjh/dd3f8af61133f28185e0a04ebac01b56.png" alt="2020120901.png" loading="lazy"></figure>
+<p>稍微研究了一下才发现，win10系统默认使用的key，是自动生成的，是和当前计算机有关的一个密钥，而之后导入的密钥，在不进行设置的情况下，是不会作为主密钥使用的。也就是说，我虽然在加密之前导入了以前的旧密钥，但是我并没有把它设置为主密钥，所以这个密钥在加密文件的时候并没有被使用。</p>
+<p>我真是裂开。</p>
+<p>那么应该如何设置使用的主密钥呢？</p>
+<p>在设置中搜索“证书”，选择第三个，“管理文件加密证书”：</p>
+<figure data-type="image" tabindex="2"><img src="https://pic.rmb.bdstatic.com/bjh/60aa89651f3baa6c0e4d175588c2022c.png" alt="2020120902.png" loading="lazy"></figure>
+<p>在加密文件管理系统中，选择“选择证书”：</p>
+<figure data-type="image" tabindex="3"><img src="https://pic.rmb.bdstatic.com/bjh/70dfd81b7aae6d8a7e10bb61913ff935.png" alt="2020120905.png" loading="lazy"></figure>
+<p>然后在弹出的对话框中，选择“更多选项”，然后选择你要使用的证书，点击确定：</p>
+<figure data-type="image" tabindex="4"><img src="https://pic.rmb.bdstatic.com/bjh/364dc9c89039efcf2533ba8ce812f289.png" alt="2020120906.png" loading="lazy"></figure>
+<p>如果像我一样，证书同名分不清，可以看有效期进行区分。</p>
+<p>如果需要删除证书，比较麻烦：</p>
+<p>依旧是在设置中搜索“证书”，不过这次是选择第一个，“管理用户证书”：</p>
+<figure data-type="image" tabindex="5"><img src="https://pic.rmb.bdstatic.com/bjh/b411fc56b7554e6f5830feb33e091001.png" alt="2020120907.png" loading="lazy"></figure>
+<p>然后再弹出的管理窗口中，依次选择“个人”-“证书”：</p>
+<figure data-type="image" tabindex="6"><img src="https://pic.rmb.bdstatic.com/bjh/8e064b0e23d55a6a169d8383d1337b56.png" alt="2020120908.png" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="https://pic.rmb.bdstatic.com/bjh/04469fd39ea226e5385d8687ed5de704.png" alt="2020120909.png" loading="lazy"></figure>
+<p>然后就能看到已经安装的所有证书，选择要删除的证书，右键选择删除即可：</p>
+<figure data-type="image" tabindex="8"><img src="https://pic.rmb.bdstatic.com/bjh/974204bbaa1e115c5a34fdd402ca995c.png" alt="2020120910.png" loading="lazy"></figure>
+<p>如果还是分不清，像我这样有两个证书是一个名字的，就用有效期来区分就好了。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[北京，飞机，《囧妈》与爱情]]></title>
         <id>https://chyon.cn/post/think-about-love-with-us/</id>
@@ -383,83 +413,6 @@ bypy --downloader aria2 download 远程目录 本地路径
 <p>也许你我都是过客，在这时间的长河中微小的不值一提。以前写过《时间是物质的时间》，我也好久没有这种空洞的感觉了。这种感觉很难描述，就像是自己来到了上帝视角，自己所追求的一切都不再重要，什么情啊爱啊，什么悲欢离合，和浩瀚的宇宙、无尽的时间相比，又算什么呢。</p>
 <p>可惜我是物质的人，我离不开这身臭皮囊，我摆脱不了物质的思维。正是因为这物质组成的世界，我才如此渴望关心和爱护，我希望有人安慰，至少可以让我不那么空虚。</p>
 <p>最后才想明白，其实人生，不过就是自己演自己的戏罢了。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Power Automate设计RSS自动发送到Onenote]]></title>
-        <id>https://chyon.cn/post/rss-to-onenote-by-flow/</id>
-        <link href="https://chyon.cn/post/rss-to-onenote-by-flow/">
-        </link>
-        <updated>2020-06-17T04:23:21.000Z</updated>
-        <content type="html"><![CDATA[<p><strong>说明：</strong></p>
-<ul>
-<li>本文所讨论的Onenote是基于国际版Microsoft Office 365企业版所附有的Onenote功能；</li>
-<li>Power Automate是国际版Microsoft Office 365企业版附有的功能，原名Flow。</li>
-</ul>
-<p><strong>背景</strong></p>
-<p>手上有一个ipad，也有笔，很不想把它变成单纯的爱奇艺共聚，还是需要学习一点什么东西。后来发现Onenote在ipad上面同步的速度还不错，配合笔用来做批注和笔记都很好。ipad做批注可以对pdf做，也可以对笔记做，但是怎样把所需要阅读的内容发送到笔记或者做成pdf就是很为难的问题。</p>
-<p>所以我想到了用自动化程序做，之前考虑过<code>IFTTT</code>，但是实测效果并不理想，也不支持企业版的Onenote，只支持个人版的Onenote，最终还是将目光投向了Flow。</p>
-<p>但是Flow里面没有现成的模板，所以我还是自己动手比较好，昨天花了一晚上的时间做出来了，今天一看，效果还算是可以接受，如此，就写一下教程造福大众吧。</p>
-<p><strong>教程</strong></p>
-<ol>
-<li>准备</li>
-</ol>
-<p>需要准备的东西有：</p>
-<ul>
-<li>一个企业版的Office 365订阅账号；</li>
-<li>在Onenote中创建好一个笔记本和一个分区；</li>
-<li>一个RSS订阅源。</li>
-</ul>
-<ol start="2">
-<li>教程</li>
-</ol>
-<p>首先进入到Power Automate的界面，如下图所示。<br>
-如果找不到就点旁边的“所有应用”再找一下。</p>
-<figure data-type="image" tabindex="1"><img src="https://pic.rmb.bdstatic.com/bjh/c90313208f174fcbeed424ba7fa5f369.png" alt="20200617123711.png" loading="lazy"></figure>
-<p>进入之后的界面是这个样子的：</p>
-<figure data-type="image" tabindex="2"><img src="https://pic.rmb.bdstatic.com/bjh/6c56262d5e3c6e9a4cc7cb23e5916fc3.png" alt="20200617123801.png" loading="lazy"></figure>
-<p>然后点击左侧的创建，选择自动化流。</p>
-<figure data-type="image" tabindex="3"><img src="https://pic.rmb.bdstatic.com/bjh/c8e55c543b98581038d8d21bb37e9a63.png" alt="20200617124022.png" loading="lazy"></figure>
-<p>然后填写流的名称，触发器搜索一下<code>rss</code>，然后选择“发布源项时”：</p>
-<figure data-type="image" tabindex="4"><img src="https://pic.rmb.bdstatic.com/bjh/56e7fa03cce79bd67291a070f210dbed.png" alt="20200617124434.png" loading="lazy"></figure>
-<p>随后创建。</p>
-<p>再框内输入你的rss订阅链接，然后添加新步骤：</p>
-<figure data-type="image" tabindex="5"><img src="https://pic.rmb.bdstatic.com/bjh/05f1e54c10b066b19ad84f7697cf5d22.png" alt="20200617124600.png" loading="lazy"></figure>
-<p>在添加新的操作中，搜索<code>onenote</code>，然后下翻选择“在分区中创建页面”：</p>
-<figure data-type="image" tabindex="6"><img src="https://pic.rmb.bdstatic.com/bjh/8af38c5e2aeb211b0d1e040ba8d7496d.png" alt="20200617124739.png" loading="lazy"></figure>
-<p>在新的流程中，“笔记本键”就是笔记本的名称，“笔记本分区”栏也要选择要使用的分区的名称。<br>
-这两栏都不能手动填写，要选择它给出的选项，如果没有看到你想要的选项，你需要回到Onenote中进行调整。</p>
-<p>选择之后如下图所示：</p>
-<figure data-type="image" tabindex="7"><img src="https://pic.rmb.bdstatic.com/bjh/5ab5372a0948f3c8f065527fe14f39ee.png" alt="20200617125320.png" loading="lazy"></figure>
-<figure data-type="image" tabindex="8"><img src="https://pic.rmb.bdstatic.com/bjh/10a2a5c27ec16976f483ec8be9da6a59.png" alt="20200617125342.png" loading="lazy"></figure>
-<p>随后在下方“页面内容”中设计输出的内容：</p>
-<p>这一步应当使用“动态表达式”进行设计：</p>
-<figure data-type="image" tabindex="9"><img src="https://pic.rmb.bdstatic.com/bjh/6433b75269ffd15ff9fb039fc7f1937b.png" alt="20200617125500.png" loading="lazy"></figure>
-<p>“动态表达式”中，“源标题”对应的就是rss输出内容中的<code>&lt;Title&gt;</code>，“源摘要”对应的就是<code>&lt;description&gt;</code></p>
-<p>设计好的输出内容应当如下图所示：</p>
-<figure data-type="image" tabindex="10"><img src="https://pic.rmb.bdstatic.com/bjh/cac98497200f70dc830f4ebde17e5f78.png" alt="20200617125702.png" loading="lazy"></figure>
-<p>然后保存即可生效。</p>
-<ol start="3">
-<li>效果</li>
-</ol>
-<p>我设计了一个输出人民日报内容的Flow，效果可以接受，输出的内容如下图所示：</p>
-<figure data-type="image" tabindex="11"><img src="https://pic.rmb.bdstatic.com/bjh/cd74f648134c8c979ca01eedfac10c14.png" alt="20200617130031.png" loading="lazy"></figure>
-<p>后台运行也会报错：</p>
-<figure data-type="image" tabindex="12"><img src="https://pic.rmb.bdstatic.com/bjh/65beeca19a044ffe951b230765775ca6.png" alt="20200617130100.png" loading="lazy"></figure>
-<p>可以看到错误率还是蛮高的，我仔细查看了一下错误日志，发现所有的错误提示都是：</p>
-<pre><code class="language-linux">在用户帐户上，太多请求同时发送到同一位置。
-</code></pre>
-<p>估计是因为rss推送速度比较快导致的。</p>
-<p>但是不用担心，默认情况下，出现错误会进行最多4次重试，还是比较可靠的。</p>
-<ol start="4">
-<li>拓展</li>
-</ol>
-<p>当然你学会了以上输出到onenote之后，你也可以尝试其他方法。</p>
-<p>例如，用发送邮件的方式接收更新：</p>
-<figure data-type="image" tabindex="13"><img src="https://pic.rmb.bdstatic.com/bjh/b90273ff54f396214f1081b89f9b8b7a.png" alt="20200617130545.png" loading="lazy"></figure>
-<p>当然这个已经有模板了，直接搜索rss模板就可以看到。</p>
-<p>你也可以设计用附件的方式：</p>
-<figure data-type="image" tabindex="14"><img src="https://pic.rmb.bdstatic.com/bjh/7016f6bccb67f57b683e71fa927c6385.png" alt="20200617131116.png" loading="lazy"></figure>
 ]]></content>
     </entry>
 </feed>
