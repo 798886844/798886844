@@ -6,7 +6,7 @@
         <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
         <meta content="telephone=no" name="format-detection"/>
         <meta name="renderer" content="webkit">
-    <title>VPS搭建TTRSS-Docker服务 | 言岚的博客</title>
+    <title>时科茹，我有话对你说 | 言岚的博客</title>
 <link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
 <script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
 <script type="text/javascript" src="https://chyon.cn//media/scripts/basic.js"></script>
@@ -147,7 +147,7 @@
 
 <div class="post">
   <div class="post_title sm_margin">
-    <h2><a>VPS搭建TTRSS-Docker服务</a>
+    <h2><a>时科茹，我有话对你说</a>
 
 
 
@@ -156,7 +156,7 @@
 
   <div class="post_details">
     <div class="info"><i class="fa fa-clock-o"></i>
-<span class="date_info">2020-06-15</span>
+<span class="date_info">2021-03-10</span>
 <i class="fa fa-eye"></i>
 
 <span class="date_info"><span id="busuanzi_value_page_pv"></span> Views</span>
@@ -165,8 +165,6 @@
 <i class="fa fa-bookmark-o"></i>
 <span class="tags_info weaklink">
 	
-	<a href="https://chyon.cn/tag/nDSaUnVKg/" class="tag">教程</a>
-
 
 </span>
 
@@ -180,67 +178,16 @@
 
 
   <div class="post_content markdown"><p class="md_block">
-    <span class="md_line md_line_start md_line_end"><p>该教程转载自<a href="https://blog.spencerwoo.com/2019/11/tiny-tiny-rss/">Spencer's Blog</a></p>
-<p>废话不多说，直接上教程：</p>
-<p><strong>Docker安装：</strong></p>
-<pre><code class="language-linux">curl -fsSL https://get.docker.com/ | sh
-</code></pre>
-<p>Docker服务启动：</p>
-<pre><code class="language-linux">sudo systemctl start docker
-</code></pre>
-<p>检验是否成功：</p>
-<pre><code class="language-linux">sudo systemctl status docker
-</code></pre>
-<p>将出现如下图所示结果：</p>
-<figure data-type="image" tabindex="1"><img src="http://img.chyon.cn/img/20200615210223.png" alt="" loading="lazy"></figure>
-<p><strong>安装 docker-compose：</strong></p>
-<pre><code class="language-linux">curl -L https://github.com/docker/compose/releases/download/1.25.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-</code></pre>
-<p>给予安装好的 docker-compose 可执行权限：:</p>
-<pre><code class="language-linux">chmod +x /usr/local/bin/docker-compose
-</code></pre>
-<p>检查安装是否成功：</p>
-<pre><code class="language-linux">docker-compose --version
-</code></pre>
-<figure data-type="image" tabindex="2"><img src="http://img.chyon.cn/img/20200615210405.png" alt="" loading="lazy"></figure>
-<p><strong>安装 Tiny Tiny RSS 及其周边服务：</strong></p>
-<pre><code class="language-linux"># 创建 ttrss 目录并进入
-mkdir ttrss &amp;&amp; cd ttrss
-
-# 利用 curl 下载 ttrss 的 docker-compose 配置文件至服务器
-curl -fLo docker-compose.yml https://github.com/HenryQW/Awesome-TTRSS/raw/master/docker-compose.yml
-</code></pre>
-<p>修改 docker-compose.yml 里面的内容：</p>
-<figure data-type="image" tabindex="3"><img src="https://pic.rmb.bdstatic.com/bjh/440a04022747e0c3a45ad3100c6093c1.png" alt="20200615210541.png" loading="lazy"></figure>
-<ul>
-<li>在配置文件的第 7 行和第 23 行，将 PostgreSQL 数据库的默认密码进行修改。暴露在公网的数据库使用默认密码非常危险。</li>
-<li>在配置文件的第 18 行，将 Tiny Tiny RSS 服务的部署网址修改。比如我的部署网址是 https://ttrss.tenkeyseven.com/</li>
-<li>注意，如果你的部署 URL 包含端口（比如默认部署端口为 181 端口），那么这里的 URL 也需要加上端口号，格式为 {网址}:{端口} - 不过不必担心，如果你这里的 URL 配置不正确，那么访问 Tiny Tiny RSS 的时候，Tiny Tiny RSS 会提醒你修改这里的值为正确的 URL，按照提醒进行配置即可</li>
-</ul>
-<p><strong>启动 Tiny Tiny RSS 服务：</strong></p>
-<pre><code class="language-linux">docker-compose up -d
-</code></pre>
-<p>验证：</p>
-<pre><code class="language-linux">docker ps
-</code></pre>
-<figure data-type="image" tabindex="4"><img src="https://pic.rmb.bdstatic.com/bjh/e0aacba4d4271d67f14bd128f2174624.png" alt="20200615210724.png" loading="lazy"></figure>
-<p><strong>修改&amp;重新启动：</strong></p>
-<pre><code class="language-linux"># 关闭 Docker 容器们
-docker-compose down
-
-# 删除已停止的 Docker 容器
-docker-compose rm
-
-# ……
-# 修改 docker-compose 配置文件
-# ……
-
-# 再次开启 Docker 服务
-docker-compose up -d
-</code></pre>
-<p><strong>最后</strong></p>
-<p>交上我的作业：<br>
-<img src="https://pic.rmb.bdstatic.com/bjh/c74822c5dbe7e3fc522bbd78f9608e0c.png" alt="20200615210946.png" loading="lazy"></p>
+    <span class="md_line md_line_start md_line_end"><p>昨天，三月九日，你再次和我说了要暂时分开，这是你第三次这样不回头的离开我。</p>
+<p>我不知道在你身上到底发生了什么事情，让你性情大变，一天一句话都不愿意和我说，电话也不接，总是觉得不耐烦。</p>
+<p>每个人都有自由的权力吧，我每次都这样安慰自己。去年八月十六日，你第一次离开我的时候，我浑浑噩噩了两个多月，感觉半条命已经去了。元旦之后的一月八日，是你第二次离开我。昨天是第三次，今天我又是浑浑噩噩了一整天，大概剩下的半条命也随你去了吧。</p>
+<p>我搞不清楚，你到底想要什么。每一次中有不同的理由，直至这一次没有理由。我明白，我理解你在工作上遭遇不幸的时候，想要获得帮助可我却远在天边的时候；我也明白，也理解当朋友问起你有没有男朋友，为什么没人陪你的时候的那种孤独。我也有过。过年那几天，我很高兴地拿着你的照片把你介绍给我的父母，我真的以为你会死心塌地跟着我了。是我太天真。</p>
+<p>今天我无数次涌起想要和你永远告别的念头，硬是强忍着压着自己。我不敢睡觉，稍微困一点，眼皮子底下都是你的影子。我也不敢打游戏，打开游戏的一刹那我就想起你是怎么拒绝和我建立情侣关系的。你知道吗，其实我介意的地方很多，我都一个人默默忍下来了。你总是沉默，什么都不说，我不知道我做错了什么，也不清楚我们的问题究竟在哪里。</p>
+<p>可你知道我想要什么吗？我并不贪图你的美色，这世上美丽的皮囊我见过太多，往往都隐藏着肮脏的灵魂，我小心谨慎遇见了你，就再也不想放手了；我也不贪图你的身体，我不是用下半身思考的动物，虽然我也很介意你不是处子之身；我也不贪图你的财富，毕竟从认识你到现在，你也没为我花了多少钱。</p>
+<p>我要的是安稳，你明白吗？我喜欢你在我身边，每天和我分享你的生活，倾诉你的苦恼，假如有我可以解决的问题，我会很乐意帮你解决。我喜欢和你吵吵闹闹，喜欢假装被你欺负看你开心的样子。可现在，开心的你去了哪里了呢？</p>
+<p>我不确定我还会等你多久，我想每个人的心都是肉做的，没有哪个人会真的铁石心肠。所以我不愿意相信你折磨我只是为了取乐。</p>
+<p>但我也实在是折腾不起了。每一次你的离开，给我带来的不仅是伤害，还有绝望，每每都能唤醒我对活着的厌恶。我实在不想这样疲惫的活在这个世界上，我以为在你的怀里我能找到休息的地方，可每次被你赶出来，我总是很累很累。</p>
+<p>这些话我不敢告诉你，我怕到最后我会真的失去你。我努力改变自己，要的不是这个结果。假如你最后还是选择回到我的身边，可以不要再伤害我了吗？</p>
 </p>
 
      <p class="md_block">
