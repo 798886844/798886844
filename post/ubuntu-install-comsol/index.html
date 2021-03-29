@@ -6,7 +6,7 @@
         <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
         <meta content="telephone=no" name="format-detection"/>
         <meta name="renderer" content="webkit">
-    <title>使用Markdown语言在博客的文章中添加视频 | 言岚的博客</title>
+    <title>Ubuntu 18.04安装COMSOL | 言岚的博客</title>
 <link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
 <script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
 <script type="text/javascript" src="https://chyon.cn//media/scripts/basic.js"></script>
@@ -147,7 +147,7 @@
 
 <div class="post">
   <div class="post_title sm_margin">
-    <h2><a>使用Markdown语言在博客的文章中添加视频</a>
+    <h2><a>Ubuntu 18.04安装COMSOL</a>
 
 
 
@@ -156,7 +156,7 @@
 
   <div class="post_details">
     <div class="info"><i class="fa fa-clock-o"></i>
-<span class="date_info">2018-06-27</span>
+<span class="date_info">2021-03-29</span>
 <i class="fa fa-eye"></i>
 
 <span class="date_info"><span id="busuanzi_value_page_pv"></span> Views</span>
@@ -165,8 +165,6 @@
 <i class="fa fa-bookmark-o"></i>
 <span class="tags_info weaklink">
 	
-	<a href="https://chyon.cn/tag/6Mzatm3q8/" class="tag">markdown</a>
-
 
 </span>
 
@@ -180,62 +178,89 @@
 
 
   <div class="post_content markdown"><p class="md_block">
-    <span class="md_line md_line_start md_line_end"><p>不论你是用的是什么博客系统，WP也好，Typecho也罢，甚至是静态博客，就像我的博客，绕不开的是两种书写语言，一种称之为富文本，一种叫做Markdown。我的博客就是用Markdown写的。</p>
-<p>Markdown有很多好处，也有很多坏处，比如说居中，Markdown本身没有这个功能。再比如说视频，Markdown也不具有插入视频的功能。</p>
-<p>值得庆幸的是Markdown支持HTML的标签，在HTML中我们可以用<code>&lt;video&gt;</code>标签插入视频，在Markdown中，我们同样可以使用<code>&lt;video&gt;</code>标签插入视频，具体格式如下：</p>
-<pre><code class="language-HTML">&lt;video width=&quot;320&quot; height=&quot;240&quot; controls&gt;
-    &lt;source src=&quot;movie.mp4&quot; type=&quot;video/mp4&quot;&gt;
-&lt;/video&gt;
+    <span class="md_line md_line_start md_line_end"><p>研究这个的原因，是一位朋友要用学校的Linux服务器。从对话里，没有得知Linux是否有常规界面，可能只有ssh，所以我先把工作做到前面，研究一下吧。</p>
+<p>因为不知道有没有图形界面，所以就假装没有图形界面，我从AWS开了一台4核16G的Ubuntu 18.04作为试验机，尝试装COMSOL 5.6.0.341。</p>
+<p>一开始尝试用Xstart打开图形界面，发现很难，可能是因为我是美国的服务器，太卡了。于是转为VNC，因为我以前就接触过VNC，所以就直接跳过远程桌面(mstsc)了。</p>
+<p><strong>Ubuntu 18.04 安装VNC</strong></p>
+<p>以下内容均需要以root用户身份运行。</p>
+<p>这里用的系统镜像是AWS提供的18.04，所以源都是全的。</p>
+<p>更新源：</p>
+<pre><code class="language-C">apt-get update -y
 </code></pre>
-<p>或者</p>
-<pre><code class="language-HTML">&lt;video src=&quot;movie.mp4.mp4&quot; controls=&quot;controls&quot; width=&quot;500&quot; height=&quot;300&quot;&gt;&lt;/video&gt;
+<p>安装VNC：</p>
+<pre><code class="language-C">apt-get install vnc4server
 </code></pre>
-<p>当然，除了<code>.mp4</code>它还支持其他的格式，但是对于不同的浏览器支持的格式不一样，见下表：</p>
-<table id="tfhover" class="tftable" border="1">
-<tr><th>格式</th><th>IE</th><th>Firefox</th><th>Opera</th><th>Chrome</th><th>Safari</th></tr>
-<tr><td>Ogg</td><td>No</td><td>3.5+</td><td>10.5+</td><td>5.0+</td><td>No</td></tr>
-<tr><td>MPEG4</td><td>9.0+</td><td>No</td><td>No</td><td>5.0+</td><td>3.0+</td></tr>
-<tr><td>WebM</td><td>No</td><td>4.0+</td><td>10.6+</td><td>6.0+</td><td>No</td></tr>
-</table>
-<p>当然还有编码等限制，这里就不再介绍，感兴趣的小伙伴可以百度上学习一下。</p>
-<p>video 元素允许多个 source 元素。source 元素可以链接不同的视频文件。浏览器将使用第一个可识别的格式，这样我们只要多准备几个不同格式的视频就可以了。</p>
-<p>用法：</p>
-<pre><code class="language-HTML">1. &lt;video width=&quot;500&quot; height=&quot;250&quot; controls=&quot;controls&quot;&gt;
-
-2. &lt;source src=&quot;movie.ogg&quot; type=&quot;video/ogg&quot;&gt;
-
-3. &lt;source src=&quot;movie.mp4&quot; type=&quot;video/mp4&quot;&gt;
-
-4. 您的浏览器不支持此种视频格式。
-
-5. &lt;/video&gt;
+<p>设置启动密码：</p>
+<pre><code class="language-C">vncserver
 </code></pre>
-<p>其次，这是对一些参数的说明：</p>
-<pre><code class="language-HTML">autoplay :出现该属性意味着视频在就绪后将自动播放，用法：autoplay=&quot;autoplay&quot;
-
-controls :出现该属性意味着向用户显示控件，如播放按钮等，用法：controls=&quot;controls&quot;
-
-height:设置高度      width:设置宽度
-
-loop:自动重播，用法：loop=&quot;loop&quot;
-
-preload:视频在页面加载时进行加载并预备播放，用法：preload=&quot;auto&quot; - 当页面加载后载入整个视频；preload=&quot;meta&quot; - 当页面加载后只载入元数据；preload=&quot;none&quot; - 当页面加载后不载入视频。注意：若使用了autoplay，则忽略preload
-
-src:要播放视频的url
+<p>随后会弹出输入提示，密码不显示，需要输入两遍。</p>
+<p><strong>安装Gnome</strong></p>
+<p>安装<code>x-windows</code>：</p>
+<pre><code class="language-C">apt-get install x-window-system-core gdm3
 </code></pre>
-<p>示例：<br>
-第一种：</p>
-<pre><code class="language-HTML">&lt;video width=&quot;720&quot; height=&quot;303&quot; controls&gt; #或者：&lt;video width:60% height:auto controls&gt;
-&lt;source src=&quot;https://movie.cy798.cn/%E9%BB%91%E8%B1%B9.Black.Panther.2018.BD720P.X264.AAC.English.CHS-ENG.mp4&quot; type=&quot;video/mp4&quot;&gt;
-&lt;/video&gt;
+<p>需要注意的是，对于18.04，安装的是<code>gdm3</code>，如果是16.04，则是<code>gdm</code>。</p>
+<p>安装Ubuntu的桌面：</p>
+<pre><code class="language-C">apt-get install ubuntu-desktop
 </code></pre>
-<video width="720" height="303" controls>
-<source src="https://movie.cy798.cn/%E9%BB%91%E8%B1%B9.Black.Panther.2018.BD720P.X264.AAC.English.CHS-ENG.mp4" type="video/mp4">
-</video>
-<p>第二种：</p>
-<pre><code class="language-HTML">&lt;video src=&quot;https://movie.cy798.cn/Blue.Planet.S02.2017.BluRay.1080p.DTS-HD.MA5.1.2Audio.x264-CHD/Blue.Planet.S02E01.One.Ocean.2017.BluRay.1080p.DTS-HD.MA5.1.2Audio.x264-CHD.mkv&quot; controls=&quot;controls&quot; width:100% height:auto&gt;&lt;/video&gt;
+<p>安装Gnome套件：</p>
+<pre><code class="language-C">apt-get install gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal
 </code></pre>
-<p><video src="https://movie.cy798.cn/Blue.Planet.S02.2017.BluRay.1080p.DTS-HD.MA5.1.2Audio.x264-CHD/Blue.Planet.S02E01.One.Ocean.2017.BluRay.1080p.DTS-HD.MA5.1.2Audio.x264-CHD.mkv" controls="controls" width="720" height="405"></video></p>
+<p>替换VNC配置文件：</p>
+<pre><code class="language-C">vi ~/.vnc/xstartup
+</code></pre>
+<p>随后将其中内容替换为：</p>
+<pre><code class="language-C">#!/bin/sh
+# Uncomment the following two lines for normal desktop:
+export XKL_XMODMAP_DISABLE=1
+unset SESSION_MANAGER
+# exec /etc/X11/xinit/xinitrc
+unset DBUS_SESSION_BUS_ADDRESS
+gnome-panel &amp;
+gnome-settings-daemon &amp;
+metacity &amp;
+nautilus &amp;
+gnome-terminal &amp;
+</code></pre>
+<p>重启：</p>
+<pre><code class="language-C">reboot
+</code></pre>
+<p>随后ssh中启动VNC服务：</p>
+<pre><code class="language-C">vncserver
+</code></pre>
+<p>然后就可以在VNC Viewer中连接到该主机了。</p>
+<pre><code class="language-C">IP地址:1
+</code></pre>
+<p><strong>安装COMSOL</strong></p>
+<p>准备好COMSOL的镜像文件，挂载。</p>
+<p>这里我创建文件夹<code>/media/comsol</code>，并挂载到该文件夹中：</p>
+<pre><code class="language-C">mkdir /media/comsol
+mount -o loop COMSOL_5.6.0.341_DVD.iso /media/comsol
+</code></pre>
+<p>然后在VNC中启动终端，定位到<code>/media/comsol</code>：</p>
+<pre><code class="language-C">cd /media/comsol
+</code></pre>
+<p>这里可以<code>ls</code>查看文件目录，确认有<code>setup</code>文件后，便可以启动安装程序：</p>
+<pre><code class="language-C">./setup
+</code></pre>
+<p>安装过程基本和<code>Windows</code>环境下的安装步骤相同。</p>
+<figure data-type="image" tabindex="1"><img src="https://pic.rmb.bdstatic.com/bjh/6a6f3605cf183619a50b3a5d2a357577.png" alt="image1.png" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://pic.rmb.bdstatic.com/bjh/4a7c253525569799d36184486f09de06.png" alt="image2.png" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://pic.rmb.bdstatic.com/bjh/1915d1997173165118c1871980e9aab6.png" alt="image3.png" loading="lazy"></figure>
+<p><strong>启动COMSOL</strong></p>
+<p>由于gnome可能没有桌面，因此没有快捷方式可以用，所以可以直接在终端中输入：</p>
+<p><code>comsol</code></p>
+<p>来启动COMSOl</p>
+<figure data-type="image" tabindex="4"><img src="https://pic.rmb.bdstatic.com/bjh/b05d79e95002c4561622be39433ddbcc.png" alt="image4.png" loading="lazy"></figure>
+<p>第一次启动可能会由于GUI界面初始化失败，不要慌张，重新启动即可。</p>
+<figure data-type="image" tabindex="5"><img src="https://pic.rmb.bdstatic.com/bjh/d91980a5edb0d15c0483567527562a5f.png" alt="image5.png" loading="lazy"></figure>
+<p>后续的使用步骤和界面，基本与<code>Windows</code>端相同，不再赘述。</p>
+<figure data-type="image" tabindex="6"><img src="https://pic.rmb.bdstatic.com/bjh/5911a54ef4238f9de0baf636870d6e46.png" alt="image8.png" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="https://pic.rmb.bdstatic.com/bjh/4828fb295b46870ddda77db4305bf0dc.png" alt="image9.png" loading="lazy"></figure>
+<p>正儿八经开始用起来，对CPU的利用率可以达到400%？估计是用了虚拟内核。</p>
+<figure data-type="image" tabindex="8"><img src="https://pic.rmb.bdstatic.com/bjh/8a2b842aba35df3ac6c78e1ca49981ab.png" alt="image10.png" loading="lazy"></figure>
+<p>跑出来的结果和<code>Windows</code>端的倒是没差。</p>
+<figure data-type="image" tabindex="9"><img src="https://pic.rmb.bdstatic.com/bjh/57222af1ff54c29a345a5c3130a6408f.png" alt="image11.png" loading="lazy"></figure>
+<figure data-type="image" tabindex="10"><img src="https://pic.rmb.bdstatic.com/bjh/feb1fa27a5cfdae254e792dc0e12fce1.png" alt="image12.png" loading="lazy"></figure>
 </p>
 
      <p class="md_block">

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chyon.cn/</id>
     <title>言岚的博客</title>
-    <updated>2021-03-10T10:18:32.350Z</updated>
+    <updated>2021-03-29T13:26:08.587Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://chyon.cn/"/>
     <link rel="self" href="https://chyon.cn/atom.xml"/>
@@ -10,6 +10,97 @@
     <logo>https://chyon.cn/images/avatar.png</logo>
     <icon>https://chyon.cn/favicon.ico</icon>
     <rights>All rights reserved 2021, 言岚的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[Ubuntu 18.04安装COMSOL]]></title>
+        <id>https://chyon.cn/post/ubuntu-install-comsol/</id>
+        <link href="https://chyon.cn/post/ubuntu-install-comsol/">
+        </link>
+        <updated>2021-03-29T13:02:26.000Z</updated>
+        <content type="html"><![CDATA[<p>研究这个的原因，是一位朋友要用学校的Linux服务器。从对话里，没有得知Linux是否有常规界面，可能只有ssh，所以我先把工作做到前面，研究一下吧。</p>
+<p>因为不知道有没有图形界面，所以就假装没有图形界面，我从AWS开了一台4核16G的Ubuntu 18.04作为试验机，尝试装COMSOL 5.6.0.341。</p>
+<p>一开始尝试用Xstart打开图形界面，发现很难，可能是因为我是美国的服务器，太卡了。于是转为VNC，因为我以前就接触过VNC，所以就直接跳过远程桌面(mstsc)了。</p>
+<p><strong>Ubuntu 18.04 安装VNC</strong></p>
+<p>以下内容均需要以root用户身份运行。</p>
+<p>这里用的系统镜像是AWS提供的18.04，所以源都是全的。</p>
+<p>更新源：</p>
+<pre><code class="language-C">apt-get update -y
+</code></pre>
+<p>安装VNC：</p>
+<pre><code class="language-C">apt-get install vnc4server
+</code></pre>
+<p>设置启动密码：</p>
+<pre><code class="language-C">vncserver
+</code></pre>
+<p>随后会弹出输入提示，密码不显示，需要输入两遍。</p>
+<p><strong>安装Gnome</strong></p>
+<p>安装<code>x-windows</code>：</p>
+<pre><code class="language-C">apt-get install x-window-system-core gdm3
+</code></pre>
+<p>需要注意的是，对于18.04，安装的是<code>gdm3</code>，如果是16.04，则是<code>gdm</code>。</p>
+<p>安装Ubuntu的桌面：</p>
+<pre><code class="language-C">apt-get install ubuntu-desktop
+</code></pre>
+<p>安装Gnome套件：</p>
+<pre><code class="language-C">apt-get install gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal
+</code></pre>
+<p>替换VNC配置文件：</p>
+<pre><code class="language-C">vi ~/.vnc/xstartup
+</code></pre>
+<p>随后将其中内容替换为：</p>
+<pre><code class="language-C">#!/bin/sh
+# Uncomment the following two lines for normal desktop:
+export XKL_XMODMAP_DISABLE=1
+unset SESSION_MANAGER
+# exec /etc/X11/xinit/xinitrc
+unset DBUS_SESSION_BUS_ADDRESS
+gnome-panel &amp;
+gnome-settings-daemon &amp;
+metacity &amp;
+nautilus &amp;
+gnome-terminal &amp;
+</code></pre>
+<p>重启：</p>
+<pre><code class="language-C">reboot
+</code></pre>
+<p>随后ssh中启动VNC服务：</p>
+<pre><code class="language-C">vncserver
+</code></pre>
+<p>然后就可以在VNC Viewer中连接到该主机了。</p>
+<pre><code class="language-C">IP地址:1
+</code></pre>
+<p><strong>安装COMSOL</strong></p>
+<p>准备好COMSOL的镜像文件，挂载。</p>
+<p>这里我创建文件夹<code>/media/comsol</code>，并挂载到该文件夹中：</p>
+<pre><code class="language-C">mkdir /media/comsol
+mount -o loop COMSOL_5.6.0.341_DVD.iso /media/comsol
+</code></pre>
+<p>然后在VNC中启动终端，定位到<code>/media/comsol</code>：</p>
+<pre><code class="language-C">cd /media/comsol
+</code></pre>
+<p>这里可以<code>ls</code>查看文件目录，确认有<code>setup</code>文件后，便可以启动安装程序：</p>
+<pre><code class="language-C">./setup
+</code></pre>
+<p>安装过程基本和<code>Windows</code>环境下的安装步骤相同。</p>
+<figure data-type="image" tabindex="1"><img src="https://pic.rmb.bdstatic.com/bjh/6a6f3605cf183619a50b3a5d2a357577.png" alt="image1.png" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://pic.rmb.bdstatic.com/bjh/4a7c253525569799d36184486f09de06.png" alt="image2.png" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://pic.rmb.bdstatic.com/bjh/1915d1997173165118c1871980e9aab6.png" alt="image3.png" loading="lazy"></figure>
+<p><strong>启动COMSOL</strong></p>
+<p>由于gnome可能没有桌面，因此没有快捷方式可以用，所以可以直接在终端中输入：</p>
+<p><code>comsol</code></p>
+<p>来启动COMSOl</p>
+<figure data-type="image" tabindex="4"><img src="https://pic.rmb.bdstatic.com/bjh/b05d79e95002c4561622be39433ddbcc.png" alt="image4.png" loading="lazy"></figure>
+<p>第一次启动可能会由于GUI界面初始化失败，不要慌张，重新启动即可。</p>
+<figure data-type="image" tabindex="5"><img src="https://pic.rmb.bdstatic.com/bjh/d91980a5edb0d15c0483567527562a5f.png" alt="image5.png" loading="lazy"></figure>
+<p>后续的使用步骤和界面，基本与<code>Windows</code>端相同，不再赘述。</p>
+<figure data-type="image" tabindex="6"><img src="https://pic.rmb.bdstatic.com/bjh/5911a54ef4238f9de0baf636870d6e46.png" alt="image8.png" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="https://pic.rmb.bdstatic.com/bjh/4828fb295b46870ddda77db4305bf0dc.png" alt="image9.png" loading="lazy"></figure>
+<p>正儿八经开始用起来，对CPU的利用率可以达到400%？估计是用了虚拟内核。</p>
+<figure data-type="image" tabindex="8"><img src="https://pic.rmb.bdstatic.com/bjh/8a2b842aba35df3ac6c78e1ca49981ab.png" alt="image10.png" loading="lazy"></figure>
+<p>跑出来的结果和<code>Windows</code>端的倒是没差。</p>
+<figure data-type="image" tabindex="9"><img src="https://pic.rmb.bdstatic.com/bjh/57222af1ff54c29a345a5c3130a6408f.png" alt="image11.png" loading="lazy"></figure>
+<figure data-type="image" tabindex="10"><img src="https://pic.rmb.bdstatic.com/bjh/feb1fa27a5cfdae254e792dc0e12fce1.png" alt="image12.png" loading="lazy"></figure>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Win10加密功能的坑]]></title>
         <id>https://chyon.cn/post/win10-encryption-1/</id>
@@ -395,24 +486,6 @@ source /etc/profile.d/bypy.sh
 bypy --downloader aria2 download 远程目录 本地路径
 </code></pre>
 <p>另有话要说：这个BYPY按照理论上来说只是一个Linux非官方客户端，并没有破解百度网盘的下载模式和渠道，我这里下载速度也很稳定的保持在3M左右（我本身是超会），所以如果想用这个来破解下载速度是不太现实的，理论上这也不算破解。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[风月无边]]></title>
-        <id>https://chyon.cn/post/feng-yue-wu-bian/</id>
-        <link href="https://chyon.cn/post/feng-yue-wu-bian/">
-        </link>
-        <updated>2020-07-06T15:35:27.000Z</updated>
-        <content type="html"><![CDATA[<p>洗澡的时候突然想到这首歌，伯虎的<a href="https://music.163.com/song?id=430787086&amp;userid=517225163">风月无边</a>，考研的时候，天天听这首歌，颇为怀念。</p>
-<p>我以前一直以为这首歌咏史言情，今天再听的时候，才发现我错了。</p>
-<p>以往听这首歌的时候，总觉得作者想表达怀才不遇，或者感情受挫的感受。今天再听时，听出了“夫天地者万物之逆旅也；光阴者百代之过客也”的感受。</p>
-<p>我想起了《前赤壁赋》。</p>
-<blockquote>
-<p>苏子曰：“客亦知夫水与月乎？逝者如斯，而未尝往也；盈虚者如彼，而卒莫消长也。盖将自其变者而观之，则天地曾不能以一瞬；自其不变者而观之，则物与我皆无尽也，而又何羡乎!且夫天地之间，物各有主,苟非吾之所有，虽一毫而莫取。惟江上之清风，与山间之明月，耳得之而为声，目遇之而成色，取之无禁，用之不竭，是造物者之无尽藏也，而吾与子之所共适。”</p>
-</blockquote>
-<p>也许你我都是过客，在这时间的长河中微小的不值一提。以前写过《时间是物质的时间》，我也好久没有这种空洞的感觉了。这种感觉很难描述，就像是自己来到了上帝视角，自己所追求的一切都不再重要，什么情啊爱啊，什么悲欢离合，和浩瀚的宇宙、无尽的时间相比，又算什么呢。</p>
-<p>可惜我是物质的人，我离不开这身臭皮囊，我摆脱不了物质的思维。正是因为这物质组成的世界，我才如此渴望关心和爱护，我希望有人安慰，至少可以让我不那么空虚。</p>
-<p>最后才想明白，其实人生，不过就是自己演自己的戏罢了。</p>
 ]]></content>
     </entry>
 </feed>
