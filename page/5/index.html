@@ -1,12 +1,12 @@
 
 <html>
-  <head lang="zh">
+<head lang="zh">
         <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
         <meta content="yes" name="apple-mobile-web-app-capable"/>
         <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
         <meta content="telephone=no" name="format-detection"/>
         <meta name="renderer" content="webkit">
-    <title>使用Aira2下载文件后自动上传到Google Drive网盘 | 言岚的博客</title>
+    <title>言岚的博客</title>
 <link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
 <script type="text/javascript" src="https://chyon.cn//media/scripts/jquery.js"></script>
 <script type="text/javascript" src="https://chyon.cn//media/scripts/basic.js"></script>
@@ -16,7 +16,7 @@
   </head>
 
   <body>
-     <div class="header">
+    <div class="header">
       <div class="logo_title">
 		  
         <div class="title animated fadeInDown"><img src="https://chyon.cn//images/avatar.png?v=1624715568526"/>
@@ -135,7 +135,6 @@
     <div class="main">
       <div class="main-inner">
 
-
 <div class="content">
 
 
@@ -143,28 +142,26 @@
 
 
 
-  <div class="post_page" >
+  <div class="post_list" >
 
+	
 <div class="post">
-  <div class="post_title sm_margin">
-    <h2><a>使用Aira2下载文件后自动上传到Google Drive网盘</a>
-
-
-
+  <div class="post_title weaklink">
+    <h2><a href="https://chyon.cn/post/wallpaper-mothercollege/" >母校壁纸的分享</a>
     </h2>
   </div>
-
-  <div class="post_details">
-    <div class="info"><i class="fa fa-clock-o"></i>
-<span class="date_info">2020-07-30</span>
-<i class="fa fa-eye"></i>
-
-<span class="date_info"><span id="busuanzi_value_page_pv"></span> Views</span>
-
+  <div class="post_content markdown"><div class="p_part"><p></p></div></div>
+  <div class="post_footer">
+    <div class="info weaklink"><i class="fa fa-clock-o"></i>
+<span class="date_info">2017-08-29</span>
 
 <i class="fa fa-bookmark-o"></i>
+	
 <span class="tags_info weaklink">
 	
+	<a href="https://chyon.cn/tag/Vj50fRwE9/" class="tag">分享</a>
+
+
 
 </span>
 
@@ -173,94 +170,26 @@
 
   </div>
 
-
-
-
-
-  <div class="post_content markdown"><p class="md_block">
-    <span class="md_line md_line_start md_line_end"><p>使用Rclone挂载网盘为磁盘：</p>
-<pre><code class="language-Debain">#新建本地文件夹，路径自己定，即下面的LocalFolder
-mkdir /root/GoogleDrive
-#挂载为磁盘，下面的DriveName、Folder、LocalFolder参数根据说明自行替换
-rclone mount DriveName:Folder LocalFolder --copy-links --no-gzip-encoding --no-check-certificate --allow-other --allow-non-empty --umask 000
-</code></pre>
-<p>卸载磁盘：</p>
-<pre><code class="language-Debian">fusermount -qzu LocalFolder
-</code></pre>
-<p>自动上传脚本的原理是当下载完后aria2会给脚本传3个参数$1、$2、$3分别为gid、文件数量、文件路径。我们对文件路径这个字符串处理一番就可以达到目的了。</p>
-<p>新建脚本文件rcloneupload.sh，并复制下面代码：</p>
-<pre><code class="language-Debian">#!/bin/bash
-
-GID=&quot;$1&quot;;
-FileNum=&quot;$2&quot;;
-File=&quot;$3&quot;;
-MinSize=&quot;5&quot;  #限制最低上传大小，默认5k
-MaxSize=&quot;157286400&quot;  #限制最高文件大小(单位k)，默认15G
-RemoteDIR=&quot;/RATS/&quot;;  #rclone挂载的本地文件夹，最后面保留/
-LocalDIR=&quot;/download/&quot;;  #Aria2下载目录，最后面保留/
-
-if [[ -z $(echo &quot;$FileNum&quot; |grep -o '[0-9]*' |head -n1) ]]; then FileNum='0'; fi
-if [[ &quot;$FileNum&quot; -le '0' ]]; then exit 0; fi
-if [[ &quot;$#&quot; != '3' ]]; then exit 0; fi
-
-function LoadFile(){
-  IFS_BAK=$IFS
-  IFS=$'\n'
-  if [[ ! -d &quot;$LocalDIR&quot; ]]; then return; fi
-  if [[ -e &quot;$File&quot; ]]; then
-    FileLoad=&quot;${File/#$LocalDIR}&quot;
-    while true
-      do
-        if [[ &quot;$FileLoad&quot; == '/' ]]; then return; fi
-        echo &quot;$FileLoad&quot; |grep -q '/';
-        if [[ &quot;$?&quot; == &quot;0&quot; ]]; then
-          FileLoad=$(dirname &quot;$FileLoad&quot;);
-        else
-          break;
-        fi;
-      done;
-    if [[ &quot;$FileLoad&quot; == &quot;$LocalDIR&quot; ]]; then return; fi
-    EXEC=&quot;$(command -v mv)&quot;
-    if [[ -z &quot;$EXEC&quot; ]]; then return; fi
-    Option=&quot; -f&quot;;
-    cd &quot;$LocalDIR&quot;;
-    if [[ -e &quot;$FileLoad&quot; ]]; then
-      ItemSize=$(du -s &quot;$FileLoad&quot; |cut -f1 |grep -o '[0-9]*' |head -n1)
-      if [[ -z &quot;$ItemSize&quot; ]]; then return; fi
-      if [[ &quot;$ItemSize&quot; -le &quot;$MinSize&quot; ]]; then
-        echo -ne &quot;\033[33m$FileLoad \033[0mtoo small to spik.\n&quot;;
-        return;
-      fi
-      if [[ &quot;$ItemSize&quot; -ge &quot;$MaxSize&quot; ]]; then
-        echo -ne &quot;\033[33m$FileLoad \033[0mtoo large to spik.\n&quot;;
-        return;
-      fi
-      eval &quot;${EXEC}${Option}&quot; \'&quot;${FileLoad}&quot;\' &quot;${RemoteDIR}&quot;;
-    fi
-  fi
-  IFS=$IFS_BAK
-}
-LoadFile;
-</code></pre>
-<p>授权<code>chmod +x rcloneupload.sh</code></p>
-<p>然后再到Aria2配置文件中加上一行</p>
-<p><code>on-download-complete=/root/rcloneupload.sh</code></p>
-<p>即可，后面为脚本的路径。最后重启Aria2生效。</p>
-<p>原文来自：<a href="https://www.moerats.com/archives/482/">https://www.moerats.com/archives/482/</a>，搬运仅作备份。</p>
-</p>
-
-     <p class="md_block">
-    <div class="reward"><div class="reward-button">赏 <span class="reward-code"> <span class="alipay-code"> <img class="alipay-img" src="https://chyon.cn//media/images/alipay.png"><b>支付宝扫码打赏</b> </span> <span class="wechat-code"> <img class="wechat-img" src="https://chyon.cn//media/images/wechat.png"><b>微信打赏</b> </span> </span></div></div>
-</p> 
 </div>
+	
+	
 
-</div>
+<div class="paginator pager pagination" >
+	
+  <div class="paginator_container pagination_container">
+	  
+	    
+	  <a href="https://chyon.cn/page/4/"  class="btn pre newer-posts newer_posts"> Newer Posts </a>
+										
+										
+	  
 
 
 
-<link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/>
+    <div style="clear:both;height:0;"></div>
 
-<div class="doc_comments">
+
+  </div>
 
 </div>
 
@@ -273,12 +202,9 @@ LoadFile;
 
       </div>
 
-
-
-
     </div>
 
-   <div class="footer">
+    <div class="footer">
 <link href="https://chyon.cn//styles/main.css" type="text/css" rel="stylesheet"/><div class="site_footer_wrap"><div class="site_footer">
 
       <div class="mysocials"><div class="my_socials">
