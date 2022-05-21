@@ -1,0 +1,624 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>如何把Railway的Docker玩出花 | 言岚的博客</title>
+<meta name="description" content="这是一个孤独的世界" />
+<link rel="shortcut icon" href="https://chyon.cn//favicon.ico">
+<link rel="stylesheet" href="https://chyon.cn//styles/main.css">
+
+<script src="https://chyon.cn//media/js/jquery.min.js"></script>
+<script src="https://chyon.cn//media/js/masonry.pkgd.min.js"></script>
+<script src="https://chyon.cn//media/js/aos.js"></script>
+<script src="https://chyon.cn//media/js/pace.min.js"></script>
+<script src="https://chyon.cn//media/js/view-image.min.js"></script>
+<script src="https://chyon.cn//media/js/jquery.magnific-popup.min.js"></script>
+<script src="https://chyon.cn//media/js/functions.js"></script>
+    <meta name="referrer" content="never">
+    <meta name="description" content="该文章后续安装失败，所以别看了
+有大佬分享了一个免费且配置高的Docker平台：小御坂的破站。看这配置想不心动都难。
+-------------------------------------------------------------..." />
+    <meta name="keywords" content="comsol,docker" />
+    <script src="https://chyon.cn//media/js/waterfall.min.js"></script>
+    <script src="https://chyon.cn//media/js/prism.min.js"></script>
+  </head>
+  <body>
+            <header id="header" class="grid-container">
+        <!-- start: .menu-wrapper -->
+        <div class="menu-mobile"> 
+          <i class="fa fa-reorder"></i>
+        </div>
+        <div class="menu-wrapper">
+          <div class="">
+            <div class="logo">
+              <a href="https://chyon.cn/"><img src="\media\images\custom-headerLogo.png" alt=""></a>
+            </div>
+            <!-- start: .main-nav -->
+
+            <nav class="main-nav grid-container grid-parent">
+              <ul id="menu-header" class="menu gradient-effect">
+                <li class=""><a href="https://chyon.cn/" class="menu">首页</a></li>
+                
+                  <li class="" >
+                    <a href="/archives" class="menu">
+                      归档
+                    </a>
+                  </li>
+                
+                  <li class="" >
+                    <a href="/tags" class="menu">
+                      标签
+                    </a>
+                  </li>
+                
+                  <li class="" >
+                    <a href="/post/about" class="menu">
+                      关于
+                    </a>
+                  </li>
+                
+                <li class="search-menu-item hide-on-mobile hide-on-tablet"><a href="#search-lightbox" class="lightbox mfp-inline"><i class="fa fa-search-line"></i></a></li>
+              </ul>
+            </nav>
+            <a href="#search-lightbox" class="lightbox epcl-search-button mfp-inline hide-on-tablet hide-on-desktop"><i class="fa fa-search-line"></i></a>
+            <!-- end: .main-nav -->
+            <div class="clear"></div>
+            <div class="border hide-on-tablet hide-on-mobile"></div>
+          </div>    
+          <div class="clear"></div>
+        </div>
+        <!-- end: .menu-wrapper -->
+        <div class="clear"></div>
+      </header>
+      <div class="hide-on-mobile hide-on-tablet hide-on-desktop">
+        <div id="search-lightbox" class="grid-container grid-small grid-parent mfp-hide">
+          <div class="search-wrapper section">
+            <form id="gridea-search-form" data-update="1653140660237" action="/search/index.html" class="search-form" _lpchecked="1">
+              <input type="text" name="q" id="s" value="" class="search-field" placeholder="搜点啥..." aria-label="搜点啥..." required="">
+              <button type="submit" class="submit" aria-label="Submit">
+                <i class="fa fa-search-line"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <main id="single" class="main grid-container fullcover no-sidebar aos-init aos-animate" data-aos="fade">
+
+        <div class="center content">
+          <div class="featured-image cover" style="background-image: url('https://pic.rmb.bdstatic.com/bjh/c13d2720ed23d46b6ae3f21b120f4ca8.png');">
+            <div class="meta top"> 
+              <time class="meta-info" style="float:left;" datetime="2021-09-04"><i class="fa fa-calendar"></i><span class="lately">9 个月前</span></time>
+              
+              <a href="https://chyon.cn/post/railway-docker-comsol/#comments" class="comments meta-info" title="">
+                <i class="fa fa-comment remixicon"></i><span class="comment-count valine-comment-count" data-xid="/railway-docker-comsol/"> </span>
+              </a>
+              <span id="/railway-docker-comsol/" class="leancloud_visitors views-counter meta-info" title=""><i class="fa fa-leancloud remixicon"></i><span class="leancloud-visitors-count"></span></span>
+              
+            </div>
+            <div class="info">
+              <div class="tags ">
+                
+                      <a href="https://chyon.cn/tag/RdeqozVKj/" class="ctag ctag-0 ctag-RdeqozVKj" aria-label="">comsol</a>
+                    
+                      <a href="https://chyon.cn/tag/d98oM_-FC-/" class="ctag ctag-1 ctag-d98oM_-FC-" aria-label="">docker</a>
+                    
+              </div>
+              <h1 class="title ularge white bold">如何把Railway的Docker玩出花</h1>
+            </div>
+          </div>
+        </div>  
+
+        <div class="epcl-page-wrapper">
+          <div class="left-content grid-70 np-mobile">
+            <article class="main-article post">
+              <section class="post-content">
+                <div class="text">
+                  <p><strong>该文章后续安装失败，所以别看了</strong></p>
+<p>有大佬分享了一个免费且配置高的Docker平台：<a href="https://www.misakano.eu.org/2021/09/04/railway-vps%E5%B0%8F%E9%B8%A1%E7%94%B3%E8%AF%B7/">小御坂的破站</a>。看这配置想不心动都难。</p>
+<pre><code class="language-debian">----------------------------------------------------------------------
+ Superbench.sh -- https://www.oldking.net/350.html
+ Mode  : [0;32mStandard[0m    Version : [0;32m1.1.7
+ Usage : wget -qO- sb.oldking.net | bash
+----------------------------------------------------------------------
+sysctl: cannot stat /proc/sys/net/ipv4/tcp_congestion_control: No such file or directory
+dmesg: read kernel buffer failed: Operation not permitted
+ CPU Model            : Intel(R) Xeon(R) CPU @ 2.20GHz
+ CPU Cores            : 64 Cores 2199.998 MHz x86_64
+ CPU Cache            : 56320 KB 
+ OS                   : Debian GNU/Linux 11 (64 Bit) Docker
+ Kernel               : 4.9.0-16-amd64
+ Total Space          : 652.0 GB / 2048.0 GB 
+ Total RAM            : 59692 MB / 241834 MB (166484 MB Buff)
+ Total SWAP           : 0 MB / 0 MB
+ Uptime               : 3 days 17 hour 40 min
+ Load Average         : 62.95, 41.70, 29.63
+ TCP CC               : 
+ ASN &amp; ISP            : AS15169, Google LLC
+ Organization         : Google Cloud (us-west1)
+ Location             : The Dalles, United States / US
+ Region               : Oregon
+----------------------------------------------------------------------
+ I/O Speed( 1.0GB )   : 35.8 MB/s
+ I/O Speed( 1.0GB )   : 40.7 MB/s
+ I/O Speed( 1.0GB )   : 51.0 MB/s
+ Average I/O Speed    : 42.5 MB/s
+----------------------------------------------------------------------
+ Node Name        Upload Speed      Download Speed      Latency     
+ Speedtest.net    2027.93 Mbit/s    1645.60 Mbit/s      10.39 ms    
+ Fast.com         0.00 Mbit/s       204.0 Mbit/s        -           
+ Nanjing 5G   CT  11.12 Mbit/s      1664.69 Mbit/s      270.10 ms   
+ Hefei 5G     CT  2.28 Mbit/s       2068.22 Mbit/s      259.09 ms   
+ Guangzhou 5G CT  4.34 Mbit/s       169.28 Mbit/s       158.01 ms   
+ TianJin 5G   CU  0.60 Mbit/s       2217.23 Mbit/s      264.00 ms   
+ Shanghai 5G  CU  34.48 Mbit/s      4079.92 Mbit/s      185.49 ms   
+ Guangzhou 5G CU  34.57 Mbit/s      73.30 Mbit/s        216.76 ms   
+ Tianjin 5G   CM  682.66 Mbit/s     3330.81 Mbit/s      212.67 ms   
+ Wuxi 5G      CM  327.77 Mbit/s     1221.25 Mbit/s      216.49 ms   
+ Nanjing 5G   CM  528.95 Mbit/s     2494.22 Mbit/s      237.43 ms   
+ Hefei 5G     CM  368.09 Mbit/s     2911.22 Mbit/s      206.49 ms   
+ Changsha 5G  CM  434.19 Mbit/s     3402.93 Mbit/s      189.72 ms   
+----------------------------------------------------------------------
+ Finished in  : 8 min 23 sec
+ Timestamp    : 2021-09-04 00:17:08 GMT+8
+ Results      : ./superbench.log
+----------------------------------------------------------------------
+ Share result:
+ · https://www.speedtest.net/result/c/902b7b76-cce3-460e-8d96-74857dd1923d
+ · https://paste.ubuntu.com/p/VXxYxRZqyy/
+----------------------------------------------------------------------
+</code></pre>
+<p>不过该博主使用的Dockerfile文件是基于Debian的，我觉得不好用，还是Ubuntu更好用，所以改成了如下：</p>
+<pre><code class="language-ubuntu">FROM ubuntu:18.04
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt update
+RUN apt install ssh wget npm -y
+RUN  npm install -g wstunnel
+RUN mkdir /run/sshd 
+RUN echo 'wstunnel -s 0.0.0.0:80 &amp;' &gt;&gt;/1.sh
+RUN echo '/usr/sbin/sshd -D' &gt;&gt;/1.sh
+RUN echo 'PermitRootLogin yes' &gt;&gt;  /etc/ssh/sshd_config 
+RUN echo root:123456|chpasswd
+RUN chmod 755 /1.sh
+EXPOSE 80
+CMD  /1.sh
+</code></pre>
+<p>事先准备一台VPS，等会儿会采用<a href="https://github.com/ehang-io/nps">nps</a>映射的方法把需要的端口打出来。</p>
+<p>先在VPS上安装npm：</p>
+<pre><code class="language-ubuntu">curl -sL https://rpm.nodesource.com/setup_14.x | bash -
+apt install nodejs -y
+apt install npm -y
+</code></pre>
+<p>随后安装wstunnel，等下要先用这个软件映射ssh。</p>
+<pre><code class="language-ubuntu">npm install -g wstunnel
+</code></pre>
+<p>然后映射：</p>
+<pre><code class="language-ubuntu">wstunnel -t 7001:127.0.0.1:22 wss://你的railway三级域名.up.railway.app
+</code></pre>
+<p>新开一个SSH终端，输入：</p>
+<pre><code class="language-ubuntu">ssh-keygen -f &quot;/root/.ssh/known_hosts&quot; -R &quot;[127.0.0.1]:7001&quot; &amp;&amp; ssh root@127.0.0.1 -p 7001
+</code></pre>
+<p>输入<code>yes</code>确认，随后输入密码123456，密码无回显。</p>
+<p>此时就已经连接到Railway的Docker Ubuntu上了，这时我们首先更新下系统：</p>
+<pre><code class="language-ubuntu">apt update -y &amp;&amp; apt upgrade -y &amp;&amp; apt install -y wget unzip screen vim fuse lrzsz curl
+</code></pre>
+<p>随后下载并安装NPS客户端，注意服务端要提前搭建好，教程参考<a href="https://ehang-io.github.io/nps/#/">官方文档</a>。</p>
+<pre><code class="language-ubuntu">mkdir nps
+cd nps
+wget https://github.com/ehang-io/nps/releases/download/v0.26.10/linux_amd64_client.tar.gz
+tar zxvf linux_amd64_client.tar.gz
+
+#安装nps
+./npc install -server=ip:8024 -vkey=&lt;key&gt;
+npc start
+</code></pre>
+<p>此时回到第一个SSH终端，在VPS的wstunnel下按<code>Ctrl+C</code>终止wstunnel端口转发。</p>
+<p>然后在npc服务端设置好端口转发，使用SSH终端软件连接Docker即可。</p>
+<p>随后首先安装性能探针，参考<a href="https://www.moerats.com/archives/410/">萌鼠博客</a>，使用脚本：</p>
+<pre><code class="language-ubuntu">bash &lt;(curl -Ss https://my-netdata.io/kickstart-static64.sh)
+</code></pre>
+<p>输入<code>y</code>确认安装，随后在npc服务端设置好端口转发<code>19999</code>，即可查看性能面板。</p>
+<figure data-type="image" tabindex="1"><img src="https://pic.rmb.bdstatic.com/bjh/f1b7276bba155de307212448d49bc6ff.png" alt="图片1.png" loading="lazy"></figure>
+<p>然后安装远程桌面，参考我的博客文章：<a href="https://chyon.cn/post/docker-debian-rdp/">给docker中的Debian系统安装远程桌面</a>，不再赘述。</p>
+<p>注意安装过程中，会遇到让选区域和语言的选项，我选的中国。</p>
+<p>随后做好端口映射<code>3389</code>，然后可以使用远程桌面连接了。</p>
+<p>接下来玩点花的，<strong>装个Comsol跑仿真</strong>。</p>
+<p>先装个Filebrowser，传文件用。</p>
+<pre><code class="language-ubuntu">curl -fsSL https://raw.githubusercontent.com/filebrowser/get/master/get.sh | bash
+</code></pre>
+<p>随后运行Filebrowser：</p>
+<pre><code class="language-ubuntu">screen filebrowser -r /
+</code></pre>
+<p>按<code>Ctrl+A+D</code>后台运行，然后做好端口映射，访问，默认账户密码都是<code>admin</code>。</p>
+<p>然后开始装Comsol：</p>
+<pre><code class="language-ubuntu">mkdir /media/comsol
+cd /media/comsol
+
+#从我的下载站下载Comsol 5.6.0.401，你想装别的版本可以去翻翻https://dl.sway.workers.dev/精品软件/COMSOL/
+screen wget https://dl.sway.workers.dev/%E7%B2%BE%E5%93%81%E8%BD%AF%E4%BB%B6/COMSOL/COMSOL.Multiphysics.5.6.0.401.Win.Linux.macOS-SSQ/COMSOL_5.6.0.401_DVD.iso
+</code></pre>
+<p>Docker不支持挂载命令，所以我们装个7z直接解压：</p>
+<pre><code class="language-ubuntu">apt-get install p7zip-full p7zip-rar -y
+</code></pre>
+<p>然后运行命令解压：</p>
+<pre><code class="language-ubuntu">screen 7z x COMSOL_5.6.0.401_DVD.iso &amp;&amp; rm -rf COMSOL_5.6.0.401_DVD.iso
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://pic.rmb.bdstatic.com/bjh/3a24dbf4e60e82887d8e1aaa86d38bcb.png" alt="图片2.png" loading="lazy"></figure>
+<p>这会将ISO文件的所有内容解压到当前目录，随后我们需要赋权：</p>
+<pre><code class="language-ubuntu">chmod -R 777 /media/comsol
+</code></pre>
+<p>然后在远程桌面中打开<code>Applications-Setting-Setting Manager-Preferred Applications</code>，定位到<code>Utilities</code>标签，更换<code>Terminal Emulator</code>程序为<code>Xfce Terminal</code>。</p>
+<figure data-type="image" tabindex="3"><img src="https://pic.rmb.bdstatic.com/bjh/440553e26d07ebd3b696a40dfa4269e1.png" alt="图片4.png" loading="lazy"></figure>
+<p>然后打开文件管理器，定位到<code>/media/comsol</code>目录，右键空白处打开命令行，运行：</p>
+<pre><code class="language-ubuntu">./setup
+</code></pre>
+<figure data-type="image" tabindex="4"><img src="https://pic.rmb.bdstatic.com/bjh/e6b6ded198706a427a00afc03a57431a.png" alt="图片5.png" loading="lazy"></figure>
+<p>即可开始安装。</p>
+<figure data-type="image" tabindex="5"><img src="https://pic.rmb.bdstatic.com/bjh/c13d2720ed23d46b6ae3f21b120f4ca8.png" alt="图片5.png" loading="lazy"></figure>
+<p>安装过程中可以看一下性能面板，不得不说这个配置是真的顶：</p>
+<figure data-type="image" tabindex="6"><img src="https://pic.rmb.bdstatic.com/bjh/b898460747960fa2ca28b343fe5a13ab.png" alt="图片5.png" loading="lazy"></figure>
+
+                </div>
+                <div class="clear"></div>
+              </section>
+            </article>
+            <div class="clear"></div>
+
+            <section class="related section">
+              
+              
+
+                <div class="clear"></div>
+            </section>
+
+              <div class="clear"></div>
+              
+            
+              <div id="comments" class="bg-white hosted ">
+                <p>请到客户端“主题--自定义配置--valine”中填入ID和KEY</p>
+              </div>
+              <div class="clear"></div>
+            
+
+            </div>
+          </div>
+      </main>
+
+          <footer id="footer" class="grid-container">
+        <div class="widgets row gradient-effect">
+            <div class="default-sidebar border-effect">
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="tag_cloud-2" class="widget widget_epcl_posts_thumbs underline-effect">
+                  <h4 class="widget-title title white bordered">最新文章</h4>
+                  
+                  
+                  <article class="item post-0 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://chyon.cn/post/ifile-tryout/" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display:block;border-radius:50%;background-image: url('https://pic.rmb.bdstatic.com/bjh/d837f914d6e3af32d4ca4192ee20c278.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2022-02-23">2022-02-23</time>
+                      <h4 class="title usmall">
+                        <a href="https://chyon.cn/post/ifile-tryout/">ifile简单试用</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  <article class="item post-1 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://chyon.cn/post/multi-backup-sh/" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display:block;border-radius:50%;background-image: url('https://pic.rmb.bdstatic.com/bjh/f22c2c99f9d4d987865209cd0e8c335f.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2022-01-04">2022-01-04</time>
+                      <h4 class="title usmall">
+                        <a href="https://chyon.cn/post/multi-backup-sh/">服务器多备份脚本</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  <article class="item post-2 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://chyon.cn/post/ubuntu20-bash-startup/" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display:block;border-radius:50%;background-image: url('https://pic.rmb.bdstatic.com/bjh/bccbf745b500e7e79d196b531935e9b5.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2021-12-31">2021-12-31</time>
+                      <h4 class="title usmall">
+                        <a href="https://chyon.cn/post/ubuntu20-bash-startup/">Ubuntu20 开机自启脚本设置</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <div class="clear"></div>
+                </section>
+              </div>
+
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="tag_cloud-2" class="widget widget_tag_cloud underline-effect">
+                  <h4 class="widget-title title white bordered">标签云</h4>
+                  <div class="tagcloud">
+                    
+                      <a href="https://chyon.cn/tag/1tNs6jYaW/" class="ctag ctag-0 ctag-1tNs6jYaW" aria-label="">office365</a>
+                    
+                      <a href="https://chyon.cn/tag/nbbkZL5Qz/" class="ctag ctag-1 ctag-nbbkZL5Qz" aria-label="">Oracle</a>
+                    
+                      <a href="https://chyon.cn/tag/7Og8ymC1p/" class="ctag ctag-2 ctag-7Og8ymC1p" aria-label="">树莓派</a>
+                    
+                      <a href="https://chyon.cn/tag/LFhcpSea-R/" class="ctag ctag-3 ctag-LFhcpSea-R" aria-label="">Cloudreve</a>
+                    
+                      <a href="https://chyon.cn/tag/e2VPqPl4Hb/" class="ctag ctag-4 ctag-e2VPqPl4Hb" aria-label="">OFB</a>
+                    
+                      <a href="https://chyon.cn/tag/OXMYjl4qvz/" class="ctag ctag-5 ctag-OXMYjl4qvz" aria-label="">CCAA</a>
+                    
+                      <a href="https://chyon.cn/tag/d98oM_-FC-/" class="ctag ctag-6 ctag-d98oM_-FC-" aria-label="">docker</a>
+                    
+                      <a href="https://chyon.cn/tag/y2g_Jal6Qj/" class="ctag ctag-7 ctag-y2g_Jal6Qj" aria-label="">青龙</a>
+                    
+                      <a href="https://chyon.cn/tag/rpDcRXcBJv/" class="ctag ctag-8 ctag-rpDcRXcBJv" aria-label="">教程</a>
+                    
+                      <a href="https://chyon.cn/tag/o33z1EqCrH/" class="ctag ctag-9 ctag-o33z1EqCrH" aria-label="">rss</a>
+                    
+                      <a href="https://chyon.cn/tag/7dC6LXdvyt/" class="ctag ctag-10 ctag-7dC6LXdvyt" aria-label="">onenote</a>
+                    
+                      <a href="https://chyon.cn/tag/HSfooHFl3X/" class="ctag ctag-11 ctag-HSfooHFl3X" aria-label="">flow</a>
+                    
+                      <a href="https://chyon.cn/tag/g73VMB7RIb/" class="ctag ctag-12 ctag-g73VMB7RIb" aria-label="">心情日记</a>
+                    
+                      <a href="https://chyon.cn/tag/WRGI_M9cAp/" class="ctag ctag-13 ctag-WRGI_M9cAp" aria-label="">软件</a>
+                    
+                      <a href="https://chyon.cn/tag/sESGof_c-K/" class="ctag ctag-14 ctag-sESGof_c-K" aria-label="">KMS</a>
+                    
+                      <a href="https://chyon.cn/tag/C0siuULFmO/" class="ctag ctag-15 ctag-C0siuULFmO" aria-label="">分享</a>
+                    
+                      <a href="https://chyon.cn/tag/bxYNpo6x0jV/" class="ctag ctag-16 ctag-bxYNpo6x0jV" aria-label="">科普</a>
+                    
+                      <a href="https://chyon.cn/tag/GnExbHY2m/" class="ctag ctag-17 ctag-GnExbHY2m" aria-label="">Gridea</a>
+                    
+                      <a href="https://chyon.cn/tag/ZWTJjiyL1-w/" class="ctag ctag-18 ctag-ZWTJjiyL1-w" aria-label="">markdown</a>
+                    
+                  </div>
+                  <div class="clear"></div>
+                </section>
+              </div>
+
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="epcl_about-2" class="widget widget_epcl_about underline-effect">
+                  <h4 class="widget-title title white bordered">关于我</h4>
+                  <div class="avatar">
+                    <a href="" class="translate-effect thumb"><span class="fullimage cover" style="background-image: url(https://chyon.cn//images/avatar.png);"></span></a>
+                  </div>
+                  <div class="info">
+                    <h4 class="title small author-name gradient-effect no-margin"><a href="">言岚的博客</a></h4>
+                    <p class="founder">这是一个孤独的世界</p>
+                    <div class="social">
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                    </div> 
+                  </div>
+                  <div class="clear"></div>
+                  </section>
+              </div>
+
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="logo">
+          <a href="https://chyon.cn/"><img src="\media\images\custom-footerLogo.png" alt=""></a>
+        </div>
+        <p class="published border-effect">
+          ©2019 共 92 篇文章
+          <br/>
+          Theme <a href="https://gridea.dev/" target="_blank">「breek」</a> Powered by <a href="https://gridea.dev/" target="_blank">「Gridea」</a>
+        </p>
+        
+        <a href="javascript:void(0)" id="back-to-top" class="epcl-button dark" style="display:none">
+          <i class="fa fa-arrow"></i>
+        </a>
+    </footer>
+    
+    <div class="clear"></div>
+
+        
+
+      
+    <script src="https://chyon.cn//media/js/functions-post.js"></script>
+
+    </div>
+    <!-- end: #wrapper -->
+  </body>
+</html>

@@ -1,0 +1,583 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Power Automate设计RSS自动发送到Onenote | 言岚的博客</title>
+<meta name="description" content="这是一个孤独的世界" />
+<link rel="shortcut icon" href="https://chyon.cn//favicon.ico">
+<link rel="stylesheet" href="https://chyon.cn//styles/main.css">
+
+<script src="https://chyon.cn//media/js/jquery.min.js"></script>
+<script src="https://chyon.cn//media/js/masonry.pkgd.min.js"></script>
+<script src="https://chyon.cn//media/js/aos.js"></script>
+<script src="https://chyon.cn//media/js/pace.min.js"></script>
+<script src="https://chyon.cn//media/js/view-image.min.js"></script>
+<script src="https://chyon.cn//media/js/jquery.magnific-popup.min.js"></script>
+<script src="https://chyon.cn//media/js/functions.js"></script>
+    <meta name="referrer" content="never">
+    <meta name="description" content="说明：
+
+本文所讨论的Onenote是基于国际版Microsoft Office 365企业版所附有的Onenote功能；
+Power Automate是国际版Microsoft Office 365企业版附有的功能，原名Flow。
+
+背景..." />
+    <meta name="keywords" content="教程,rss,onenote,flow" />
+    <script src="https://chyon.cn//media/js/waterfall.min.js"></script>
+    <script src="https://chyon.cn//media/js/prism.min.js"></script>
+  </head>
+  <body>
+            <header id="header" class="grid-container">
+        <!-- start: .menu-wrapper -->
+        <div class="menu-mobile"> 
+          <i class="fa fa-reorder"></i>
+        </div>
+        <div class="menu-wrapper">
+          <div class="">
+            <div class="logo">
+              <a href="https://chyon.cn/"><img src="\media\images\custom-headerLogo.png" alt=""></a>
+            </div>
+            <!-- start: .main-nav -->
+
+            <nav class="main-nav grid-container grid-parent">
+              <ul id="menu-header" class="menu gradient-effect">
+                <li class=""><a href="https://chyon.cn/" class="menu">首页</a></li>
+                
+                  <li class="" >
+                    <a href="/archives" class="menu">
+                      归档
+                    </a>
+                  </li>
+                
+                  <li class="" >
+                    <a href="/tags" class="menu">
+                      标签
+                    </a>
+                  </li>
+                
+                  <li class="" >
+                    <a href="/post/about" class="menu">
+                      关于
+                    </a>
+                  </li>
+                
+                <li class="search-menu-item hide-on-mobile hide-on-tablet"><a href="#search-lightbox" class="lightbox mfp-inline"><i class="fa fa-search-line"></i></a></li>
+              </ul>
+            </nav>
+            <a href="#search-lightbox" class="lightbox epcl-search-button mfp-inline hide-on-tablet hide-on-desktop"><i class="fa fa-search-line"></i></a>
+            <!-- end: .main-nav -->
+            <div class="clear"></div>
+            <div class="border hide-on-tablet hide-on-mobile"></div>
+          </div>    
+          <div class="clear"></div>
+        </div>
+        <!-- end: .menu-wrapper -->
+        <div class="clear"></div>
+      </header>
+      <div class="hide-on-mobile hide-on-tablet hide-on-desktop">
+        <div id="search-lightbox" class="grid-container grid-small grid-parent mfp-hide">
+          <div class="search-wrapper section">
+            <form id="gridea-search-form" data-update="1653140660237" action="/search/index.html" class="search-form" _lpchecked="1">
+              <input type="text" name="q" id="s" value="" class="search-field" placeholder="搜点啥..." aria-label="搜点啥..." required="">
+              <button type="submit" class="submit" aria-label="Submit">
+                <i class="fa fa-search-line"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <main id="single" class="main grid-container fullcover no-sidebar aos-init aos-animate" data-aos="fade">
+
+        <div class="center content">
+          <div class="featured-image cover" style="background-image: url('\media\images\custom-featureImage.png');">
+            <div class="meta top"> 
+              <time class="meta-info" style="float:left;" datetime="2020-06-17"><i class="fa fa-calendar"></i><span class="lately">2 年前</span></time>
+              
+              <a href="https://chyon.cn/post/rss-to-onenote-by-flow/#comments" class="comments meta-info" title="">
+                <i class="fa fa-comment remixicon"></i><span class="comment-count valine-comment-count" data-xid="/rss-to-onenote-by-flow/"> </span>
+              </a>
+              <span id="/rss-to-onenote-by-flow/" class="leancloud_visitors views-counter meta-info" title=""><i class="fa fa-leancloud remixicon"></i><span class="leancloud-visitors-count"></span></span>
+              
+            </div>
+            <div class="info">
+              <div class="tags ">
+                
+                      <a href="https://chyon.cn/tag/rpDcRXcBJv/" class="ctag ctag-0 ctag-rpDcRXcBJv" aria-label="">教程</a>
+                    
+                      <a href="https://chyon.cn/tag/o33z1EqCrH/" class="ctag ctag-1 ctag-o33z1EqCrH" aria-label="">rss</a>
+                    
+                      <a href="https://chyon.cn/tag/7dC6LXdvyt/" class="ctag ctag-2 ctag-7dC6LXdvyt" aria-label="">onenote</a>
+                    
+                      <a href="https://chyon.cn/tag/HSfooHFl3X/" class="ctag ctag-3 ctag-HSfooHFl3X" aria-label="">flow</a>
+                    
+              </div>
+              <h1 class="title ularge white bold">Power Automate设计RSS自动发送到Onenote</h1>
+            </div>
+          </div>
+        </div>  
+
+        <div class="epcl-page-wrapper">
+          <div class="left-content grid-70 np-mobile">
+            <article class="main-article post">
+              <section class="post-content">
+                <div class="text">
+                  <p><strong>说明：</strong></p>
+<ul>
+<li>本文所讨论的Onenote是基于国际版Microsoft Office 365企业版所附有的Onenote功能；</li>
+<li>Power Automate是国际版Microsoft Office 365企业版附有的功能，原名Flow。</li>
+</ul>
+<p><strong>背景</strong></p>
+<p>手上有一个ipad，也有笔，很不想把它变成单纯的爱奇艺共聚，还是需要学习一点什么东西。后来发现Onenote在ipad上面同步的速度还不错，配合笔用来做批注和笔记都很好。ipad做批注可以对pdf做，也可以对笔记做，但是怎样把所需要阅读的内容发送到笔记或者做成pdf就是很为难的问题。</p>
+<p>所以我想到了用自动化程序做，之前考虑过<code>IFTTT</code>，但是实测效果并不理想，也不支持企业版的Onenote，只支持个人版的Onenote，最终还是将目光投向了Flow。</p>
+<p>但是Flow里面没有现成的模板，所以我还是自己动手比较好，昨天花了一晚上的时间做出来了，今天一看，效果还算是可以接受，如此，就写一下教程造福大众吧。</p>
+<p><strong>教程</strong></p>
+<ol>
+<li>准备</li>
+</ol>
+<p>需要准备的东西有：</p>
+<ul>
+<li>一个企业版的Office 365订阅账号；</li>
+<li>在Onenote中创建好一个笔记本和一个分区；</li>
+<li>一个RSS订阅源。</li>
+</ul>
+<ol start="2">
+<li>教程</li>
+</ol>
+<p>首先进入到Power Automate的界面，如下图所示。<br>
+如果找不到就点旁边的“所有应用”再找一下。</p>
+<figure data-type="image" tabindex="1"><img src="https://pic.rmb.bdstatic.com/bjh/c90313208f174fcbeed424ba7fa5f369.png" alt="20200617123711.png" loading="lazy"></figure>
+<p>进入之后的界面是这个样子的：</p>
+<figure data-type="image" tabindex="2"><img src="https://pic.rmb.bdstatic.com/bjh/6c56262d5e3c6e9a4cc7cb23e5916fc3.png" alt="20200617123801.png" loading="lazy"></figure>
+<p>然后点击左侧的创建，选择自动化流。</p>
+<figure data-type="image" tabindex="3"><img src="https://pic.rmb.bdstatic.com/bjh/c8e55c543b98581038d8d21bb37e9a63.png" alt="20200617124022.png" loading="lazy"></figure>
+<p>然后填写流的名称，触发器搜索一下<code>rss</code>，然后选择“发布源项时”：</p>
+<figure data-type="image" tabindex="4"><img src="https://pic.rmb.bdstatic.com/bjh/56e7fa03cce79bd67291a070f210dbed.png" alt="20200617124434.png" loading="lazy"></figure>
+<p>随后创建。</p>
+<p>再框内输入你的rss订阅链接，然后添加新步骤：</p>
+<figure data-type="image" tabindex="5"><img src="https://pic.rmb.bdstatic.com/bjh/05f1e54c10b066b19ad84f7697cf5d22.png" alt="20200617124600.png" loading="lazy"></figure>
+<p>在添加新的操作中，搜索<code>onenote</code>，然后下翻选择“在分区中创建页面”：</p>
+<figure data-type="image" tabindex="6"><img src="https://pic.rmb.bdstatic.com/bjh/8af38c5e2aeb211b0d1e040ba8d7496d.png" alt="20200617124739.png" loading="lazy"></figure>
+<p>在新的流程中，“笔记本键”就是笔记本的名称，“笔记本分区”栏也要选择要使用的分区的名称。<br>
+这两栏都不能手动填写，要选择它给出的选项，如果没有看到你想要的选项，你需要回到Onenote中进行调整。</p>
+<p>选择之后如下图所示：</p>
+<figure data-type="image" tabindex="7"><img src="https://pic.rmb.bdstatic.com/bjh/5ab5372a0948f3c8f065527fe14f39ee.png" alt="20200617125320.png" loading="lazy"></figure>
+<figure data-type="image" tabindex="8"><img src="https://pic.rmb.bdstatic.com/bjh/10a2a5c27ec16976f483ec8be9da6a59.png" alt="20200617125342.png" loading="lazy"></figure>
+<p>随后在下方“页面内容”中设计输出的内容：</p>
+<p>这一步应当使用“动态表达式”进行设计：</p>
+<figure data-type="image" tabindex="9"><img src="https://pic.rmb.bdstatic.com/bjh/6433b75269ffd15ff9fb039fc7f1937b.png" alt="20200617125500.png" loading="lazy"></figure>
+<p>“动态表达式”中，“源标题”对应的就是rss输出内容中的<code>&lt;Title&gt;</code>，“源摘要”对应的就是<code>&lt;description&gt;</code></p>
+<p>设计好的输出内容应当如下图所示：</p>
+<figure data-type="image" tabindex="10"><img src="https://pic.rmb.bdstatic.com/bjh/cac98497200f70dc830f4ebde17e5f78.png" alt="20200617125702.png" loading="lazy"></figure>
+<p>然后保存即可生效。</p>
+<ol start="3">
+<li>效果</li>
+</ol>
+<p>我设计了一个输出人民日报内容的Flow，效果可以接受，输出的内容如下图所示：</p>
+<figure data-type="image" tabindex="11"><img src="https://pic.rmb.bdstatic.com/bjh/cd74f648134c8c979ca01eedfac10c14.png" alt="20200617130031.png" loading="lazy"></figure>
+<p>后台运行也会报错：</p>
+<figure data-type="image" tabindex="12"><img src="https://pic.rmb.bdstatic.com/bjh/65beeca19a044ffe951b230765775ca6.png" alt="20200617130100.png" loading="lazy"></figure>
+<p>可以看到错误率还是蛮高的，我仔细查看了一下错误日志，发现所有的错误提示都是：</p>
+<pre><code class="language-linux">在用户帐户上，太多请求同时发送到同一位置。
+</code></pre>
+<p>估计是因为rss推送速度比较快导致的。</p>
+<p>但是不用担心，默认情况下，出现错误会进行最多4次重试，还是比较可靠的。</p>
+<ol start="4">
+<li>拓展</li>
+</ol>
+<p>当然你学会了以上输出到onenote之后，你也可以尝试其他方法。</p>
+<p>例如，用发送邮件的方式接收更新：</p>
+<figure data-type="image" tabindex="13"><img src="https://pic.rmb.bdstatic.com/bjh/b90273ff54f396214f1081b89f9b8b7a.png" alt="20200617130545.png" loading="lazy"></figure>
+<p>当然这个已经有模板了，直接搜索rss模板就可以看到。</p>
+<p>你也可以设计用附件的方式：</p>
+<figure data-type="image" tabindex="14"><img src="https://pic.rmb.bdstatic.com/bjh/7016f6bccb67f57b683e71fa927c6385.png" alt="20200617131116.png" loading="lazy"></figure>
+
+                </div>
+                <div class="clear"></div>
+              </section>
+            </article>
+            <div class="clear"></div>
+
+            <section class="related section">
+              
+              <article class="prev grid-50 tablet-grid-50 grid-parent">
+                <div class="thumb cover lazy loaded" style="background-image: url('https://chyon.cn//media/images/gridea.jpg');"></div>
+                 <a href="https://chyon.cn/post/feng-yue-wu-bian/" class="full-link"></a>
+                 <div class="info">
+                  <time datetime="2020-07-06">2020-07-06</time>
+                  <h4 class="title white no-margin">风月无边</h4>
+                </div>
+                 <span class="epcl-button red">
+                  <img src="https://chyon.cn//media/images/left-arrow.svg" width="15" alt="Left Arrow">
+                </span>
+                <div class="overlay"></div>
+              </article>
+              
+              
+              <article class="next grid-50 tablet-grid-50 grid-parent">
+                <div class="thumb cover lazy loaded" style="background-image: url('https://chyon.cn//media/images/rpDcRXcBJv.jpg');"></div>
+                 <a href="https://chyon.cn/post/docker-ttrss/" class="full-link"></a>
+                 <div class="info">
+                  <time datetime="2020-06-15">2020-06-15</time>
+                  <h4 class="title white no-margin">VPS搭建TTRSS-Docker服务</h4>
+                </div>
+                 <span class="epcl-button red">
+                  <img src="https://chyon.cn//media/images/right-arrow.svg" width="15" alt="Left Arrow">
+                </span>
+                <div class="overlay"></div>
+              </article>
+              
+
+                <div class="clear"></div>
+            </section>
+
+              <div class="clear"></div>
+              
+            
+              <div id="comments" class="bg-white hosted ">
+                <p>请到客户端“主题--自定义配置--valine”中填入ID和KEY</p>
+              </div>
+              <div class="clear"></div>
+            
+
+            </div>
+          </div>
+      </main>
+
+          <footer id="footer" class="grid-container">
+        <div class="widgets row gradient-effect">
+            <div class="default-sidebar border-effect">
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="tag_cloud-2" class="widget widget_epcl_posts_thumbs underline-effect">
+                  <h4 class="widget-title title white bordered">最新文章</h4>
+                  
+                  
+                  <article class="item post-0 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://chyon.cn/post/ifile-tryout/" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display:block;border-radius:50%;background-image: url('https://pic.rmb.bdstatic.com/bjh/d837f914d6e3af32d4ca4192ee20c278.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2022-02-23">2022-02-23</time>
+                      <h4 class="title usmall">
+                        <a href="https://chyon.cn/post/ifile-tryout/">ifile简单试用</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  <article class="item post-1 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://chyon.cn/post/multi-backup-sh/" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display:block;border-radius:50%;background-image: url('https://pic.rmb.bdstatic.com/bjh/f22c2c99f9d4d987865209cd0e8c335f.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2022-01-04">2022-01-04</time>
+                      <h4 class="title usmall">
+                        <a href="https://chyon.cn/post/multi-backup-sh/">服务器多备份脚本</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  <article class="item post-2 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://chyon.cn/post/ubuntu20-bash-startup/" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display:block;border-radius:50%;background-image: url('https://pic.rmb.bdstatic.com/bjh/bccbf745b500e7e79d196b531935e9b5.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2021-12-31">2021-12-31</time>
+                      <h4 class="title usmall">
+                        <a href="https://chyon.cn/post/ubuntu20-bash-startup/">Ubuntu20 开机自启脚本设置</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <div class="clear"></div>
+                </section>
+              </div>
+
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="tag_cloud-2" class="widget widget_tag_cloud underline-effect">
+                  <h4 class="widget-title title white bordered">标签云</h4>
+                  <div class="tagcloud">
+                    
+                      <a href="https://chyon.cn/tag/1tNs6jYaW/" class="ctag ctag-0 ctag-1tNs6jYaW" aria-label="">office365</a>
+                    
+                      <a href="https://chyon.cn/tag/nbbkZL5Qz/" class="ctag ctag-1 ctag-nbbkZL5Qz" aria-label="">Oracle</a>
+                    
+                      <a href="https://chyon.cn/tag/7Og8ymC1p/" class="ctag ctag-2 ctag-7Og8ymC1p" aria-label="">树莓派</a>
+                    
+                      <a href="https://chyon.cn/tag/LFhcpSea-R/" class="ctag ctag-3 ctag-LFhcpSea-R" aria-label="">Cloudreve</a>
+                    
+                      <a href="https://chyon.cn/tag/e2VPqPl4Hb/" class="ctag ctag-4 ctag-e2VPqPl4Hb" aria-label="">OFB</a>
+                    
+                      <a href="https://chyon.cn/tag/OXMYjl4qvz/" class="ctag ctag-5 ctag-OXMYjl4qvz" aria-label="">CCAA</a>
+                    
+                      <a href="https://chyon.cn/tag/d98oM_-FC-/" class="ctag ctag-6 ctag-d98oM_-FC-" aria-label="">docker</a>
+                    
+                      <a href="https://chyon.cn/tag/y2g_Jal6Qj/" class="ctag ctag-7 ctag-y2g_Jal6Qj" aria-label="">青龙</a>
+                    
+                      <a href="https://chyon.cn/tag/rpDcRXcBJv/" class="ctag ctag-8 ctag-rpDcRXcBJv" aria-label="">教程</a>
+                    
+                      <a href="https://chyon.cn/tag/o33z1EqCrH/" class="ctag ctag-9 ctag-o33z1EqCrH" aria-label="">rss</a>
+                    
+                      <a href="https://chyon.cn/tag/7dC6LXdvyt/" class="ctag ctag-10 ctag-7dC6LXdvyt" aria-label="">onenote</a>
+                    
+                      <a href="https://chyon.cn/tag/HSfooHFl3X/" class="ctag ctag-11 ctag-HSfooHFl3X" aria-label="">flow</a>
+                    
+                      <a href="https://chyon.cn/tag/g73VMB7RIb/" class="ctag ctag-12 ctag-g73VMB7RIb" aria-label="">心情日记</a>
+                    
+                      <a href="https://chyon.cn/tag/WRGI_M9cAp/" class="ctag ctag-13 ctag-WRGI_M9cAp" aria-label="">软件</a>
+                    
+                      <a href="https://chyon.cn/tag/sESGof_c-K/" class="ctag ctag-14 ctag-sESGof_c-K" aria-label="">KMS</a>
+                    
+                      <a href="https://chyon.cn/tag/C0siuULFmO/" class="ctag ctag-15 ctag-C0siuULFmO" aria-label="">分享</a>
+                    
+                      <a href="https://chyon.cn/tag/bxYNpo6x0jV/" class="ctag ctag-16 ctag-bxYNpo6x0jV" aria-label="">科普</a>
+                    
+                      <a href="https://chyon.cn/tag/GnExbHY2m/" class="ctag ctag-17 ctag-GnExbHY2m" aria-label="">Gridea</a>
+                    
+                      <a href="https://chyon.cn/tag/ZWTJjiyL1-w/" class="ctag ctag-18 ctag-ZWTJjiyL1-w" aria-label="">markdown</a>
+                    
+                  </div>
+                  <div class="clear"></div>
+                </section>
+              </div>
+
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="epcl_about-2" class="widget widget_epcl_about underline-effect">
+                  <h4 class="widget-title title white bordered">关于我</h4>
+                  <div class="avatar">
+                    <a href="" class="translate-effect thumb"><span class="fullimage cover" style="background-image: url(https://chyon.cn//images/avatar.png);"></span></a>
+                  </div>
+                  <div class="info">
+                    <h4 class="title small author-name gradient-effect no-margin"><a href="">言岚的博客</a></h4>
+                    <p class="founder">这是一个孤独的世界</p>
+                    <div class="social">
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                    </div> 
+                  </div>
+                  <div class="clear"></div>
+                  </section>
+              </div>
+
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="logo">
+          <a href="https://chyon.cn/"><img src="\media\images\custom-footerLogo.png" alt=""></a>
+        </div>
+        <p class="published border-effect">
+          ©2019 共 92 篇文章
+          <br/>
+          Theme <a href="https://gridea.dev/" target="_blank">「breek」</a> Powered by <a href="https://gridea.dev/" target="_blank">「Gridea」</a>
+        </p>
+        
+        <a href="javascript:void(0)" id="back-to-top" class="epcl-button dark" style="display:none">
+          <i class="fa fa-arrow"></i>
+        </a>
+    </footer>
+    
+    <div class="clear"></div>
+
+        
+
+      
+    <script src="https://chyon.cn//media/js/functions-post.js"></script>
+
+    </div>
+    <!-- end: #wrapper -->
+  </body>
+</html>

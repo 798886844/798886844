@@ -1,0 +1,708 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>VPS搭建Aria2+AriaNG+Rclone挂载Onedrive实现离线下载到网盘 | 言岚的博客</title>
+<meta name="description" content="这是一个孤独的世界" />
+<link rel="shortcut icon" href="https://chyon.cn//favicon.ico">
+<link rel="stylesheet" href="https://chyon.cn//styles/main.css">
+
+<script src="https://chyon.cn//media/js/jquery.min.js"></script>
+<script src="https://chyon.cn//media/js/masonry.pkgd.min.js"></script>
+<script src="https://chyon.cn//media/js/aos.js"></script>
+<script src="https://chyon.cn//media/js/pace.min.js"></script>
+<script src="https://chyon.cn//media/js/view-image.min.js"></script>
+<script src="https://chyon.cn//media/js/jquery.magnific-popup.min.js"></script>
+<script src="https://chyon.cn//media/js/functions.js"></script>
+    <meta name="referrer" content="never">
+    <meta name="description" content="2018.5.29 23:55更新：修改安装顺序，避免出现bug；修改autoupload.sh内容，实现上传+删除本地文件同时管理。
+研究了接近三个月的离线下载，网上的教程或多或少有一些或者几乎全部都是错的，不知道是过期了还是怎么了。还好..." />
+    <meta name="keywords" content="教程" />
+    <script src="https://chyon.cn//media/js/waterfall.min.js"></script>
+    <script src="https://chyon.cn//media/js/prism.min.js"></script>
+  </head>
+  <body>
+            <header id="header" class="grid-container">
+        <!-- start: .menu-wrapper -->
+        <div class="menu-mobile"> 
+          <i class="fa fa-reorder"></i>
+        </div>
+        <div class="menu-wrapper">
+          <div class="">
+            <div class="logo">
+              <a href="https://chyon.cn/"><img src="\media\images\custom-headerLogo.png" alt=""></a>
+            </div>
+            <!-- start: .main-nav -->
+
+            <nav class="main-nav grid-container grid-parent">
+              <ul id="menu-header" class="menu gradient-effect">
+                <li class=""><a href="https://chyon.cn/" class="menu">首页</a></li>
+                
+                  <li class="" >
+                    <a href="/archives" class="menu">
+                      归档
+                    </a>
+                  </li>
+                
+                  <li class="" >
+                    <a href="/tags" class="menu">
+                      标签
+                    </a>
+                  </li>
+                
+                  <li class="" >
+                    <a href="/post/about" class="menu">
+                      关于
+                    </a>
+                  </li>
+                
+                <li class="search-menu-item hide-on-mobile hide-on-tablet"><a href="#search-lightbox" class="lightbox mfp-inline"><i class="fa fa-search-line"></i></a></li>
+              </ul>
+            </nav>
+            <a href="#search-lightbox" class="lightbox epcl-search-button mfp-inline hide-on-tablet hide-on-desktop"><i class="fa fa-search-line"></i></a>
+            <!-- end: .main-nav -->
+            <div class="clear"></div>
+            <div class="border hide-on-tablet hide-on-mobile"></div>
+          </div>    
+          <div class="clear"></div>
+        </div>
+        <!-- end: .menu-wrapper -->
+        <div class="clear"></div>
+      </header>
+      <div class="hide-on-mobile hide-on-tablet hide-on-desktop">
+        <div id="search-lightbox" class="grid-container grid-small grid-parent mfp-hide">
+          <div class="search-wrapper section">
+            <form id="gridea-search-form" data-update="1653140660237" action="/search/index.html" class="search-form" _lpchecked="1">
+              <input type="text" name="q" id="s" value="" class="search-field" placeholder="搜点啥..." aria-label="搜点啥..." required="">
+              <button type="submit" class="submit" aria-label="Submit">
+                <i class="fa fa-search-line"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <main id="single" class="main grid-container fullcover no-sidebar aos-init aos-animate" data-aos="fade">
+
+        <div class="center content">
+          <div class="featured-image cover" style="background-image: url('\media\images\custom-featureImage.png');">
+            <div class="meta top"> 
+              <time class="meta-info" style="float:left;" datetime="2018-05-27"><i class="fa fa-calendar"></i><span class="lately">4 年前</span></time>
+              
+              <a href="https://chyon.cn/post/offline-download-rclone/#comments" class="comments meta-info" title="">
+                <i class="fa fa-comment remixicon"></i><span class="comment-count valine-comment-count" data-xid="/offline-download-rclone/"> </span>
+              </a>
+              <span id="/offline-download-rclone/" class="leancloud_visitors views-counter meta-info" title=""><i class="fa fa-leancloud remixicon"></i><span class="leancloud-visitors-count"></span></span>
+              
+            </div>
+            <div class="info">
+              <div class="tags ">
+                
+                      <a href="https://chyon.cn/tag/rpDcRXcBJv/" class="ctag ctag-0 ctag-rpDcRXcBJv" aria-label="">教程</a>
+                    
+              </div>
+              <h1 class="title ularge white bold">VPS搭建Aria2+AriaNG+Rclone挂载Onedrive实现离线下载到网盘</h1>
+            </div>
+          </div>
+        </div>  
+
+        <div class="epcl-page-wrapper">
+          <div class="left-content grid-70 np-mobile">
+            <article class="main-article post">
+              <section class="post-content">
+                <div class="text">
+                  <h4 id="2018529-2355更新修改安装顺序避免出现bug修改autouploadsh内容实现上传删除本地文件同时管理">2018.5.29 23:55更新：修改安装顺序，避免出现bug；修改autoupload.sh内容，实现上传+删除本地文件同时管理。</h4>
+<p>研究了接近三个月的离线下载，网上的教程或多或少有一些或者几乎全部都是错的，不知道是过期了还是怎么了。还好，至少给了我一个大方向，经过不懈的努力，我最终还是实现了这个离线下载到Onedrive中的功能。</p>
+<p>在研究的过程中无意发现了Rclone自带的sync功能，因此，本篇文章将用两种方法实现自动上传，并做对比。</p>
+<p>搭建环境：Docker环境，镜像：<br>
+<a href="https://hub.docker.com/r/rastasheep/ubuntu-sshd/">rastasheep/ubuntu-sshd</a></p>
+<p>其中，该镜像的环境是</p>
+<pre><code class="language-c#">ubuntu-sshd-910292714-kpnx7 4.4.0-72-generic
+用户名、密码均为：root
+</code></pre>
+<p>需要开放的端口包括：22、80、6800，但不限于以上端口。</p>
+<h3 id="安装ariang">安装AriaNG</h3>
+<p>本文采用的是Apache网络服务器安装。</p>
+<p>打开Shell终端，连接VPS：</p>
+<p>安装依赖：</p>
+<pre><code class="language-C">apt-get update
+apt-get install -y vim unzip screen fuse
+</code></pre>
+<h4 id="下载并安装apache20">下载并安装<a href="https://blog.csdn.net/StepTimeNatural/article/details/78153740">Apache2.0</a>：</h4>
+<pre><code class="language-C">apt-get -y install apache2
+/etc/init.d/apache2 start
+</code></pre>
+<p>此时打开VPS的ip应该能看到Apache的默认页面了。</p>
+<p>其中Apache2.0的默认网页文件根目录位于<code>/var/www</code>，配置文件位于<code>/etc/apache2/apache2.conf</code></p>
+<p>停止Apache2.0：<code>/etc/init.d/apache2 stop</code></p>
+<h4 id="下载并安装ariang">下载并<a href="https://lala.im/2982.html">安装AriaNG</a></h4>
+<pre><code class="language-c">cd /var/www/html
+wget https://github.com/mayswind/AriaNg/releases/download/0.4.0/aria-ng-0.4.0.zip
+unzip aria-ng-0.4.0.zip
+</code></pre>
+<p>注意，中间有一个index.html提示的提示，选&quot;y&quot;即可。</p>
+<pre><code class="language-c">root@ubuntu-sshd-910292714-v1kbc:/var/www/html# unzip aria-ng-0.4.0.zip
+Archive:  aria-ng-0.4.0.zip
+   creating: css/
+  inflating: css/aria-ng-aed476e868.min.css
+  inflating: css/bootstrap-3.3.7.min.css
+  inflating: css/plugins-a7090b9582.min.css
+   creating: fonts/
+  inflating: fonts/fontawesome-webfont.eot
+  inflating: fonts/fontawesome-webfont.svg
+  inflating: fonts/fontawesome-webfont.ttf
+  inflating: fonts/fontawesome-webfont.woff
+  inflating: fonts/fontawesome-webfont.woff2
+   creating: js/
+  inflating: js/angular-packages-1.6.5.min.js
+  inflating: js/aria-ng-32e6c713b1.min.js
+  inflating: js/bootstrap-3.3.7.min.js
+  inflating: js/echarts-common-3.7.1.min.js
+  inflating: js/jquery-2.2.4.min.js
+  inflating: js/moment-with-locales-2.18.1.min.js
+  inflating: js/plugins-7eed010b9e.min.js
+   creating: langs/
+  inflating: langs/zh_Hans.txt
+  inflating: langs/zh_Hant.txt
+  inflating: favicon.ico
+  inflating: favicon.png
+replace index.html? [y]es, [n]o, [A]ll, [N]one, [r]ename: y #选择“y”即可。
+  inflating: index.html
+  inflating: index.manifest
+  inflating: LICENSE
+  inflating: robots.txt
+  inflating: tileicon.png
+  inflating: touchicon.png
+</code></pre>
+<p>完成后，浏览器打开你的ip地址，按下<code>crtl+F5</code>就可以看到AriaNG面板了，但是我们还没有安装Aria2，因此现在还无法连接。</p>
+<h3 id="安装并配置aria2">安装并配置<a href="https://www.htcp.net/3652.html">Aria2</a></h3>
+<h4 id="安装aria2">安装Aria2</h4>
+<p>回到Root目录下：</p>
+<p><code>cd /root</code></p>
+<p>一条命令即可：</p>
+<p><code>apt-get -y install aria2</code></p>
+<h4 id="配置aria2">配置Aria2</h4>
+<p>需要自行新建配置文件：</p>
+<pre><code class="language-language">mkdir /root/.aria2
+touch /root/.aria2/aria2.session
+touch /root/.aria2/aria2.log
+touch /root/.aria2/aria2.conf
+</code></pre>
+<p>其中，aria2.session为下载信息文件，aria2.log为日志文件。这两个文件不用管。</p>
+<p>需要编辑的是aria2.conf，这是aria2的配置文件。</p>
+<p><code>vi /root/.aria2/aria2.conf</code></p>
+<p>按下<code>i</code>，写入下列信息：</p>
+<pre><code class="language-c">## '#'开头为注释内容, 选项都有相应的注释说明, 根据需要修改 ##
+## 被注释的选项填写的是默认值, 建议在需要修改时再取消注释  ##
+ 
+## 文件保存相关 ##
+ 
+# 文件的保存路径(可使用绝对路径或相对路径), 默认: 当前启动位置
+dir=/root/download/
+# 启用磁盘缓存, 0为禁用缓存, 需1.16以上版本, 默认:16M
+disk-cache=32M
+# 文件预分配方式, 能有效降低磁盘碎片, 默认:prealloc
+# 预分配所需时间: none &lt; falloc ? trunc &lt; prealloc
+# falloc和trunc则需要文件系统和内核支持
+# NTFS建议使用falloc, EXT3/4建议trunc, MAC 下需要注释此项
+file-allocation=none
+# 断点续传
+continue=true
+ 
+## 下载连接相关 ##
+ 
+# 最大同时下载任务数, 运行时可修改, 默认:5
+max-concurrent-downloads=10
+# 同一服务器连接数, 添加时可指定, 默认:1
+max-connection-per-server=5
+# 最小文件分片大小, 添加时可指定, 取值范围1M -1024M, 默认:20M
+# 假定size=10M, 文件为20MiB 则使用两个来源下载; 文件为15MiB 则使用一个来源下载
+min-split-size=10M
+# 单个任务最大线程数, 添加时可指定, 默认:5
+split=20
+# 整体下载速度限制, 运行时可修改, 默认:0
+#max-overall-download-limit=0
+# 单个任务下载速度限制, 默认:0
+#max-download-limit=0
+#下载完成后自动执行root目录下的autoupload.sh脚本
+on-download-complete=/root/autoupload.sh
+</code></pre>
+<p>编辑完成后，按下<code>Esc</code>，输入<code>:wq</code>并按下回车保存并退出编辑。</p>
+<p>至此，aria2的配置已经完成，但是我们并不能立即启动aria2，因为还没有配置root目录下的autoupload.sh脚本。</p>
+<h3 id="自动上传至onedrive">自动上传至Onedrive</h3>
+<p>这里，我分了两个方法进行上传，一种是我自己琢磨的，一种是从另一个博客那里扒来的脚本。</p>
+<p>二者任选其一都可以实现功能，我在后面会有评测。</p>
+<h4 id="我的配置方法">我的配置方法</h4>
+<p><code>vi /root/autoupload.sh</code></p>
+<p>输入以下内容：</p>
+<p><code>rclone sync source:path dest:path</code></p>
+<p>或者，换成：</p>
+<p><code>rclone move source:path dest:path</code></p>
+<p>其中：<br>
+source:path 是你的Aria2下载目录，在这里就是<code>/root/download</code><br>
+dest:path dest是你用rclone挂载的网盘名称（自定义的名称），path是网盘文件的绝对路径。</p>
+<p><code>sync</code>与<code>move</code>的区别在于，<code>sync</code>同步完成后，本地文件依然存在于下载目录；而<code>move</code>同步完成后，本地文件消失不见。同时，如果先删除本地文件再用<code>sync</code>，那么云端的文件将会被一起删除；如果删除了本地文件再进行<code>move</code>动作，云端文件不会被删除。所以，这里推荐使用<code>move</code>。</p>
+<p>比如，我想将下载目录(/root/download)里面的文件上传到网盘(名称为grive1)的“VPS”文件夹，这时应该写入：</p>
+<p><code>rclone sync /root/download grive1:/VPS</code></p>
+<p>或者</p>
+<p><code>rclone move /root/download grive1:/VPS</code></p>
+<p>写入后，给予脚本执行命令的权限：</p>
+<p><code>chmod 777 /root/autoupload.sh</code></p>
+<p>然后，用screen启动aria2：</p>
+<p><code>screen -dmS aria2 aria2c --enable-rpc --rpc-listen-all=true --rpc-allow-origin-all -c</code></p>
+<p>这样，再打开你的ip地址，就可以成功连接你的aria，并实现下载后自动上传到Onedrive中了。</p>
+<h4 id="来自楚盟网的某大佬脚本">来自<a href="https://www.5yun.org/16356.html">楚盟网</a>的某大佬脚本</h4>
+<p>这里提前说明一下，类似该大佬的脚本网上非常多，但是该大佬的脚本是我用过的最好的脚本，不吹不黑。</p>
+<p>在这个方法里面，需要提前<a href="https://www.moerats.com/archives/491/">将已经连接的Onedrive映射为本地的一个文件夹</a>。</p>
+<pre><code class="language-c">#新建本地文件夹，路径自己定，即下面的LocalFolder
+mkdir /root/OneDrive
+#挂载为磁盘
+rclone mount DriveName:Folder LocalFolder --copy-links --no-gzip-encoding --no-check-certificate --allow-other --allow-non-empty --umask 000
+</code></pre>
+<p><code>DriveName</code>为初始化配置填的<code>name</code>，<code>Folder</code>为OneDrive里的文件夹，<code>LocalFolder</code>为VPS上的本地文件夹。</p>
+<p>如果挂载过程中出现<code>NOTICE: One drive root 'test': poll-interval is not supported by this remote</code>错误，可以无视该错误。</p>
+<p>挂载成功后，输入<code>df -h</code>命令查看即可验证！</p>
+<figure data-type="image" tabindex="1"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1frpymgn790j30li04z0sy.jpg" alt="挂载到本地文件夹" loading="lazy"></figure>
+<p>可能会遇到ssh无响应的情况，这时断开ssh重新连接即可。</p>
+<p>然后，同样，编辑autoupload.sh文件：</p>
+<p><code>vi /root/autoupload.sh</code></p>
+<p>写入如下内容：</p>
+<pre><code class="language-c">#!/bin/bash
+path=$3 #取原始路径，我的环境下如果是单文件则为/data/demo.png,如果是文件夹则该值为文件夹内某个文件比如/data/a/b/c/d.jpg
+downloadpath='/root/download'
+if [ $2 -eq 0 ]
+	  then
+		exit 0
+fi
+while true; do  #提取下载文件根路径，如把/data/a/b/c/d.jpg变成/data/a
+filepath=$path
+path=${path%/*}; 
+if [ &quot;$path&quot; = &quot;$downloadpath&quot; ] &amp;&amp; [ $2 -eq 1 ]  #如果下载的是单个文件
+       then
+	mv &quot;$filepath&quot; /root/OneDrive/
+	exit 0
+elif [ &quot;$path&quot; = &quot;$downloadpath&quot; ]   #文件夹
+	then
+        mv &quot;$filepath&quot;/ /root/OneDrive/&quot;${filepath##*/}&quot;/
+	exit 0
+fi
+done
+</code></pre>
+<p>然后赋予脚本执行权限：</p>
+<p><code>chmod 777 /root/autoupload.sh</code></p>
+<p>然后，用screen启动aria2：</p>
+<p><code>screen -dmS aria2 aria2c --enable-rpc --rpc-listen-all=true --rpc-allow-origin-all -c</code></p>
+<p>这样，再打开你的ip地址，就可以成功连接你的aria，并实现下载后自动上传到Onedrive中了。</p>
+<h3 id="关于rclone">关于Rclone</h3>
+<p>Rclone的验证登陆前面的文章已经提到过，在此不再赘述。</p>
+<p>注意，请在AriaNG和Aria2配置并启动后再配置Rclone，否则会出现Ariang无法连接的情况。</p>
+<h3 id="两种自动上传方法的评测">两种自动上传方法的评测</h3>
+<p>用我的同步法：</p>
+<figure data-type="image" tabindex="2"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1frq0t3p8h3j30na0iqmym.jpg" alt="sync1" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1frq0tkszmfj31d30lmn0y.jpg" alt="sync2" loading="lazy"></figure>
+<p>用大佬的移动文件法：</p>
+<figure data-type="image" tabindex="4"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1frq0u3tbtgj30my0hf3zo.jpg" alt="move" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1frq0ud48djj30n80htmyd.jpg" alt="move2" loading="lazy"></figure>
+<figure data-type="image" tabindex="6"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1frq0uoj44fj31df0lu41g.jpg" alt="move3" loading="lazy"></figure>
+<p>上面的图片是我用宝塔面板当探针截取的，仅供参考。</p>
+<p>说一下主要的内容：</p>
+<ol>
+<li>
+<p>稳定性，这个不用说两种方法相差无几，至于上传时出现流量抖动的情况，这是由于微软的接口不稳定造成的，一般都是开始很快，后来很慢。</p>
+</li>
+<li>
+<p>上传后本地文件的去向：我的同步法上传后本地文件仍然存在本地下载目录，但是如果删除了本地的文件再同步，会造成云端文件同时丢失的情况。用移动文件法，移动后本地文件直接消失，而会出现在云端。</p>
+</li>
+</ol>
+<p>大概就这么多，写这篇文章花了我一个周末的时间，唉，眼睛疼。</p>
+
+                </div>
+                <div class="clear"></div>
+              </section>
+            </article>
+            <div class="clear"></div>
+
+            <section class="related section">
+              
+              <article class="prev grid-50 tablet-grid-50 grid-parent">
+                <div class="thumb cover lazy loaded" style="background-image: url('https://chyon.cn//media/images/sESGof_c-K.jpg');"></div>
+                 <a href="https://chyon.cn/post/whatis-kms/" class="full-link"></a>
+                 <div class="info">
+                  <time datetime="2018-06-04">2018-06-04</time>
+                  <h4 class="title white no-margin">关于KMS，以及自己写的脚本</h4>
+                </div>
+                 <span class="epcl-button red">
+                  <img src="https://chyon.cn//media/images/left-arrow.svg" width="15" alt="Left Arrow">
+                </span>
+                <div class="overlay"></div>
+              </article>
+              
+              
+              <article class="next grid-50 tablet-grid-50 grid-parent">
+                <div class="thumb cover lazy loaded" style="background-image: url('https://chyon.cn//media/images/rpDcRXcBJv.jpg');"></div>
+                 <a href="https://chyon.cn/post/vps-rclone-copy/" class="full-link"></a>
+                 <div class="info">
+                  <time datetime="2018-05-26">2018-05-26</time>
+                  <h4 class="title white no-margin">VPS+Rclone实现网盘对拷</h4>
+                </div>
+                 <span class="epcl-button red">
+                  <img src="https://chyon.cn//media/images/right-arrow.svg" width="15" alt="Left Arrow">
+                </span>
+                <div class="overlay"></div>
+              </article>
+              
+
+                <div class="clear"></div>
+            </section>
+
+              <div class="clear"></div>
+              
+            
+              <div id="comments" class="bg-white hosted ">
+                <p>请到客户端“主题--自定义配置--valine”中填入ID和KEY</p>
+              </div>
+              <div class="clear"></div>
+            
+
+            </div>
+          </div>
+      </main>
+
+          <footer id="footer" class="grid-container">
+        <div class="widgets row gradient-effect">
+            <div class="default-sidebar border-effect">
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="tag_cloud-2" class="widget widget_epcl_posts_thumbs underline-effect">
+                  <h4 class="widget-title title white bordered">最新文章</h4>
+                  
+                  
+                  <article class="item post-0 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://chyon.cn/post/ifile-tryout/" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display:block;border-radius:50%;background-image: url('https://pic.rmb.bdstatic.com/bjh/d837f914d6e3af32d4ca4192ee20c278.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2022-02-23">2022-02-23</time>
+                      <h4 class="title usmall">
+                        <a href="https://chyon.cn/post/ifile-tryout/">ifile简单试用</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  <article class="item post-1 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://chyon.cn/post/multi-backup-sh/" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display:block;border-radius:50%;background-image: url('https://pic.rmb.bdstatic.com/bjh/f22c2c99f9d4d987865209cd0e8c335f.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2022-01-04">2022-01-04</time>
+                      <h4 class="title usmall">
+                        <a href="https://chyon.cn/post/multi-backup-sh/">服务器多备份脚本</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  <article class="item post-2 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://chyon.cn/post/ubuntu20-bash-startup/" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display:block;border-radius:50%;background-image: url('https://pic.rmb.bdstatic.com/bjh/bccbf745b500e7e79d196b531935e9b5.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2021-12-31">2021-12-31</time>
+                      <h4 class="title usmall">
+                        <a href="https://chyon.cn/post/ubuntu20-bash-startup/">Ubuntu20 开机自启脚本设置</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <div class="clear"></div>
+                </section>
+              </div>
+
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="tag_cloud-2" class="widget widget_tag_cloud underline-effect">
+                  <h4 class="widget-title title white bordered">标签云</h4>
+                  <div class="tagcloud">
+                    
+                      <a href="https://chyon.cn/tag/1tNs6jYaW/" class="ctag ctag-0 ctag-1tNs6jYaW" aria-label="">office365</a>
+                    
+                      <a href="https://chyon.cn/tag/nbbkZL5Qz/" class="ctag ctag-1 ctag-nbbkZL5Qz" aria-label="">Oracle</a>
+                    
+                      <a href="https://chyon.cn/tag/7Og8ymC1p/" class="ctag ctag-2 ctag-7Og8ymC1p" aria-label="">树莓派</a>
+                    
+                      <a href="https://chyon.cn/tag/LFhcpSea-R/" class="ctag ctag-3 ctag-LFhcpSea-R" aria-label="">Cloudreve</a>
+                    
+                      <a href="https://chyon.cn/tag/e2VPqPl4Hb/" class="ctag ctag-4 ctag-e2VPqPl4Hb" aria-label="">OFB</a>
+                    
+                      <a href="https://chyon.cn/tag/OXMYjl4qvz/" class="ctag ctag-5 ctag-OXMYjl4qvz" aria-label="">CCAA</a>
+                    
+                      <a href="https://chyon.cn/tag/d98oM_-FC-/" class="ctag ctag-6 ctag-d98oM_-FC-" aria-label="">docker</a>
+                    
+                      <a href="https://chyon.cn/tag/y2g_Jal6Qj/" class="ctag ctag-7 ctag-y2g_Jal6Qj" aria-label="">青龙</a>
+                    
+                      <a href="https://chyon.cn/tag/rpDcRXcBJv/" class="ctag ctag-8 ctag-rpDcRXcBJv" aria-label="">教程</a>
+                    
+                      <a href="https://chyon.cn/tag/o33z1EqCrH/" class="ctag ctag-9 ctag-o33z1EqCrH" aria-label="">rss</a>
+                    
+                      <a href="https://chyon.cn/tag/7dC6LXdvyt/" class="ctag ctag-10 ctag-7dC6LXdvyt" aria-label="">onenote</a>
+                    
+                      <a href="https://chyon.cn/tag/HSfooHFl3X/" class="ctag ctag-11 ctag-HSfooHFl3X" aria-label="">flow</a>
+                    
+                      <a href="https://chyon.cn/tag/g73VMB7RIb/" class="ctag ctag-12 ctag-g73VMB7RIb" aria-label="">心情日记</a>
+                    
+                      <a href="https://chyon.cn/tag/WRGI_M9cAp/" class="ctag ctag-13 ctag-WRGI_M9cAp" aria-label="">软件</a>
+                    
+                      <a href="https://chyon.cn/tag/sESGof_c-K/" class="ctag ctag-14 ctag-sESGof_c-K" aria-label="">KMS</a>
+                    
+                      <a href="https://chyon.cn/tag/C0siuULFmO/" class="ctag ctag-15 ctag-C0siuULFmO" aria-label="">分享</a>
+                    
+                      <a href="https://chyon.cn/tag/bxYNpo6x0jV/" class="ctag ctag-16 ctag-bxYNpo6x0jV" aria-label="">科普</a>
+                    
+                      <a href="https://chyon.cn/tag/GnExbHY2m/" class="ctag ctag-17 ctag-GnExbHY2m" aria-label="">Gridea</a>
+                    
+                      <a href="https://chyon.cn/tag/ZWTJjiyL1-w/" class="ctag ctag-18 ctag-ZWTJjiyL1-w" aria-label="">markdown</a>
+                    
+                  </div>
+                  <div class="clear"></div>
+                </section>
+              </div>
+
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="epcl_about-2" class="widget widget_epcl_about underline-effect">
+                  <h4 class="widget-title title white bordered">关于我</h4>
+                  <div class="avatar">
+                    <a href="" class="translate-effect thumb"><span class="fullimage cover" style="background-image: url(https://chyon.cn//images/avatar.png);"></span></a>
+                  </div>
+                  <div class="info">
+                    <h4 class="title small author-name gradient-effect no-margin"><a href="">言岚的博客</a></h4>
+                    <p class="founder">这是一个孤独的世界</p>
+                    <div class="social">
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                    </div> 
+                  </div>
+                  <div class="clear"></div>
+                  </section>
+              </div>
+
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="logo">
+          <a href="https://chyon.cn/"><img src="\media\images\custom-footerLogo.png" alt=""></a>
+        </div>
+        <p class="published border-effect">
+          ©2019 共 92 篇文章
+          <br/>
+          Theme <a href="https://gridea.dev/" target="_blank">「breek」</a> Powered by <a href="https://gridea.dev/" target="_blank">「Gridea」</a>
+        </p>
+        
+        <a href="javascript:void(0)" id="back-to-top" class="epcl-button dark" style="display:none">
+          <i class="fa fa-arrow"></i>
+        </a>
+    </footer>
+    
+    <div class="clear"></div>
+
+        
+
+      
+    <script src="https://chyon.cn//media/js/functions-post.js"></script>
+
+    </div>
+    <!-- end: #wrapper -->
+  </body>
+</html>

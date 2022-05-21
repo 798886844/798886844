@@ -1,0 +1,594 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>树莓派折腾青龙+docker面板+性能监控 | 言岚的博客</title>
+<meta name="description" content="这是一个孤独的世界" />
+<link rel="shortcut icon" href="https://chyon.cn//favicon.ico">
+<link rel="stylesheet" href="https://chyon.cn//styles/main.css">
+
+<script src="https://chyon.cn//media/js/jquery.min.js"></script>
+<script src="https://chyon.cn//media/js/masonry.pkgd.min.js"></script>
+<script src="https://chyon.cn//media/js/aos.js"></script>
+<script src="https://chyon.cn//media/js/pace.min.js"></script>
+<script src="https://chyon.cn//media/js/view-image.min.js"></script>
+<script src="https://chyon.cn//media/js/jquery.magnific-popup.min.js"></script>
+<script src="https://chyon.cn//media/js/functions.js"></script>
+    <meta name="referrer" content="never">
+    <meta name="description" content="树莓派用的是arm系统，导致网上很多amd的软件用不了，真真是十分蛋疼，没办法，今天终于折腾明白了，记录一下以供参考。
+树莓派是4B+4G，系统用的是CentOS-Userland-7-aarch64-RaspberryPI-Minimal..." />
+    <meta name="keywords" content="树莓派,docker,青龙" />
+    <script src="https://chyon.cn//media/js/waterfall.min.js"></script>
+    <script src="https://chyon.cn//media/js/prism.min.js"></script>
+  </head>
+  <body>
+            <header id="header" class="grid-container">
+        <!-- start: .menu-wrapper -->
+        <div class="menu-mobile"> 
+          <i class="fa fa-reorder"></i>
+        </div>
+        <div class="menu-wrapper">
+          <div class="">
+            <div class="logo">
+              <a href="https://chyon.cn/"><img src="\media\images\custom-headerLogo.png" alt=""></a>
+            </div>
+            <!-- start: .main-nav -->
+
+            <nav class="main-nav grid-container grid-parent">
+              <ul id="menu-header" class="menu gradient-effect">
+                <li class=""><a href="https://chyon.cn/" class="menu">首页</a></li>
+                
+                  <li class="" >
+                    <a href="/archives" class="menu">
+                      归档
+                    </a>
+                  </li>
+                
+                  <li class="" >
+                    <a href="/tags" class="menu">
+                      标签
+                    </a>
+                  </li>
+                
+                  <li class="" >
+                    <a href="/post/about" class="menu">
+                      关于
+                    </a>
+                  </li>
+                
+                <li class="search-menu-item hide-on-mobile hide-on-tablet"><a href="#search-lightbox" class="lightbox mfp-inline"><i class="fa fa-search-line"></i></a></li>
+              </ul>
+            </nav>
+            <a href="#search-lightbox" class="lightbox epcl-search-button mfp-inline hide-on-tablet hide-on-desktop"><i class="fa fa-search-line"></i></a>
+            <!-- end: .main-nav -->
+            <div class="clear"></div>
+            <div class="border hide-on-tablet hide-on-mobile"></div>
+          </div>    
+          <div class="clear"></div>
+        </div>
+        <!-- end: .menu-wrapper -->
+        <div class="clear"></div>
+      </header>
+      <div class="hide-on-mobile hide-on-tablet hide-on-desktop">
+        <div id="search-lightbox" class="grid-container grid-small grid-parent mfp-hide">
+          <div class="search-wrapper section">
+            <form id="gridea-search-form" data-update="1653140660237" action="/search/index.html" class="search-form" _lpchecked="1">
+              <input type="text" name="q" id="s" value="" class="search-field" placeholder="搜点啥..." aria-label="搜点啥..." required="">
+              <button type="submit" class="submit" aria-label="Submit">
+                <i class="fa fa-search-line"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <main id="single" class="main grid-container fullcover no-sidebar aos-init aos-animate" data-aos="fade">
+
+        <div class="center content">
+          <div class="featured-image cover" style="background-image: url('https://pic.rmb.bdstatic.com/bjh/312f2600e251cea564fa4e7da9b84f5e.jpeg');">
+            <div class="meta top"> 
+              <time class="meta-info" style="float:left;" datetime="2021-08-05"><i class="fa fa-calendar"></i><span class="lately">10 个月前</span></time>
+              
+              <a href="https://chyon.cn/post/qinglong-pi/#comments" class="comments meta-info" title="">
+                <i class="fa fa-comment remixicon"></i><span class="comment-count valine-comment-count" data-xid="/qinglong-pi/"> </span>
+              </a>
+              <span id="/qinglong-pi/" class="leancloud_visitors views-counter meta-info" title=""><i class="fa fa-leancloud remixicon"></i><span class="leancloud-visitors-count"></span></span>
+              
+            </div>
+            <div class="info">
+              <div class="tags ">
+                
+                      <a href="https://chyon.cn/tag/7Og8ymC1p/" class="ctag ctag-0 ctag-7Og8ymC1p" aria-label="">树莓派</a>
+                    
+                      <a href="https://chyon.cn/tag/d98oM_-FC-/" class="ctag ctag-1 ctag-d98oM_-FC-" aria-label="">docker</a>
+                    
+                      <a href="https://chyon.cn/tag/y2g_Jal6Qj/" class="ctag ctag-2 ctag-y2g_Jal6Qj" aria-label="">青龙</a>
+                    
+              </div>
+              <h1 class="title ularge white bold">树莓派折腾青龙+docker面板+性能监控</h1>
+            </div>
+          </div>
+        </div>  
+
+        <div class="epcl-page-wrapper">
+          <div class="left-content grid-70 np-mobile">
+            <article class="main-article post">
+              <section class="post-content">
+                <div class="text">
+                  <p>树莓派用的是arm系统，导致网上很多amd的软件用不了，真真是十分蛋疼，没办法，今天终于折腾明白了，记录一下以供参考。</p>
+<p>树莓派是4B+4G，系统用的是<a href="https://nbscuzln-my.sharepoint.com/:i:/g/personal/tem_nbscuzln_onmicrosoft_com/EWXMSeXfwYpDg4zr9rzJyUABoVBYlcrUiTKVzRRp9OQsIA?e=5r24fK">CentOS-Userland-7-aarch64-RaspberryPI-Minimal-4-2009-sda</a>，烧录树莓派的工具分别是<a href="https://nbscuzln-my.sharepoint.com/:u:/g/personal/tem_nbscuzln_onmicrosoft_com/ESsjiiR79k5LnsTqu1xsVyEBCXhOC9SdHZWhjCGu5PWsXA?e=bHYg7M">SD_CardFormatter</a>和<a href="https://nbscuzln-my.sharepoint.com/:u:/g/personal/tem_nbscuzln_onmicrosoft_com/ESsjiiR79k5LnsTqu1xsVyEBCXhOC9SdHZWhjCGu5PWsXA?e=FukTZg">win32_disk_imager</a>，前者用来格式化，后者用来烧录镜像。除了以上提到的工具以外，还需要准备的就是一个可以科学上网的路由器，以及科学上网的节点，我就不提供了。</p>
+<p>插卡开机后，直接用<code>SSH</code>工具连接<code>22</code>端口就可以了，初始的用户名是<code>root</code>，密码<code>centos</code>。</p>
+<p>连接后第一件要做的事就是识别全部存储空间，不知道是什么毛病，反正照着做就对了。</p>
+<pre><code class="language-C">/usr/bin/rootfs-expand
+</code></pre>
+<p>随后需要初始化：</p>
+<pre><code class="language-C">yum update -y &amp;&amp; yum upgrade -y &amp;&amp; yum install wget unzip screen git vim -y
+</code></pre>
+<p>初始化完成后不着急装<code>Docker</code>，先装<code>nodejs</code>和<code>npm</code>，此时打开科学上网，不然可能装不上。</p>
+<pre><code class="language-C">curl -sL https://rpm.nodesource.com/setup_14.x | bash -
+yum install nodejs -y
+</code></pre>
+<p>随后还需要安装一个<code>pm2</code>：</p>
+<pre><code class="language-C">npm install -g pm2
+</code></pre>
+<p>安装完成后开始安装<code>Docker</code>：</p>
+<pre><code class="language-C">curl -sSL https://get.daocloud.io/docker | sh
+</code></pre>
+<p>以及一系列的<code>Docker</code>操作：</p>
+<pre><code class="language-C">systemctl start docker
+systemctl enable docker
+systemctl status docker
+</code></pre>
+<p><code>Docker-compose</code>可以选装，装的时候要关掉科学上网，参阅：<a href="https://chyon.cn/post/pi-docker-compose/">树莓派安装docker-compose</a></p>
+<p>然后先装一个Docker面板：</p>
+<pre><code class="language-C">docker run --restart always --name fast -p 8081:8081 -d -v /var/run/docker.sock:/var/run/docker.sock wangbinxingkong/fast
+</code></pre>
+<p>完成后直接打开<code>ip:8081</code>，初始化后就可以看到当前系统中存在的镜像和容器。</p>
+<p>然后开始装青龙面板，装的时候需要打开科学上网，因为有一系列<code>npm</code>包要装：</p>
+<pre><code class="language-C">docker run -dit \
+  -v $PWD/ql/config:/ql/config \
+  -v $PWD/ql/log:/ql/log \
+  -v $PWD/ql/db:/ql/db \
+  -v $PWD/ql/repo:/ql/repo \
+  -v $PWD/ql/raw:/ql/raw \
+  -v $PWD/ql/scripts:/ql/scripts \
+  -v $PWD/ql/jbot:/ql/jbot \
+  -v $PWD/ql/ninja:/ql/ninja \
+  -p 5700:5700 \
+  -p 5701:5701 \
+  --name qinglong \
+  --hostname qinglong \
+  --restart unless-stopped \
+  whyour/qinglong:latest
+</code></pre>
+<p><code>SSH</code>中拉取完成后，容器不会立即启动，需要查看日志：</p>
+<pre><code class="language-C">docker logs qinglong
+</code></pre>
+<p>运行完成后成功启动后日志中会有提示。</p>
+<figure data-type="image" tabindex="1"><img src="https://pic.rmb.bdstatic.com/bjh/932bee20094cd7182fc19312b673138d.png" alt="1.png" loading="lazy"></figure>
+<p>随后打开<code>ip:5700</code>进行初始化，初始用户是<code>admin</code>，密码<code>adminadmin</code>，输入后回到<code>SSH</code>读取初始化后的密码：</p>
+<pre><code class="language-C">cat /root/ql/config/auth.json
+</code></pre>
+<p>然后用初始化之后的密码登录即可。</p>
+<p>然后开始安装扫码登陆程序，首先是进入容器，这里科学上网可以关掉了：</p>
+<pre><code class="language-C">docker exec -it qinglong bash
+</code></pre>
+<p>然后克隆程序到本地并运行：</p>
+<pre><code class="language-C">git clone https://github.com/MoonBegonia/ninja.git /ql/ninja
+cd /ql/ninja/backend
+pnpm install
+pm2 start
+cp sendNotify.js /ql/scripts/sendNotify.js
+</code></pre>
+<p>此时应该就已经运行了，可以打开<code>ip:5701</code>查看。</p>
+<p>以上关于青龙的教程基本来源于<a href="https://blog.mo0.top/archives/44/">莫凌博客</a>，我捡着抄的，如有疑问直接回原帖提问就行。</p>
+<p>关于脚本仓库，我喜欢用的是<code>【Faker集合仓库】</code>，定时规则填<code>0 0 14 * * ? </code>，命令填：</p>
+<pre><code class="language-C">ql repo https://github.com/shufflewzc/faker2.git &quot;jd_|jx_|gua_|jddj_|getJDCookie&quot; &quot;activity|backUp&quot; &quot;^jd[^_]|USER|ZooFaker_Necklace.js|JDJRValidator_Pure|sign_graphics_validate&quot;
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://pic.rmb.bdstatic.com/bjh/ea6e2f00421f6a18aa97fe0def90fa07.png" alt="2.png" loading="lazy"></figure>
+<p>拉取脚本之后记得扫个码添加一个账号，执行一次脚本看看会不会报错。</p>
+<p>最后是部署树莓派性能监控程序，这里有些坑也记录一下。</p>
+<p>由于已经安装了<code>Docker</code>，不妨直接使用容器搭建监控程序：</p>
+<pre><code class="language-C">docker run -d --name docker-pi-dashboard -e 'LISTEN=1024' --net=host ecat/docker-pi-dashboard
+</code></pre>
+<p>其中<code>LISTEN=1024</code>对应的是端口号，可以自行修改。</p>
+<p>但是由于这个镜像需要读取树莓派自身的网口情况，因此它实际上没有建立虚拟网络，也就导致了网口被封，因此需要释放端口：</p>
+<pre><code class="language-C">firewall-cmd --permanent --zone=public --add-port=1024/tcp
+firewall-cmd --reload
+</code></pre>
+<p>然后应该就能打开<code>ip:1024</code>查看性能了。</p>
+<p>这个容器在创建时也没设置开机自启，现在直接去<code>ip:8081</code>里面打开开机自启就行。</p>
+<figure data-type="image" tabindex="3"><img src="https://pic.rmb.bdstatic.com/bjh/4d8e244fa684c274183420a3c8d61a79.png" alt="3.png" loading="lazy"></figure>
+<p>除了<code>docker-pi-dashboard</code>这个性能监控面板意以外，还有一个推荐的面板是<a href="https://www.dazhuanlan.com/gaolccc/topics/1621296">monitorix</a>，有兴趣的自己去链接中查看，我就不再赘述了。</p>
+<p>重启一下系统，看看所有服务是否正常运行。</p>
+
+                </div>
+                <div class="clear"></div>
+              </section>
+            </article>
+            <div class="clear"></div>
+
+            <section class="related section">
+              
+              <article class="prev grid-50 tablet-grid-50 grid-parent">
+                <div class="thumb cover lazy loaded" style="background-image: url('https://pic.rmb.bdstatic.com/bjh/92f28a3fc32209a87839b59e9303ca82.jpeg');"></div>
+                 <a href="https://chyon.cn/post/pi-docker-compose/" class="full-link"></a>
+                 <div class="info">
+                  <time datetime="2021-08-10">2021-08-10</time>
+                  <h4 class="title white no-margin">树莓派安装docker-compose</h4>
+                </div>
+                 <span class="epcl-button red">
+                  <img src="https://chyon.cn//media/images/left-arrow.svg" width="15" alt="Left Arrow">
+                </span>
+                <div class="overlay"></div>
+              </article>
+              
+              
+              <article class="next grid-50 tablet-grid-50 grid-parent">
+                <div class="thumb cover lazy loaded" style="background-image: url('https://pic.rmb.bdstatic.com/bjh/261af8956a699890e32a0952893488a8.jpeg');"></div>
+                 <a href="https://chyon.cn/post/putian-shoes/" class="full-link"></a>
+                 <div class="info">
+                  <time datetime="2021-06-26">2021-06-26</time>
+                  <h4 class="title white no-margin">聊一下鞋（一），莆田和国货</h4>
+                </div>
+                 <span class="epcl-button red">
+                  <img src="https://chyon.cn//media/images/right-arrow.svg" width="15" alt="Left Arrow">
+                </span>
+                <div class="overlay"></div>
+              </article>
+              
+
+                <div class="clear"></div>
+            </section>
+
+              <div class="clear"></div>
+              
+            
+              <div id="comments" class="bg-white hosted ">
+                <p>请到客户端“主题--自定义配置--valine”中填入ID和KEY</p>
+              </div>
+              <div class="clear"></div>
+            
+
+            </div>
+          </div>
+      </main>
+
+          <footer id="footer" class="grid-container">
+        <div class="widgets row gradient-effect">
+            <div class="default-sidebar border-effect">
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="tag_cloud-2" class="widget widget_epcl_posts_thumbs underline-effect">
+                  <h4 class="widget-title title white bordered">最新文章</h4>
+                  
+                  
+                  <article class="item post-0 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://chyon.cn/post/ifile-tryout/" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display:block;border-radius:50%;background-image: url('https://pic.rmb.bdstatic.com/bjh/d837f914d6e3af32d4ca4192ee20c278.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2022-02-23">2022-02-23</time>
+                      <h4 class="title usmall">
+                        <a href="https://chyon.cn/post/ifile-tryout/">ifile简单试用</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  <article class="item post-1 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://chyon.cn/post/multi-backup-sh/" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display:block;border-radius:50%;background-image: url('https://pic.rmb.bdstatic.com/bjh/f22c2c99f9d4d987865209cd0e8c335f.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2022-01-04">2022-01-04</time>
+                      <h4 class="title usmall">
+                        <a href="https://chyon.cn/post/multi-backup-sh/">服务器多备份脚本</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  <article class="item post-2 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://chyon.cn/post/ubuntu20-bash-startup/" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display:block;border-radius:50%;background-image: url('https://pic.rmb.bdstatic.com/bjh/bccbf745b500e7e79d196b531935e9b5.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2021-12-31">2021-12-31</time>
+                      <h4 class="title usmall">
+                        <a href="https://chyon.cn/post/ubuntu20-bash-startup/">Ubuntu20 开机自启脚本设置</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <div class="clear"></div>
+                </section>
+              </div>
+
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="tag_cloud-2" class="widget widget_tag_cloud underline-effect">
+                  <h4 class="widget-title title white bordered">标签云</h4>
+                  <div class="tagcloud">
+                    
+                      <a href="https://chyon.cn/tag/1tNs6jYaW/" class="ctag ctag-0 ctag-1tNs6jYaW" aria-label="">office365</a>
+                    
+                      <a href="https://chyon.cn/tag/nbbkZL5Qz/" class="ctag ctag-1 ctag-nbbkZL5Qz" aria-label="">Oracle</a>
+                    
+                      <a href="https://chyon.cn/tag/7Og8ymC1p/" class="ctag ctag-2 ctag-7Og8ymC1p" aria-label="">树莓派</a>
+                    
+                      <a href="https://chyon.cn/tag/LFhcpSea-R/" class="ctag ctag-3 ctag-LFhcpSea-R" aria-label="">Cloudreve</a>
+                    
+                      <a href="https://chyon.cn/tag/e2VPqPl4Hb/" class="ctag ctag-4 ctag-e2VPqPl4Hb" aria-label="">OFB</a>
+                    
+                      <a href="https://chyon.cn/tag/OXMYjl4qvz/" class="ctag ctag-5 ctag-OXMYjl4qvz" aria-label="">CCAA</a>
+                    
+                      <a href="https://chyon.cn/tag/d98oM_-FC-/" class="ctag ctag-6 ctag-d98oM_-FC-" aria-label="">docker</a>
+                    
+                      <a href="https://chyon.cn/tag/y2g_Jal6Qj/" class="ctag ctag-7 ctag-y2g_Jal6Qj" aria-label="">青龙</a>
+                    
+                      <a href="https://chyon.cn/tag/rpDcRXcBJv/" class="ctag ctag-8 ctag-rpDcRXcBJv" aria-label="">教程</a>
+                    
+                      <a href="https://chyon.cn/tag/o33z1EqCrH/" class="ctag ctag-9 ctag-o33z1EqCrH" aria-label="">rss</a>
+                    
+                      <a href="https://chyon.cn/tag/7dC6LXdvyt/" class="ctag ctag-10 ctag-7dC6LXdvyt" aria-label="">onenote</a>
+                    
+                      <a href="https://chyon.cn/tag/HSfooHFl3X/" class="ctag ctag-11 ctag-HSfooHFl3X" aria-label="">flow</a>
+                    
+                      <a href="https://chyon.cn/tag/g73VMB7RIb/" class="ctag ctag-12 ctag-g73VMB7RIb" aria-label="">心情日记</a>
+                    
+                      <a href="https://chyon.cn/tag/WRGI_M9cAp/" class="ctag ctag-13 ctag-WRGI_M9cAp" aria-label="">软件</a>
+                    
+                      <a href="https://chyon.cn/tag/sESGof_c-K/" class="ctag ctag-14 ctag-sESGof_c-K" aria-label="">KMS</a>
+                    
+                      <a href="https://chyon.cn/tag/C0siuULFmO/" class="ctag ctag-15 ctag-C0siuULFmO" aria-label="">分享</a>
+                    
+                      <a href="https://chyon.cn/tag/bxYNpo6x0jV/" class="ctag ctag-16 ctag-bxYNpo6x0jV" aria-label="">科普</a>
+                    
+                      <a href="https://chyon.cn/tag/GnExbHY2m/" class="ctag ctag-17 ctag-GnExbHY2m" aria-label="">Gridea</a>
+                    
+                      <a href="https://chyon.cn/tag/ZWTJjiyL1-w/" class="ctag ctag-18 ctag-ZWTJjiyL1-w" aria-label="">markdown</a>
+                    
+                  </div>
+                  <div class="clear"></div>
+                </section>
+              </div>
+
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="epcl_about-2" class="widget widget_epcl_about underline-effect">
+                  <h4 class="widget-title title white bordered">关于我</h4>
+                  <div class="avatar">
+                    <a href="" class="translate-effect thumb"><span class="fullimage cover" style="background-image: url(https://chyon.cn//images/avatar.png);"></span></a>
+                  </div>
+                  <div class="info">
+                    <h4 class="title small author-name gradient-effect no-margin"><a href="">言岚的博客</a></h4>
+                    <p class="founder">这是一个孤独的世界</p>
+                    <div class="social">
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                    </div> 
+                  </div>
+                  <div class="clear"></div>
+                  </section>
+              </div>
+
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="logo">
+          <a href="https://chyon.cn/"><img src="\media\images\custom-footerLogo.png" alt=""></a>
+        </div>
+        <p class="published border-effect">
+          ©2019 共 92 篇文章
+          <br/>
+          Theme <a href="https://gridea.dev/" target="_blank">「breek」</a> Powered by <a href="https://gridea.dev/" target="_blank">「Gridea」</a>
+        </p>
+        
+        <a href="javascript:void(0)" id="back-to-top" class="epcl-button dark" style="display:none">
+          <i class="fa fa-arrow"></i>
+        </a>
+    </footer>
+    
+    <div class="clear"></div>
+
+        
+
+      
+    <script src="https://chyon.cn//media/js/functions-post.js"></script>
+
+    </div>
+    <!-- end: #wrapper -->
+  </body>
+</html>

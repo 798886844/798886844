@@ -1,0 +1,630 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gclone简单创建维护教程 | 言岚的博客</title>
+<meta name="description" content="这是一个孤独的世界" />
+<link rel="shortcut icon" href="https://chyon.cn//favicon.ico">
+<link rel="stylesheet" href="https://chyon.cn//styles/main.css">
+
+<script src="https://chyon.cn//media/js/jquery.min.js"></script>
+<script src="https://chyon.cn//media/js/masonry.pkgd.min.js"></script>
+<script src="https://chyon.cn//media/js/aos.js"></script>
+<script src="https://chyon.cn//media/js/pace.min.js"></script>
+<script src="https://chyon.cn//media/js/view-image.min.js"></script>
+<script src="https://chyon.cn//media/js/jquery.magnific-popup.min.js"></script>
+<script src="https://chyon.cn//media/js/functions.js"></script>
+    <meta name="referrer" content="never">
+    <meta name="description" content="该教程参考自假大佬，请读者自行完成之前无比仔细阅读该教程。
+该教程创新部分来自群友你笑起来真好看，鸣谢。
+开始搭建
+在创建Gclone服务前，你需要准备的有：能够访问谷歌的网络、一个全新创建的谷歌账号、一个运行ubuntu16.04官方发行..." />
+    <meta name="keywords" content="教程" />
+    <script src="https://chyon.cn//media/js/waterfall.min.js"></script>
+    <script src="https://chyon.cn//media/js/prism.min.js"></script>
+  </head>
+  <body>
+            <header id="header" class="grid-container">
+        <!-- start: .menu-wrapper -->
+        <div class="menu-mobile"> 
+          <i class="fa fa-reorder"></i>
+        </div>
+        <div class="menu-wrapper">
+          <div class="">
+            <div class="logo">
+              <a href="https://chyon.cn/"><img src="\media\images\custom-headerLogo.png" alt=""></a>
+            </div>
+            <!-- start: .main-nav -->
+
+            <nav class="main-nav grid-container grid-parent">
+              <ul id="menu-header" class="menu gradient-effect">
+                <li class=""><a href="https://chyon.cn/" class="menu">首页</a></li>
+                
+                  <li class="" >
+                    <a href="/archives" class="menu">
+                      归档
+                    </a>
+                  </li>
+                
+                  <li class="" >
+                    <a href="/tags" class="menu">
+                      标签
+                    </a>
+                  </li>
+                
+                  <li class="" >
+                    <a href="/post/about" class="menu">
+                      关于
+                    </a>
+                  </li>
+                
+                <li class="search-menu-item hide-on-mobile hide-on-tablet"><a href="#search-lightbox" class="lightbox mfp-inline"><i class="fa fa-search-line"></i></a></li>
+              </ul>
+            </nav>
+            <a href="#search-lightbox" class="lightbox epcl-search-button mfp-inline hide-on-tablet hide-on-desktop"><i class="fa fa-search-line"></i></a>
+            <!-- end: .main-nav -->
+            <div class="clear"></div>
+            <div class="border hide-on-tablet hide-on-mobile"></div>
+          </div>    
+          <div class="clear"></div>
+        </div>
+        <!-- end: .menu-wrapper -->
+        <div class="clear"></div>
+      </header>
+      <div class="hide-on-mobile hide-on-tablet hide-on-desktop">
+        <div id="search-lightbox" class="grid-container grid-small grid-parent mfp-hide">
+          <div class="search-wrapper section">
+            <form id="gridea-search-form" data-update="1653140660237" action="/search/index.html" class="search-form" _lpchecked="1">
+              <input type="text" name="q" id="s" value="" class="search-field" placeholder="搜点啥..." aria-label="搜点啥..." required="">
+              <button type="submit" class="submit" aria-label="Submit">
+                <i class="fa fa-search-line"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <main id="single" class="main grid-container fullcover no-sidebar aos-init aos-animate" data-aos="fade">
+
+        <div class="center content">
+          <div class="featured-image cover" style="background-image: url('\media\images\custom-featureImage.png');">
+            <div class="meta top"> 
+              <time class="meta-info" style="float:left;" datetime="2020-06-14"><i class="fa fa-calendar"></i><span class="lately">2 年前</span></time>
+              
+              <a href="https://chyon.cn/post/gclone-simple-creat/#comments" class="comments meta-info" title="">
+                <i class="fa fa-comment remixicon"></i><span class="comment-count valine-comment-count" data-xid="/gclone-simple-creat/"> </span>
+              </a>
+              <span id="/gclone-simple-creat/" class="leancloud_visitors views-counter meta-info" title=""><i class="fa fa-leancloud remixicon"></i><span class="leancloud-visitors-count"></span></span>
+              
+            </div>
+            <div class="info">
+              <div class="tags ">
+                
+                      <a href="https://chyon.cn/tag/rpDcRXcBJv/" class="ctag ctag-0 ctag-rpDcRXcBJv" aria-label="">教程</a>
+                    
+              </div>
+              <h1 class="title ularge white bold">Gclone简单创建维护教程</h1>
+            </div>
+          </div>
+        </div>  
+
+        <div class="epcl-page-wrapper">
+          <div class="left-content grid-70 np-mobile">
+            <article class="main-article post">
+              <section class="post-content">
+                <div class="text">
+                  <p>该教程参考自<a href="http://blog.jialezi.net/?post=153">假大佬</a>，请读者自行完成之前无比仔细阅读该教程。</p>
+<p>该教程创新部分来自群友<a href="2812919012@qq.com">你笑起来真好看</a>，鸣谢。</p>
+<h1 id="开始搭建">开始搭建</h1>
+<p>在创建Gclone服务前，你需要准备的有：能够访问谷歌的网络、一个全新创建的谷歌账号、一个运行ubuntu16.04官方发行版本的VPS、一个谷歌团队盘。</p>
+<p><strong>1. 服务器环境建设</strong></p>
+<p>首先要在服务器中安装好pthyon3和pip：</p>
+<pre><code class="language-linux">apt-get install git python3 python3-pip -y
+</code></pre>
+<p>安装AutoRclone：</p>
+<pre><code class="language-linux">git clone https://github.com/xyou365/AutoRclone &amp;&amp; cd AutoRclone &amp;&amp; pip3 install -r requirements.txt
+</code></pre>
+<p>开启谷歌账号相关api：</p>
+<p>打开链接：</p>
+<p><a href="https://developers.google.com/drive/api/v3/quickstart/python">https://developers.google.com/drive/api/v3/quickstart/python</a></p>
+<p>创建api之后，下载<code>credentials.json</code>，并上传到服务器<code>AutoRclone</code>文件夹目录下。</p>
+<p><strong>2. 创建SA账户</strong></p>
+<p>这里有两种方法。</p>
+<p>第一种方法：按照官方教程创建SA账户，分为三种情况：</p>
+<ul>
+<li>如果你之前没创建过项目, 直接运行</li>
+</ul>
+<p><code>python3 gen_sa_accounts.py --quick-setup 1</code></p>
+<p>该命令将：</p>
+<p>创建1个新项目；</p>
+<p>开启相关的服务；</p>
+<p>创建100个service accounts（1个项目，每个项目100个）；</p>
+<p>将100个service accounts的授权文件下载到accounts文件夹下面；</p>
+<ul>
+<li>如果你已经有N个项目，现需要创建新的项目并在新的项目中创建service accounts，直接运行</li>
+</ul>
+<p><code>python3 gen_sa_accounts.py --quick-setup 2 --new-only</code><br>
+该命令将：</p>
+<p>额外创建2个新项目，开启相关的服务</p>
+<p>创建200个service accounts（2个项目，每个项目100个）</p>
+<p>将200个service accounts的授权文件下载到accounts文件夹下面</p>
+<ul>
+<li>如果你想用已有的项目来创建service accounts（不创建新的项目），直接运行</li>
+</ul>
+<p><code>python3 gen_sa_accounts.py --quick-setup -1</code></p>
+<p>注意这会覆盖掉已有的service accounts</p>
+<p>这里选择第一种情况，前提是你准备的google账户是全新账户。</p>
+<p>这里会出现让你授权的情况：</p>
+<figure data-type="image" tabindex="1"><img src="https://pic.rmb.bdstatic.com/bjh/ca54c28813856971a006e06a25c09d60.png" alt="20200614151926.png" loading="lazy"></figure>
+<p>按照提示复制链接到浏览器中授权即可。</p>
+<p>注意可能需要多次授权。</p>
+<p>如果你遇到下图这种错误，请看接下来的第二种方法。</p>
+<figure data-type="image" tabindex="2"><img src="https://pic.rmb.bdstatic.com/bjh/72e38e53c58b3df1a3d658e64c69224c.png" alt="20200614151818.png" loading="lazy"></figure>
+<p>第二种方法：</p>
+<p>该方法来自群友<a href="2812919012@qq.com">你笑起来真好看</a>。</p>
+<p>首先来到accounts文件夹下看看有没有已经下载的文件，如果你是全新账号又出现了上面所说的错误，应该是空的。</p>
+<p>如果有文件就删除。</p>
+<p>运行命令：</p>
+<p><code>python3 gen_sa_accounts.py --path accounts --quick-setup 1 --new-only</code></p>
+<p>该命令将：</p>
+<p>新建一个项目；</p>
+<p>开启相关服务；</p>
+<p>创建100个SA账户，并将授权文件下载到accounts文件夹中。</p>
+<p>一般来说如果授权完整的话，这条命令是不会出现问题的。</p>
+<p>然后来到accounts文件夹下看看有没有已经下载的文件，ls数一下是不是一百个json。</p>
+<p><strong>3. 获取SA账户邮件地址，添加到谷歌群组中。</strong></p>
+<p>首先到accounts文件夹下看看一共多少个授权文件。</p>
+<p>然后将这些授权文件所代表的SA账户提取出来，用如下命令：</p>
+<p><code>cat ~/AutoRclone/accounts/*.json | grep &quot;client_email&quot; | awk '{print $2}'| tr -d ',&quot;' | sed 'N;N;N;N;N;N;N;N;N;/^$/d;G' &gt; ~/email.json</code></p>
+<p>该命令将：</p>
+<p>提取目录<code>/root/AutoRclone/accounts/</code>下的所有授权文件所代表的SA账户邮件地址，并生成一个名为<code>email.json</code>的文件，存放在<code>/root/</code>目录下。</p>
+<p>你也可以自己修改目录和存放文件的地址。</p>
+<p>然后将服务器上的<code>email.json</code>下载到本地，用记事本或其他文本编辑器打开，你将看到：</p>
+<figure data-type="image" tabindex="3"><img src="https://pic.rmb.bdstatic.com/bjh/43f2ea2c119cc6714136048e6282b6dc.png" alt="20200614212.png" loading="lazy"></figure>
+<p>类似于这样的SA账户。其中每一部分刚好是10条。</p>
+<p>然后打开：</p>
+<p><a href="https://groups.google.com/">https://groups.google.com/</a></p>
+<p>来到谷歌群组，创建一个自己的谷歌群组。创建过程略。</p>
+<p>然后进入群组，管理成员：</p>
+<figure data-type="image" tabindex="4"><img src="https://pic.rmb.bdstatic.com/bjh/d4af4ae32f5e3c12442d88b23b7a3363.png" alt="20200614154009.png" loading="lazy"></figure>
+<p>点击这里管理成员。</p>
+<figure data-type="image" tabindex="5"><img src="https://pic.rmb.bdstatic.com/bjh/34e32b1685e8bd04b5542b4759c8a622.png" alt="20200614154146.png" loading="lazy"></figure>
+<p>注意一次只能添加10个SA账户，一天只能添加100个。</p>
+<p>如果添加遇到错误，请看步骤4。</p>
+<p>分批添加完毕后，获取group的邮箱地址：</p>
+<figure data-type="image" tabindex="6"><img src="https://pic.rmb.bdstatic.com/bjh/95ea44e1f677a632d14ac50b878db438.png" alt="20200614154312.png" loading="lazy"></figure>
+<p>点击<code>关于</code></p>
+<p>即可看到group mail：</p>
+<figure data-type="image" tabindex="7"><img src="https://pic.rmb.bdstatic.com/bjh/09aad2bf2aa9ef347c7ab254a605e5b0.png" alt="20200614154401.png" loading="lazy"></figure>
+<p><strong>4. 黑号的情况</strong></p>
+<p>这里插入一部分我发现的问题，我将之归结于黑号。</p>
+<p>第一种情况即将SA批量添加到群组时发生错误，提示“该邮件地址不是组织内成员”。</p>
+<p>这种情况目前没有发现解决办法，只能通过更换谷歌账号重新创建解决。</p>
+<p>第二种情况是在gclone使用过程中，出现如下错误：</p>
+<figure data-type="image" tabindex="8"><img src="https://pic.rmb.bdstatic.com/bjh/9234ed69518a94b62bffc84d81f3ebbf.png" alt="20200614154825.png" loading="lazy"></figure>
+<p>提示内存溢出，但是实际上并不是gclone的问题，暂不清楚是哪方面的问题，也只能通过更换谷歌账号重新创建的办法解决。</p>
+<p><strong>5. 安装gclone并配置使用</strong></p>
+<p>gclone安装命令如下：</p>
+<p><code>bash &lt;(wget -qO- https://git.io/gclone.sh)</code></p>
+<p>配置过程不再赘述，可以参考<a href="http://blog.jialezi.net/?post=153">假大佬</a>。</p>
+<p><strong>6. 后续维护与添加</strong></p>
+<p>针对accounts的备份：</p>
+<pre><code class="language-linux">cp -r ~/AutoRclone/accounts ~/accounts.bak
+</code></pre>
+<p>增加创建项目和100个SA：</p>
+<pre><code class="language-linux">python3 gen_sa_accounts.py --path newacc --quick-setup 1 --new-only
+</code></pre>
+<p>该命令将新建一个项目，并创建100个SA，将SA账户的配置文件下载到<code>newacc</code>文件夹内。</p>
+<p>查看SA配置文件：</p>
+<pre><code class="language-linux">ls ~/AutoRclone/newacc
+</code></pre>
+<p>提取新建SA邮件地址：</p>
+<pre><code class="language-linux">cat ~/AutoRclone/newacc/*.json | grep &quot;client_email&quot; | awk '{print $2}'| tr -d ',&quot;' | sed 'N;N;N;N;N;N;N;N;N;/^$/d;G' &gt; ~/email1.json
+</code></pre>
+<p>然后下载文件<code>email1.json</code>，并将SA地址添加到谷歌群组中。</p>
+<p>最后，合并SA配置文件：</p>
+<pre><code class="language-linux">cp -r /root/AutoRclone/newacc /root/AutoRclone/accounts
+</code></pre>
+<p><strong>7. 一些问题的解决办法</strong></p>
+<ul>
+<li>创建SA成功但未下载SA配置文件</li>
+</ul>
+<p>该问题的解决办法，首先要获取已成功创建SA账户的项目名称，这部分需要到浏览器中查看：</p>
+<p>打开网址<a href="https://console.cloud.google.com/iam-admin/serviceaccounts">https://console.cloud.google.com/iam-admin/serviceaccounts</a>，尝试切换项目，查看SA账户是否已成功创建，是的话就记下这个项目的名称。</p>
+<p>或者通过命令</p>
+<p><code>python3 gen_sa_accounts.py --list-projects</code></p>
+<p>查看项目名称。</p>
+<p>然后，指定下载某个项目的SA配置文件：</p>
+<p><code>python3 gen_sa_accounts.py --path accounts --download-key xxxx</code></p>
+<p>其中，xxxx为项目名称。</p>
+
+                </div>
+                <div class="clear"></div>
+              </section>
+            </article>
+            <div class="clear"></div>
+
+            <section class="related section">
+              
+              <article class="prev grid-50 tablet-grid-50 grid-parent">
+                <div class="thumb cover lazy loaded" style="background-image: url('https://chyon.cn//media/images/rpDcRXcBJv.jpg');"></div>
+                 <a href="https://chyon.cn/post/docker-ttrss/" class="full-link"></a>
+                 <div class="info">
+                  <time datetime="2020-06-15">2020-06-15</time>
+                  <h4 class="title white no-margin">VPS搭建TTRSS-Docker服务</h4>
+                </div>
+                 <span class="epcl-button red">
+                  <img src="https://chyon.cn//media/images/left-arrow.svg" width="15" alt="Left Arrow">
+                </span>
+                <div class="overlay"></div>
+              </article>
+              
+              
+              <article class="next grid-50 tablet-grid-50 grid-parent">
+                <div class="thumb cover lazy loaded" style="background-image: url('https://chyon.cn//media/images/rpDcRXcBJv.jpg');"></div>
+                 <a href="https://chyon.cn/post/open-admin-cmd-anywhere/" class="full-link"></a>
+                 <div class="info">
+                  <time datetime="2020-06-12">2020-06-12</time>
+                  <h4 class="title white no-margin">任意位置打开管理员命令提示符</h4>
+                </div>
+                 <span class="epcl-button red">
+                  <img src="https://chyon.cn//media/images/right-arrow.svg" width="15" alt="Left Arrow">
+                </span>
+                <div class="overlay"></div>
+              </article>
+              
+
+                <div class="clear"></div>
+            </section>
+
+              <div class="clear"></div>
+              
+            
+              <div id="comments" class="bg-white hosted ">
+                <p>请到客户端“主题--自定义配置--valine”中填入ID和KEY</p>
+              </div>
+              <div class="clear"></div>
+            
+
+            </div>
+          </div>
+      </main>
+
+          <footer id="footer" class="grid-container">
+        <div class="widgets row gradient-effect">
+            <div class="default-sidebar border-effect">
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="tag_cloud-2" class="widget widget_epcl_posts_thumbs underline-effect">
+                  <h4 class="widget-title title white bordered">最新文章</h4>
+                  
+                  
+                  <article class="item post-0 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://chyon.cn/post/ifile-tryout/" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display:block;border-radius:50%;background-image: url('https://pic.rmb.bdstatic.com/bjh/d837f914d6e3af32d4ca4192ee20c278.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2022-02-23">2022-02-23</time>
+                      <h4 class="title usmall">
+                        <a href="https://chyon.cn/post/ifile-tryout/">ifile简单试用</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  <article class="item post-1 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://chyon.cn/post/multi-backup-sh/" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display:block;border-radius:50%;background-image: url('https://pic.rmb.bdstatic.com/bjh/f22c2c99f9d4d987865209cd0e8c335f.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2022-01-04">2022-01-04</time>
+                      <h4 class="title usmall">
+                        <a href="https://chyon.cn/post/multi-backup-sh/">服务器多备份脚本</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  <article class="item post-2 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://chyon.cn/post/ubuntu20-bash-startup/" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display:block;border-radius:50%;background-image: url('https://pic.rmb.bdstatic.com/bjh/bccbf745b500e7e79d196b531935e9b5.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2021-12-31">2021-12-31</time>
+                      <h4 class="title usmall">
+                        <a href="https://chyon.cn/post/ubuntu20-bash-startup/">Ubuntu20 开机自启脚本设置</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <div class="clear"></div>
+                </section>
+              </div>
+
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="tag_cloud-2" class="widget widget_tag_cloud underline-effect">
+                  <h4 class="widget-title title white bordered">标签云</h4>
+                  <div class="tagcloud">
+                    
+                      <a href="https://chyon.cn/tag/1tNs6jYaW/" class="ctag ctag-0 ctag-1tNs6jYaW" aria-label="">office365</a>
+                    
+                      <a href="https://chyon.cn/tag/nbbkZL5Qz/" class="ctag ctag-1 ctag-nbbkZL5Qz" aria-label="">Oracle</a>
+                    
+                      <a href="https://chyon.cn/tag/7Og8ymC1p/" class="ctag ctag-2 ctag-7Og8ymC1p" aria-label="">树莓派</a>
+                    
+                      <a href="https://chyon.cn/tag/LFhcpSea-R/" class="ctag ctag-3 ctag-LFhcpSea-R" aria-label="">Cloudreve</a>
+                    
+                      <a href="https://chyon.cn/tag/e2VPqPl4Hb/" class="ctag ctag-4 ctag-e2VPqPl4Hb" aria-label="">OFB</a>
+                    
+                      <a href="https://chyon.cn/tag/OXMYjl4qvz/" class="ctag ctag-5 ctag-OXMYjl4qvz" aria-label="">CCAA</a>
+                    
+                      <a href="https://chyon.cn/tag/d98oM_-FC-/" class="ctag ctag-6 ctag-d98oM_-FC-" aria-label="">docker</a>
+                    
+                      <a href="https://chyon.cn/tag/y2g_Jal6Qj/" class="ctag ctag-7 ctag-y2g_Jal6Qj" aria-label="">青龙</a>
+                    
+                      <a href="https://chyon.cn/tag/rpDcRXcBJv/" class="ctag ctag-8 ctag-rpDcRXcBJv" aria-label="">教程</a>
+                    
+                      <a href="https://chyon.cn/tag/o33z1EqCrH/" class="ctag ctag-9 ctag-o33z1EqCrH" aria-label="">rss</a>
+                    
+                      <a href="https://chyon.cn/tag/7dC6LXdvyt/" class="ctag ctag-10 ctag-7dC6LXdvyt" aria-label="">onenote</a>
+                    
+                      <a href="https://chyon.cn/tag/HSfooHFl3X/" class="ctag ctag-11 ctag-HSfooHFl3X" aria-label="">flow</a>
+                    
+                      <a href="https://chyon.cn/tag/g73VMB7RIb/" class="ctag ctag-12 ctag-g73VMB7RIb" aria-label="">心情日记</a>
+                    
+                      <a href="https://chyon.cn/tag/WRGI_M9cAp/" class="ctag ctag-13 ctag-WRGI_M9cAp" aria-label="">软件</a>
+                    
+                      <a href="https://chyon.cn/tag/sESGof_c-K/" class="ctag ctag-14 ctag-sESGof_c-K" aria-label="">KMS</a>
+                    
+                      <a href="https://chyon.cn/tag/C0siuULFmO/" class="ctag ctag-15 ctag-C0siuULFmO" aria-label="">分享</a>
+                    
+                      <a href="https://chyon.cn/tag/bxYNpo6x0jV/" class="ctag ctag-16 ctag-bxYNpo6x0jV" aria-label="">科普</a>
+                    
+                      <a href="https://chyon.cn/tag/GnExbHY2m/" class="ctag ctag-17 ctag-GnExbHY2m" aria-label="">Gridea</a>
+                    
+                      <a href="https://chyon.cn/tag/ZWTJjiyL1-w/" class="ctag ctag-18 ctag-ZWTJjiyL1-w" aria-label="">markdown</a>
+                    
+                  </div>
+                  <div class="clear"></div>
+                </section>
+              </div>
+
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="epcl_about-2" class="widget widget_epcl_about underline-effect">
+                  <h4 class="widget-title title white bordered">关于我</h4>
+                  <div class="avatar">
+                    <a href="" class="translate-effect thumb"><span class="fullimage cover" style="background-image: url(https://chyon.cn//images/avatar.png);"></span></a>
+                  </div>
+                  <div class="info">
+                    <h4 class="title small author-name gradient-effect no-margin"><a href="">言岚的博客</a></h4>
+                    <p class="founder">这是一个孤独的世界</p>
+                    <div class="social">
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                    </div> 
+                  </div>
+                  <div class="clear"></div>
+                  </section>
+              </div>
+
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="logo">
+          <a href="https://chyon.cn/"><img src="\media\images\custom-footerLogo.png" alt=""></a>
+        </div>
+        <p class="published border-effect">
+          ©2019 共 92 篇文章
+          <br/>
+          Theme <a href="https://gridea.dev/" target="_blank">「breek」</a> Powered by <a href="https://gridea.dev/" target="_blank">「Gridea」</a>
+        </p>
+        
+        <a href="javascript:void(0)" id="back-to-top" class="epcl-button dark" style="display:none">
+          <i class="fa fa-arrow"></i>
+        </a>
+    </footer>
+    
+    <div class="clear"></div>
+
+        
+
+      
+    <script src="https://chyon.cn//media/js/functions-post.js"></script>
+
+    </div>
+    <!-- end: #wrapper -->
+  </body>
+</html>

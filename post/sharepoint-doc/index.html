@@ -1,0 +1,572 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sharepoint访问次数限制 | 言岚的博客</title>
+<meta name="description" content="这是一个孤独的世界" />
+<link rel="shortcut icon" href="https://chyon.cn//favicon.ico">
+<link rel="stylesheet" href="https://chyon.cn//styles/main.css">
+
+<script src="https://chyon.cn//media/js/jquery.min.js"></script>
+<script src="https://chyon.cn//media/js/masonry.pkgd.min.js"></script>
+<script src="https://chyon.cn//media/js/aos.js"></script>
+<script src="https://chyon.cn//media/js/pace.min.js"></script>
+<script src="https://chyon.cn//media/js/view-image.min.js"></script>
+<script src="https://chyon.cn//media/js/jquery.magnific-popup.min.js"></script>
+<script src="https://chyon.cn//media/js/functions.js"></script>
+    <meta name="referrer" content="never">
+    <meta name="description" content="文档来源：避免在 SharePoint Online 中受限或遭屏蔽
+什么是限制？
+SharePoint Online 使用限制来维护 SharePoint Online 服务的最佳性能和可靠性。限制会限制用户操作或并发调用数量（通过脚本或..." />
+    <meta name="keywords" content="科普" />
+    <script src="https://chyon.cn//media/js/waterfall.min.js"></script>
+    <script src="https://chyon.cn//media/js/prism.min.js"></script>
+  </head>
+  <body>
+            <header id="header" class="grid-container">
+        <!-- start: .menu-wrapper -->
+        <div class="menu-mobile"> 
+          <i class="fa fa-reorder"></i>
+        </div>
+        <div class="menu-wrapper">
+          <div class="">
+            <div class="logo">
+              <a href="https://chyon.cn/"><img src="\media\images\custom-headerLogo.png" alt=""></a>
+            </div>
+            <!-- start: .main-nav -->
+
+            <nav class="main-nav grid-container grid-parent">
+              <ul id="menu-header" class="menu gradient-effect">
+                <li class=""><a href="https://chyon.cn/" class="menu">首页</a></li>
+                
+                  <li class="" >
+                    <a href="/archives" class="menu">
+                      归档
+                    </a>
+                  </li>
+                
+                  <li class="" >
+                    <a href="/tags" class="menu">
+                      标签
+                    </a>
+                  </li>
+                
+                  <li class="" >
+                    <a href="/post/about" class="menu">
+                      关于
+                    </a>
+                  </li>
+                
+                <li class="search-menu-item hide-on-mobile hide-on-tablet"><a href="#search-lightbox" class="lightbox mfp-inline"><i class="fa fa-search-line"></i></a></li>
+              </ul>
+            </nav>
+            <a href="#search-lightbox" class="lightbox epcl-search-button mfp-inline hide-on-tablet hide-on-desktop"><i class="fa fa-search-line"></i></a>
+            <!-- end: .main-nav -->
+            <div class="clear"></div>
+            <div class="border hide-on-tablet hide-on-mobile"></div>
+          </div>    
+          <div class="clear"></div>
+        </div>
+        <!-- end: .menu-wrapper -->
+        <div class="clear"></div>
+      </header>
+      <div class="hide-on-mobile hide-on-tablet hide-on-desktop">
+        <div id="search-lightbox" class="grid-container grid-small grid-parent mfp-hide">
+          <div class="search-wrapper section">
+            <form id="gridea-search-form" data-update="1653140660237" action="/search/index.html" class="search-form" _lpchecked="1">
+              <input type="text" name="q" id="s" value="" class="search-field" placeholder="搜点啥..." aria-label="搜点啥..." required="">
+              <button type="submit" class="submit" aria-label="Submit">
+                <i class="fa fa-search-line"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <main id="single" class="main grid-container fullcover no-sidebar aos-init aos-animate" data-aos="fade">
+
+        <div class="center content">
+          <div class="featured-image cover" style="background-image: url('\media\images\custom-featureImage.png');">
+            <div class="meta top"> 
+              <time class="meta-info" style="float:left;" datetime="2018-10-15"><i class="fa fa-calendar"></i><span class="lately">4 年前</span></time>
+              
+              <a href="https://chyon.cn/post/sharepoint-doc/#comments" class="comments meta-info" title="">
+                <i class="fa fa-comment remixicon"></i><span class="comment-count valine-comment-count" data-xid="/sharepoint-doc/"> </span>
+              </a>
+              <span id="/sharepoint-doc/" class="leancloud_visitors views-counter meta-info" title=""><i class="fa fa-leancloud remixicon"></i><span class="leancloud-visitors-count"></span></span>
+              
+            </div>
+            <div class="info">
+              <div class="tags ">
+                
+                      <a href="https://chyon.cn/tag/bxYNpo6x0jV/" class="ctag ctag-0 ctag-bxYNpo6x0jV" aria-label="">科普</a>
+                    
+              </div>
+              <h1 class="title ularge white bold">Sharepoint访问次数限制</h1>
+            </div>
+          </div>
+        </div>  
+
+        <div class="epcl-page-wrapper">
+          <div class="left-content grid-70 np-mobile">
+            <article class="main-article post">
+              <section class="post-content">
+                <div class="text">
+                  <p>文档来源：<a href="https://docs.microsoft.com/zh-cn/sharepoint/dev/general-development/how-to-avoid-getting-throttled-or-blocked-in-sharepoint-online">避免在 SharePoint Online 中受限或遭屏蔽</a></p>
+<h2 id="什么是限制"><a href="https://docs.microsoft.com/zh-cn/sharepoint/dev/general-development/how-to-avoid-getting-throttled-or-blocked-in-sharepoint-online#what-is-throttling">什么是限制？</a></h2>
+<p>SharePoint Online 使用限制来维护 SharePoint Online 服务的最佳性能和可靠性。限制会限制用户操作或并发调用数量（通过脚本或代码），以防止资源的过度使用。</p>
+<p>也就是说，用户很少在 SharePoint Online 中被限制。这项服务非常强大，并且设计为具有极高的处理量。如果您被限制，99% 都是因为自定义代码。这并不是说不会被其他方式限制，只是那些方式并不常用。例如，您启动了 10 台计算机并在这 10 台计算机上均运行同步客户端。每台计算机上同步 1TB 内容。这可能会使您被限制。</p>
+<figure data-type="image" tabindex="1"><img src="https://docs.microsoft.com/zh-cn/sharepoint/dev/images/3b9184db-99a4-416e-ba1e-7f8653484cee.png" alt="限制如何发生" loading="lazy"></figure>
+<h3 id="在-sharepoint-online-中被限制时会发生什么"><a href="https://docs.microsoft.com/zh-cn/sharepoint/dev/general-development/how-to-avoid-getting-throttled-or-blocked-in-sharepoint-online#what-happens-when-you-get-throttled-in-sharepoint-online">在 SharePoint Online 中被限制时会发生什么？</a></h3>
+<p>当用户超过使用限制时，SharePoint Online 会限制该用户帐户发出的任何进一步请求，但通常只是短时间内。在用户限制的有效期内，将限制该用户的所有用户操作。</p>
+<ul>
+<li>
+<p>对于用户直接在浏览器中执行的请求，SharePoint Online 会将您重定向到限制信息页面，请求将失败。</p>
+</li>
+<li>
+<p>对于所有其他请求（包括 CSOM 或 REST 调用），SharePoint Online 将返回 HTTP 状态代码 429（请求过多），请求将失败。</p>
+</li>
+</ul>
+<p>如果进程继续超过使用限制，SharePoint Online 可能完全阻止该进程；在这种情况下，将看不到任何成功的请求，我们将在 Office 365 消息中心通知您发生阻止。</p>
+<h3 id="应用程序限制"><a href="https://docs.microsoft.com/zh-cn/sharepoint/dev/general-development/how-to-avoid-getting-throttled-or-blocked-in-sharepoint-online#application-throttling">应用程序限制</a></h3>
+<p>除了用户帐户的限制，限制还适用于每个应用程序。 SharePoint Online 中的每个应用程序都具有自己的可用资源，但针对同一租户运行的多个应用程序最终将共享同一资源存储段，在极少数情况下会导致速率限制。 在这些情况下，SharePoint Online 会尝试将交互式用户请求优先于后台活动执行。</p>
+<h2 id="sharepoint-online-中常见的限制场景"><a href="https://docs.microsoft.com/zh-cn/sharepoint/dev/general-development/how-to-avoid-getting-throttled-or-blocked-in-sharepoint-online#common-throttling-scenarios-in-sharepoint-online">SharePoint Online 中常见的限制场景</a></h2>
+<p>导致 SharePoint Online 中出现用户限制最常见的原因是以太高的频率执行太多操作的客户端对象模型 (CSOM) 或代表性状态传输 (REST) 代码。</p>
+<ul>
+<li>
+<p><strong>突发通信</strong></p>
+<p>针对 SharePoint Online 的常态负载或重复性的复杂查询必须进行优化以降低影响。 未能按照<a href="https://aka.ms/ScanGuidance">扫描应用程序的最佳实践</a> 来批量处理文件可能会导致限制。</p>
+<ul>
+<li>例如，将文件迁移到 SharePoint Online 之后，您运行自定义 CSOM 或 REST 脚本以更新文件上的元数据。CSOM/REST 脚本以极高的频率更新大量文件，这将触发限制。与此类似，使用 REST 服务的自动完成 UI 小部件在每个最终用户操作中向列表发出太多的调用，也可能导致限制，具体取决于哪些其他操作也在同时消耗资源。</li>
+</ul>
+<figure data-type="image" tabindex="2"><img src="https://docs.microsoft.com/zh-cn/sharepoint/dev/images/a61afe25-9597-403f-b3fa-d3f630155021.png" alt="个别限制" loading="lazy"></figure>
+</li>
+<li>
+<p><strong>无比拥挤的通信</strong></p>
+<p>单个进程在很长一段时间内持续大大超出限制。</p>
+<ul>
+<li>
+<p>您使用 Web 服务构建同步用户配置文件属性的工具。该工具将根据您的业务线 (LOB) 人力资源 (HR) 系统中的信息更新用户配置文件属性。该工具以太高的频率发出调用。</p>
+</li>
+<li>
+<p>您在 SharePoint Online 上运行负载测试脚本但受到限制。SharePoint Online 上不允许进行负载测试。</p>
+</li>
+<li>
+<p>例如，您在 SharePoint Online 上对您的工作组网站进行了自定义设置，方法是在主页上添加了一个状态指示器。此状态指示器频繁更新，这会导致页面向 SharePoint Online 服务发出太多调用，从而触发限制。</p>
+</li>
+</ul>
+<figure data-type="image" tabindex="3"><img src="https://docs.microsoft.com/zh-cn/sharepoint/dev/images/7849d413-381f-4558-9e50-b3cc9990d3e3.png" alt="稳定的限制" loading="lazy"></figure>
+</li>
+</ul>
+<h2 id="为什么不能告诉我确切的限制"><a href="https://docs.microsoft.com/zh-cn/sharepoint/dev/general-development/how-to-avoid-getting-throttled-or-blocked-in-sharepoint-online#why-cant-you-just-tell-me-the-exact-throttling-limits">为什么不能告诉我确切的限制？</a></h2>
+<p>设置并发布精确限制限制看似非常简单，但实际上会导致更严格的限制。 我们不断监视 SharePoint Online 上的资源使用状况。 根据使用情况，我们将微调阈值，以便用户可以使用最大数目的资源，而不会降低 SharePoint Online 的可靠性和性能。 这就是为什么 CSOM 或 REST 代码遵循 retry-after（重试间隔）标头值是如此重要的原因；它允许您在任何给定的一天内尽可能快地运行代码，然后如果它受到限制，将仅获得“足够”的资源。 本主题后面的代码示例演示如何使用 retry-after 标头。</p>
+<h2 id="处理限制的最佳实践"><a href="https://docs.microsoft.com/zh-cn/sharepoint/dev/general-development/how-to-avoid-getting-throttled-or-blocked-in-sharepoint-online#best-practices-to-handle-throttling">处理限制的最佳实践</a></h2>
+<ul>
+<li>
+<p>减少每个请求的操作数</p>
+</li>
+<li>
+<p>减少调用频率</p>
+</li>
+<li>
+<p>修饰流量以展现身份（有关详细信息，请参阅下面有关流量修饰最佳实践的部分）</p>
+</li>
+<li>
+<p>利用 retry-after 标头</p>
+</li>
+</ul>
+<p>如果遇到限制，我们需要利用 retry-after 标头以确保短的延迟时间，直到限制解除。</p>
+<p>设置重试间隔是避免限制的最快捷方式，因为 SharePoint Online 动态确定适当的重试时间。 换句话说，积极的重试对您工作有不利影响，因为即使调用失败，它们仍计 入使用率限制。 遵循重试标头将确保最短的延迟。</p>
+<p>有关 SharePoint Online 活动监视方式的详细信息，请参阅<a href="https://support.office.com/en-us/article/3c364f9e-b9f6-4da4-a792-c8e8c8cd2e86">使用 SharePoint Online 诊断性能问题</a>。</p>
+<p>有关 Microsoft 云上对限制的更广泛探讨，请参阅<a href="http://msdn.microsoft.com/library/4baf5af2-32fc-47ab-8569-3e5c59a5ebd5.aspx">限制模式</a>。</p>
+
+                </div>
+                <div class="clear"></div>
+              </section>
+            </article>
+            <div class="clear"></div>
+
+            <section class="related section">
+              
+              <article class="prev grid-50 tablet-grid-50 grid-parent">
+                <div class="thumb cover lazy loaded" style="background-image: url('https://chyon.cn//media/images/rpDcRXcBJv.jpg');"></div>
+                 <a href="https://chyon.cn/post/ubuntu-install-utorrent/" class="full-link"></a>
+                 <div class="info">
+                  <time datetime="2018-10-16">2018-10-16</time>
+                  <h4 class="title white no-margin"> Ubuntu安装uTorrent</h4>
+                </div>
+                 <span class="epcl-button red">
+                  <img src="https://chyon.cn//media/images/left-arrow.svg" width="15" alt="Left Arrow">
+                </span>
+                <div class="overlay"></div>
+              </article>
+              
+              
+              <article class="next grid-50 tablet-grid-50 grid-parent">
+                <div class="thumb cover lazy loaded" style="background-image: url('https://chyon.cn//media/images/rpDcRXcBJv.jpg');"></div>
+                 <a href="https://chyon.cn/post/nowsh-creater-onindex/" class="full-link"></a>
+                 <div class="info">
+                  <time datetime="2018-10-08">2018-10-08</time>
+                  <h4 class="title white no-margin">利用Now.sh免费套餐来部署OneIndex教程</h4>
+                </div>
+                 <span class="epcl-button red">
+                  <img src="https://chyon.cn//media/images/right-arrow.svg" width="15" alt="Left Arrow">
+                </span>
+                <div class="overlay"></div>
+              </article>
+              
+
+                <div class="clear"></div>
+            </section>
+
+              <div class="clear"></div>
+              
+            
+              <div id="comments" class="bg-white hosted ">
+                <p>请到客户端“主题--自定义配置--valine”中填入ID和KEY</p>
+              </div>
+              <div class="clear"></div>
+            
+
+            </div>
+          </div>
+      </main>
+
+          <footer id="footer" class="grid-container">
+        <div class="widgets row gradient-effect">
+            <div class="default-sidebar border-effect">
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="tag_cloud-2" class="widget widget_epcl_posts_thumbs underline-effect">
+                  <h4 class="widget-title title white bordered">最新文章</h4>
+                  
+                  
+                  <article class="item post-0 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://chyon.cn/post/ifile-tryout/" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display:block;border-radius:50%;background-image: url('https://pic.rmb.bdstatic.com/bjh/d837f914d6e3af32d4ca4192ee20c278.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2022-02-23">2022-02-23</time>
+                      <h4 class="title usmall">
+                        <a href="https://chyon.cn/post/ifile-tryout/">ifile简单试用</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  <article class="item post-1 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://chyon.cn/post/multi-backup-sh/" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display:block;border-radius:50%;background-image: url('https://pic.rmb.bdstatic.com/bjh/f22c2c99f9d4d987865209cd0e8c335f.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2022-01-04">2022-01-04</time>
+                      <h4 class="title usmall">
+                        <a href="https://chyon.cn/post/multi-backup-sh/">服务器多备份脚本</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  <article class="item post-2 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://chyon.cn/post/ubuntu20-bash-startup/" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display:block;border-radius:50%;background-image: url('https://pic.rmb.bdstatic.com/bjh/bccbf745b500e7e79d196b531935e9b5.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2021-12-31">2021-12-31</time>
+                      <h4 class="title usmall">
+                        <a href="https://chyon.cn/post/ubuntu20-bash-startup/">Ubuntu20 开机自启脚本设置</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <div class="clear"></div>
+                </section>
+              </div>
+
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="tag_cloud-2" class="widget widget_tag_cloud underline-effect">
+                  <h4 class="widget-title title white bordered">标签云</h4>
+                  <div class="tagcloud">
+                    
+                      <a href="https://chyon.cn/tag/1tNs6jYaW/" class="ctag ctag-0 ctag-1tNs6jYaW" aria-label="">office365</a>
+                    
+                      <a href="https://chyon.cn/tag/nbbkZL5Qz/" class="ctag ctag-1 ctag-nbbkZL5Qz" aria-label="">Oracle</a>
+                    
+                      <a href="https://chyon.cn/tag/7Og8ymC1p/" class="ctag ctag-2 ctag-7Og8ymC1p" aria-label="">树莓派</a>
+                    
+                      <a href="https://chyon.cn/tag/LFhcpSea-R/" class="ctag ctag-3 ctag-LFhcpSea-R" aria-label="">Cloudreve</a>
+                    
+                      <a href="https://chyon.cn/tag/e2VPqPl4Hb/" class="ctag ctag-4 ctag-e2VPqPl4Hb" aria-label="">OFB</a>
+                    
+                      <a href="https://chyon.cn/tag/OXMYjl4qvz/" class="ctag ctag-5 ctag-OXMYjl4qvz" aria-label="">CCAA</a>
+                    
+                      <a href="https://chyon.cn/tag/d98oM_-FC-/" class="ctag ctag-6 ctag-d98oM_-FC-" aria-label="">docker</a>
+                    
+                      <a href="https://chyon.cn/tag/y2g_Jal6Qj/" class="ctag ctag-7 ctag-y2g_Jal6Qj" aria-label="">青龙</a>
+                    
+                      <a href="https://chyon.cn/tag/rpDcRXcBJv/" class="ctag ctag-8 ctag-rpDcRXcBJv" aria-label="">教程</a>
+                    
+                      <a href="https://chyon.cn/tag/o33z1EqCrH/" class="ctag ctag-9 ctag-o33z1EqCrH" aria-label="">rss</a>
+                    
+                      <a href="https://chyon.cn/tag/7dC6LXdvyt/" class="ctag ctag-10 ctag-7dC6LXdvyt" aria-label="">onenote</a>
+                    
+                      <a href="https://chyon.cn/tag/HSfooHFl3X/" class="ctag ctag-11 ctag-HSfooHFl3X" aria-label="">flow</a>
+                    
+                      <a href="https://chyon.cn/tag/g73VMB7RIb/" class="ctag ctag-12 ctag-g73VMB7RIb" aria-label="">心情日记</a>
+                    
+                      <a href="https://chyon.cn/tag/WRGI_M9cAp/" class="ctag ctag-13 ctag-WRGI_M9cAp" aria-label="">软件</a>
+                    
+                      <a href="https://chyon.cn/tag/sESGof_c-K/" class="ctag ctag-14 ctag-sESGof_c-K" aria-label="">KMS</a>
+                    
+                      <a href="https://chyon.cn/tag/C0siuULFmO/" class="ctag ctag-15 ctag-C0siuULFmO" aria-label="">分享</a>
+                    
+                      <a href="https://chyon.cn/tag/bxYNpo6x0jV/" class="ctag ctag-16 ctag-bxYNpo6x0jV" aria-label="">科普</a>
+                    
+                      <a href="https://chyon.cn/tag/GnExbHY2m/" class="ctag ctag-17 ctag-GnExbHY2m" aria-label="">Gridea</a>
+                    
+                      <a href="https://chyon.cn/tag/ZWTJjiyL1-w/" class="ctag ctag-18 ctag-ZWTJjiyL1-w" aria-label="">markdown</a>
+                    
+                  </div>
+                  <div class="clear"></div>
+                </section>
+              </div>
+
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="epcl_about-2" class="widget widget_epcl_about underline-effect">
+                  <h4 class="widget-title title white bordered">关于我</h4>
+                  <div class="avatar">
+                    <a href="" class="translate-effect thumb"><span class="fullimage cover" style="background-image: url(https://chyon.cn//images/avatar.png);"></span></a>
+                  </div>
+                  <div class="info">
+                    <h4 class="title small author-name gradient-effect no-margin"><a href="">言岚的博客</a></h4>
+                    <p class="founder">这是一个孤独的世界</p>
+                    <div class="social">
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                    </div> 
+                  </div>
+                  <div class="clear"></div>
+                  </section>
+              </div>
+
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="logo">
+          <a href="https://chyon.cn/"><img src="\media\images\custom-footerLogo.png" alt=""></a>
+        </div>
+        <p class="published border-effect">
+          ©2019 共 92 篇文章
+          <br/>
+          Theme <a href="https://gridea.dev/" target="_blank">「breek」</a> Powered by <a href="https://gridea.dev/" target="_blank">「Gridea」</a>
+        </p>
+        
+        <a href="javascript:void(0)" id="back-to-top" class="epcl-button dark" style="display:none">
+          <i class="fa fa-arrow"></i>
+        </a>
+    </footer>
+    
+    <div class="clear"></div>
+
+        
+
+      
+    <script src="https://chyon.cn//media/js/functions-post.js"></script>
+
+    </div>
+    <!-- end: #wrapper -->
+  </body>
+</html>

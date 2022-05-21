@@ -1,0 +1,575 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MiXplorer中OneDrive Business连接的问题 | 言岚的博客</title>
+<meta name="description" content="这是一个孤独的世界" />
+<link rel="shortcut icon" href="https://chyon.cn//favicon.ico">
+<link rel="stylesheet" href="https://chyon.cn//styles/main.css">
+
+<script src="https://chyon.cn//media/js/jquery.min.js"></script>
+<script src="https://chyon.cn//media/js/masonry.pkgd.min.js"></script>
+<script src="https://chyon.cn//media/js/aos.js"></script>
+<script src="https://chyon.cn//media/js/pace.min.js"></script>
+<script src="https://chyon.cn//media/js/view-image.min.js"></script>
+<script src="https://chyon.cn//media/js/jquery.magnific-popup.min.js"></script>
+<script src="https://chyon.cn//media/js/functions.js"></script>
+    <meta name="referrer" content="never">
+    <meta name="description" content="2020年6月12日：该教程已经失效
+正式开始讨论这个问题之前，先吐槽一波。
+这是一个我个人觉得及其不怎么负责任的开发者开发出来的App。为什么我说他不负责任？我慢慢细数。
+首先，对权限的申请毫不负责任。大众PHP程序“OneIndex”大..." />
+    <meta name="keywords" content="教程" />
+    <script src="https://chyon.cn//media/js/waterfall.min.js"></script>
+    <script src="https://chyon.cn//media/js/prism.min.js"></script>
+  </head>
+  <body>
+            <header id="header" class="grid-container">
+        <!-- start: .menu-wrapper -->
+        <div class="menu-mobile"> 
+          <i class="fa fa-reorder"></i>
+        </div>
+        <div class="menu-wrapper">
+          <div class="">
+            <div class="logo">
+              <a href="https://chyon.cn/"><img src="\media\images\custom-headerLogo.png" alt=""></a>
+            </div>
+            <!-- start: .main-nav -->
+
+            <nav class="main-nav grid-container grid-parent">
+              <ul id="menu-header" class="menu gradient-effect">
+                <li class=""><a href="https://chyon.cn/" class="menu">首页</a></li>
+                
+                  <li class="" >
+                    <a href="/archives" class="menu">
+                      归档
+                    </a>
+                  </li>
+                
+                  <li class="" >
+                    <a href="/tags" class="menu">
+                      标签
+                    </a>
+                  </li>
+                
+                  <li class="" >
+                    <a href="/post/about" class="menu">
+                      关于
+                    </a>
+                  </li>
+                
+                <li class="search-menu-item hide-on-mobile hide-on-tablet"><a href="#search-lightbox" class="lightbox mfp-inline"><i class="fa fa-search-line"></i></a></li>
+              </ul>
+            </nav>
+            <a href="#search-lightbox" class="lightbox epcl-search-button mfp-inline hide-on-tablet hide-on-desktop"><i class="fa fa-search-line"></i></a>
+            <!-- end: .main-nav -->
+            <div class="clear"></div>
+            <div class="border hide-on-tablet hide-on-mobile"></div>
+          </div>    
+          <div class="clear"></div>
+        </div>
+        <!-- end: .menu-wrapper -->
+        <div class="clear"></div>
+      </header>
+      <div class="hide-on-mobile hide-on-tablet hide-on-desktop">
+        <div id="search-lightbox" class="grid-container grid-small grid-parent mfp-hide">
+          <div class="search-wrapper section">
+            <form id="gridea-search-form" data-update="1653140660237" action="/search/index.html" class="search-form" _lpchecked="1">
+              <input type="text" name="q" id="s" value="" class="search-field" placeholder="搜点啥..." aria-label="搜点啥..." required="">
+              <button type="submit" class="submit" aria-label="Submit">
+                <i class="fa fa-search-line"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <main id="single" class="main grid-container fullcover no-sidebar aos-init aos-animate" data-aos="fade">
+
+        <div class="center content">
+          <div class="featured-image cover" style="background-image: url('\media\images\custom-featureImage.png');">
+            <div class="meta top"> 
+              <time class="meta-info" style="float:left;" datetime="2018-06-11"><i class="fa fa-calendar"></i><span class="lately">4 年前</span></time>
+              
+              <a href="https://chyon.cn/post/mixplorer-zhong-onedrive-business-lian-jie-de-wen-ti/#comments" class="comments meta-info" title="">
+                <i class="fa fa-comment remixicon"></i><span class="comment-count valine-comment-count" data-xid="/mixplorer-zhong-onedrive-business-lian-jie-de-wen-ti/"> </span>
+              </a>
+              <span id="/mixplorer-zhong-onedrive-business-lian-jie-de-wen-ti/" class="leancloud_visitors views-counter meta-info" title=""><i class="fa fa-leancloud remixicon"></i><span class="leancloud-visitors-count"></span></span>
+              
+            </div>
+            <div class="info">
+              <div class="tags ">
+                
+                      <a href="https://chyon.cn/tag/rpDcRXcBJv/" class="ctag ctag-0 ctag-rpDcRXcBJv" aria-label="">教程</a>
+                    
+              </div>
+              <h1 class="title ularge white bold">MiXplorer中OneDrive Business连接的问题</h1>
+            </div>
+          </div>
+        </div>  
+
+        <div class="epcl-page-wrapper">
+          <div class="left-content grid-70 np-mobile">
+            <article class="main-article post">
+              <section class="post-content">
+                <div class="text">
+                  <p><strong>2020年6月12日：该教程已经失效</strong></p>
+<p>正式开始讨论这个问题之前，先吐槽一波。</p>
+<p>这是一个我个人觉得及其不怎么负责任的开发者开发出来的App。为什么我说他不负责任？我慢慢细数。</p>
+<p>首先，对权限的申请毫不负责任。大众PHP程序“OneIndex”大家都知道，它能用简简单单的一个普通用户级别的Azure Application完成对该用户的Onedrive For Business的读和写，相当程度上对用户的个人隐私和安全问题做出了极好的保护。而这个应用，MDZZ，直接要对Sharepoint的根目录的读写权限。这个权限只能由全局管理员赋予，而一旦公开给用户使用，就极有可能被稍微会一点技术的人钻空子，随便写写删删别人的文件我认为绝对可以做得到。这是我认为它极其不负责任的一个方面。</p>
+<p>另一个方面，由于这个权限的特殊性，导致了该Application的权限不能跨全局共享。也就是说，我的API你不能用，除非你是我全局里面的人。由于这个特殊性，导致了他人在使用的时候，就不得不向自己的全局管理员申请API。而这个开发者，不仅把自己的API集成在这个应用里面，而且没有一点提示！无论是开发文档还是在答水友问的时候，从头到尾没有提到过如何创建这个API，如何修改本体自带的API。以下是他对某水友的回复的原话：</p>
+<blockquote>
+<p>You need to enter client id and redirect uri in the advanced settings to make it work. It's 100$ per year and I didn't pay for it.</p>
+</blockquote>
+<p>大意是：“哦，你可能要改改里面的两个参数才能正常运行。大概要一百美元才能做得到，我才不干呢！”。</p>
+<p>无语了，这种开发者眼中可能是没有小白吧。</p>
+<p>好了，吐槽完毕，开始正题：</p>
+<h3 id="如何以全局管理员的身份创建这样一个api供用户使用">如何以全局管理员的身份创建这样一个API供用户使用？</h3>
+<h5 id="首先你得有全局管理员的权限否则下面的都不用看了">首先你得有全局管理员的权限，否则下面的都不用看了。</h5>
+<ul>
+<li>登陆并打开管理中心</li>
+</ul>
+<p>登陆Office.com，打开“管理”-&gt;“管理中心”-&gt;“Azure Active Directory”</p>
+<figure data-type="image" tabindex="1"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1fs7muelxetj30aq0oidgh.jpg" alt="" loading="lazy"></figure>
+<ul>
+<li>注册新应用程序</li>
+</ul>
+<p>如下图所示依次选择，直到“新应用程序注册”</p>
+<figure data-type="image" tabindex="2"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1fs7mw5pq73j319w0owmzq.jpg" alt="" loading="lazy"></figure>
+<ul>
+<li>配置</li>
+</ul>
+<p>填写名称（任意），选择应用程序类型为“本机”，填写重定向URI为：</p>
+<pre><code class="language-c">https://sharepoint.com
+</code></pre>
+<p>如图所示：</p>
+<figure data-type="image" tabindex="3"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1fs7my1niedj313v0pa3zy.jpg" alt="" loading="lazy"></figure>
+<p>然后点击创建，创建成功。</p>
+<figure data-type="image" tabindex="4"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1fs7n1g060xj310f0kgwfu.jpg" alt="" loading="lazy"></figure>
+<p>创建成功后显示应用程序ID，复制下来保存好，然后点击设置。</p>
+<ul>
+<li>赋予权限</li>
+</ul>
+<p>点击“设置”后，进入设置界面，点击“所需权限”：</p>
+<figure data-type="image" tabindex="5"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1fs7n4406j8j30xq0p60ug.jpg" alt="" loading="lazy"></figure>
+<p>（唉，忘记打码了，就这样吧。）</p>
+<p>然后授予第一个权限：</p>
+<figure data-type="image" tabindex="6"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1fs7n6f1a7ij31hc0qkq6f.jpg" alt="" loading="lazy"></figure>
+<p>点击保存。然后点击左上角“添加”：</p>
+<figure data-type="image" tabindex="7"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1fs7n7ry6ndj31hc0pmtba.jpg" alt="" loading="lazy"></figure>
+<p>选择API为“Office 365 SharePoint Online”，然后确定，赋予权限：</p>
+<p>这里我不太清楚各个权限的区别以及用途，索性全部选上了：</p>
+<figure data-type="image" tabindex="8"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1fs7n93vxbsj31hc0ox774.jpg" alt="" loading="lazy"></figure>
+<p>然后保存。</p>
+<p>这样你就可以看到两个API，然后将这两个API的权限赋值给这个应用程序。</p>
+<p>点击上方的“授予权限”：</p>
+<figure data-type="image" tabindex="9"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1fs7nasf2a0j30ln0ny3yy.jpg" alt="" loading="lazy"></figure>
+<p>然后提示成功：</p>
+<figure data-type="image" tabindex="10"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1fs7nbeqh7oj30f80hsmxw.jpg" alt="" loading="lazy"></figure>
+<p>理论上你在整个创建过程中能看到这四个成功的提示。</p>
+<ul>
+<li>使用MiXplorer登陆</li>
+</ul>
+<p>打开安卓手机，左上方添加存储器：</p>
+<figure data-type="image" tabindex="11"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1fs7nf5mdgij316o1kwtb5.jpg" alt="" loading="lazy"></figure>
+<p>选择“OneDrive Business”，然后开始配置：</p>
+<figure data-type="image" tabindex="12"><img src="https://ws1.sinaimg.cn/large/0068Q8Uggy1fs7ngv413gj316o1kwgv4.jpg" alt="" loading="lazy"></figure>
+<p>“链接地址”无法修改；</p>
+<p>显示姓名请自定义；</p>
+<p>请在<code>client_id=</code>后面填写你前面复制得到的“应用程序ID”，如果忘记了可以回去找到；</p>
+<p>请在<code>redirect_uri=</code>后面填写<code>https://sharepoint.com</code>，然后点击保存。</p>
+<p>设置密码，然后登陆，就可以使用了。</p>
+<h4 id="一些需要注意的问题">一些需要注意的问题</h4>
+<p>如我前面吐槽所述，该API不能跨全局使用。</p>
+<p>注意保护个人信息资料安全。</p>
+
+                </div>
+                <div class="clear"></div>
+              </section>
+            </article>
+            <div class="clear"></div>
+
+            <section class="related section">
+              
+              <article class="prev grid-50 tablet-grid-50 grid-parent">
+                <div class="thumb cover lazy loaded" style="background-image: url('https://chyon.cn//media/images/sESGof_c-K.jpg');"></div>
+                 <a href="https://chyon.cn/post/kms-update/" class="full-link"></a>
+                 <div class="info">
+                  <time datetime="2018-06-18">2018-06-18</time>
+                  <h4 class="title white no-margin">关于KMS知识的补充及Windows 10政府版</h4>
+                </div>
+                 <span class="epcl-button red">
+                  <img src="https://chyon.cn//media/images/left-arrow.svg" width="15" alt="Left Arrow">
+                </span>
+                <div class="overlay"></div>
+              </article>
+              
+              
+              <article class="next grid-50 tablet-grid-50 grid-parent">
+                <div class="thumb cover lazy loaded" style="background-image: url('https://pic.rmb.bdstatic.com/bjh/4022d50b28279968df881bec05ade165.jpeg');"></div>
+                 <a href="https://chyon.cn/post/docker-images/" class="full-link"></a>
+                 <div class="info">
+                  <time datetime="2018-06-08">2018-06-08</time>
+                  <h4 class="title white no-margin">[置顶]常用Docker镜像整理</h4>
+                </div>
+                 <span class="epcl-button red">
+                  <img src="https://chyon.cn//media/images/right-arrow.svg" width="15" alt="Left Arrow">
+                </span>
+                <div class="overlay"></div>
+              </article>
+              
+
+                <div class="clear"></div>
+            </section>
+
+              <div class="clear"></div>
+              
+            
+              <div id="comments" class="bg-white hosted ">
+                <p>请到客户端“主题--自定义配置--valine”中填入ID和KEY</p>
+              </div>
+              <div class="clear"></div>
+            
+
+            </div>
+          </div>
+      </main>
+
+          <footer id="footer" class="grid-container">
+        <div class="widgets row gradient-effect">
+            <div class="default-sidebar border-effect">
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="tag_cloud-2" class="widget widget_epcl_posts_thumbs underline-effect">
+                  <h4 class="widget-title title white bordered">最新文章</h4>
+                  
+                  
+                  <article class="item post-0 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://chyon.cn/post/ifile-tryout/" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display:block;border-radius:50%;background-image: url('https://pic.rmb.bdstatic.com/bjh/d837f914d6e3af32d4ca4192ee20c278.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2022-02-23">2022-02-23</time>
+                      <h4 class="title usmall">
+                        <a href="https://chyon.cn/post/ifile-tryout/">ifile简单试用</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  <article class="item post-1 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://chyon.cn/post/multi-backup-sh/" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display:block;border-radius:50%;background-image: url('https://pic.rmb.bdstatic.com/bjh/f22c2c99f9d4d987865209cd0e8c335f.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2022-01-04">2022-01-04</time>
+                      <h4 class="title usmall">
+                        <a href="https://chyon.cn/post/multi-backup-sh/">服务器多备份脚本</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  <article class="item post-2 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://chyon.cn/post/ubuntu20-bash-startup/" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display:block;border-radius:50%;background-image: url('https://pic.rmb.bdstatic.com/bjh/bccbf745b500e7e79d196b531935e9b5.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2021-12-31">2021-12-31</time>
+                      <h4 class="title usmall">
+                        <a href="https://chyon.cn/post/ubuntu20-bash-startup/">Ubuntu20 开机自启脚本设置</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <div class="clear"></div>
+                </section>
+              </div>
+
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="tag_cloud-2" class="widget widget_tag_cloud underline-effect">
+                  <h4 class="widget-title title white bordered">标签云</h4>
+                  <div class="tagcloud">
+                    
+                      <a href="https://chyon.cn/tag/1tNs6jYaW/" class="ctag ctag-0 ctag-1tNs6jYaW" aria-label="">office365</a>
+                    
+                      <a href="https://chyon.cn/tag/nbbkZL5Qz/" class="ctag ctag-1 ctag-nbbkZL5Qz" aria-label="">Oracle</a>
+                    
+                      <a href="https://chyon.cn/tag/7Og8ymC1p/" class="ctag ctag-2 ctag-7Og8ymC1p" aria-label="">树莓派</a>
+                    
+                      <a href="https://chyon.cn/tag/LFhcpSea-R/" class="ctag ctag-3 ctag-LFhcpSea-R" aria-label="">Cloudreve</a>
+                    
+                      <a href="https://chyon.cn/tag/e2VPqPl4Hb/" class="ctag ctag-4 ctag-e2VPqPl4Hb" aria-label="">OFB</a>
+                    
+                      <a href="https://chyon.cn/tag/OXMYjl4qvz/" class="ctag ctag-5 ctag-OXMYjl4qvz" aria-label="">CCAA</a>
+                    
+                      <a href="https://chyon.cn/tag/d98oM_-FC-/" class="ctag ctag-6 ctag-d98oM_-FC-" aria-label="">docker</a>
+                    
+                      <a href="https://chyon.cn/tag/y2g_Jal6Qj/" class="ctag ctag-7 ctag-y2g_Jal6Qj" aria-label="">青龙</a>
+                    
+                      <a href="https://chyon.cn/tag/rpDcRXcBJv/" class="ctag ctag-8 ctag-rpDcRXcBJv" aria-label="">教程</a>
+                    
+                      <a href="https://chyon.cn/tag/o33z1EqCrH/" class="ctag ctag-9 ctag-o33z1EqCrH" aria-label="">rss</a>
+                    
+                      <a href="https://chyon.cn/tag/7dC6LXdvyt/" class="ctag ctag-10 ctag-7dC6LXdvyt" aria-label="">onenote</a>
+                    
+                      <a href="https://chyon.cn/tag/HSfooHFl3X/" class="ctag ctag-11 ctag-HSfooHFl3X" aria-label="">flow</a>
+                    
+                      <a href="https://chyon.cn/tag/g73VMB7RIb/" class="ctag ctag-12 ctag-g73VMB7RIb" aria-label="">心情日记</a>
+                    
+                      <a href="https://chyon.cn/tag/WRGI_M9cAp/" class="ctag ctag-13 ctag-WRGI_M9cAp" aria-label="">软件</a>
+                    
+                      <a href="https://chyon.cn/tag/sESGof_c-K/" class="ctag ctag-14 ctag-sESGof_c-K" aria-label="">KMS</a>
+                    
+                      <a href="https://chyon.cn/tag/C0siuULFmO/" class="ctag ctag-15 ctag-C0siuULFmO" aria-label="">分享</a>
+                    
+                      <a href="https://chyon.cn/tag/bxYNpo6x0jV/" class="ctag ctag-16 ctag-bxYNpo6x0jV" aria-label="">科普</a>
+                    
+                      <a href="https://chyon.cn/tag/GnExbHY2m/" class="ctag ctag-17 ctag-GnExbHY2m" aria-label="">Gridea</a>
+                    
+                      <a href="https://chyon.cn/tag/ZWTJjiyL1-w/" class="ctag ctag-18 ctag-ZWTJjiyL1-w" aria-label="">markdown</a>
+                    
+                  </div>
+                  <div class="clear"></div>
+                </section>
+              </div>
+
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="epcl_about-2" class="widget widget_epcl_about underline-effect">
+                  <h4 class="widget-title title white bordered">关于我</h4>
+                  <div class="avatar">
+                    <a href="" class="translate-effect thumb"><span class="fullimage cover" style="background-image: url(https://chyon.cn//images/avatar.png);"></span></a>
+                  </div>
+                  <div class="info">
+                    <h4 class="title small author-name gradient-effect no-margin"><a href="">言岚的博客</a></h4>
+                    <p class="founder">这是一个孤独的世界</p>
+                    <div class="social">
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                    </div> 
+                  </div>
+                  <div class="clear"></div>
+                  </section>
+              </div>
+
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="logo">
+          <a href="https://chyon.cn/"><img src="\media\images\custom-footerLogo.png" alt=""></a>
+        </div>
+        <p class="published border-effect">
+          ©2019 共 92 篇文章
+          <br/>
+          Theme <a href="https://gridea.dev/" target="_blank">「breek」</a> Powered by <a href="https://gridea.dev/" target="_blank">「Gridea」</a>
+        </p>
+        
+        <a href="javascript:void(0)" id="back-to-top" class="epcl-button dark" style="display:none">
+          <i class="fa fa-arrow"></i>
+        </a>
+    </footer>
+    
+    <div class="clear"></div>
+
+        
+
+      
+    <script src="https://chyon.cn//media/js/functions-post.js"></script>
+
+    </div>
+    <!-- end: #wrapper -->
+  </body>
+</html>

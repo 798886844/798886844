@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://chyon.cn/</id>
+    <title>言岚的博客</title>
+    <updated>2022-05-21T13:44:24.648Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://chyon.cn/"/>
+    <link rel="self" href="https://chyon.cn/atom.xml"/>
+    <subtitle>这是一个孤独的世界</subtitle>
+    <logo>https://chyon.cn/images/avatar.png</logo>
+    <icon>https://chyon.cn/favicon.ico</icon>
+    <rights>All rights reserved 2022, 言岚的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[ifile简单试用]]></title>
+        <id>https://chyon.cn/post/ifile-tryout/</id>
+        <link href="https://chyon.cn/post/ifile-tryout/">
+        </link>
+        <updated>2022-02-23T11:19:44.000Z</updated>
+        <content type="html"><![CDATA[<p>最近在loc上面看到这个程序的推广贴，直观感觉上是新的云存储利用工具，今天有空试用一下。</p>
+<p>开发者说这个程序还只是起步阶段，所以现在有种子用户名额，想尝试的我觉得可以尝试一下。</p>
+<figure data-type="image" tabindex="1"><img src="https://pic.rmb.bdstatic.com/bjh/7c0ed2155dd58a41dddb71dd3d006c92.png" alt="image.png" loading="lazy"></figure>
+<p>简单安装上手，安装这块还是很简单的，官方有二进制程序提供<a href="https://ifile.space/download">下载</a>，这里好评，因为提供了ARM版本的可执行文件。但是使用Docker安装却发现不支持ARM。</p>
+<figure data-type="image" tabindex="2"><img src="https://pic.rmb.bdstatic.com/bjh/03d94ab0a5857ad7b0dcbcc5f0c6bad9.png" alt="image.png" loading="lazy"></figure>
+<p>去Docker Hub看了一眼，最新版本是2.0.3，没有提供ARM版本的镜像。但是提供了2.0.2版本的ARM镜像。</p>
+<pre><code class="language-ubuntu">docker pull lgs821/ifile:2.0.2
+</code></pre>
+<figure data-type="image" tabindex="3"><img src="https://pic.rmb.bdstatic.com/bjh/4b9396d7f5592560fdcf703a0849805e.png" alt="image.png" loading="lazy"></figure>
+<p>所以我还是选择了使用二进制文件安装。ifile的二进制安装也很简单，解压后就只有一个二进制文件，别的啥也没有。直接使用Screen打开后台执行：</p>
+<pre><code class="language-ubuntu">screen -S ifile
+chmod 777 ifile
+./ifile
+</code></pre>
+<p>默认端口使用的是<code>3030</code>，需要用反向代理才能绑定域名。在开启反向代理之前，记得先设置域名的SSL，否则无法申请微软Microsft 365的API。这部分内容可以参考<a href="https://ifile.space/docs/onedrive">官方文档</a>。此外还要修改反向代理的<a href="https://ifile.space/docs/start#:~:text=Nginx%20%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E9%9C%80%E6%B7%BB%E5%8A%A0%EF%BC%9Aproxy_set_header%20X%2DForwarded%2DProto%20%24scheme%3B">配置文件</a>。</p>
+<p>ifile还提供离线下载功能，配置起来相对简单。离线下载的下载器使用的是aria2，ifile使用RPC模式调用下载服务。所以Aria2必须安装在同一台机器上。</p>
+<p>这里会有一个问题，即如果是使用docker安装的aria2，如果aria2映射的下载目录与本机绝对路径不一致，那么会导致下载后上传失败的问题。</p>
+<figure data-type="image" tabindex="4"><img src="https://pic.rmb.bdstatic.com/bjh/16bad0069e9b786b07f140a398bdbbfd.png" alt="image.png" loading="lazy"></figure>
+<p>解决方法是，将Docker安装的Aria2下载目录映射到服务器的绝对路径的相同路径下，我比较懒，直接用的<code>-v /downloads:/downloads</code>，然后在ifile中也填写这个目录。</p>
+<figure data-type="image" tabindex="5"><img src="https://pic.rmb.bdstatic.com/bjh/1461580847a6deda20ee7d31e7c1e321.png" alt="image.png" loading="lazy"></figure>
+<p>这样就可以完美离线下载并上传了。</p>
+<p>上传这块我也简单试了一下，300M的文件差不多传了1分钟，而7.9G的电影传了差不多40分钟。当然这可能与我的小鸡的位置和世纪互联太远了有关系。</p>
+<figure data-type="image" tabindex="6"><img src="https://pic.rmb.bdstatic.com/bjh/81de055a4ba766d4ecbe0ebb845832b2.png" alt="image.png" loading="lazy"></figure>
+<p>随后我又简单测试了一下在线播放的功能，比较理想，调用的是Onedrive的直链而不是流量转发。所以如果有比较合适的云存储空间，放在这里还是很友好的。</p>
+<figure data-type="image" tabindex="7"><img src="https://pic.rmb.bdstatic.com/bjh/c69d7a50bf23a6f92c2258dcde37ca89.png" alt="image.png" loading="lazy"></figure>
+<p>关于分享我就不再测试了，因为官方有demo。分享的链接格式和百度网盘类似，这一点对用户十分友好。</p>
+<p>最后再聊聊和另一款广为熟知的云存储扩展使用程序Cloudreve的比较：</p>
+<figure data-type="image" tabindex="8"><img src="https://pic.rmb.bdstatic.com/bjh/5e56eb945da7806fc61a70ca7a87be74.png" alt="image.png" loading="lazy"></figure>
+<ul>
+<li>首先是UI，个人觉得ifile比Cloudreve更好看些，除了ifile的logo有些花里胡哨（但是这个可以自己替换）。Cloudreve主要沿用的还是三年前流行的阴影大色块设计，而ifile更倾向于图标UI风格；</li>
+<li>另一个就是离线下载后的云上传。ifile支持世纪互联，上传稳定性也比较好，而Cloudreve上传稳定性比较差，这是很明显的。但是ifile的上传速度依然比较慢，我认为这个值得研究；</li>
+<li>第三个是云上传之后的文件命名和归类。Cloudreve的处理方式是按照年-月-日的方式分层建立文件夹，使得文件按目录树状排列。而ifile我还没摸清楚它的文件夹怎么建的，尝试下载了两个文件后，均上传到同一个文件夹内，估计是按用户uid建的。而且Cloudreve支持文件重命名，在文件的前面加一串代码防止重名，ifile目前没观察到这个功能。</li>
+</ul>
+<p>最后，尽管缺陷很多，但毕竟这只是一个刚刚起步的程序，希望有更多的用户参与，打磨出一款好用的ifile。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[服务器多备份脚本]]></title>
+        <id>https://chyon.cn/post/multi-backup-sh/</id>
+        <link href="https://chyon.cn/post/multi-backup-sh/">
+        </link>
+        <updated>2022-01-04T04:36:19.000Z</updated>
+        <content type="html"><![CDATA[<p>翻车操作不可有，翻车意识不可无。</p>
+<p>书接上文，<a href="https://chyon.cn/post/the-way-to-backup-data/">数据备份方案</a>，后来我又陆续添加了使用<a href="https://github.com/houtianze/bypy">bypy</a>备份到百度网盘的方案和使用<a href="https://github.com/zxbu/webdav-aliyundriver">Webdav挂载阿里云盘</a>，再用Rclone备份的方案。至此应该算是很稳了，但是总还是会心有戚戚焉，于是就有了今天这篇文章。</p>
+<p>受益于甲骨文Oracle的免费大盘鸡，我有了可以用来硬盘备份的服务器，虽然也是免费的，会翻车，但是多套方案下来，一起翻车的概率不是很大，唯一受限的可能只有Onedrive的API了。</p>
+<p>服务器多备份的思路是这样：因为Onedrive有概率翻车，因此直接使用Rclone Sync可能会导致所有被Sync的目录也同时挂掉。因此需要一个冷备目录，保证即使Sync把本地目录也同步没了，也不会导致冷备的目录文件挂掉，留一个备份是一个保险。当然最保险的还是买个硬盘存起来，但是我快毕业了，懒得折腾了，等以后上班了再继续折腾树莓派。</p>
+<p>我的想法是，按日期建档，保留前一天的存档，更新今天的文件。比如说今天是1月4号，那么冷备的目录就是1月3号的文件，而热备的目录就是今天的文件。这样当我发现Rclone挂掉，就有一天的缓冲时间Download我的数据，尽可能避免损失吧。</p>
+<p>实现的脚本主要依赖Linux的<code>date</code>命令，脚本如下：</p>
+<pre><code class="language-ubuntu">#获取今天的日期，格式如20220104
+daten=$(date -d &quot;now&quot; +%Y%m%d)
+#获取昨天的日期
+datey=$(date -d &quot;1 days ago&quot; +%Y%m%d)
+#获取前天的日期
+datet=$(date -d &quot;2 days ago&quot; +%Y%m%d)
+#将前天的文件夹改名为今天的，减少流量损耗
+mv /odbackup/od-$datet /odbackup/od-$daten
+#备份
+rclone --exclude /Gridea/ sync od:/ /odbackup/od-$datey/ --transfers 2 --checkers 2 -v --ignore-checksum --ignore-size --user-agent &quot;ISV|rclone.org|rclone/v1.57&quot;
+</code></pre>
+<p>备份存储目录为<code>/odbackup</code>，备份数量可以根据自己的需求改。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Ubuntu20 开机自启脚本设置]]></title>
+        <id>https://chyon.cn/post/ubuntu20-bash-startup/</id>
+        <link href="https://chyon.cn/post/ubuntu20-bash-startup/">
+        </link>
+        <updated>2021-12-31T06:18:42.000Z</updated>
+        <content type="html"><![CDATA[<p>Ubuntu18以上都没法再用<code>initd</code>管理系统，转为<code>systemd</code>了。因此以前使用<code>rc.local</code>的方法对Ubuntu18以上的系统无效。但是有时候自定义的脚本写<code>Service</code>很麻烦，而且对我这种野生玩家很不友好，因此本文使用一种方法重新启用在Ubuntu18以上的系统中<code>rc.local</code>开机自启的功能。</p>
+<p>首先还是需要满足系统的规则，利用<code>service</code>来开机自启脚本。</p>
+<p>创建<code>rc-local.service</code>：</p>
+<pre><code class="language-ubuntu20">vi /etc/systemd/system/rc-local.service
+</code></pre>
+<p>然后写入如下内容：</p>
+<pre><code class="language-ubuntu20">[Unit]
+Description=/etc/rc.local Compatibility
+Documentation=man:systemd-rc-local-generator(8)
+ConditionFileIsExecutable=/etc/rc.local
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/etc/rc.local start
+TimeoutSec=0
+RemainAfterExit=yes
+GuessMainPID=no
+
+[Install]
+WantedBy=multi-user.target
+Alias=rc-local.service
+</code></pre>
+<p>保存并退出。</p>
+<p>建立文件<code>rc.local</code></p>
+<pre><code class="language-ubuntu">vi /etc/rc.local 
+</code></pre>
+<p>写入内容：</p>
+<pre><code class="language-ubuntu">#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will &quot;exit 0&quot; on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+echo &quot;若是能看到这行字，说明添加自启动脚本成功。&quot; &gt; /usr/local/test.log
+exit 0
+</code></pre>
+<p>以后添加开机自启脚本都写入这个文件的<code>exit 0</code>之前就可以了。</p>
+<p><code>systemd</code>默认读取<code>/etc/systemd/system</code>下的配置文件, 因此还须要在<code>/etc/systemd/system</code>目录下建立软连接：</p>
+<pre><code class="language-ubuntu20">ln -s /lib/systemd/system/rc.local.service /etc/systemd/system/
+chmod +x /etc/rc.local
+</code></pre>
+<p>启用服务：</p>
+<pre><code class="language-ubuntu20">systemctl enable rc-local
+</code></pre>
+<p>如果需要关闭，则：</p>
+<pre><code class="language-ubuntu20">sudo systemctl disable rc-local
+</code></pre>
+<p>然后就可以重启，重启后可以查看日志文件了：</p>
+<pre><code class="language-ubuntu20">cat /usr/local/test.log
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[修改微软全局sharepoint二级域名前缀]]></title>
+        <id>https://chyon.cn/post/sharepoint-subdomain/</id>
+        <link href="https://chyon.cn/post/sharepoint-subdomain/">
+        </link>
+        <updated>2021-12-26T11:03:05.000Z</updated>
+        <content type="html"><![CDATA[<p>转载自<a href="https://hostloc.com/thread-946734-1-2.html">Hostloc</a>。</p>
+<p>这里说的修改域名是指将 SharePoint URL 从 abc.sharepoint.com 更改为 zxc.sharepoint.com.</p>
+<p>第 1 步：验证新域名<br>
+1.检查你想要的新域的可用性。 例如，如果希望 SharePoint 和 OneDrive URL 以 zxc.sharepoint.com 开头，在浏览器中输入 https://zxc.sharepoint.com。 如果是404页面，那么这个域名可能可用。 如果提示登录或目录中找不到用户名的消息，就要换一个。</p>
+<p>2.https://aka.ms/SPORenameAddDomain 添加新的域名（必须使用该链接转到 Azure AD 管理中心的自定义域名页面，否则添加可能不成功）</p>
+<p>3.选择 添加自定义域。在“自定义域名”框中，输入完整的新“.onmicrosoft.com”域，然后选择“添加域”。（该域必须是“onmicrosoft.com”域。 例如，如果要重命名为 zxc.sharepoint.com，则输入的域应为 zxc.onmicrosoft.com）</p>
+<p>4.在页面顶部的导航中，选择租户名称,返回到自定义域名页面。 确保添加的 onmicrosoft.com 域在列表中，并且状态显示为“已验证”。（值得注意的是，在365管理中心修改或者添加的回退域状态显示为“可用”而非“已验证”，如果状态不是“已验证”，则你将无法执行重命名操作，未进一步验证）</p>
+<p>第 2 步：使用 Microsoft PowerShell 重命名域</p>
+<p>1.必需 – 下载最新的 SharePoint Online 命令行管理程序。https://go.microsoft.com/fwlink/p/?LinkId=255251</p>
+<p>（如果安装过旧版就需要先卸载，mac不支持这个程序）</p>
+<p>2.以全局管理员或 SharePoint 管理员身份连接到 SharePoint Online</p>
+<p>命令为：Connect-SPOService -Url https://abc-admin.sharepoint.com -Credential admin@abc.com （根据实际sharepoint网址和管理员账号修改）回车后输入密码。</p>
+<p>3.重头戏，更改域名（必须是第一步3里面添加的已验证状态的域名前缀）</p>
+<p>命令为：Start-SPOTenantRename -DomainName “zxc” -ScheduledDateTime “2021-12-31T10:25:00” （这里的datetime必须是24小时以后最长不超过30天，可以理解为排队时间，最快也要排队24小时才开始给你更改）</p>
+<p>输入命令后会有再次确认的反馈，如果没有反馈，可能是时间错误、域名未验证或者使用了旧版的软件，自行排查。</p>
+<p>4.查询进度</p>
+<p>命令为： Get-SPOTenantRenameStatus （如果有问题，就打开新的窗口再次登录）</p>
+<p>state状态在你设定的时间到之前应该是显示Queued，在处理中是InProgress，成功就是Success。</p>
+<p>5.取消重命名</p>
+<p>命令为：Stop-SPOTenantRename （必须在你设定的时间开始之前取消）</p>
+<p>6.验证是否成功</p>
+<p>从365管理中心登录sharepoint，应该就是zxc-admin.sharepoint.com了</p>
+<p>7.重命名不适用于设置了多个地理位置的组织，6个月只能重命名一次，重命名的逻辑是在原来的url上创建重定向，所以也不支持改回原来的域名。（经验证，输入原来的sharepoint地址会自动重定向到新的域名）</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[数据备份方案]]></title>
+        <id>https://chyon.cn/post/the-way-to-backup-data/</id>
+        <link href="https://chyon.cn/post/the-way-to-backup-data/">
+        </link>
+        <updated>2021-11-27T13:33:56.000Z</updated>
+        <content type="html"><![CDATA[<p>我平时的工作内容一般都放在Windows挂载的Onedrive文件夹下，因为我在办公室用的是老师给配的工作站，在宿舍用自己的电脑偶尔充当办公用。除了工作的内容之外还有自己的一些账号、笔记之类的数据，这几年囤积下来，也有二十多个G的数据了。今天把毕业论文搞的差不多了，心想着一定要做好备份，于是就有了这篇文章。</p>
+<p>我现在的方案是，办公室和宿舍的两台电脑分别挂Onedrive同步数据，互相同步。这种方法我觉得并不安全，毕竟全部依赖Onedrive这一条路线，一崩全崩，所以需要扩展其他备份方案。</p>
+<p>检查了我手上可以用的存储方案，大多数都是白嫖的，不够稳，所以还是想同步到一个冷备份的地方把数据存储起来。但是又希望能够自动化的完成数据的更新，不要我手动点点点。办公的数据又经常更新。于是我把眼光瞄准了我的树莓派上。</p>
+<figure data-type="image" tabindex="1"><img src="https://pic.rmb.bdstatic.com/bjh/9ef7184100e1ebe920a2dd20cd66cce7.png" alt="目前的方案" loading="lazy"></figure>
+<p>手里常用的Onedrive是MSDN E3，史称最稳的Office 365白嫖订阅，我寻思依然有风险存在。为了防止它崩掉，所以准备使用服务器把它的数据定时备份到两个其他订阅的Onedrive里面，一个是A1订阅，另一个是学校发的EDU邮箱申请的Office 365，最后再冷备份一份到树莓派上。这其中数据的产生是在两台电脑上，同步全部经过我的MSDN，最后分布到三个不同的存储策略中。同步软件用Windows的Onedrive客户端和Rclone完成。此外还需要一台服务器完成定时同步工作，可以用树莓派（假如你的树莓派吃灰的话）。</p>
+<p>服务器上，Rclone绑定三个Onedrive的详细操作就不说了，MSDN和A1的Onedrive可以直接用官方自带的API，学校发的EDU邮箱申请的Onedrive账号没有API权限，得用Webdav的方式才能挂载。这也直接限制了不能有超过1G的大文件存在。好在我平时工作的内容打包之后都比较小，实在不行还可以分卷压缩嘛。</p>
+<p>在服务器root根目录创建文件夹，并新建一个运行脚本并编辑：</p>
+<pre><code class="language-ubuntu">mkdir rclone_sh
+touch od_backup.sh
+vi od_backup.sh
+</code></pre>
+<p>写入Rclone运行的命令：</p>
+<pre><code class="language-ubuntu">rclone sync onedrive1: onedrive2: -v
+</code></pre>
+<p>保存退出，测试运行。将输出的数据保存到log文件：</p>
+<pre><code class="language-ubuntu">chmod +x /root/rclone_sh/od_backup.sh
+/root/rclone_sh/od_backup.sh &gt;&gt; /root/rclone_sh/od_backup.log 2&gt;&amp;1  &amp;
+</code></pre>
+<p>查看输出：</p>
+<pre><code class="language-ubuntu">cat /root/rclone_sh/od_backup.log
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://pic.rmb.bdstatic.com/bjh/75de5d1170f5260b1bc2812d20f14e1b.png" alt="image.png" loading="lazy"></figure>
+<p>运行没问题的话，就可以把上面这行命令写入到一个新脚本里面：</p>
+<pre><code class="language-ubuntu">mkdir  /root/rclone_sh/logs/
+vi /root/rclone_sh/rclone_cron.sh
+</code></pre>
+<p>写入：</p>
+<pre><code class="language-ubuntu">filedate=`date +%Y%m%d`
+
+/root/rclone_sh/od_backup.sh &gt;&gt; /root/rclone_sh/logs/$filedate.log 2&gt;&amp;1  &amp;
+</code></pre>
+<p>赋权：</p>
+<pre><code class="language-ubuntu">chmod +x /root/rclone_sh/rclone_cron.sh
+</code></pre>
+<p>测试运行：</p>
+<pre><code class="language-ubuntu">nohup /root/rclone_sh/rclone_cron.sh
+</code></pre>
+<p>然后写入到Cron里面：</p>
+<pre><code class="language-ubuntu">crontab -e
+</code></pre>
+<p>写入：</p>
+<pre><code class="language-ubuntu">0 0 0 1/4 * ?  /root/rclone_sh/rclone_cron.sh
+</code></pre>
+<p>树莓派上类似设置即可。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[聊一下鞋（二），C37和态极]]></title>
+        <id>https://chyon.cn/post/c37-taichi-shoes/</id>
+        <link href="https://chyon.cn/post/c37-taichi-shoes/">
+        </link>
+        <updated>2021-11-23T10:31:09.000Z</updated>
+        <content type="html"><![CDATA[<p>很久就想写评鞋的第二篇文章了，上一篇还是很久很久以前，试了一下莆田的时候写的，想看的可以点链接回去看：<a href="https://chyon.cn/post/putian-shoes/">聊一下鞋（一），莆田和国货</a>。</p>
+<p>这次是跟着上次的结尾，说想要试一下各大国产品牌的主打鞋类，然后也买了很多鞋。鸿星尔克的奇弹系列买不到喜欢的款式，所以一直都没买；361和特步这两个品牌我的印象不好，也没买；李宁就更不说了，日本企业，也没买。所以今天我聊的就只有安踏和匹克这两个牌子。</p>
+<p><strong>先说安踏</strong>，安踏的主打鞋款很多，比如说C37、虫洞、吸震、碳板等等……当然不是说别的品牌没有这些类别，比如匹克也有，但是没有那么的专门将其分出来作为一个系列卖，更多的只有一个单独的牌号。</p>
+<p>就穿鞋方面来说，我比较看重材料，其次是款式。毕竟外观是给别人看的，穿着舒不舒服才是真正自己的。所以在看了一些价格之后，我选择了C37，这个系列安踏主打的就是材料，据说踩着像踩棉花，所以我买了。</p>
+<div align=center><img src="https://pic.rmb.bdstatic.com/bjh/53d47bc3eff7e9d790c82ea53b01a7a3.png" alt="3" width="500" height="313" align="bottom" />
+<div align=center><img src="https://pic.rmb.bdstatic.com/bjh/93a8067867b82a8756128855feb039c3.png" alt="6" width="500" height="313" align="bottom" />
+<div align=center><img src="https://pic.rmb.bdstatic.com/bjh/928f7eb8bf55e3ef9ba6f2bf2b2fbfba.png" alt="8" width="500" height="313" align="bottom" />
+<p>价格都在三百左右，说实话还是有点贵，对我来说。现在我正在穿的比较常用的是最下面这双黑色的，相对来说可能更适合冬天的配色一些。最喜欢的还是第一双丹宁，丹宁还有另一双，配色和设计都差不多，就款式不一样。这三双鞋款式都是一样的，所以我觉得放在一块说就可以了。</p>
+<ul>
+<li>首先是直观感受。这三双鞋的款式看起来都不赖，也不能说好看吧，每个人有每个人的评价方式，所以我也不说好看，但是用来搭配还是比较好配的，尤其是丹宁的牛仔风格，配上蓝色牛仔裤很好看，可以给10分；</li>
+<li>用料。安踏的鞋子用料设计很有意思，就说我这双，鞋面感觉薄得像一张纸。这也就直接导致了这双鞋冬天穿必须穿厚袜子，否则太冷了。鞋面材料不知道是什么，刷一次就变得毛茸茸的，也很容易蹭上灰，即使是黑色也容易脏。这一点我给7分；</li>
+<li>鞋底。这双鞋在穿了几天之后，鞋底开始变软，走路时如果用力，确实可以感受到如同踩在棉花上面一样的感觉，但是必须用力。换句话说，走路时脚跟先着地，让脚掌像轮子一样从地面滚过，这个感受会格外明显。并且体重小的人可能感受不到，这一点是我不太满意的地方。而且由于它偏软绵，并且鞋底是跟厚前薄，所以如果走比较长的路，脚腕会比较酸。除此之外，鞋底还有一层磨料，很耐磨。给7分吧；</li>
+<li>做工。安踏的鞋子做工我是不敢恭维的。外观上看不出来，但是新鞋子的鞋垫，和内部的线头什么的都没有处理好。鞋垫是打孔鞋垫，但是孔的周围毛边没有处理，并且不知道用的是什么材料，用火燎还会变成油漆一样的颜色。内部线头多到不想说，用手摸才能发现。最恼火的是，由于它鞋面很薄，像纸一样，所以鞋舌在穿鞋的时候稍微不注意就折了或者跑了，硌脚。给个及格分，6分。</li>
+</ul>
+<p>综合评价来说，鞋子很轻、软绵但不弹。我觉得这双鞋能二百块钱入手不算贵的。最起码物有所值，但是瑕疵比较多，不像是大厂的产品。</p>
+<div align=center><img src="https://pic.rmb.bdstatic.com/bjh/36d8a49871e4fdc5a9c5368c24d12aa7.jpeg" alt="鞋舌太薄易折.jpg" width="500" height="313" align="bottom" />
+<div align=center><img src="https://pic.rmb.bdstatic.com/bjh/5e030c4cb09bdd061e3fa8a300109eec.jpeg" alt="鞋内的线头.jpg" width="500" height="313" align="bottom" />
+<div align=center><img src="https://pic.rmb.bdstatic.com/bjh/4b275106eb4674a6fbdafde495c45c20.jpeg" alt="鞋垫的毛边.jpg" width="500" height="313" align="bottom" />
+<p><strong>接下来再说说匹克态极系列</strong>。态极系列我买了两款，一个是常规款，另一个是6371音浪，其中还有一双是卢浮宫博物馆联名款。除此之外还有一双拖鞋，现在就在脚上穿着。</p>
+<p>买的鞋很多，没有全部上脚穿，但是也有两双一直在穿，就说一说直观感受。</p>
+<figure data-type="image" tabindex="1"><img src="https://pic.rmb.bdstatic.com/bjh/dcf82c4c783273dfe7bf0e84f00af0e3.png" alt="5.png" loading="lazy"></figure>
+<p><strong>先来说说拖鞋</strong>。这双拖鞋我就日常穿用了，洗澡什么的都穿着，确实很舒服，和普通的拖鞋有一些不一样，比如说它底子很厚，比如说不会臭脚之类的。但是这双拖鞋是直接用的态极材料和脚接触，所以光脚穿几天可能就会有点粘脚。不过问题也不大，洗澡的时候顺带洗一下拖鞋就行。我个人是非常喜欢这双拖鞋的。最近又上了新配色，我很喜欢，但是脚上这双没坏，也不知道什么时候才有机会换新的拖鞋了。</p>
+<figure data-type="image" tabindex="2"><img src="https://pic.rmb.bdstatic.com/bjh/a25de19cd48558c45c87bf268689ca07.png" alt="7.png" loading="lazy"></figure>
+<p>再来说说这双态极1.0，跑步鞋。这双鞋我之前穿了有两个月，用来通勤和跑步，陪着我出过远门上过车，跑过操场逛过街，我还专门从春熙路走了一圈。我个人对这双鞋的评价很高，分开来说说吧。</p>
+<ul>
+<li>直观感受。这双鞋我买的是黑红配色，中规中矩。穿在脚上，显得脚瘦，这一点我不是很喜欢，但是后来配衣服还是不错的，就是土了点。这一方面我给9分；</li>
+<li>用料。这双鞋的定位是跑步鞋，但是我实际上也用来通勤。鞋面是弹性布料，质量很好很有弹性，甚至可以感觉有点捆脚。同样也不适合冬天穿，但是最起码冬天穿着不会冻脚。穿着跑步通风透气，用料这一方面我给10分；</li>
+<li>鞋底。态极1.0的材料，特点就是踩屎感强烈但是同时很重。对于男生来说我觉得重一点没啥，鞋子重但是腿有劲啊，而且跑步也不算重。当然对于喜欢轻量化的人来说是重了点。鞋子也是穿了一段时间之后慢慢的踩屎感就出来了，到最后每一步都踩屎，走起路来很有意思。鞋底的包裹性比较好，很均匀，不会像C37那样走起来脚腕酸。鞋底可以给10分；</li>
+<li>做工。这双态极1.0做工比安踏好一点，但是也有线头问题。鞋垫的材料比安踏的硬一些，没有打孔处理，所以我个人觉得鞋垫挺不错的。其次是鞋子里面的针脚和线头，针脚比安踏的好一些，但是线头依旧是没处理好，有很多线头。没有鞋舌，但是鞋面的材料很棒，前面说过就不说了。这双鞋还有一个好处就是脚后跟所在的位置采用了加固处理，走路不容易扭，觉得满满的保护感。我给9分。</li>
+</ul>
+<figure data-type="image" tabindex="3"><img src="https://pic.rmb.bdstatic.com/bjh/6b4d1a0354707dc9d9022e2f4e436b88.png" alt="9.png" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://pic.rmb.bdstatic.com/bjh/7b9ddf5787083f4e3a0d9a3d4cf88c3d.png" alt="4.png" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://pic.rmb.bdstatic.com/bjh/cdbfd14bcfb2541bbd7afc6253c09ed1.png" alt="2.png" loading="lazy"></figure>
+<p><strong>最后再说说这三双6371</strong>，一双夏款，两双冬款。这三双鞋的设计我都很喜欢，不管是配色还是款式。也分开说说吧。</p>
+<ul>
+<li>直观感受。鞋子配色很好，我更喜欢拿在手上玩……确实挺好看的。穿在脚上的效果，夏款不会显得脚宽，但是冬款穿上之后，整个脚大了一圈。本来我是有点不喜欢的，但是我舍友说，这是鞋子的设计，目的是为了显得腿细，尤其是冬天，然后我也就接受了。不得不说还是挺好看的，挺喜欢。整体鞋子穿起来有些捆脚，适合脚瘦的人穿。像我这样脚胖的，鞋带松一点就行，就是鞋带没那么长。综合评价给10分；</li>
+<li>用料。这三双鞋的用料超级扎实。夏款就全是洞洞网网，冬款就直接上厚布，看起来性价比相当高。鞋面和鞋舌的用料扎实柔软，也不知道是不是什么新品种的布料，挺结实的。倒也是没什么出色的地方，给9分；</li>
+<li>鞋底。鞋底的材料肯定是态极材料，第几代的我就不晓得了。鞋底摸起来肉肉的，前后都有硬底加持，但是硬底磨料的耐磨程度没有上面安踏C37和态极1.0的好。最开始穿的几天，鞋底磨料会一层一层的掉，像掉皮一阿姨那个。当然也有可能是我个人走路姿势和习惯不对。这个目前我还没有穿出踩屎的效果，因为没穿多久。但是冬款的鞋底是真的硬，估计是我的体重不够吧。鞋底这块给8分；</li>
+<li>做工。这三双态极6371的做工是我见过最好的鞋子的做工，针脚不算密，但是相当整齐，找不到线头，不论是鞋面、鞋底还是鞋子内部，我都觉得这双鞋做工很好。但是有一些溢胶的情况，这个和客服沟通过，说是为了防止开胶，同时也不影响。我穿了几天，确实不影响，也就没管了。鞋垫用的是全新的乳胶鞋垫，让脚一直都有一种肉肉的感觉，但是不明显，因为鞋子有点挤。做工这块可以给10分。</li>
+</ul>
+<figure data-type="image" tabindex="6"><img src="https://pic.rmb.bdstatic.com/bjh/ffab87bf50e07524f606231ab2b40795.jpeg" alt="鞋内针脚.jpg" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="https://pic.rmb.bdstatic.com/bjh/f33760f0e04e28488c8f31e5f7d1ef98.jpeg" alt="鞋垫&amp;鞋.jpg" loading="lazy"></figure>
+<p>综合评价来说，匹克态极分为两种，一种是上面的1.0，适合自己穿，跑步运动用；另一种是6371这种，时尚好看，做工细腻，适合谈恋爱压马路送礼物，甚至我觉得可以送亲戚朋友领导老师。</p>
+<p>最后做个总结吧，安踏的C37和匹克态极都是很好的鞋子，穿着舒服，外观也好看（除了态极1.0早期款式）。但是相对来说，匹克态极的设计和质量要比安踏的C37更好一些，尤其是后面这三双6371，堪称礼品级。</p>
+<p>从这两个牌子来看，我真真切切的感受到了国产正在崛起。以前的生产资料，比如生产线和原材料，都被大企业如阿迪达斯、耐克这种不要B脸的大公司垄断，国产的小品牌没有好的原材料，做不了高端的产品。但是现在随着产业的淘汰革新，人才市场的均匀化，国产品牌也可以做出质量很好、体验很好的产品。</p>
+<p>但是国产依旧有很长的路要走，比如说外观设计、产品设计，除了态极的6371让我觉得好看之外，其他的我都只能说中规中矩。当然也有可能是我的审美问题。还有就是细节的把控，机圈叫品控，就是我说的毛边、线头等问题。当然我希望国产品牌都能做大做强，我们作为消费者不用受歪果仁的鸟气，也有充分的自主选择的权利。</p>
+<p>最后想再补充一些，聊聊我对鞋子的看法。以前有心仪的女生的时候，什么都舍不得买，买的鞋上一篇文章里面也说了，都是够便宜的，也是这个才让我认识到鸿星尔克的鞋质量好。后来了，心上人看不起我，我也明白了，不自讨没趣了，这才敢给自己买一些好的鞋。这段时间呢，逛鞋圈，了解行情，也不是那么的喜欢这个圈子。我喜欢鞋子，也买不起什么特别好的鞋子，我相信大多数穷学生都是这样的。等到了社会上工作，一是没时间再去玩，二是年纪大了，不适合再穿什么花里胡哨的鞋子，这就是我们普通人的悲哀。今天聊的这些鞋，都是我一个月一个月的工资省出来的。我知道有的人很瞧不起穿鞋子还扣扣嗖嗖的人，尤其是鞋圈里面的人，动不动成千上万的炒鞋子。可是我想说，我不是盲从的人，我有我自己的价值判断，阿迪耐克没那么好是我自己的判断，国产的鞋子也不错这也是我的判断。我知道我这么评价鞋子确实很土，连一双好点的篮球鞋都买不起。我只能说我庆幸我不打篮球，不然真的是穷死我算了。所以我也不是那么在乎一些人看我的目光，我只希望像我这样的穷学生，有幸能看到我写的这些评价，能够对自己的选择有所帮助。</p>
+<p>文中观点非常主观，接受不了的我只能说一句对不起。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[设置Centos7语言为中文]]></title>
+        <id>https://chyon.cn/post/set-centos7-lang-zh/</id>
+        <link href="https://chyon.cn/post/set-centos7-lang-zh/">
+        </link>
+        <updated>2021-11-21T08:24:53.000Z</updated>
+        <content type="html"><![CDATA[<p>因为经常用服务器跑rclone同步，喜欢用centos7的Docker系统，但是每次都有中文乱码让我很苦恼。</p>
+<figure data-type="image" tabindex="1"><img src="https://pic.rmb.bdstatic.com/bjh/4d8cd52ca58e4d3216295b189bfead19.png" alt="image.png" loading="lazy"></figure>
+<p>今天干脆一次性解决。</p>
+<hr>
+<p><strong>更新另一种方法</strong></p>
+<p>按顺序执行以下命令</p>
+<pre><code class="language-ubuntu">yum install -y kde-l10n-Chinese
+yum -y reinstall glibc-common
+localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
+echo 'LANG=&quot;zh_CN.UTF-8&quot;' &gt; /etc/locale.conf
+cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+export LANG=zh_CN.UTF-8
+</code></pre>
+<hr>
+<p><strong>以下为原文</strong></p>
+<hr>
+<p>设置中文：</p>
+<pre><code class="language-centos7">yum groupinstall &quot;fonts&quot; -y
+yum install kde-l10n-Chinese -y
+localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
+</code></pre>
+<p>然后编辑环境变量：</p>
+<pre><code class="language-centos7">vim  /etc/profile
+
+#添加下面这行
+export LC_ALL=&quot;zh_CN.UTF-8&quot;
+</code></pre>
+<p>更新环境变量：</p>
+<pre><code class="language-centos7">source /etc/profile
+</code></pre>
+<p>检查：</p>
+<pre><code class="language-centos7">date
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://pic.rmb.bdstatic.com/bjh/afcb999583ca8a862aed877b7faba2e6.png" alt="image.png" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://pic.rmb.bdstatic.com/bjh/54a6a625e59d689dfe1b6490ea5cd3dc.png" alt="image.png" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Ubuntu ARM Docker安装Transmission]]></title>
+        <id>https://chyon.cn/post/ubuntu-arm-docker-install-transmission/</id>
+        <link href="https://chyon.cn/post/ubuntu-arm-docker-install-transmission/">
+        </link>
+        <updated>2021-11-09T06:04:42.000Z</updated>
+        <content type="html"><![CDATA[<p>发现一个好用的镜像，地址是<a href="https://hub.docker.com/r/linuxserver/transmission/tags">https://hub.docker.com/r/linuxserver/transmission/tags</a>，支持amd64和ARM。</p>
+<p>安装也很简单：</p>
+<pre><code class="language-ubuntu">docker run --restart=always --name transmission -d \
+-e TRANSMISSION_WEB_HOME=/transmission-web-control/ \
+-e USER=&lt;用户名&gt; \
+-e PASS=&lt;密码&gt; \
+-p 9091:9091 \
+-p 51413:51413 \
+-p 51413:51413/udp \
+-v ~/transmission/config:/config \
+-v ~/transmission/downloads:/downloads \
+-v ~/transmission/watch:/watch \
+linuxserver/transmission
+</code></pre>
+<p>注意修改对应的挂载目录即可。</p>
+<figure data-type="image" tabindex="1"><img src="https://pic.rmb.bdstatic.com/bjh/bffeffaaa4f972ff0a6e7d7453a859a2.png" alt="Transmission" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[甲骨文ARM安装Gnome桌面]]></title>
+        <id>https://chyon.cn/post/oracle-arm-install-gnome-desktop/</id>
+        <link href="https://chyon.cn/post/oracle-arm-install-gnome-desktop/">
+        </link>
+        <updated>2021-11-03T14:17:44.000Z</updated>
+        <content type="html"><![CDATA[<p>甲骨文的Arm鸡配置很棒，安装一些软件跑起来很不错，有时候需要桌面，DD Windows系统又受到Arm的限制，因此不如直接在原版Ubuntu的基础上安装桌面使用。</p>
+<h2 id="dd系统备用">DD系统（备用）</h2>
+<p>为了防止安装失败需要DD系统从头再来，这里放一下V佬的DD脚本，系统是Ubuntu20.04：</p>
+<pre><code class="language-ubuntu">bash &lt;(wget --no-check-certificate -qO- 'https://raw.githubusercontent.com/MoeClub/Note/master/InstallNET.sh') -u 20.04 -v arm64 --mirror http://archive.ubuntu.com/ubuntu -p &quot;自定义root密码&quot; -port &quot;自定义ssh端口&quot;
+</code></pre>
+<p>其中<code>自定义root密码</code>和<code>自定义ssh端口</code>部分需要修改成自己想要的内容。</p>
+<h2 id="前期准备">前期准备</h2>
+<p>系统的初始化基于我前面的文章：<a href="https://chyon.cn/post/about-oracle-vps-u-should-do/">Oracle甲骨文开机后需要做的事</a>，除此之外还需要补充一个新建密码的环节。</p>
+<p>在切换为ROOT用户登陆之后，输入<code>passwd</code>创建密码，随后修改文件：</p>
+<pre><code class="language-ubuntu">vi /etc/ssh/sshd_config
+</code></pre>
+<p>在之前补充的内容下方再补充一行：</p>
+<pre><code class="language-ubuntu">PasswordAuthentication yes
+</code></pre>
+<p>开启root用户的密码登录，这样做是为了后面需要用远程桌面登录。</p>
+<h2 id="安装桌面">安装桌面</h2>
+<p>首先是设置语言环境：</p>
+<pre><code class="language-ubuntu">dpkg-reconfigure locales
+</code></pre>
+<p>这里分为两步，第一步选择<code>zh_CN GB2312</code>，按空格键确认，再按Tab键切换到“OK”上，按回车确认。第二步选择<code>zh_CN</code>，完成语言配置。</p>
+<p>随后是安装桌面环境：</p>
+<pre><code class="language-ubuntu">apt install ubuntu-desktop
+</code></pre>
+<p>安装时间比较长，然后是安装Xrdp，创建远程访问环境：</p>
+<pre><code class="language-ubuntu">apt install xrdp -y
+</code></pre>
+<p>再授予用户权限：</p>
+<pre><code class="language-ubuntu">adduser xrdp ssl-cert
+systemctl restart xrdp
+systemctl status xrdp
+</code></pre>
+<p>这样就可以用微软自带RDP访问<code>ip:3389</code>远程桌面了，登陆时用户名是<code>root</code>，密码就是自己设置的那个。</p>
+<p>最后还需要修改一下默认配置，否则Lock之后ROOT登陆不上去。</p>
+<pre><code class="language-ubuntu">vi /etc/pam.d/gdm-autologin
+#注释 &quot;auth requied pam_succeed_if.so user != root quiet success&quot;
+
+vi /etc/pam.d/gdm-password
+#注释行 &quot;auth requied pam_succeed_if.so user != root quiet success&quot;
+</code></pre>
+<p>这样就可以了。</p>
+<p>非常奈斯：<br>
+<img src="https://pic.rmb.bdstatic.com/bjh/ef5519fb816c69f23cc9ea18ce87ce62.png" alt="屏幕截图 2021-11-03 223124.png" loading="lazy"></p>
+<p>本文内容转载自：<a href="https://live.ikaiche.org/archives/%E7%94%B2%E9%AA%A8%E6%96%87armubuntu2004%E5%8E%9F%E7%89%88gnome%E6%A1%8C%E9%9D%A2frp%E5%86%85%E9%83%A8%E8%BD%AC%E5%8F%91%E6%95%99%E7%A8%8B">爱开车の屋<br>
+</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Win11修改右键菜单为Win10样式]]></title>
+        <id>https://chyon.cn/post/win11-right-key-to-win10/</id>
+        <link href="https://chyon.cn/post/win11-right-key-to-win10/">
+        </link>
+        <updated>2021-10-11T15:15:32.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>打开管理员模式 CMD：</strong></p>
+<pre><code class="language-cmd">#粘贴以下命令并回车切换为旧版样式
+reg.exe add “HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32” /f
+</code></pre>
+<pre><code class="language-cmd">#粘贴以下命令并回车切换为新版样式
+reg.exe delete “HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}” /f
+</code></pre>
+<p><strong>手动修改注册表方法如下:</strong></p>
+<pre><code class="language-reg">#将以下内容复制到TXT里保存然后将txt改成reg合并
+Windows Registry Editor Version 5.00
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32]
+@=””
+</code></pre>
+<pre><code class="language-reg">#切换为新版菜单样式
+Windows Registry Editor Version 5.00
+[-HKEY_CURRENT_USER\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}]
+</code></pre>
+]]></content>
+    </entry>
+</feed>

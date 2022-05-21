@@ -1,0 +1,693 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>[置顶]常用Docker镜像整理 | 言岚的博客</title>
+<meta name="description" content="这是一个孤独的世界" />
+<link rel="shortcut icon" href="https://chyon.cn//favicon.ico">
+<link rel="stylesheet" href="https://chyon.cn//styles/main.css">
+
+<script src="https://chyon.cn//media/js/jquery.min.js"></script>
+<script src="https://chyon.cn//media/js/masonry.pkgd.min.js"></script>
+<script src="https://chyon.cn//media/js/aos.js"></script>
+<script src="https://chyon.cn//media/js/pace.min.js"></script>
+<script src="https://chyon.cn//media/js/view-image.min.js"></script>
+<script src="https://chyon.cn//media/js/jquery.magnific-popup.min.js"></script>
+<script src="https://chyon.cn//media/js/functions.js"></script>
+    <meta name="referrer" content="never">
+    <meta name="description" content="平时翻来翻去地找Docker镜像好麻烦，想了想，不如自己整理一下常用的镜像，贴在博客里，以后用就很好找了。
+以下是我自己觉得好用的镜像，你也可以自行去Docker Hub里面找。
+
+gingko/centos7
+
+镜像：gingko/cen..." />
+    <meta name="keywords" content="docker" />
+    <script src="https://chyon.cn//media/js/waterfall.min.js"></script>
+    <script src="https://chyon.cn//media/js/prism.min.js"></script>
+  </head>
+  <body>
+            <header id="header" class="grid-container">
+        <!-- start: .menu-wrapper -->
+        <div class="menu-mobile"> 
+          <i class="fa fa-reorder"></i>
+        </div>
+        <div class="menu-wrapper">
+          <div class="">
+            <div class="logo">
+              <a href="https://chyon.cn/"><img src="\media\images\custom-headerLogo.png" alt=""></a>
+            </div>
+            <!-- start: .main-nav -->
+
+            <nav class="main-nav grid-container grid-parent">
+              <ul id="menu-header" class="menu gradient-effect">
+                <li class=""><a href="https://chyon.cn/" class="menu">首页</a></li>
+                
+                  <li class="" >
+                    <a href="/archives" class="menu">
+                      归档
+                    </a>
+                  </li>
+                
+                  <li class="" >
+                    <a href="/tags" class="menu">
+                      标签
+                    </a>
+                  </li>
+                
+                  <li class="" >
+                    <a href="/post/about" class="menu">
+                      关于
+                    </a>
+                  </li>
+                
+                <li class="search-menu-item hide-on-mobile hide-on-tablet"><a href="#search-lightbox" class="lightbox mfp-inline"><i class="fa fa-search-line"></i></a></li>
+              </ul>
+            </nav>
+            <a href="#search-lightbox" class="lightbox epcl-search-button mfp-inline hide-on-tablet hide-on-desktop"><i class="fa fa-search-line"></i></a>
+            <!-- end: .main-nav -->
+            <div class="clear"></div>
+            <div class="border hide-on-tablet hide-on-mobile"></div>
+          </div>    
+          <div class="clear"></div>
+        </div>
+        <!-- end: .menu-wrapper -->
+        <div class="clear"></div>
+      </header>
+      <div class="hide-on-mobile hide-on-tablet hide-on-desktop">
+        <div id="search-lightbox" class="grid-container grid-small grid-parent mfp-hide">
+          <div class="search-wrapper section">
+            <form id="gridea-search-form" data-update="1653140660237" action="/search/index.html" class="search-form" _lpchecked="1">
+              <input type="text" name="q" id="s" value="" class="search-field" placeholder="搜点啥..." aria-label="搜点啥..." required="">
+              <button type="submit" class="submit" aria-label="Submit">
+                <i class="fa fa-search-line"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <main id="single" class="main grid-container fullcover no-sidebar aos-init aos-animate" data-aos="fade">
+
+        <div class="center content">
+          <div class="featured-image cover" style="background-image: url('https://pic.rmb.bdstatic.com/bjh/4022d50b28279968df881bec05ade165.jpeg');">
+            <div class="meta top"> 
+              <time class="meta-info" style="float:left;" datetime="2018-06-08"><i class="fa fa-calendar"></i><span class="lately">4 年前</span></time>
+              
+              <a href="https://chyon.cn/post/docker-images/#comments" class="comments meta-info" title="">
+                <i class="fa fa-comment remixicon"></i><span class="comment-count valine-comment-count" data-xid="/docker-images/"> </span>
+              </a>
+              <span id="/docker-images/" class="leancloud_visitors views-counter meta-info" title=""><i class="fa fa-leancloud remixicon"></i><span class="leancloud-visitors-count"></span></span>
+              
+            </div>
+            <div class="info">
+              <div class="tags ">
+                
+                      <a href="https://chyon.cn/tag/d98oM_-FC-/" class="ctag ctag-0 ctag-d98oM_-FC-" aria-label="">docker</a>
+                    
+              </div>
+              <h1 class="title ularge white bold">[置顶]常用Docker镜像整理</h1>
+            </div>
+          </div>
+        </div>  
+
+        <div class="epcl-page-wrapper">
+          <div class="left-content grid-70 np-mobile">
+            <article class="main-article post">
+              <section class="post-content">
+                <div class="text">
+                  <p>平时翻来翻去地找Docker镜像好麻烦，想了想，不如自己整理一下常用的镜像，贴在博客里，以后用就很好找了。</p>
+<p>以下是我自己觉得好用的镜像，你也可以自行去<a href="https://store.docker.com">Docker Hub</a>里面找。</p>
+<ol>
+<li>gingko/centos7</li>
+</ol>
+<pre><code class="language-C">镜像：gingko/centos7
+系统：CentOS 7
+用户名：root
+密码：root
+</code></pre>
+<ol start="2">
+<li>stephenlu/centos-ssh-root</li>
+</ol>
+<pre><code class="language-C">镜像:stephenlu/centos-ssh-root
+系统：CentOS 7.5.1804
+用户名：root
+密码：root
+没有wget，需要自己装。
+</code></pre>
+<ol start="3">
+<li>Ubuntu18</li>
+</ol>
+<pre><code class="language-C">镜像：rastasheep/ubuntu-sshd
+用户名：root
+密码：root
+</code></pre>
+<ol start="4">
+<li>Debian</li>
+</ol>
+<pre><code class="language-C">镜像：hklcf/debian-ssh-docker
+用户名: root
+密码：password
+</code></pre>
+<ol start="5">
+<li>OwnCloud</li>
+</ol>
+<pre><code class="language-C">镜像：imdjh/owncloud-with-ocdownloader
+端口：80
+就是owncloud
+</code></pre>
+<ol start="6">
+<li>tlze/debian-docker-sshd</li>
+</ol>
+<pre><code class="language-C">镜像：tlze/debian-docker-sshd
+端口：2022
+账户：root
+密码：debian
+</code></pre>
+<ol start="7">
+<li>宝塔面板</li>
+</ol>
+<pre><code class="language-C">镜像：tangniyuqi/baota
+用户名：admin
+密码：admin123
+</code></pre>
+<ol start="8">
+<li>Owncloud（可以启用外部存储并具有下载功能）</li>
+</ol>
+<pre><code class="language-C">镜像：limaofeng/owncloud-with-ocdownloader
+端口：80
+</code></pre>
+<ol start="9">
+<li>chrome浏览器</li>
+</ol>
+<pre><code class="language-C">镜像：
+consol/centos-xfce-vnc #（支持中文）
+consol/ubuntu-xfce-vnc #（不支持中文）
+密码：vncpassword
+端口：5901
+</code></pre>
+<ol start="10">
+<li>outpost01/ssr-bbr-docker</li>
+</ol>
+<pre><code class="language-C">镜像：outpost01/ssr-bbr-docker
+端口：443
+看名字就知道这是啥镜像了吧。
+它的Docker File里面写了一些说明：
+PORT=&quot;443&quot;
+PASSWORD=&quot;ssr-bbr-docker&quot;
+METHOD=&quot;chacha20&quot;
+PROTOCOL=&quot;auth_aes128_md5&quot;
+OBFS=&quot;tls1.2_ticket_auth&quot;
+</code></pre>
+<ol start="11">
+<li>thanch2n/pyone</li>
+</ol>
+<pre><code class="language-C">如标签所示，pyone的docker版
+端口：34567
+初始密码：PyOne
+PS：一般般
+</code></pre>
+<ol start="12">
+<li>xujinkai/aria2-with-webui</li>
+</ol>
+<pre><code class="language-C">端口：80、6800、8080
+aria2面板：web-UI
+</code></pre>
+<ol start="13">
+<li>wahyd4/aria2-ui</li>
+</ol>
+<pre><code class="language-C">Aria2: http://yourip
+FileManger: http://yourip/files
+端口：80、443、6800
+aria2面板：AriaNG
+</code></pre>
+<ol start="14">
+<li>luodaoyi/kms-server</li>
+</ol>
+<pre><code class="language-C">镜像：luodaoyi/kms-server
+端口：1688
+用于KMS激活的Docker镜像
+</code></pre>
+<ol start="15">
+<li>setzero/pyone</li>
+</ol>
+<pre><code class="language-C">镜像：setzero/pyone
+端口：22、80
+参数：
+TZ：时区，默认Asia/Shanghai
+PORT：服务监听端口，默认为80
+DISABLE_REFRESH_CACHE：是否禁用crontab自动刷新缓存，设置任意值则不启用
+REFRESH_CACHE_NEW：使用crontab进行增量更新，默认*/15 * * * *，即每15分钟更新一次
+REFRESH_CACHE_ALL：使用crontab进行全量更新，默认0 3 */1 * *，即每天凌晨3点更新一次
+SSH_PASSWORD：sshd用户密码，用户名为root，若不设置则不启用sshd
+ARIA2_SECRET：aria2的rpc secret，默认aria2-secret
+HEALTHCHECK_INTERVAL：健康检查间隔周期，默认3秒。
+目录：
+/data：mongodb及aria2的配置文件及数据
+/root/PyOne：PyOne源代码
+默认后台管理密码：PyOne
+该Docker镜像比较优秀，采用的是Debian GNU/Linux 8系统，可登陆同时又有pyone，方便部署。之前萌鼠大佬的脚本对小白实在是不友好，这个蛮可以的，而且还带aria2，满分。
+</code></pre>
+<ol start="16">
+<li>oliverkohldsc/ubuntu-headless-desktop-vnc</li>
+</ol>
+<pre><code class="language-C">镜像：oliverkohldsc/ubuntu-headless-desktop-vnc
+端口：22、5900
+这是带有ssh的vnc镜像，基于ubuntu，而且用户名非root，必须有如下变量定义：
+VNC_PASSWORD：VNC的密码，端口：5900
+USER：ssh用户名，端口22，不能为root
+PASSWORD：ssh密码。
+内置文件浏览器和浏览器。
+</code></pre>
+<ol start="17">
+<li>oldiy/sharelist</li>
+</ol>
+<pre><code class="language-C">镜像：oldiy/sharelist
+端口：33001
+</code></pre>
+<ol start="18">
+<li>suiyuan2012/sharelist</li>
+</ol>
+<pre><code class="language-C">镜像：suiyuan2012/sharelist
+端口：33001
+</code></pre>
+<ol start="19">
+<li>vikas027/centos-ssh-sudo:7</li>
+</ol>
+<pre><code class="language-C">镜像： vikas027/centos-ssh-sudo:7
+端口：22
+用户名：root
+密码：password27
+备注：CentOS 7.7.1908 (64 Bit) Xen
+</code></pre>
+<ol start="19">
+<li>vncserver/lubuntu</li>
+</ol>
+<pre><code class="language-C">镜像： vncserver/lubuntu
+端口：5901
+用户名：developer
+密码：vncpasswd
+备注：VNC
+安装telegram教程：https://ywnz.com/linuxjc/5757.html
+安装百度网盘教程：https://gitee.com/wszqkzqk/deepin-wine-for-ubuntu
+</code></pre>
+<ol start="19">
+<li>ambroselli/vnc-desktop</li>
+</ol>
+<pre><code class="language-C">镜像： ambroselli/vnc-desktop
+端口：5900
+用户名：user
+密码：pazzword
+备注：VNC
+apt-get install software-properties-common python-software-properties
+</code></pre>
+
+                </div>
+                <div class="clear"></div>
+              </section>
+            </article>
+            <div class="clear"></div>
+
+            <section class="related section">
+              
+              <article class="prev grid-50 tablet-grid-50 grid-parent">
+                <div class="thumb cover lazy loaded" style="background-image: url('https://chyon.cn//media/images/rpDcRXcBJv.jpg');"></div>
+                 <a href="https://chyon.cn/post/mixplorer-zhong-onedrive-business-lian-jie-de-wen-ti/" class="full-link"></a>
+                 <div class="info">
+                  <time datetime="2018-06-11">2018-06-11</time>
+                  <h4 class="title white no-margin">MiXplorer中OneDrive Business连接的问题</h4>
+                </div>
+                 <span class="epcl-button red">
+                  <img src="https://chyon.cn//media/images/left-arrow.svg" width="15" alt="Left Arrow">
+                </span>
+                <div class="overlay"></div>
+              </article>
+              
+              
+              <article class="next grid-50 tablet-grid-50 grid-parent">
+                <div class="thumb cover lazy loaded" style="background-image: url('https://pic.rmb.bdstatic.com/bjh/92cc7828eb3a087334fdd42b96d223dd.jpeg');"></div>
+                 <a href="https://chyon.cn/post/filebrowser-install/" class="full-link"></a>
+                 <div class="info">
+                  <time datetime="2018-06-05">2018-06-05</time>
+                  <h4 class="title white no-margin">[置顶]FileBrowser安装与使用</h4>
+                </div>
+                 <span class="epcl-button red">
+                  <img src="https://chyon.cn//media/images/right-arrow.svg" width="15" alt="Left Arrow">
+                </span>
+                <div class="overlay"></div>
+              </article>
+              
+
+                <div class="clear"></div>
+            </section>
+
+              <div class="clear"></div>
+              
+            
+              <div id="comments" class="bg-white hosted ">
+                <p>请到客户端“主题--自定义配置--valine”中填入ID和KEY</p>
+              </div>
+              <div class="clear"></div>
+            
+
+            </div>
+          </div>
+      </main>
+
+          <footer id="footer" class="grid-container">
+        <div class="widgets row gradient-effect">
+            <div class="default-sidebar border-effect">
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="tag_cloud-2" class="widget widget_epcl_posts_thumbs underline-effect">
+                  <h4 class="widget-title title white bordered">最新文章</h4>
+                  
+                  
+                  <article class="item post-0 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://chyon.cn/post/ifile-tryout/" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display:block;border-radius:50%;background-image: url('https://pic.rmb.bdstatic.com/bjh/d837f914d6e3af32d4ca4192ee20c278.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2022-02-23">2022-02-23</time>
+                      <h4 class="title usmall">
+                        <a href="https://chyon.cn/post/ifile-tryout/">ifile简单试用</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  <article class="item post-1 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://chyon.cn/post/multi-backup-sh/" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display:block;border-radius:50%;background-image: url('https://pic.rmb.bdstatic.com/bjh/f22c2c99f9d4d987865209cd0e8c335f.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2022-01-04">2022-01-04</time>
+                      <h4 class="title usmall">
+                        <a href="https://chyon.cn/post/multi-backup-sh/">服务器多备份脚本</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  <article class="item post-2 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://chyon.cn/post/ubuntu20-bash-startup/" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display:block;border-radius:50%;background-image: url('https://pic.rmb.bdstatic.com/bjh/bccbf745b500e7e79d196b531935e9b5.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2021-12-31">2021-12-31</time>
+                      <h4 class="title usmall">
+                        <a href="https://chyon.cn/post/ubuntu20-bash-startup/">Ubuntu20 开机自启脚本设置</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <div class="clear"></div>
+                </section>
+              </div>
+
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="tag_cloud-2" class="widget widget_tag_cloud underline-effect">
+                  <h4 class="widget-title title white bordered">标签云</h4>
+                  <div class="tagcloud">
+                    
+                      <a href="https://chyon.cn/tag/1tNs6jYaW/" class="ctag ctag-0 ctag-1tNs6jYaW" aria-label="">office365</a>
+                    
+                      <a href="https://chyon.cn/tag/nbbkZL5Qz/" class="ctag ctag-1 ctag-nbbkZL5Qz" aria-label="">Oracle</a>
+                    
+                      <a href="https://chyon.cn/tag/7Og8ymC1p/" class="ctag ctag-2 ctag-7Og8ymC1p" aria-label="">树莓派</a>
+                    
+                      <a href="https://chyon.cn/tag/LFhcpSea-R/" class="ctag ctag-3 ctag-LFhcpSea-R" aria-label="">Cloudreve</a>
+                    
+                      <a href="https://chyon.cn/tag/e2VPqPl4Hb/" class="ctag ctag-4 ctag-e2VPqPl4Hb" aria-label="">OFB</a>
+                    
+                      <a href="https://chyon.cn/tag/OXMYjl4qvz/" class="ctag ctag-5 ctag-OXMYjl4qvz" aria-label="">CCAA</a>
+                    
+                      <a href="https://chyon.cn/tag/d98oM_-FC-/" class="ctag ctag-6 ctag-d98oM_-FC-" aria-label="">docker</a>
+                    
+                      <a href="https://chyon.cn/tag/y2g_Jal6Qj/" class="ctag ctag-7 ctag-y2g_Jal6Qj" aria-label="">青龙</a>
+                    
+                      <a href="https://chyon.cn/tag/rpDcRXcBJv/" class="ctag ctag-8 ctag-rpDcRXcBJv" aria-label="">教程</a>
+                    
+                      <a href="https://chyon.cn/tag/o33z1EqCrH/" class="ctag ctag-9 ctag-o33z1EqCrH" aria-label="">rss</a>
+                    
+                      <a href="https://chyon.cn/tag/7dC6LXdvyt/" class="ctag ctag-10 ctag-7dC6LXdvyt" aria-label="">onenote</a>
+                    
+                      <a href="https://chyon.cn/tag/HSfooHFl3X/" class="ctag ctag-11 ctag-HSfooHFl3X" aria-label="">flow</a>
+                    
+                      <a href="https://chyon.cn/tag/g73VMB7RIb/" class="ctag ctag-12 ctag-g73VMB7RIb" aria-label="">心情日记</a>
+                    
+                      <a href="https://chyon.cn/tag/WRGI_M9cAp/" class="ctag ctag-13 ctag-WRGI_M9cAp" aria-label="">软件</a>
+                    
+                      <a href="https://chyon.cn/tag/sESGof_c-K/" class="ctag ctag-14 ctag-sESGof_c-K" aria-label="">KMS</a>
+                    
+                      <a href="https://chyon.cn/tag/C0siuULFmO/" class="ctag ctag-15 ctag-C0siuULFmO" aria-label="">分享</a>
+                    
+                      <a href="https://chyon.cn/tag/bxYNpo6x0jV/" class="ctag ctag-16 ctag-bxYNpo6x0jV" aria-label="">科普</a>
+                    
+                      <a href="https://chyon.cn/tag/GnExbHY2m/" class="ctag ctag-17 ctag-GnExbHY2m" aria-label="">Gridea</a>
+                    
+                      <a href="https://chyon.cn/tag/ZWTJjiyL1-w/" class="ctag ctag-18 ctag-ZWTJjiyL1-w" aria-label="">markdown</a>
+                    
+                  </div>
+                  <div class="clear"></div>
+                </section>
+              </div>
+
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="epcl_about-2" class="widget widget_epcl_about underline-effect">
+                  <h4 class="widget-title title white bordered">关于我</h4>
+                  <div class="avatar">
+                    <a href="" class="translate-effect thumb"><span class="fullimage cover" style="background-image: url(https://chyon.cn//images/avatar.png);"></span></a>
+                  </div>
+                  <div class="info">
+                    <h4 class="title small author-name gradient-effect no-margin"><a href="">言岚的博客</a></h4>
+                    <p class="founder">这是一个孤独的世界</p>
+                    <div class="social">
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                    </div> 
+                  </div>
+                  <div class="clear"></div>
+                  </section>
+              </div>
+
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="logo">
+          <a href="https://chyon.cn/"><img src="\media\images\custom-footerLogo.png" alt=""></a>
+        </div>
+        <p class="published border-effect">
+          ©2019 共 92 篇文章
+          <br/>
+          Theme <a href="https://gridea.dev/" target="_blank">「breek」</a> Powered by <a href="https://gridea.dev/" target="_blank">「Gridea」</a>
+        </p>
+        
+        <a href="javascript:void(0)" id="back-to-top" class="epcl-button dark" style="display:none">
+          <i class="fa fa-arrow"></i>
+        </a>
+    </footer>
+    
+    <div class="clear"></div>
+
+        
+
+      
+    <script src="https://chyon.cn//media/js/functions-post.js"></script>
+
+    </div>
+    <!-- end: #wrapper -->
+  </body>
+</html>

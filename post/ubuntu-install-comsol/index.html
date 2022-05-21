@@ -1,0 +1,585 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ubuntu 18.04安装COMSOL | 言岚的博客</title>
+<meta name="description" content="这是一个孤独的世界" />
+<link rel="shortcut icon" href="https://chyon.cn//favicon.ico">
+<link rel="stylesheet" href="https://chyon.cn//styles/main.css">
+
+<script src="https://chyon.cn//media/js/jquery.min.js"></script>
+<script src="https://chyon.cn//media/js/masonry.pkgd.min.js"></script>
+<script src="https://chyon.cn//media/js/aos.js"></script>
+<script src="https://chyon.cn//media/js/pace.min.js"></script>
+<script src="https://chyon.cn//media/js/view-image.min.js"></script>
+<script src="https://chyon.cn//media/js/jquery.magnific-popup.min.js"></script>
+<script src="https://chyon.cn//media/js/functions.js"></script>
+    <meta name="referrer" content="never">
+    <meta name="description" content="研究这个的原因，是一位朋友要用学校的Linux服务器。从对话里，没有得知Linux是否有常规界面，可能只有ssh，所以我先把工作做到前面，研究一下吧。
+因为不知道有没有图形界面，所以就假装没有图形界面，我从AWS开了一台4核16G的Ubun..." />
+    <meta name="keywords" content="" />
+    <script src="https://chyon.cn//media/js/waterfall.min.js"></script>
+    <script src="https://chyon.cn//media/js/prism.min.js"></script>
+  </head>
+  <body>
+            <header id="header" class="grid-container">
+        <!-- start: .menu-wrapper -->
+        <div class="menu-mobile"> 
+          <i class="fa fa-reorder"></i>
+        </div>
+        <div class="menu-wrapper">
+          <div class="">
+            <div class="logo">
+              <a href="https://chyon.cn/"><img src="\media\images\custom-headerLogo.png" alt=""></a>
+            </div>
+            <!-- start: .main-nav -->
+
+            <nav class="main-nav grid-container grid-parent">
+              <ul id="menu-header" class="menu gradient-effect">
+                <li class=""><a href="https://chyon.cn/" class="menu">首页</a></li>
+                
+                  <li class="" >
+                    <a href="/archives" class="menu">
+                      归档
+                    </a>
+                  </li>
+                
+                  <li class="" >
+                    <a href="/tags" class="menu">
+                      标签
+                    </a>
+                  </li>
+                
+                  <li class="" >
+                    <a href="/post/about" class="menu">
+                      关于
+                    </a>
+                  </li>
+                
+                <li class="search-menu-item hide-on-mobile hide-on-tablet"><a href="#search-lightbox" class="lightbox mfp-inline"><i class="fa fa-search-line"></i></a></li>
+              </ul>
+            </nav>
+            <a href="#search-lightbox" class="lightbox epcl-search-button mfp-inline hide-on-tablet hide-on-desktop"><i class="fa fa-search-line"></i></a>
+            <!-- end: .main-nav -->
+            <div class="clear"></div>
+            <div class="border hide-on-tablet hide-on-mobile"></div>
+          </div>    
+          <div class="clear"></div>
+        </div>
+        <!-- end: .menu-wrapper -->
+        <div class="clear"></div>
+      </header>
+      <div class="hide-on-mobile hide-on-tablet hide-on-desktop">
+        <div id="search-lightbox" class="grid-container grid-small grid-parent mfp-hide">
+          <div class="search-wrapper section">
+            <form id="gridea-search-form" data-update="1653140660237" action="/search/index.html" class="search-form" _lpchecked="1">
+              <input type="text" name="q" id="s" value="" class="search-field" placeholder="搜点啥..." aria-label="搜点啥..." required="">
+              <button type="submit" class="submit" aria-label="Submit">
+                <i class="fa fa-search-line"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <main id="single" class="main grid-container fullcover no-sidebar aos-init aos-animate" data-aos="fade">
+
+        <div class="center content">
+          <div class="featured-image cover" style="background-image: url('https://pic.rmb.bdstatic.com/bjh/26c28fbd7ba91da178a98fb1d13e81cc.png');">
+            <div class="meta top"> 
+              <time class="meta-info" style="float:left;" datetime="2021-03-29"><i class="fa fa-calendar"></i><span class="lately">1 年前</span></time>
+              
+              <a href="https://chyon.cn/post/ubuntu-install-comsol/#comments" class="comments meta-info" title="">
+                <i class="fa fa-comment remixicon"></i><span class="comment-count valine-comment-count" data-xid="/ubuntu-install-comsol/"> </span>
+              </a>
+              <span id="/ubuntu-install-comsol/" class="leancloud_visitors views-counter meta-info" title=""><i class="fa fa-leancloud remixicon"></i><span class="leancloud-visitors-count"></span></span>
+              
+            </div>
+            <div class="info">
+              <div class="tags ">
+                
+              </div>
+              <h1 class="title ularge white bold">Ubuntu 18.04安装COMSOL</h1>
+            </div>
+          </div>
+        </div>  
+
+        <div class="epcl-page-wrapper">
+          <div class="left-content grid-70 np-mobile">
+            <article class="main-article post">
+              <section class="post-content">
+                <div class="text">
+                  <p>研究这个的原因，是一位朋友要用学校的Linux服务器。从对话里，没有得知Linux是否有常规界面，可能只有ssh，所以我先把工作做到前面，研究一下吧。</p>
+<p>因为不知道有没有图形界面，所以就假装没有图形界面，我从AWS开了一台4核16G的Ubuntu 18.04作为试验机，尝试装COMSOL 5.6.0.341。</p>
+<p>一开始尝试用Xstart打开图形界面，发现很难，可能是因为我是美国的服务器，太卡了。于是转为VNC，因为我以前就接触过VNC，所以就直接跳过远程桌面(mstsc)了。</p>
+<p><strong>Ubuntu 18.04 安装VNC</strong></p>
+<p>以下内容均需要以root用户身份运行。</p>
+<p>这里用的系统镜像是AWS提供的18.04，所以源都是全的。</p>
+<p>更新源：</p>
+<pre><code class="language-C">apt-get update -y
+</code></pre>
+<p>安装VNC：</p>
+<pre><code class="language-C">apt-get install vnc4server
+</code></pre>
+<p>设置启动密码：</p>
+<pre><code class="language-C">vncserver
+</code></pre>
+<p>随后会弹出输入提示，密码不显示，需要输入两遍。</p>
+<p><strong>安装Gnome</strong></p>
+<p>安装<code>x-windows</code>：</p>
+<pre><code class="language-C">apt-get install x-window-system-core gdm3
+</code></pre>
+<p>需要注意的是，对于18.04，安装的是<code>gdm3</code>，如果是16.04，则是<code>gdm</code>。</p>
+<p>安装Ubuntu的桌面：</p>
+<pre><code class="language-C">apt-get install ubuntu-desktop
+</code></pre>
+<p>安装Gnome套件：</p>
+<pre><code class="language-C">apt-get install gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal
+</code></pre>
+<p>替换VNC配置文件：</p>
+<pre><code class="language-C">vi ~/.vnc/xstartup
+</code></pre>
+<p>随后将其中内容替换为：</p>
+<pre><code class="language-C">#!/bin/sh
+# Uncomment the following two lines for normal desktop:
+export XKL_XMODMAP_DISABLE=1
+unset SESSION_MANAGER
+# exec /etc/X11/xinit/xinitrc
+unset DBUS_SESSION_BUS_ADDRESS
+gnome-panel &amp;
+gnome-settings-daemon &amp;
+metacity &amp;
+nautilus &amp;
+gnome-terminal &amp;
+</code></pre>
+<p>重启：</p>
+<pre><code class="language-C">reboot
+</code></pre>
+<p>随后ssh中启动VNC服务：</p>
+<pre><code class="language-C">vncserver
+</code></pre>
+<p>然后就可以在VNC Viewer中连接到该主机了。</p>
+<pre><code class="language-C">IP地址:1
+</code></pre>
+<p><strong>安装COMSOL</strong></p>
+<p>准备好COMSOL的镜像文件，挂载。</p>
+<p>这里我创建文件夹<code>/media/comsol</code>，并挂载到该文件夹中：</p>
+<pre><code class="language-C">mkdir /media/comsol
+mount -o loop COMSOL_5.6.0.341_DVD.iso /media/comsol
+</code></pre>
+<p>然后在VNC中启动终端，定位到<code>/media/comsol</code>：</p>
+<pre><code class="language-C">cd /media/comsol
+</code></pre>
+<p>这里可以<code>ls</code>查看文件目录，确认有<code>setup</code>文件后，便可以启动安装程序：</p>
+<pre><code class="language-C">./setup
+</code></pre>
+<p>安装过程基本和<code>Windows</code>环境下的安装步骤相同。</p>
+<figure data-type="image" tabindex="1"><img src="https://pic.rmb.bdstatic.com/bjh/6a6f3605cf183619a50b3a5d2a357577.png" alt="image1.png" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://pic.rmb.bdstatic.com/bjh/4a7c253525569799d36184486f09de06.png" alt="image2.png" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://pic.rmb.bdstatic.com/bjh/1915d1997173165118c1871980e9aab6.png" alt="image3.png" loading="lazy"></figure>
+<p><strong>启动COMSOL</strong></p>
+<p>由于gnome可能没有桌面，因此没有快捷方式可以用，所以可以直接在终端中输入：</p>
+<p><code>comsol</code></p>
+<p>来启动COMSOl</p>
+<figure data-type="image" tabindex="4"><img src="https://pic.rmb.bdstatic.com/bjh/b05d79e95002c4561622be39433ddbcc.png" alt="image4.png" loading="lazy"></figure>
+<p>第一次启动可能会由于GUI界面初始化失败，不要慌张，重新启动即可。</p>
+<figure data-type="image" tabindex="5"><img src="https://pic.rmb.bdstatic.com/bjh/d91980a5edb0d15c0483567527562a5f.png" alt="image5.png" loading="lazy"></figure>
+<p>后续的使用步骤和界面，基本与<code>Windows</code>端相同，不再赘述。</p>
+<figure data-type="image" tabindex="6"><img src="https://pic.rmb.bdstatic.com/bjh/5911a54ef4238f9de0baf636870d6e46.png" alt="image8.png" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="https://pic.rmb.bdstatic.com/bjh/4828fb295b46870ddda77db4305bf0dc.png" alt="image9.png" loading="lazy"></figure>
+<p>正儿八经开始用起来，对CPU的利用率可以达到400%？估计是用了虚拟内核。</p>
+<figure data-type="image" tabindex="8"><img src="https://pic.rmb.bdstatic.com/bjh/8a2b842aba35df3ac6c78e1ca49981ab.png" alt="image10.png" loading="lazy"></figure>
+<p>跑出来的结果和<code>Windows</code>端的倒是没差。</p>
+<figure data-type="image" tabindex="9"><img src="https://pic.rmb.bdstatic.com/bjh/57222af1ff54c29a345a5c3130a6408f.png" alt="image11.png" loading="lazy"></figure>
+<figure data-type="image" tabindex="10"><img src="https://pic.rmb.bdstatic.com/bjh/feb1fa27a5cfdae254e792dc0e12fce1.png" alt="image12.png" loading="lazy"></figure>
+
+                </div>
+                <div class="clear"></div>
+              </section>
+            </article>
+            <div class="clear"></div>
+
+            <section class="related section">
+              
+              <article class="prev grid-50 tablet-grid-50 grid-parent">
+                <div class="thumb cover lazy loaded" style="background-image: url('https://pic.rmb.bdstatic.com/bjh/261af8956a699890e32a0952893488a8.jpeg');"></div>
+                 <a href="https://chyon.cn/post/putian-shoes/" class="full-link"></a>
+                 <div class="info">
+                  <time datetime="2021-06-26">2021-06-26</time>
+                  <h4 class="title white no-margin">聊一下鞋（一），莆田和国货</h4>
+                </div>
+                 <span class="epcl-button red">
+                  <img src="https://chyon.cn//media/images/left-arrow.svg" width="15" alt="Left Arrow">
+                </span>
+                <div class="overlay"></div>
+              </article>
+              
+              
+              <article class="next grid-50 tablet-grid-50 grid-parent">
+                <div class="thumb cover lazy loaded" style="background-image: url('https://pic.rmb.bdstatic.com/bjh/2cfabe0d43f87988a9d21555ab005fde.jpeg');"></div>
+                 <a href="https://chyon.cn/post/win10-encryption-1/" class="full-link"></a>
+                 <div class="info">
+                  <time datetime="2020-12-09">2020-12-09</time>
+                  <h4 class="title white no-margin">Win10加密功能的坑</h4>
+                </div>
+                 <span class="epcl-button red">
+                  <img src="https://chyon.cn//media/images/right-arrow.svg" width="15" alt="Left Arrow">
+                </span>
+                <div class="overlay"></div>
+              </article>
+              
+
+                <div class="clear"></div>
+            </section>
+
+              <div class="clear"></div>
+              
+            
+              <div id="comments" class="bg-white hosted ">
+                <p>请到客户端“主题--自定义配置--valine”中填入ID和KEY</p>
+              </div>
+              <div class="clear"></div>
+            
+
+            </div>
+          </div>
+      </main>
+
+          <footer id="footer" class="grid-container">
+        <div class="widgets row gradient-effect">
+            <div class="default-sidebar border-effect">
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="tag_cloud-2" class="widget widget_epcl_posts_thumbs underline-effect">
+                  <h4 class="widget-title title white bordered">最新文章</h4>
+                  
+                  
+                  <article class="item post-0 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://chyon.cn/post/ifile-tryout/" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display:block;border-radius:50%;background-image: url('https://pic.rmb.bdstatic.com/bjh/d837f914d6e3af32d4ca4192ee20c278.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2022-02-23">2022-02-23</time>
+                      <h4 class="title usmall">
+                        <a href="https://chyon.cn/post/ifile-tryout/">ifile简单试用</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  <article class="item post-1 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://chyon.cn/post/multi-backup-sh/" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display:block;border-radius:50%;background-image: url('https://pic.rmb.bdstatic.com/bjh/f22c2c99f9d4d987865209cd0e8c335f.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2022-01-04">2022-01-04</time>
+                      <h4 class="title usmall">
+                        <a href="https://chyon.cn/post/multi-backup-sh/">服务器多备份脚本</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  <article class="item post-2 post type-post status-publish format-standard has-post-thumbnail hentry">
+                    <a href="https://chyon.cn/post/ubuntu20-bash-startup/" class="thumb hover-effect">
+                      <span class="fullimage cover" style="display:block;border-radius:50%;background-image: url('https://pic.rmb.bdstatic.com/bjh/bccbf745b500e7e79d196b531935e9b5.png');"></span>
+                    </a>
+                    <div class="info gradient-effect">
+                      <time datetime="2021-12-31">2021-12-31</time>
+                      <h4 class="title usmall">
+                        <a href="https://chyon.cn/post/ubuntu20-bash-startup/">Ubuntu20 开机自启脚本设置</a>
+                      </h4>
+                    </div>
+                    <div class="clear"></div>
+                  </article>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  <div class="clear"></div>
+                </section>
+              </div>
+
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="tag_cloud-2" class="widget widget_tag_cloud underline-effect">
+                  <h4 class="widget-title title white bordered">标签云</h4>
+                  <div class="tagcloud">
+                    
+                      <a href="https://chyon.cn/tag/1tNs6jYaW/" class="ctag ctag-0 ctag-1tNs6jYaW" aria-label="">office365</a>
+                    
+                      <a href="https://chyon.cn/tag/nbbkZL5Qz/" class="ctag ctag-1 ctag-nbbkZL5Qz" aria-label="">Oracle</a>
+                    
+                      <a href="https://chyon.cn/tag/7Og8ymC1p/" class="ctag ctag-2 ctag-7Og8ymC1p" aria-label="">树莓派</a>
+                    
+                      <a href="https://chyon.cn/tag/LFhcpSea-R/" class="ctag ctag-3 ctag-LFhcpSea-R" aria-label="">Cloudreve</a>
+                    
+                      <a href="https://chyon.cn/tag/e2VPqPl4Hb/" class="ctag ctag-4 ctag-e2VPqPl4Hb" aria-label="">OFB</a>
+                    
+                      <a href="https://chyon.cn/tag/OXMYjl4qvz/" class="ctag ctag-5 ctag-OXMYjl4qvz" aria-label="">CCAA</a>
+                    
+                      <a href="https://chyon.cn/tag/d98oM_-FC-/" class="ctag ctag-6 ctag-d98oM_-FC-" aria-label="">docker</a>
+                    
+                      <a href="https://chyon.cn/tag/y2g_Jal6Qj/" class="ctag ctag-7 ctag-y2g_Jal6Qj" aria-label="">青龙</a>
+                    
+                      <a href="https://chyon.cn/tag/rpDcRXcBJv/" class="ctag ctag-8 ctag-rpDcRXcBJv" aria-label="">教程</a>
+                    
+                      <a href="https://chyon.cn/tag/o33z1EqCrH/" class="ctag ctag-9 ctag-o33z1EqCrH" aria-label="">rss</a>
+                    
+                      <a href="https://chyon.cn/tag/7dC6LXdvyt/" class="ctag ctag-10 ctag-7dC6LXdvyt" aria-label="">onenote</a>
+                    
+                      <a href="https://chyon.cn/tag/HSfooHFl3X/" class="ctag ctag-11 ctag-HSfooHFl3X" aria-label="">flow</a>
+                    
+                      <a href="https://chyon.cn/tag/g73VMB7RIb/" class="ctag ctag-12 ctag-g73VMB7RIb" aria-label="">心情日记</a>
+                    
+                      <a href="https://chyon.cn/tag/WRGI_M9cAp/" class="ctag ctag-13 ctag-WRGI_M9cAp" aria-label="">软件</a>
+                    
+                      <a href="https://chyon.cn/tag/sESGof_c-K/" class="ctag ctag-14 ctag-sESGof_c-K" aria-label="">KMS</a>
+                    
+                      <a href="https://chyon.cn/tag/C0siuULFmO/" class="ctag ctag-15 ctag-C0siuULFmO" aria-label="">分享</a>
+                    
+                      <a href="https://chyon.cn/tag/bxYNpo6x0jV/" class="ctag ctag-16 ctag-bxYNpo6x0jV" aria-label="">科普</a>
+                    
+                      <a href="https://chyon.cn/tag/GnExbHY2m/" class="ctag ctag-17 ctag-GnExbHY2m" aria-label="">Gridea</a>
+                    
+                      <a href="https://chyon.cn/tag/ZWTJjiyL1-w/" class="ctag ctag-18 ctag-ZWTJjiyL1-w" aria-label="">markdown</a>
+                    
+                  </div>
+                  <div class="clear"></div>
+                </section>
+              </div>
+
+              <div class="grid-33 tablet-grid-50 mobile-grid-100">
+                <section id="epcl_about-2" class="widget widget_epcl_about underline-effect">
+                  <h4 class="widget-title title white bordered">关于我</h4>
+                  <div class="avatar">
+                    <a href="" class="translate-effect thumb"><span class="fullimage cover" style="background-image: url(https://chyon.cn//images/avatar.png);"></span></a>
+                  </div>
+                  <div class="info">
+                    <h4 class="title small author-name gradient-effect no-margin"><a href="">言岚的博客</a></h4>
+                    <p class="founder">这是一个孤独的世界</p>
+                    <div class="social">
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                        
+                      
+                    </div> 
+                  </div>
+                  <div class="clear"></div>
+                  </section>
+              </div>
+
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="logo">
+          <a href="https://chyon.cn/"><img src="\media\images\custom-footerLogo.png" alt=""></a>
+        </div>
+        <p class="published border-effect">
+          ©2019 共 92 篇文章
+          <br/>
+          Theme <a href="https://gridea.dev/" target="_blank">「breek」</a> Powered by <a href="https://gridea.dev/" target="_blank">「Gridea」</a>
+        </p>
+        
+        <a href="javascript:void(0)" id="back-to-top" class="epcl-button dark" style="display:none">
+          <i class="fa fa-arrow"></i>
+        </a>
+    </footer>
+    
+    <div class="clear"></div>
+
+        
+
+      
+    <script src="https://chyon.cn//media/js/functions-post.js"></script>
+
+    </div>
+    <!-- end: #wrapper -->
+  </body>
+</html>
